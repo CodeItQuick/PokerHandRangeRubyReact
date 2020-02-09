@@ -1,0 +1,2 @@
+class HandRange < ApplicationRecord
+end

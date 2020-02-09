@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  RangeName: MyString
+  RangeScope0: MyString
+  RangeScope1: MyString
+  RangeScope2: MyString
+  RangeScope3: MyString
+  RangeScope4: MyString
+  UserID: 1
+
+two:
+  RangeName: MyString
+  RangeScope0: MyString
+  RangeScope1: MyString
+  RangeScope2: MyString
+  RangeScope3: MyString
+  RangeScope4: MyString
+  UserID: 1
