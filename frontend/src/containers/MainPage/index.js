@@ -14,14 +14,14 @@ export const MainPage = ({loading, error}) => {
         {key: 'raiseFold', value: 'raiseFold', text: 'Raise/Fold'},
         {key: 'Fold', value: 'Fold', text: 'Fold'}
     ]
-
+    const url = "hand_ranges";
     const [raise4betCall, setRaise4betCall] = useState([]);
     const [raise4betFold, setRaise4betFold] = useState([]);
     const [raiseCall, setRaiseCall] = useState([]);
     const [raiseFold, setRaiseFold] = useState([]);
 
     const [postQuery, setPostQuery] = useState();
-    const [dataState] = UseRequest1API(postQuery);
+    const [dataState] = UseRequest1API(postQuery, url);
 
 
     const [bettingOptions, setBettingOptions] = useState(initBettingOptions.key);
@@ -108,7 +108,6 @@ export const MainPage = ({loading, error}) => {
     };
 
     const saveToServerHandler = async () => {
-        console.log(raise4betFold);
         let newRaise4betCall = (raise4betCall.length !== 0) ? raise4betCall.reduce((result, item) => { return result + item;}) : null;
         let newRaise4betFold = (raise4betFold.length !== 0) ? raise4betFold.reduce((result, item) => { return result + item;}) : null;
         let newRaiseCall = (raiseCall.length !== 0) ? raiseCall.reduce((result, item) => { return result + item;}) : null;
@@ -121,12 +120,10 @@ export const MainPage = ({loading, error}) => {
             "RangeScope3": newRaiseFold, 
             "RangeScope4": "None", 
             "UserID": 1
-        }}
+        }};
 
         setPostQuery(newData);
         let returnData = await dataState;
-        console.log(newData);
-         console.log(returnData);
      };
 
     return (
