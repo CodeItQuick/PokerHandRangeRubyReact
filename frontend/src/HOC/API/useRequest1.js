@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const url = "http://localhost:3001/hand_ranges";
+const url = "http://localhost:3001/";
 
-const useRequest1 = (props) => {
+const useRequest1 = (props, requestURL) => {
   // This is just for demo purposes, you probably want to separate the data from loading state and potentially add other states such as failures, etc..
   const [dataState, setDataState] = useState({ data: [], isFetching: false }); 
   const [endpointUrl] = useState(url);
@@ -14,8 +14,8 @@ const useRequest1 = (props) => {
     const fetchDataFromApi = async () => {
       try {
         setDataState({ ...dataState, isFetching: true });
-        console.log(props);
-        const response = await axios.post(endpointUrl, props.params);
+        console.log(endpointUrl + requestURL);
+        const response = await axios.post(endpointUrl + requestURL, props.params);
 
         console.log(response);
         setDataState({
