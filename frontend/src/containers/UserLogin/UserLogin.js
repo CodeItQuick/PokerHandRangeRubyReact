@@ -16,7 +16,7 @@ export const UserLogin = (props) => {
         console.log(e);
         console.log(e.target.username.value);
         let newData = {"params": {
-            "Username": e.target.username.value, 
+            "username": e.target.username.value, 
             "email": e.target.email.value, 
             //"password": e.target.password.value
         }}

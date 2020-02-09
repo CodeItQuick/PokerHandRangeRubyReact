@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import UseRequest1API from '../../HOC/API/useRequest1';
 
 
-export const UserLogin = (props) => {
+export const UserRegister = (props) => {
 
     const url = "users"
     const [postQuery, setPostQuery] = useState();
@@ -16,7 +16,7 @@ export const UserLogin = (props) => {
         console.log(e);
         console.log(e.target.username.value);
         let newData = {"params": {
-            "Username": e.target.username.value, 
+            "username": e.target.username.value, 
             "email": e.target.email.value, 
             //"password": e.target.password.value
         }}
@@ -51,4 +51,4 @@ export const UserLogin = (props) => {
     );
 };
 
-export default UserLogin;
+export default UserRegister;
