@@ -108,13 +108,17 @@ export const MainPage = ({loading, error}) => {
     };
 
     const saveToServerHandler = async () => {
-    
+        console.log(raise4betFold);
+        let newRaise4betCall = (raise4betCall.length !== 0) ? raise4betCall.reduce((result, item) => { return result + item;}) : null;
+        let newRaise4betFold = (raise4betFold.length !== 0) ? raise4betFold.reduce((result, item) => { return result + item;}) : null;
+        let newRaiseCall = (raiseCall.length !== 0) ? raiseCall.reduce((result, item) => { return result + item;}) : null;
+        let newRaiseFold = (raiseFold.length !== 0) ? raiseFold.reduce((result, item) => { return result + item;}) : null;
         let newData = {"params": {
             "RangeName": "EvansHandRangeTest", 
-            "RangeScope0": raise4betCall.reduce((result, item) => { return result + item;}), 
-            "RangeScope1": raise4betFold.reduce((result, item) => { return result + item;}), 
-            "RangeScope2": raiseCall.reduce((result, item) => { return result + item;}), 
-            "RangeScope3": raiseFold.reduce((result, item) => { return result + item;}), 
+            "RangeScope0": newRaise4betCall, 
+            "RangeScope1": newRaise4betFold, 
+            "RangeScope2": newRaiseCall, 
+            "RangeScope3": newRaiseFold, 
             "RangeScope4": "None", 
             "UserID": 1
         }}
