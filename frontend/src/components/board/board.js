@@ -4,11 +4,11 @@ import Hand from '../hand/hand';
 
 function Board(props) {
     const orderedCard = ["A", "K", "Q", "J", "T", "9", "8", "7", "6", "5", "4", "3", "2"];
-    
+
     const displayCard = (indexCardOne, indexCardTwo, cardOne, cardTwo) => {
         let display;
-        
-        if(indexCardOne < indexCardTwo) 
+
+        if(indexCardOne < indexCardTwo)
         {
             display = <Hand key={cardOne + cardTwo} cardOne={cardOne} cardTwo={cardTwo} suit={"s"} handOnClick={props.onHandClick} classColor={props.classColor}></Hand>;
         }
@@ -26,9 +26,9 @@ function Board(props) {
 
     return (
         <Grid>
-            <Grid.Row columns={13}>
-                {orderedCard.map((cardOne, indexCardOne) => 
-                    orderedCard.map((cardTwo, indexCardTwo) =>  
+            <Grid.Row className='card-grid' columns={13}>
+                {orderedCard.map((cardOne, indexCardOne) =>
+                    orderedCard.map((cardTwo, indexCardTwo) =>
                         displayCard(indexCardOne, indexCardTwo, cardOne, cardTwo)
                     )
                 )}

@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.grid {
+  padding-bottom: 80px !important;
+}
+.card-grid {
+  max-width: 700px;
+}
+
+.card-grid .column {
+  padding: 0 !important;
+}
+
+.card-button {
+  width: 100% !important;
+  text-align: center !important;
+  padding: 0 !important;
+  height: 100% !important;
+  border: 1px solid #282c34 !important;
+  border-radius: 0 !important;
+}
+
+.card-button:hover {
+  border: 1px solid blue !important;
+}
