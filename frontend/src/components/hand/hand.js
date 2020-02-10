@@ -10,7 +10,7 @@ function Hand(props) {
       <Button
         onClick={handOnClick}
         name={cardOne + cardTwo + suit}
-        className={classColor(cardOne, cardTwo, suit)}
+        className={`${classColor(cardOne, cardTwo, suit)} card-button`}
       >
         {cardOne}
         {cardTwo}
