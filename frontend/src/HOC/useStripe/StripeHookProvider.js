@@ -1,7 +1,7 @@
 // StripeHookProvider.jsx
 
-import React, { useContext, createContext } from 'react'
-import { injectStripe } from 'react-stripe-elements'
+import React, { useContext, createContext } from 'react';
+import { injectStripe } from 'react-stripe-elements';
 
 const Context = createContext();
 
