@@ -27,7 +27,7 @@ export const UserRegister = (props) => {
 
     return (
         <Container>
-            <h2>User Login</h2>
+            <h2>User Register</h2>
             <Form onSubmit={loginUserHandler.bind(this)}>
                 <Form.Field>
                     <label>Username</label>
