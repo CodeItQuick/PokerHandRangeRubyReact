@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const url = "http://localhost:3001/";
 
-const useRequest1 = (props, requestURL) => {
+const useRequest1 = (props, requestURL, getOrPost) => {
   // This is just for demo purposes, you probably want to separate the data from loading state and potentially add other states such as failures, etc..
   const [dataState, setDataState] = useState({ data: [], isFetching: false }); 
   const [endpointUrl] = useState(url);
@@ -15,8 +15,15 @@ const useRequest1 = (props, requestURL) => {
       try {
         setDataState({ ...dataState, isFetching: true });
         console.log(endpointUrl + requestURL);
-        const response = await axios.post(endpointUrl + requestURL, props.params);
-
+        let response;
+        if(getOrPost === "post")
+        {
+            response = await axios.post(endpointUrl + requestURL, props.params);
+        }
+        else
+        {
+            response = await axios.get(endpointUrl + requestURL, props.params);
+        }
         console.log(response);
         setDataState({
           ...dataState,
