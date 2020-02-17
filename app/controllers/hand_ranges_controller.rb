@@ -46,6 +46,6 @@ class HandRangesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def hand_range_params
-      params.require(:hand_range).permit(:RangeName, :RangeScope0, :RangeScope1, :RangeScope2, :RangeScope3, :RangeScope4, :UserID)
+      params.require(:hand_range).permit(:RangeName, :RangeScope0, :RangeScope1, :RangeScope2, :RangeScope3, :RangeScope4, :user_id)
     end
 end

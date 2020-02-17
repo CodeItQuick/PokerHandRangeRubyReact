@@ -45,3 +45,9 @@ gem 'mysql2'
 gem 'stripe'
 
 gem 'dotenv-rails', groups: [:development, :test]
+
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'cors'
+
+gem 'jwt'
