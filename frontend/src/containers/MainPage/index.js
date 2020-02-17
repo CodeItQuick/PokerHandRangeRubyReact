@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MainContainer from '../../components/MainContainer/index';
 import Board from '../../components/board/board';
 import Range from '../Range/index';
-import {Button } from 'semantic-ui-react';
+import {Button, Select } from 'semantic-ui-react';
 import UseRequest1API from '../../HOC/API/useRequest1';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import userActions from '../../redux/actions';
+import prange from 'prange';
 
 export const MainPage = (props) => {
 
 
+    const dispatch = useDispatch();
     const username = useSelector(state => state.username);
+
+    const user_id = useSelector(state => state.id);
+    const user_email = useSelector(state => state.email);
     const text = username ? (
         <h1>{username} is currently logged in. You can store ranges.</h1>
     ) : (
@@ -22,18 +28,49 @@ export const MainPage = (props) => {
         {key: 'raiseCall', value: 'raiseCall', text: 'Raise/Call'},
         {key: 'raiseFold', value: 'raiseFold', text: 'Raise/Fold'},
         {key: 'Fold', value: 'Fold', text: 'Fold'}
-    ]
-    const url = "hand_ranges";
+    ];
+
+    const initCurrentUserRanges = [
+        {key: 'EvansHandRange', value: 'EvansHandRange', text: "Evan's Hand Range"},
+        {key: 'EvansHandRange2', value: 'EvansHandRange2', text: "Evan's Hand Range 2"}
+    ];
+
+    const urlHR = "hand_ranges";
+    const [HRpostQuery, setHRPostQuery] = useState();
+    const [dataStateHR] = UseRequest1API(HRpostQuery, urlHR, "get");
+
+
     const [raise4betCall, setRaise4betCall] = useState([]);
     const [raise4betFold, setRaise4betFold] = useState([]);
     const [raiseCall, setRaiseCall] = useState([]);
     const [raiseFold, setRaiseFold] = useState([]);
 
+    const [PRANGEraise4betCall, setPRANGEraise4betCall] = useState(prange.reverse(raise4betCall));
+    const [PRANGEraise4betFold, setPRANGEraise4betFold] = useState(prange.reverse(raise4betCall));
+    const [PRANGEraiseCall, setPRANGEraiseCall] = useState(prange.reverse(raise4betCall));
+    const [PRANGEraiseFold, setPRANGEraiseFold] = useState(prange.reverse(raise4betCall));
+
+    useEffect(() => {
+        setPRANGEraise4betCall(prange.reverse(raise4betCall));
+        setPRANGEraise4betFold(prange.reverse(raise4betFold));
+        setPRANGEraiseCall(prange.reverse(raiseCall));
+        setPRANGEraiseFold(prange.reverse(raiseFold));
+    }, [raise4betCall, raise4betFold, raiseCall, raiseFold]);
+
+    useEffect(() => {
+
+        setRaise4betCall((dataStateHR.data[13]) ? prange(dataStateHR.data[13].RangeScope0) : [] );
+        setRaise4betFold((dataStateHR.data[13]) ? prange(dataStateHR.data[13].RangeScope1) : [] );
+        setRaiseCall((dataStateHR.data[13]) ? prange(dataStateHR.data[13].RangeScope2) : [] );
+        setRaiseFold((dataStateHR.data[13]) ? prange(dataStateHR.data[13].RangeScope3) : [] );
+        
+    }, [dataStateHR]);
+    const url = "hand_ranges";
     const [postQuery, setPostQuery] = useState();
     const [dataState] = UseRequest1API(postQuery, url, "post");
 
-
     const [bettingOptions, setBettingOptions] = useState(initBettingOptions.key);
+    const [activeUserRanges, setActiveUserRanges] = useState(initCurrentUserRanges.key);
 
     const onRaise4BetCallHandler = (e) => {
         setRaise4betCall(raise4betCall.map((key, value) => {return key;}));
@@ -80,7 +117,6 @@ export const MainPage = (props) => {
         {
             if(getHandHandler.includes(handTested))
             {
-                console.log("remove");
                 let filteredHandRange = getHandHandler.filter(function(hand){ return hand !== handTested});
 
                 setHandHandler(filteredHandRange);
@@ -117,10 +153,14 @@ export const MainPage = (props) => {
     };
 
     const saveToServerHandler = async () => {
-        let newRaise4betCall = (raise4betCall.length !== 0) ? raise4betCall.reduce((result, item) => { return result + item;}) : null;
-        let newRaise4betFold = (raise4betFold.length !== 0) ? raise4betFold.reduce((result, item) => { return result + item;}) : null;
-        let newRaiseCall = (raiseCall.length !== 0) ? raiseCall.reduce((result, item) => { return result + item;}) : null;
-        let newRaiseFold = (raiseFold.length !== 0) ? raiseFold.reduce((result, item) => { return result + item;}) : null;
+        
+        dispatch(userActions.saveHandRangeToDB());
+        console.log(user_email);
+        console.log(user_id);
+        let newRaise4betCall = (PRANGEraise4betCall.length !== 0) ? PRANGEraise4betCall : null;
+        let newRaise4betFold = (PRANGEraise4betFold.length !== 0) ? PRANGEraise4betFold : null;
+        let newRaiseCall = (PRANGEraiseCall.length !== 0) ? PRANGEraiseCall : null;
+        let newRaiseFold = (PRANGEraiseFold.length !== 0) ? PRANGEraiseFold : null;
         let newData = {"params": {
             "RangeName": "EvansHandRangeTest", 
             "RangeScope0": newRaise4betCall, 
@@ -128,23 +168,32 @@ export const MainPage = (props) => {
             "RangeScope2": newRaiseCall, 
             "RangeScope3": newRaiseFold, 
             "RangeScope4": "None", 
-            "user_id": "1"
+            "user_id": (user_id) ? user_id : null
         }};
 
         setPostQuery(newData);
         let returnData = await dataState;
      };
 
+    const loadUserRange = async () => {
+        await setHRPostQuery([{"id": "4"}]);
+        console.log(dataStateHR);
+
+
+
+    }
+
     return (
         <MainContainer>
             <Board onHandClick={onHandClickHandler} classColor={classColorHandler} optionsState={bettingOptions}></Board>
             <Range bettingOptions={initBettingOptions} onChangeHandler={bettingOptionsHandler}></Range><br></br>
-            <div>Raise 4bet Call Range: <span onChange={onRaise4BetCallHandler.bind(this)}>{raise4betCall}</span></div>
-            <div>Raise 4bet Fold Range: <span onChange={onRaise4BetFoldHandler.bind(this)}>{raise4betFold}</span></div>
-            <div>Raise Call Range: <span onChange={onRaiseCallHandler.bind(this)}>{raiseCall}</span></div>
-            <div>Raise Fold Range: <span onChange={onRaiseFoldHandler.bind(this)}>{raiseFold}</span></div>
+            <div>Raise 4bet Call Range: <span onChange={onRaise4BetCallHandler.bind(this)}>{PRANGEraise4betCall}</span></div>
+            <div>Raise 4bet Fold Range: <span onChange={onRaise4BetFoldHandler.bind(this)}>{PRANGEraise4betFold}</span></div>
+            <div>Raise Call Range: <span onChange={onRaiseCallHandler.bind(this)}>{PRANGEraiseCall}</span></div>
+            <div>Raise Fold Range: <span onChange={onRaiseFoldHandler.bind(this)}>{PRANGEraiseFold}</span></div>
             <Button onClick={saveToServerHandler}>Save Range To Server</Button>
             <div>{text}</div>
+            <Range bettingOptions={initCurrentUserRanges} onChangeHandler={loadUserRange}></Range><br></br>
         </MainContainer>
     );
 };
