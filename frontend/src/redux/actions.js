@@ -61,6 +61,28 @@ const loginUserToDB = userCredentials => dispatch => {
     });
 };
 
+
+const saveHandRangeToDB = (props) => dispatch => {
+
+    let currentToken = localStorage.getItem('token');
+    console.log("Current token:");
+    console.log(currentToken);
+
+    // const config = {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify(userCredentials)
+    // };
+    // fetch(LOGIN_URL, config)
+    //   .then(r => r.json())
+    //   .then(data => {
+    //     dispatch(setUserAction(data.user));
+    //     localStorage.setItem('token', data.token);
+    //   });
+  };
+
 const persistUser = () => dispatch => {
   const config = {
     method: 'GET',
@@ -85,5 +107,6 @@ export default {
   deleteUserFromDB,
   loginUserToDB,
   persistUser,
-  logoutUser
+  logoutUser,
+  saveHandRangeToDB
 };
