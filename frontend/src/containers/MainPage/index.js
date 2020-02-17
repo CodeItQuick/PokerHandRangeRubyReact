@@ -4,8 +4,17 @@ import Board from '../../components/board/board';
 import Range from '../Range/index';
 import {Button } from 'semantic-ui-react';
 import UseRequest1API from '../../HOC/API/useRequest1';
+import { useSelector } from 'react-redux';
 
-export const MainPage = ({loading, error}) => {
+export const MainPage = (props) => {
+
+
+    const username = useSelector(state => state.username);
+    const text = username ? (
+        <h1>{username} is currently logged in. You can store ranges.</h1>
+    ) : (
+        <h1>Nobody is logged in. You cannot store ranges.</h1>
+    )
 
     const initBettingOptions = [
         {key: 'raise4betCall', value: 'raise4betCall', text: 'Raise/4bet/Call'},
@@ -21,7 +30,7 @@ export const MainPage = ({loading, error}) => {
     const [raiseFold, setRaiseFold] = useState([]);
 
     const [postQuery, setPostQuery] = useState();
-    const [dataState] = UseRequest1API(postQuery, url);
+    const [dataState] = UseRequest1API(postQuery, url, "post");
 
 
     const [bettingOptions, setBettingOptions] = useState(initBettingOptions.key);
@@ -119,7 +128,7 @@ export const MainPage = ({loading, error}) => {
             "RangeScope2": newRaiseCall, 
             "RangeScope3": newRaiseFold, 
             "RangeScope4": "None", 
-            "UserID": 1
+            "user_id": "1"
         }};
 
         setPostQuery(newData);
@@ -135,6 +144,7 @@ export const MainPage = ({loading, error}) => {
             <div>Raise Call Range: <span onChange={onRaiseCallHandler.bind(this)}>{raiseCall}</span></div>
             <div>Raise Fold Range: <span onChange={onRaiseFoldHandler.bind(this)}>{raiseFold}</span></div>
             <Button onClick={saveToServerHandler}>Save Range To Server</Button>
+            <div>{text}</div>
         </MainContainer>
     );
 };
