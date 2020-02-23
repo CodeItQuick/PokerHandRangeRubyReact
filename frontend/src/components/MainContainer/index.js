@@ -1,14 +1,14 @@
 import React from 'react';
-import DefaultContainer from 'react-bootstrap/Container';
 import styled from 'styled-components';
+import Container from 'react-bootstrap/Container'
 
-const Container = styled(DefaultContainer)`
+const StyledContainer = styled(Container)`
   margin-top: 30px;
   margin-bottom: 50px;
 `;
 
 const MainContainer = ({ children }) => {
-  return <Container>{children}</Container>;
+  return <StyledContainer>{children}</StyledContainer>;
 };
 
 export default MainContainer;

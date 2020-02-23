@@ -12,12 +12,13 @@ import useRequest1API from '../../HOC/API/useRequest1';
 import StripeHookProvider from '../../HOC/useStripe/StripeHookProvider';
 import {BrowserRouter, Route, NavLink, Switch} from 'react-router-dom';
 import { Menu } from 'semantic-ui-react';
-import { useDispatch } from 'react-redux';
-import userActions from '../../redux/actions.js';
+import { useDispatch, useSelector } from 'react-redux';
+import userActions from '../../reducers/actions.js';
+
 
 function App() {
   const [stripe, setStripe] = useState(null);
-
+  const username = useSelector(state => state.rootReducer.username);
   
   useEffect(() => {
     if (window.Stripe) {
@@ -67,10 +68,15 @@ function App() {
         <header className="App-header" >
           <Menu inverted>
             <Menu.Item><NavLink to="/">Home</NavLink></Menu.Item>
-            <Menu.Item><NavLink to="/register">Register</NavLink></Menu.Item>
-            <Menu.Item><NavLink to="/login">Login</NavLink></Menu.Item>
-            <Menu.Item><NavLink to="/donate">Donate</NavLink></Menu.Item>
-            <Menu.Item><NavLink to="/" onClick={handleLogout}>Logout</NavLink></Menu.Item>
+            {(username) ? <>
+              <Menu.Item>{username}</Menu.Item>
+              <Menu.Item><NavLink to="/donate">Donate</NavLink></Menu.Item>
+              <Menu.Item><NavLink to="/" onClick={handleLogout}>Logout</NavLink></Menu.Item>
+            </> :
+            <>
+              <Menu.Item><NavLink to="/register">Register</NavLink></Menu.Item>
+              <Menu.Item><NavLink to="/login">Login</NavLink></Menu.Item>
+            </>}
           </Menu>
           <Switch>
             <Route path="/register" exact component={UserRegister} />

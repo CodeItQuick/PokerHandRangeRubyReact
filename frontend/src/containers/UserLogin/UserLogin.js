@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Select, Button, Form, Checkbox } from 'semantic-ui-react';
 import styled from 'styled-components';
-import Container from 'react-bootstrap/Container';
+import MainContainer from '../../components/MainContainer'
 import UseRequest1API from '../../HOC/API/useRequest1';
-import { useDispatch } from 'react-redux';
-import userActions from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import userActions from '../../reducers/actions';
+import hrActions from '../../reducers/actionsHandRanges';
+
+import {connect} from 'react-redux';
+import { withRouter} from 'react-router-dom';
 
 
 export const UserLogin = (props) => {
@@ -17,6 +21,10 @@ export const UserLogin = (props) => {
         username: '',
         password: ''
       });
+
+
+    const user_id = useSelector(state => state.rootReducer.id);
+    const userRanges = useSelector(state => state.handRangesAvailable)
     // const loginUserHandler = async (e) => {
     //     e.preventDefault();
     //     // console.log(e);
@@ -51,20 +59,26 @@ export const UserLogin = (props) => {
     //  };
 
     // controlled form functions
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        dispatch(userActions.loginUserToDB(loginForm));
-        props.history.push('/');
+        await dispatch(userActions.loginUserToDB(loginForm));
+        //props.history.push('/');
     };
+
+    useEffect(()=> {
+        if (user_id)
+        {
+            dispatch(hrActions.getHRAction(user_id));  
+            dispatch(hrActions.newHRToDB(user_id));
+            console.log(userRanges);
+        } 
+    }, [user_id]);
 
     const handleChange = e =>
     setLoginForm({ ...loginForm, [e.target.name]: e.target.value });
 
-    // Destructuring keys from our local state to use in the form
-    const { username, password } = loginForm;
-    
     return (
-        <Container>
+        <MainContainer>
             <h2>User Login</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Field>
@@ -79,10 +93,28 @@ export const UserLogin = (props) => {
                     <Checkbox label='I agree to the Terms and Conditions' />
                 </Form.Field>
                 <Button type='submit'>Submit</Button>
+                
             </Form>
-        </Container>
+        </MainContainer>
              
     );
 };
 
-export default UserLogin;
+const mapStateToProps = (state) => {
+    return {
+      reducers: state
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchBooks: () => {
+       hrActions.getAll().then(hand_ranges => dispatch({
+         type: 'GET_HAND_RANGES',
+         hand_ranges
+       }))
+    },
+
+  }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserLogin))
