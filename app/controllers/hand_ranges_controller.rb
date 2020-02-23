@@ -12,6 +12,12 @@ class HandRangesController < ApplicationController
   def show
     render json: @hand_range
   end
+  
+  # GET /hand_ranges/user_id/1
+  def show_user_id
+    @hand_range = HandRange.where("user_id = " + params[:user_id])
+    render json: @hand_range
+  end
 
   # POST /hand_ranges
   def create
