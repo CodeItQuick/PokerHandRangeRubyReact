@@ -19,6 +19,10 @@ const clearUserAction = () => ({
 
 // Fetch
 
+const returnUserObj = () => ({
+    type: 'default'
+});
+
 const newUserToDB = userObj => dispatch => {
   const config = {
     method: 'POST',
@@ -57,7 +61,9 @@ const loginUserToDB = userCredentials => dispatch => {
     .then(r => r.json())
     .then(data => {
       dispatch(setUserAction(data.user));
+      console.log(data.user.id);
       localStorage.setItem('token', data.token);
+      localStorage.setItem('user_id', data.user.id);
     });
 };
 
@@ -108,5 +114,6 @@ export default {
   loginUserToDB,
   persistUser,
   logoutUser,
-  saveHandRangeToDB
+  saveHandRangeToDB,
+  returnUserObj
 };
