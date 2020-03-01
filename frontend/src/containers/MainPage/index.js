@@ -14,15 +14,18 @@ export const MainPage = (props) => {
 
 
     const dispatch = useDispatch();
-    const username = useSelector(state => state.rootReducer.username);
+    const name = useSelector(state => state.rootReducer.name);
 
     const user_id = useSelector(state => state.rootReducer.id);
     const user_email = useSelector(state => state.email);
 
-    const userRanges = useSelector(state => state.handRangesAvailable)
+    const userRanges = useSelector(state => state.handRangesAvailable.ranges);
 
-    const text = username ? (
-        <h1>{username} is currently logged in. You can store ranges.</h1>
+    const userFolders = useSelector(state => state.handRangesAvailable.folderNames);
+    const userGroups = useSelector(state => state.handRangesAvailable.folderGroups);
+
+    const text = name ? (
+        <h1>{name} is currently logged in. You can store ranges.</h1>
     ) : (
         <h1>Nobody is logged in. You cannot store ranges.</h1>
     )
@@ -40,22 +43,18 @@ export const MainPage = (props) => {
         {key: 'EvansHandRange2', value: 'EvansHandRange2', text: "Evan's Hand Range 2"}
     ]);
 
-    useEffect(() => {
-        if(userRanges.length !== 0)
-        {
-            console.log("value in userRanges");
-            console.log(userRanges);
-            console.log("value in userRanges");
-            let handRangeNames = [];
-            let i = 0;
-            userRanges.forEach((userRange) => {
-                handRangeNames = [...handRangeNames, {key: i, value: i, text: userRange.Range}];
-                i = i + 1;
-            });
-            setCurrentUserRanges(handRangeNames);
-        }
-    }, [userRanges]);
-    
+    const [currentUserFolders, setCurrentUserFolders] = useState([
+        {key: 'EvansHandRange', value: 'EvansHandRange', text: "Evan's Folder"},
+        {key: 'EvansHandRange2', value: 'EvansHandRange2', text: "Evan's Folder 2"}
+    ]);
+
+    const [currentUserGroups, setCurrentUserGroups] = useState([
+        {key: 'EvansHandRange', value: 'EvansHandRange', text: "Evan's Groups"},
+        {key: 'EvansHandRange2', value: 'EvansHandRange2', text: "Evan's Groups 2"}
+    ]);
+    const [selectedFolder, setSelectedFolder] = useState();
+    const [selectedGroup, setSelectedGroup] = useState();
+
     const [raise4betCall, setRaise4betCall] = useState([]);
     const [raise4betFold, setRaise4betFold] = useState([]);
     const [raiseCall, setRaiseCall] = useState([]);
@@ -72,6 +71,57 @@ export const MainPage = (props) => {
         setPRANGEraiseCall(prange.reverse(raiseCall));
         setPRANGEraiseFold(prange.reverse(raiseFold));
     }, [raise4betCall, raise4betFold, raiseCall, raiseFold]);
+
+    useEffect(() => {
+        if(userRanges)
+        {
+            console.log("value in userRanges");
+            console.log(userRanges);
+            console.log("value in userRanges");
+            let handRangeNames = [];
+            let i = 0;
+            userRanges.forEach((userRange) => {
+                handRangeNames = [...handRangeNames, {key: i, value: i, text: userRange.RangeName}];
+                i = i + 1;
+            });
+            setCurrentUserRanges(handRangeNames);
+        }
+    }, [userRanges]);
+
+    useEffect(() => {
+        if(userFolders)
+        {
+            console.log("value in userFolders");
+            console.log(userFolders);
+            console.log("value in userFolders");
+            let handFoldersNames = [];
+            let i = 0;
+            userFolders.forEach((userFolder) => {
+                handFoldersNames = [...handFoldersNames, {key: i, value: userFolder.id, text: userFolder.FolderName}];
+                i = i + 1;
+            });
+            setCurrentUserFolders(handFoldersNames);
+        }
+    }, [userFolders]);
+   
+    useEffect(() => {
+        if(userGroups)
+        {
+            console.log("value in userGroups");
+            console.log(selectedFolder);
+            console.log("value in userGroups");
+            let handGroupsNames = [];
+            let i = 0;
+            userGroups.forEach((userGroup) => {
+                if (userGroup.hand_range_folder_id == selectedFolder)
+                {
+                    handGroupsNames = [...handGroupsNames, {key: i, value: userGroup.id, text: userGroup.GroupName}];
+                    i = i + 1;
+                }
+            });
+            setCurrentUserGroups(handGroupsNames);
+        }
+    }, [userGroups, userFolders, selectedFolder]);
 
     const url = "hand_ranges";
     const [postQuery, setPostQuery] = useState();
@@ -223,8 +273,6 @@ export const MainPage = (props) => {
     const saveToServerHandler = async () => {
         
         dispatch(userActions.saveHandRangeToDB());
-        console.log(user_email);
-        console.log(user_id);
         let newRaise4betCall = (PRANGEraise4betCall.length !== 0) ? PRANGEraise4betCall : null;
         let newRaise4betFold = (PRANGEraise4betFold.length !== 0) ? PRANGEraise4betFold : null;
         let newRaiseCall = (PRANGEraiseCall.length !== 0) ? PRANGEraiseCall : null;
@@ -244,14 +292,29 @@ export const MainPage = (props) => {
      };
 
     const loadUserRange = async (e, props) => {
-
-        setRaise4betCall((userRanges[props.value].RangeScopes[0]) ? prange(userRanges[props.value].RangeScopes[0]) : [] );
-        setRaise4betFold((userRanges[props.value].RangeScopes[1]) ? prange(userRanges[props.value].RangeScopes[1]) : [] );
-        setRaiseCall((userRanges[props.value].RangeScopes[2]) ? prange(userRanges[props.value].RangeScopes[2]) : [] );
-        setRaiseFold((userRanges[props.value].RangeScopes[3]) ? prange(userRanges[props.value].RangeScopes[3]) : [] );
+        console.log("userRanges", userRanges);
+        console.log("userRangespropsvalue", props.value);
+        setRaise4betCall((userRanges[props.value].RangeScope) ? prange(userRanges[props.value].RangeScope) : [] );
+        setRaise4betFold((userRanges[props.value].RangeScope) ? prange(userRanges[props.value].RangeScope) : [] );
+        setRaiseCall((userRanges[props.value].RangeScope) ? prange(userRanges[props.value].RangeScope) : [] );
+        setRaiseFold((userRanges[props.value].RangeScope) ? prange(userRanges[props.value].RangeScope) : [] );
 
     }
 
+    const loadUserFolder = (event, props) => {
+        console.log("userFolderSet", event.target);
+        console.log("userFolderSetProps", props);
+        setSelectedFolder(props.value);
+        // setRaise4betCall((userRanges[props.value].RangeScopes[0]) ? prange(userRanges[props.value].RangeScopes[0]) : [] );
+        // setRaise4betFold((userRanges[props.value].RangeScopes[1]) ? prange(userRanges[props.value].RangeScopes[1]) : [] );
+        // setRaiseCall((userRanges[props.value].RangeScopes[2]) ? prange(userRanges[props.value].RangeScopes[2]) : [] );
+        // setRaiseFold((userRanges[props.value].RangeScopes[3]) ? prange(userRanges[props.value].RangeScopes[3]) : [] );
+
+    }
+    const loadUserGroup = (event) => {
+        console.log("userRanges", userRanges);
+
+    }
     const handleRangeNameChange = (event) => {
         setHandRangeName(event.target.value)
     }
@@ -278,6 +341,8 @@ export const MainPage = (props) => {
             <div>Raise Fold Range: <span onChange={onRaiseFoldHandler.bind(this)}>{PRANGEraiseFold}</span></div>
             <Button onClick={saveToServerHandler}>Save Range To Server</Button>
             <div>{text}</div>
+            <Range bettingOptions={currentUserFolders} onChangeHandler={loadUserFolder.bind(this)}></Range><br></br>
+            <Range bettingOptions={currentUserGroups} onChangeHandler={loadUserGroup.bind(this)}></Range><br></br>
             <Range bettingOptions={currentUserRanges} onChangeHandler={loadUserRange.bind(this)}></Range><br></br>
         </MainContainer>
     );

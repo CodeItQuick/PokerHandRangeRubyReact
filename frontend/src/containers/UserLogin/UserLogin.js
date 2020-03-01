@@ -24,7 +24,7 @@ export const UserLogin = (props) => {
 
 
     const user_id = useSelector(state => state.rootReducer.id);
-    const userRanges = useSelector(state => state.handRangesAvailable)
+    const userRanges = useSelector(state => state.handRangesAvailable.folderNames)
     // const loginUserHandler = async (e) => {
     //     e.preventDefault();
     //     // console.log(e);
@@ -70,6 +70,8 @@ export const UserLogin = (props) => {
         {
             dispatch(hrActions.getHRAction(user_id));  
             dispatch(hrActions.newHRToDB(user_id));
+            dispatch(hrActions.newHRFToDB(user_id));
+            dispatch(hrActions.newHRGToDB(user_id));
             console.log(userRanges);
         } 
     }, [user_id]);
@@ -83,7 +85,7 @@ export const UserLogin = (props) => {
             <Form onSubmit={handleSubmit}>
                 <Form.Field>
                     <label>Username</label>
-                    <input name="username" placeholder='Username' onChange={ handleChange } />
+                    <input name="name" placeholder='Name' onChange={ handleChange } />
                 </Form.Field>
                 <Form.Field>
                     <label>Password</label>
