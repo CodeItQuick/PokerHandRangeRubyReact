@@ -9,16 +9,17 @@ export const UserRegister = (props) => {
 
     const url = "users"
     const [postQuery, setPostQuery] = useState();
-    const [dataState] = UseRequest1API(postQuery, url);
+    const [dataState] = UseRequest1API(postQuery, url, "post");
 
     const loginUserHandler = async (e) => {
         e.preventDefault();
         console.log(e);
         console.log(e.target.username.value);
         let newData = {"params": {
-            "username": e.target.username.value, 
+            "name": e.target.username.value, 
             "email": e.target.email.value, 
-            //"password": e.target.password.value
+            "password": e.target.password.value,
+            "password_confirmation": e.target.password.value
         }}
 
         setPostQuery(newData);
