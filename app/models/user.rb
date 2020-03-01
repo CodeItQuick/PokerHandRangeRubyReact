@@ -1,9 +1,10 @@
 class User < ApplicationRecord
-    has_many :hand_ranges
+    has_many :hand_range_folders
+    has_secure_password
 
     before_save { self.email = email.downcase }
 
-    validates :username, presence: true, 
+    validates :name, presence: true, 
               uniqueness: { case_sensitive: false}, 
               length: {minimum: 3, maximum: 25}
     VALID_EMAIL_REGEX=/\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -11,5 +12,4 @@ class User < ApplicationRecord
               length: {maximum: 105},
               uniqueness: { case_sensitive: false },
               format: { with: VALID_EMAIL_REGEX }
-    has_secure_password
 end
