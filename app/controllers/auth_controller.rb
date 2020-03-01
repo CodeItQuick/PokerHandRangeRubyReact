@@ -1,7 +1,7 @@
 class AuthController < ApplicationController
     
     def login
-        @user = User.find_by(username: params[:username])
+        @user = User.find_by(name: params[:name])
         if @user && @user.authenticate(params[:password])
             @token = JWT.encode({user_id: @user.id}, ENV['AUTH_SECRET'], 'HS256')
             render json: {user: @user, token: @token}
@@ -42,7 +42,7 @@ class AuthController < ApplicationController
     private
 
     def login_params
-        params.permit(:username, :password)
+        params.permit(:name, :password)
     end
 
 end

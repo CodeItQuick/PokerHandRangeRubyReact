@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
+  def new
+  end
+
   # GET /users
   def index
     @users = User.all
@@ -16,9 +19,12 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    user = User.new()
+    user.name = params[:name]
+    user.password = params[:password]
+    user.email = params[:email]
 
-    if @user.save
+    if user.save
       token = JWT.encode({user_id: user.id}, ENV['AUTH_SECRET'], 'HS256')
       render json: @user, status: :created, location: @user, token: :token
     else
@@ -48,6 +54,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:username, :password)
+      params.require(:user).permit(:name, :email, :password)
     end
 end

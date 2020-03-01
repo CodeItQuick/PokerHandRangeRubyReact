@@ -18,7 +18,7 @@ import userActions from '../../reducers/actions.js';
 
 function App() {
   const [stripe, setStripe] = useState(null);
-  const username = useSelector(state => state.rootReducer.username);
+  const username = useSelector(state => state.rootReducer.name);
   
   useEffect(() => {
     if (window.Stripe) {
