@@ -21,7 +21,7 @@ class HandRangeFoldersController < ApplicationController
   
     # POST /hand_ranges
     def create
-      @hand_range_folder = HandRangeFolder.new(FolderName: "Evans Folder", user_id: params[:user_id])
+      @hand_range_folder = HandRangeFolder.new(FolderName: params[:FolderName], user_id: params[:user_id])
       if @hand_range_folder.save
         render json: @hand_range_folder, status: :created, location: @hand_range
       else
