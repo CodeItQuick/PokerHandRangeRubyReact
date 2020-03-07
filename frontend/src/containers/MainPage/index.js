@@ -9,6 +9,7 @@ import userActions from '../../reducers/actions';
 import prange from 'prange';
 import {Row, Col} from 'react-bootstrap';
 import BoardLegend from '../../components/BoardLegend/BoardLegend';
+import hrActions from '../../reducers/actionsHandRanges.js';
 
 export const MainPage = (props) => {
 
@@ -54,6 +55,7 @@ export const MainPage = (props) => {
     ]);
     const [selectedFolder, setSelectedFolder] = useState();
     const [selectedGroup, setSelectedGroup] = useState();
+    const [selectedRange, setSelectedRange] = useState();
 
     const [raise4betCall, setRaise4betCall] = useState([]);
     const [raise4betFold, setRaise4betFold] = useState([]);
@@ -75,9 +77,6 @@ export const MainPage = (props) => {
     useEffect(() => {
         if(userRanges)
         {
-            console.log("value in userRanges");
-            console.log(userRanges);
-            console.log("value in userRanges");
             let handRangeNames = [];
             let i = 0;
             userRanges.forEach((userRange) => {
@@ -91,9 +90,6 @@ export const MainPage = (props) => {
     useEffect(() => {
         if(userFolders)
         {
-            console.log("value in userFolders");
-            console.log(userFolders);
-            console.log("value in userFolders");
             let handFoldersNames = [];
             let i = 0;
             userFolders.forEach((userFolder) => {
@@ -195,7 +191,6 @@ export const MainPage = (props) => {
     }, [raise4BetCallCombos, raise4BetFoldCombos, raiseCallCombos, raiseFoldCombos, totalCombos ]);
 
     const checkBettingOption = (action, getHandHandler, setHandHandler, handTested, getCombos, setCombos ) => {
-        console.log("betting Option", bettingOptions)
         if(bettingOptions === action)
         {
             if(getHandHandler.includes(handTested))
@@ -217,11 +212,9 @@ export const MainPage = (props) => {
                 let filteredHandRange = getHandHandler.filter(function(hand){ return hand !== handTested});
 
                 setHandHandler(filteredHandRange);
-                console.log('handTested', handTested);
             }
             else
             {
-                console.log('handTested', handTested);
                 if(handTested.length === 2 && handTested[0] === handTested[1] && action === bettingOptions) {
                     const tempCombos = getCombos;
                     setCombos(tempCombos + 4);
@@ -294,6 +287,7 @@ export const MainPage = (props) => {
     const loadUserRange = async (e, props) => {
         console.log("userRanges", userRanges);
         console.log("userRangespropsvalue", props.value);
+        setSelectedRange(props.value);
         setRaise4betCall((userRanges[props.value].RangeScope) ? prange(userRanges[props.value].RangeScope) : [] );
         setRaise4betFold((userRanges[props.value].RangeScope) ? prange(userRanges[props.value].RangeScope) : [] );
         setRaiseCall((userRanges[props.value].RangeScope) ? prange(userRanges[props.value].RangeScope) : [] );
@@ -311,14 +305,29 @@ export const MainPage = (props) => {
         // setRaiseFold((userRanges[props.value].RangeScopes[3]) ? prange(userRanges[props.value].RangeScopes[3]) : [] );
 
     }
-    const loadUserGroup = (event) => {
+    const loadUserGroup = (event, props) => {
         console.log("userRanges", userRanges);
+        setSelectedGroup(props.value);
 
+    }
+    const handleRangeNameFolderChange = (event, props) => {
+        setSelectedFolder(event.target.value);
+    }
+    const handleRangeNameGroupChange = (event) => {
+        //setHandRangeName(event.target.value)
     }
     const handleRangeNameChange = (event) => {
         setHandRangeName(event.target.value)
     }
 
+    const createFolderHandler = () => {
+        console.log("selectedFolder", selectedFolder);
+        dispatch(hrActions.createHRF(selectedFolder));
+    };
+
+    const editFolderHandler = () => {
+        dispatch(hrActions.editHRF(selectedFolder));
+    };
 
     return (
         <MainContainer>
@@ -334,16 +343,24 @@ export const MainPage = (props) => {
                                   range3PercentAll={raiseFoldPercentAll}></BoardLegend></Col>
             </Row>
             <Range bettingOptions={initBettingOptions} onChangeHandler={bettingOptionsHandler}></Range><br></br>
-            <input type="text" name="handRangeName" onChange={handleRangeNameChange.bind(this)} />
             <div>Raise 4bet Call Range: <span onChange={onRaise4BetCallHandler.bind(this)}>{PRANGEraise4betCall}</span></div>
             <div>Raise 4bet Fold Range: <span onChange={onRaise4BetFoldHandler.bind(this)}>{PRANGEraise4betFold}</span></div>
             <div>Raise Call Range: <span onChange={onRaiseCallHandler.bind(this)}>{PRANGEraiseCall}</span></div>
             <div>Raise Fold Range: <span onChange={onRaiseFoldHandler.bind(this)}>{PRANGEraiseFold}</span></div>
             <Button onClick={saveToServerHandler}>Save Range To Server</Button>
             <div>{text}</div>
-            <Range bettingOptions={currentUserFolders} onChangeHandler={loadUserFolder.bind(this)}></Range><br></br>
-            <Range bettingOptions={currentUserGroups} onChangeHandler={loadUserGroup.bind(this)}></Range><br></br>
-            <Range bettingOptions={currentUserRanges} onChangeHandler={loadUserRange.bind(this)}></Range><br></br>
+            <div>Folder Options: <Range bettingOptions={currentUserFolders} onChangeHandler={loadUserFolder.bind(this)} /> 
+            <input type="text" name="handRangeFolderName" onChange={handleRangeNameFolderChange.bind(this)} /></div>
+            <Button onClick={createFolderHandler}>Create Folder</Button>
+            <Button onClick={editFolderHandler}>{(selectedFolder) ? "Edit Folder Name" : "Select a Folder Name First" }</Button><br></br>
+            <div>Group Options: <Range bettingOptions={currentUserGroups} onChangeHandler={loadUserGroup.bind(this)} /> 
+            <input type="text" name="handRangeGroupName" onChange={handleRangeNameGroupChange.bind(this)} /></div>
+            <Button>{(selectedFolder) ? "Add Group to " + selectedFolder : "Pick a Folder First"}</Button>
+            <Button>{(selectedGroup) ? "Edit Group Name" : "Select a Group Name First" }</Button><br></br>
+            <div>Hand Range Options: <Range bettingOptions={currentUserRanges} onChangeHandler={loadUserRange.bind(this)} /> 
+            <input type="text" name="handRangeName" onChange={handleRangeNameChange.bind(this)} /></div>
+            <Button>{(selectedGroup) ? "Add Range to " + selectedGroup : "Pick a Group First"}</Button>
+            <Button>{(selectedRange) ? "Edit Range Name" : "Select a Range Name First" }</Button><br></br>
         </MainContainer>
     );
 };

@@ -21,6 +21,21 @@ const handRangesAvailable = (state = [], action) => {
             }
         case 'GET_HAND_RANGE_FOLDER':
             return state;
+        case 'CREATE_HAND_RANGE_FOLDER':
+            if (action.payload) {
+                return {...state, "folderNames": [action.payload]};
+            }
+            else {
+                return state;
+            }
+        case 'EDIT_HAND_RANGE_FOLDER':
+            if (action.payload) {
+                return {...state, "folderNames": [action.payload]};
+            }
+            else {
+                return state;
+            }
+
         default:
             return state;
     }
