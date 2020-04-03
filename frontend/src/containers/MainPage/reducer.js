@@ -22,64 +22,80 @@ export const initialState = {
         disabled: false,
         Raise4betCall: {
           color: "green",
-          active: "red"
+          active: "red",
+          prHandString: ""
         },
         Raise4betFold: {
           color: "blue",
-          active: false
+          active: false,
+          prHandString: ""
         },
         RaiseCall: {
           color: "purple",
-          active: false
+          active: false,
+          prHandString: ""
         },
         RaiseFold: {
           color: "red",
-          active: false
+          active: false,
+          prHandString: ""
         }
       },
       Flop: {
         disabled: true,
         valuebet: {
-          color: "green"
+          color: "green",
+          prHandString: ""
         },
         bluff: {
-          color: "blue"
+          color: "blue",
+          prHandString: ""
         },
         checkCall: {
-          color: "purple"
+          color: "purple",
+          prHandString: ""
         },
         checkFold: {
-          color: "red"
+          color: "red",
+          prHandString: ""
         }
       },
       Turn: {
         disabled: true,
         valuebet: {
-          color: "green"
+          color: "green",
+          prHandString: ""
         },
         bluff: {
-          color: "blue"
+          color: "blue",
+          prHandString: ""
         },
         checkCall: {
-          color: "purple"
+          color: "purple",
+          prHandString: ""
         },
         checkFold: {
-          color: "red"
+          color: "red",
+          prHandString: ""
         }
       },
       River: {
         disabled: true,
         valuebet: {
-          color: "green"
+          color: "green",
+          prHandString: ""
         },
         bluff: {
-          color: "blue"
+          color: "blue",
+          prHandString: ""
         },
         checkCall: {
-          color: "purple"
+          color: "purple",
+          prHandString: ""
         },
         checkFold: {
-          color: "red"
+          color: "red",
+          prHandString: ""
         }
       }
     }

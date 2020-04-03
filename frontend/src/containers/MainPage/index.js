@@ -52,14 +52,19 @@ const MainPage = ({ globalHands }) => {
     else return "white card-button";
   };
 
-  const handOnClick = () => {};
+  const handClickHandler = (e, data) => {
+    console.log(e, data);
+  };
 
   return (
     <>
       <MainContainer>
         <Row>
           <Col>
-            <Board handOnClick={null} classColor={handleClassColor}></Board>
+            <Board
+              onHandClick={handClickHandler}
+              classColor={handleClassColor}
+            ></Board>
           </Col>
           {/* <Col><BoardLegend range0Combos={raise4BetCallCombos} range1Combos={raise4BetFoldCombos} range2Combos={raiseCallCombos} 
                                   range3Combos={raiseFoldCombos} range0Percent={raise4BetCallPercent}
