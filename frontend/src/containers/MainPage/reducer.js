@@ -8,7 +8,8 @@ import {
   GET_HAND_RANGE_FOLDER,
   CREATE_HAND_RANGE_FOLDER,
   EDIT_HAND_RANGE_FOLDER,
-  SET_HAND_RANGE_SELECT
+  SET_HAND_RANGE_SELECT,
+  SET_HAND_RANGE_VALUES
 } from "./constants.js";
 
 export const initialState = {
@@ -20,82 +21,83 @@ export const initialState = {
     ranges: {
       Preflop: {
         disabled: false,
+        action: "Raise4betCall",
         Raise4betCall: {
           color: "green",
           active: "red",
-          prHandString: ""
+          prHandString: []
         },
         Raise4betFold: {
           color: "blue",
           active: false,
-          prHandString: ""
+          prHandString: []
         },
         RaiseCall: {
           color: "purple",
           active: false,
-          prHandString: ""
+          prHandString: []
         },
         RaiseFold: {
           color: "red",
           active: false,
-          prHandString: ""
+          prHandString: []
         }
       },
       Flop: {
         disabled: true,
         valuebet: {
           color: "green",
-          prHandString: ""
+          prHandString: []
         },
         bluff: {
           color: "blue",
-          prHandString: ""
+          prHandString: []
         },
         checkCall: {
           color: "purple",
-          prHandString: ""
+          prHandString: []
         },
         checkFold: {
           color: "red",
-          prHandString: ""
+          prHandString: []
         }
       },
       Turn: {
         disabled: true,
         valuebet: {
           color: "green",
-          prHandString: ""
+          prHandString: []
         },
         bluff: {
           color: "blue",
-          prHandString: ""
+          prHandString: []
         },
         checkCall: {
           color: "purple",
-          prHandString: ""
+          prHandString: []
         },
         checkFold: {
           color: "red",
-          prHandString: ""
+          prHandString: []
         }
       },
       River: {
         disabled: true,
         valuebet: {
           color: "green",
-          prHandString: ""
+          prHandString: []
         },
         bluff: {
           color: "blue",
-          prHandString: ""
+          prHandString: []
         },
         checkCall: {
           color: "purple",
-          prHandString: ""
+          prHandString: []
         },
         checkFold: {
           color: "red",
-          prHandString: ""
+          prHandString: []
         }
       }
     }
@@ -108,6 +110,26 @@ const mainPageReducer = (state = initialState, action) =>
       case SET_HAND_RANGE_SELECT:
         draft.globalHands.mode.street = action.data.name;
         draft.globalHands.mode.streetAction = action.data.value;
+        break;
+      case SET_HAND_RANGE_VALUES:
+        console.log("hello", action);
+        console.log(draft.globalHands.mode.street);
+        console.log(draft.globalHands.mode.streetAction);
+        console.log(
+          ...draft.globalHands.ranges.Preflop.Raise4betCall.prHandString
+        );
+        if (
+          draft.globalHands.ranges.Preflop.Raise4betCall.prHandString.indexOf(
+            action.data.name
+          ) >= 0
+        )
+          draft.globalHands.ranges[[draft.globalHands.mode.street]][
+            [draft.globalHands.mode.streetAction]
+          ].prHandString.pop(action.data.name);
+        else
+          draft.globalHands.ranges[[draft.globalHands.mode.street]][
+            [draft.globalHands.mode.streetAction]
+          ].prHandString.push(action.data.name);
         break;
       case GET_HAND_RANGE:
         draft.mode[[action.data.name]] = action.data.value; //sets the range street and values.
