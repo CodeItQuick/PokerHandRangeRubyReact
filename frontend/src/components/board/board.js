@@ -40,7 +40,7 @@ const Board = ({ onHandClicks, classColor }) => {
           cardOne={cardOne}
           cardTwo={cardTwo}
           suit={""}
-          handOnClick={onHandClicks}
+          onHandClick={onHandClicks}
           classColor={classColor}
         ></Hand>
       );
@@ -51,7 +51,7 @@ const Board = ({ onHandClicks, classColor }) => {
           cardOne={cardTwo}
           cardTwo={cardOne}
           suit={"o"}
-          handOnClick={onHandClicks}
+          onHandClick={onHandClicks}
           classColor={classColor}
         ></Hand>
       );
