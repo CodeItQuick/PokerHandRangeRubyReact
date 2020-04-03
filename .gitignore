@@ -21,5 +21,5 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/frontend/node_modules/
-frontend/node_modules/
+/frontend/node_modules/*
+frontend/node_modules/*
