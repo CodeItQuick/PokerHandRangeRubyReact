@@ -36,9 +36,9 @@ const StyledButton = styled(Button)`
 
 const key = "globalHands";
 
-const MainPage = ({ globalHands }) => {
+const MainPage = global => {
   useInjectReducer({ key, reducer });
-  console.log(globalHands);
+  console.log(global);
   const dispatch = useDispatch();
 
   const handleStreet = (e, data) => {
@@ -47,19 +47,24 @@ const MainPage = ({ globalHands }) => {
   };
 
   const handleClassColor = (cardOne, cardTwo, suit) => {
+    console.log(cardOne, cardTwo, suit);
     if (
-      globalHands &&
-      globalHands.mode.street === "preflop" &&
-      globalHands.mode.streetActions === "RaiseCall"
+      global.mode &&
+      global.ranges[[global.mode.street]][
+        [global.mode.streetAction]
+      ].prHandString.indexOf(cardOne + cardTwo + suit) >= 0
     )
-      return "blue card-button";
-    else return "white card-button";
+      return (
+        global.ranges[[global.mode.street]][[global.mode.streetAction]].color +
+        " card-button"
+      );
+    else return "black card-button";
   };
 
   const handClickHandler = (e, { name, children }) => {
     dispatch(setHandRangeValues({ name, children }));
   };
-
+  console.log(global);
   return (
     <>
       <MainContainer>
