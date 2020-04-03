@@ -4,7 +4,8 @@ import {
   SET_HAND_RANGE_FOLDER,
   CREATE_HAND_RANGE_FOLDER,
   SET_HAND_RANGE_GROUP,
-  EDIT_HAND_RANGE_FOLDER
+  EDIT_HAND_RANGE_FOLDER,
+  SET_HAND_RANGE_VALUES
 } from "./constants";
 
 export function setHandRangeSelect(data) {
@@ -14,6 +15,12 @@ export function setHandRangeSelect(data) {
   };
 }
 
+export function setHandRangeValues(data) {
+  return {
+    type: SET_HAND_RANGE_VALUES,
+    data
+  };
+}
 export function setHandRange(hrObj) {
   return {
     type: SET_HAND_RANGE,

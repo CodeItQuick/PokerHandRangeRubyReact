@@ -2,13 +2,11 @@ import React from "react";
 import { Grid, Button } from "semantic-ui-react";
 import styled from "styled-components";
 
-function Hand(props) {
-  const { handOnClick, cardOne, cardTwo, suit, classColor } = props;
-
+const Hand = ({ onHandClick, cardOne, cardTwo, suit, classColor }) => {
   return (
     <Grid.Column>
       <Button
-        onClick={handOnClick}
+        onClick={onHandClick}
         name={cardOne + cardTwo + suit}
         className={classColor()}
       >
@@ -18,6 +16,6 @@ function Hand(props) {
       </Button>
     </Grid.Column>
   );
-}
+};
 
 export default Hand;
