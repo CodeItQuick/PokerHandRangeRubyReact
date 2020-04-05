@@ -26,8 +26,8 @@ const MOUNT_NODE = document.getElementById("app");
 
 store.subscribe(
   throttle(() => {
-    const { global, user, order } = store.getState();
-    saveState({ global, user, order });
+    const { global } = store.getState();
+    saveState({ global });
   }, 1000)
 );
 

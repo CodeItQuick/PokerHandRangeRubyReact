@@ -4,7 +4,8 @@ import {
   SET_HAND_RANGE_FOLDER,
   CREATE_HAND_RANGE_FOLDER,
   SET_HAND_RANGE_GROUP,
-  EDIT_HAND_RANGE_FOLDER
+  EDIT_HAND_RANGE_FOLDER,
+  SET_HAND_RANGE_VALUES
 } from "./constants";
 
 export function setHandRangeSelect(data) {
