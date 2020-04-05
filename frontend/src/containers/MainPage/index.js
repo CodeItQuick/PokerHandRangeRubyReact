@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import prange from "prange";
 import { Row, Col } from "react-bootstrap";
 import BoardLegend from "../../components/BoardLegend/BoardLegend";
-
+import Hand from "../../components/hand/hand.js";
 import { makeSelectToken, makeSelectUser } from "./../Auth/selectors";
 import {
   makeSelectHandRangeGroup,
@@ -44,20 +44,34 @@ const MainPage = ({ globalHands }) => {
 
   console.log(globalHands);
   const handleClassColor = (cardOne, cardTwo, suit) => {
-    if (
-      globalHands &&
-      globalHands.mode.street === "preflop" &&
-      globalHands.mode.streetActions === "RaiseCall" &&
-      globalHands.ranges.Preflop
-    )
-      return "blue card-button";
-    else return "white card-button";
+    if (globalHands && globalHands.mode.street) {
+      return globalHands.ranges[[globalHands.mode.street]][
+        [globalHands.mode.streetAction]
+      ].colorCard;
+    } else {
+      return "white card-button";
+    }
   };
 
   const handClickHandler = (e, data) => {
-    console.log(e, data); //?
+    console.log(e);
+    console.log(data);
   };
-
+  const orderedCard = [
+    "A",
+    "K",
+    "Q",
+    "J",
+    "T",
+    "9",
+    "8",
+    "7",
+    "6",
+    "5",
+    "4",
+    "3",
+    "2"
+  ];
   return (
     <>
       <MainContainer>
@@ -65,8 +79,10 @@ const MainPage = ({ globalHands }) => {
           <Col>
             <Board
               onHandClick={handClickHandler}
-              classColor={handleClassColor}
-            ></Board>
+              classColor={handleClassColor()}
+            >
+              {orderedCard}
+            </Board>
           </Col>
           {/* <Col><BoardLegend range0Combos={raise4BetCallCombos} range1Combos={raise4BetFoldCombos} range2Combos={raiseCallCombos} 
                                   range3Combos={raiseFoldCombos} range0Percent={raise4BetCallPercent}
