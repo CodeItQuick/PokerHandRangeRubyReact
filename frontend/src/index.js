@@ -35,7 +35,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ThemeProvider theme={{ main: "mediumseagreen" }}>
-        <App />
+        <App data-test="AppComponent" />
       </ThemeProvider>
     </ConnectedRouter>
   </Provider>,
