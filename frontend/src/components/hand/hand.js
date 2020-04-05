@@ -13,7 +13,7 @@ const Hand = ({ onHandClick, cardOne, cardTwo, suit, classColor = false }) => {
       <Button
         onClick={onHandClick}
         name={cardOne + cardTwo + suit}
-        className={classColors()}
+        className={classColor(cardOne, cardTwo, suit)}
       >
         {cardOne}
         {cardTwo}
