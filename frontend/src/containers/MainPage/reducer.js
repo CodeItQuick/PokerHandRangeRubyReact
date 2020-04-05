@@ -8,7 +8,8 @@ import {
   GET_HAND_RANGE_FOLDER,
   CREATE_HAND_RANGE_FOLDER,
   EDIT_HAND_RANGE_FOLDER,
-  SET_HAND_RANGE_SELECT
+  SET_HAND_RANGE_SELECT,
+  SET_CLASS_COLOR
 } from "./constants.js";
 
 export const initialState = {
@@ -23,79 +24,95 @@ export const initialState = {
         Raise4betCall: {
           color: "green",
           active: "red",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "green card-button"
         },
         Raise4betFold: {
           color: "blue",
           active: false,
-          prHandString: ""
+          prHandString: "",
+          colorCard: "blue card-button"
         },
         RaiseCall: {
           color: "purple",
           active: false,
-          prHandString: ""
+          prHandString: "",
+          colorCard: "purple card-button"
         },
         RaiseFold: {
           color: "red",
           active: false,
-          prHandString: ""
+          prHandString: "",
+          colorCard: "red card-button"
         }
       },
       Flop: {
         disabled: true,
         valuebet: {
           color: "green",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "green card-button"
         },
         bluff: {
           color: "blue",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "blue card-button"
         },
         checkCall: {
           color: "purple",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "purple card-button"
         },
         checkFold: {
           color: "red",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "red card-button"
         }
       },
       Turn: {
         disabled: true,
         valuebet: {
           color: "green",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "green card-button"
         },
         bluff: {
           color: "blue",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "blue card-button"
         },
         checkCall: {
           color: "purple",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "purple card-button"
         },
         checkFold: {
           color: "red",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "red card-button"
         }
       },
       River: {
         disabled: true,
         valuebet: {
           color: "green",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "green card-button"
         },
         bluff: {
           color: "blue",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "blue card-button"
         },
         checkCall: {
           color: "purple",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "purple card-button"
         },
         checkFold: {
           color: "red",
-          prHandString: ""
+          prHandString: "",
+          colorCard: "red card-button"
         }
       }
     }

@@ -2,62 +2,53 @@ import React from "react";
 import { Grid } from "semantic-ui-react";
 import Hand from "../hand/hand";
 
-const Board = ({ onHandClicks, classColor }) => {
-  const orderedCard = [
-    "A",
-    "K",
-    "Q",
-    "J",
-    "T",
-    "9",
-    "8",
-    "7",
-    "6",
-    "5",
-    "4",
-    "3",
-    "2"
-  ];
-
+const orderedCardInitial = [
+  "A",
+  "K",
+  "Q",
+  "J",
+  "T",
+  "9",
+  "8",
+  "7",
+  "6",
+  "5",
+  "4",
+  "3",
+  "2"
+];
+const Board = ({
+  orderedCard = orderedCardInitial,
+  onHandClick,
+  classColor
+}) => {
   const displayCard = (indexCardOne, indexCardTwo, cardOne, cardTwo) => {
-    let display;
+    let displaySuit, card1, card2;
 
     if (indexCardOne < indexCardTwo) {
-      display = (
-        <Hand
-          key={cardOne + cardTwo}
-          cardOne={cardOne}
-          cardTwo={cardTwo}
-          suit={"s"}
-          onHandClick={onHandClicks}
-          classColor={classColor}
-        ></Hand>
-      );
+      displaySuit = "s";
+      card1 = cardOne;
+      card2 = cardTwo;
     } else if (indexCardOne === indexCardTwo) {
-      display = (
-        <Hand
-          key={cardOne + cardTwo}
-          cardOne={cardOne}
-          cardTwo={cardTwo}
-          suit={""}
-          handOnClick={onHandClicks}
-          classColor={classColor}
-        ></Hand>
-      );
+      displaySuit = "";
+      card1 = cardOne;
+      card2 = cardTwo;
     } else {
-      display = (
-        <Hand
-          key={cardOne + cardTwo}
-          cardOne={cardTwo}
-          cardTwo={cardOne}
-          suit={"o"}
-          handOnClick={onHandClicks}
-          classColor={classColor}
-        ></Hand>
-      );
+      displaySuit = "o";
+      card2 = cardOne;
+      card1 = cardTwo;
     }
 
-    return display;
+    return (
+      <Hand
+        key={cardOne + cardTwo}
+        cardOne={card1}
+        cardTwo={card2}
+        suit={displaySuit}
+        onHandClick={onHandClick}
+        classColor={classColor}
+      ></Hand>
+    );
   };
 
   return (

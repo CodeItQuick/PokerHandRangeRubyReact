@@ -16,3 +16,4 @@ export const GET_HAND_RANGE_FOLDER =
   "handrangeAPI/MainPage/GET_HAND_RANGE_FOLDER";
 export const CREATE_HAND_RANGE_FOLDER =
   "handrangeAPI/MainPage/CREATE_HAND_RANGE_FOLDER";
+export const SET_CLASS_COLOR = "handrangeAPI/MainPage/SET_CLASS_COLOR";

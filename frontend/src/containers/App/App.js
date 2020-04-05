@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import logo from "../../logo.svg";
 import "./App.css";
 import Board from "../../components/board/board";
 import MainPage from "../MainPage/index";
