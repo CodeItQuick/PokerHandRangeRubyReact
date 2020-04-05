@@ -36,4 +36,9 @@ describe("MainPage Container", () => {
     console.log(enzymeWrapper); //?
     expect(enzymeWrapper.length).toBe(1);
   });
+
+  test("Clicking a button doesn't throw an error", () => {
+
+  });
+
 });
