@@ -5,8 +5,8 @@ import Board from "../../components/board/board";
 import MainPage from "../MainPage/index";
 import UserLogin from "../Auth/UserLogin";
 import UserRegister from "../Auth/UserRegister";
-import { useStripe } from "../../HOC/useStripe/useStripe";
-import { StripeProvider, Elements } from "react-stripe-elements";
+// import { useStripe } from "../../HOC/useStripe/useStripe";
+// import { StripeProvider, Elements } from "react-stripe-elements";
 import MyForm from "../MyForm/MyForm";
 import useRequest1API from "../../HOC/API/useRequest1";
 import StripeHookProvider from "../../HOC/useStripe/StripeHookProvider";
@@ -16,44 +16,44 @@ import { useDispatch, useSelector } from "react-redux";
 import userActions from "../../reducers/actions.js";
 
 function App() {
-  const [stripe, setStripe] = useState(null);
+  // const [stripe, setStripe] = useState(null);
   const username = useSelector(state => state.user);
 
-  useEffect(() => {
-    if (window.Stripe) {
-      setStripe(window.Stripe("pk_test_3QHFTQccclvodS2QXldeAkSh00qBGSooM3"));
-    } else {
-      document.querySelector("#stripe-js").addEventListener("load", () => {
-        setStripe(window.Stripe("pk_test_3QHFTQccclvodS2QXldeAkSh00qBGSooM3"));
-      });
-    }
+  // useEffect(() => {
+  //   if (window.Stripe) {
+  //     setStripe(window.Stripe("pk_test_3QHFTQccclvodS2QXldeAkSh00qBGSooM3"));
+  //   } else {
+  //     document.querySelector("#stripe-js").addEventListener("load", function() {
+  //       setStripe(window.Stripe("pk_test_3QHFTQccclvodS2QXldeAkSh00qBGSooM3"));
+  //     });
+  //   }
 
-    // const token = localStorage.getItem("token");
-    // if (token) {
-    //   fetch(`http://localhost:3001/auto_login`, {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`
-    //     }
-    //   })
-    //   .then(resp => resp.json())
-    //   .then(data =>{
-    //     console.log(data);
-    //   });
-    // }
-  }, []);
+  //   // const token = localStorage.getItem("token");
+  //   // if (token) {
+  //   //   fetch(`http://localhost:3001/auto_login`, {
+  //   //     headers: {
+  //   //       Authorization: `Bearer ${token}`
+  //   //     }
+  //   //   })
+  //   //   .then(resp => resp.json())
+  //   //   .then(data =>{
+  //   //     console.log(data);
+  //   //   });
+  //   // }
+  // }, []);
 
-  const handleAuthClick = () => {
-    const token = localStorage.getItem("token");
-    fetch(`http://localhost:3001/auto_login`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        console.log(data);
-      });
-  };
+  // const handleAuthClick = () => {
+  //   const token = localStorage.getItem("token");
+  //   fetch(`http://localhost:3001/auto_login`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     }
+  //   })
+  //     .then(resp => resp.json())
+  //     .then(data => {
+  //       console.log(data);
+  //     });
+  // };
 
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -94,7 +94,7 @@ function App() {
           <Switch>
             <Route path="/register" exact component={UserRegister} />
             <Route path="/login" exact component={UserLogin} />
-            <Route
+            {/* <Route
               path="/donate"
               exact
               render={() => {
@@ -108,7 +108,7 @@ function App() {
                   </StripeProvider>
                 );
               }}
-            />
+            /> */}
             <Route path="/" exact component={MainPage} />
           </Switch>
         </header>
