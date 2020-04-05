@@ -16,7 +16,7 @@ import {
   makeSelectHandRangeFolder,
   makeSelectGlobal
 } from "./selectors.js";
-import { getHandRange, setHandRangeSelect } from "./actions";
+import { getHandRange, setHandRangeSelect, setHandRange } from "./actions.js";
 import reducer from "./reducer.js";
 import { useInjectReducer } from "../../HOC/useInjectReducer.js";
 
@@ -56,6 +56,7 @@ const MainPage = ({ globalHands }) => {
   const handClickHandler = (e, data) => {
     console.log(e);
     console.log(data);
+    dispatch(setHandRange({ data: data.name }));
   };
   const orderedCard = [
     "A",

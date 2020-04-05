@@ -14,10 +14,10 @@ export function setHandRangeSelect(data) {
   };
 }
 
-export function setHandRange(hrObj) {
+export function setHandRange(data) {
   return {
     type: SET_HAND_RANGE,
-    hrObj
+    data
   };
 }
 

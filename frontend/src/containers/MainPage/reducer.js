@@ -130,6 +130,10 @@ const mainPageReducer = (state = initialState, action) =>
         draft.mode[[action.data.name]] = action.data.value; //sets the range street and values.
         break;
       case SET_HAND_RANGE:
+        console.log(action);
+        draft.mode[[draft.globalHands.mode.street]][
+          [draft.globalHands.mode.streetAction]
+        ].push(action.data);
         break;
       case SET_HAND_RANGE_FOLDER:
         break;
