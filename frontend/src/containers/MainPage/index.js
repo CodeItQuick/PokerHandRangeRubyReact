@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import prange from "prange";
 import { Row, Col } from "react-bootstrap";
 import BoardLegend from "../../components/BoardLegend/BoardLegend";
-
+import Hand from "../../components/hand/hand.js";
 import { makeSelectToken, makeSelectUser } from "./../Auth/selectors";
 import {
   makeSelectHandRangeGroup,
@@ -46,8 +46,36 @@ const MainPage = global => {
     dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
   };
 
+  console.log(globalHands);
   const handleClassColor = (cardOne, cardTwo, suit) => {
-    console.log(cardOne, cardTwo, suit);
+    if (globalHands && globalHands.mode.street) {
+      return globalHands.ranges[[globalHands.mode.street]][
+        [globalHands.mode.streetAction]
+      ].colorCard;
+    } else {
+      return "white card-button";
+    }
+  };
+
+  const handClickHandler = (e, data) => {
+    console.log(e);
+    console.log(data);
+  };
+  const orderedCard = [
+    "A",
+    "K",
+    "Q",
+    "J",
+    "T",
+    "9",
+    "8",
+    "7",
+    "6",
+    "5",
+    "4",
+    "3",
+    "2"
+  ];
     if (
       global.mode &&
       global.ranges[[global.mode.street]][
@@ -64,13 +92,17 @@ const MainPage = global => {
   const handClickHandler = (e, { name, children }) => {
     dispatch(setHandRangeValues({ name, children }));
   };
-  console.log(global);
   return (
     <>
       <MainContainer>
         <Row>
           <Col>
             <Board
+              onHandClick={handClickHandler}
+              classColor={handleClassColor()}
+            >
+              {orderedCard}
+            </Board>
               onHandClicks={handClickHandler}
               classColor={handleClassColor}
             ></Board>

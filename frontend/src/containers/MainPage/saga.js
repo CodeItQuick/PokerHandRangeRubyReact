@@ -18,6 +18,9 @@ export function* generatorFunction(params) {
 /**
  * Root saga manages watcher lifecycle
  */
+// export default function* handData() {
+//   yield all([takeLatest(CONSTANT, generatorFunction)]);
+// }
 export default function* listingData() {
   yield all([takeLatest(CONSTANT, generatorFunction)]);
 }
