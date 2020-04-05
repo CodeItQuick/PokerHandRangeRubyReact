@@ -4,9 +4,9 @@
 
 import { createSelector } from "reselect";
 
-import { initialState } from "./reducer.js";
+import { initialStates } from "./reducer.js";
 
-const selectGlobal = state => state.globalHands | initialState.globalHands; //needs to be changed to no dot
+const selectGlobal = state => state.global | initialStates; //needs to be changed to no dot
 
 const makeSelectGlobal = () =>
   createSelector(selectGlobal, globalState => globalState);

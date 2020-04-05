@@ -16,7 +16,11 @@ import {
   makeSelectHandRangeFolder,
   makeSelectGlobal
 } from "./selectors.js";
-import { getHandRange, setHandRangeSelect } from "./actions";
+import {
+  getHandRange,
+  setHandRangeSelect,
+  setHandRangeValues
+} from "./actions";
 import reducer from "./reducer.js";
 import { useInjectReducer } from "../../HOC/useInjectReducer.js";
 
@@ -32,9 +36,9 @@ const StyledButton = styled(Button)`
 
 const key = "globalHands";
 
-const MainPage = ({ globalHands }) => {
+const MainPage = global => {
   useInjectReducer({ key, reducer });
-
+  console.log(global);
   const dispatch = useDispatch();
 
   const handleStreet = (e, data) => {
@@ -72,6 +76,22 @@ const MainPage = ({ globalHands }) => {
     "3",
     "2"
   ];
+    if (
+      global.mode &&
+      global.ranges[[global.mode.street]][
+        [global.mode.streetAction]
+      ].prHandString.indexOf(cardOne + cardTwo + suit) >= 0
+    )
+      return (
+        global.ranges[[global.mode.street]][[global.mode.streetAction]].color +
+        " card-button"
+      );
+    else return "black card-button";
+  };
+
+  const handClickHandler = (e, { name, children }) => {
+    dispatch(setHandRangeValues({ name, children }));
+  };
   return (
     <>
       <MainContainer>
@@ -83,6 +103,9 @@ const MainPage = ({ globalHands }) => {
             >
               {orderedCard}
             </Board>
+              onHandClicks={handClickHandler}
+              classColor={handleClassColor}
+            ></Board>
           </Col>
           {/* <Col><BoardLegend range0Combos={raise4BetCallCombos} range1Combos={raise4BetFoldCombos} range2Combos={raiseCallCombos} 
                                   range3Combos={raiseFoldCombos} range0Percent={raise4BetCallPercent}
@@ -122,7 +145,7 @@ const MainPage = ({ globalHands }) => {
         <Col>
           <StyledButton
             onClick={handleStreet}
-            name="preflopRange"
+            name="Preflop"
             value="Raise4betCall"
           >
             Raise/4bet/Call
@@ -146,7 +169,7 @@ const MainPage = ({ globalHands }) => {
         <Col>
           <StyledButton
             onClick={handleStreet}
-            name="preflopRange"
+            name="Preflop"
             value="Raise4betFold"
           >
             Raise/4bet/fold
@@ -168,11 +191,7 @@ const MainPage = ({ globalHands }) => {
 
       <Row>
         <Col>
-          <StyledButton
-            onClick={handleStreet}
-            name="preflopRange"
-            value="RaiseCall"
-          >
+          <StyledButton onClick={handleStreet} name="Preflop" value="RaiseCall">
             Raise/Call
           </StyledButton>
         </Col>
@@ -191,11 +210,7 @@ const MainPage = ({ globalHands }) => {
       </Row>
       <Row>
         <Col>
-          <StyledButton
-            onClick={handleStreet}
-            name="preflopRange"
-            value="RaiseFold"
-          >
+          <StyledButton onClick={handleStreet} name="Preflop" value="RaiseFold">
             Raise/Fold
           </StyledButton>
         </Col>
