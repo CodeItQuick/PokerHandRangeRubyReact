@@ -42,18 +42,20 @@ const MainPage = ({ globalHands }) => {
     dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
   };
 
+  console.log(globalHands);
   const handleClassColor = (cardOne, cardTwo, suit) => {
     if (
       globalHands &&
       globalHands.mode.street === "preflop" &&
-      globalHands.mode.streetActions === "RaiseCall"
+      globalHands.mode.streetActions === "RaiseCall" &&
+      globalHands.ranges.Preflop
     )
       return "blue card-button";
     else return "white card-button";
   };
 
   const handClickHandler = (e, data) => {
-    console.log(e, data);
+    console.log(e, data); //?
   };
 
   return (
