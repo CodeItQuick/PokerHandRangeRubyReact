@@ -24,25 +24,25 @@ export const initialState = {
         Raise4betCall: {
           color: "green",
           active: "red",
-          prHandString: "",
+          prHandString: [],
           colorCard: "green card-button"
         },
         Raise4betFold: {
           color: "blue",
           active: false,
-          prHandString: "",
+          prHandString: [],
           colorCard: "blue card-button"
         },
         RaiseCall: {
           color: "purple",
           active: false,
-          prHandString: "",
+          prHandString: [],
           colorCard: "purple card-button"
         },
         RaiseFold: {
           color: "red",
           active: false,
-          prHandString: "",
+          prHandString: [],
           colorCard: "red card-button"
         }
       },
@@ -50,22 +50,22 @@ export const initialState = {
         disabled: true,
         valuebet: {
           color: "green",
-          prHandString: "",
+          prHandString: [],
           colorCard: "green card-button"
         },
         bluff: {
           color: "blue",
-          prHandString: "",
+          prHandString: [],
           colorCard: "blue card-button"
         },
         checkCall: {
           color: "purple",
-          prHandString: "",
+          prHandString: [],
           colorCard: "purple card-button"
         },
         checkFold: {
           color: "red",
-          prHandString: "",
+          prHandString: [],
           colorCard: "red card-button"
         }
       },
@@ -73,22 +73,22 @@ export const initialState = {
         disabled: true,
         valuebet: {
           color: "green",
-          prHandString: "",
+          prHandString: [],
           colorCard: "green card-button"
         },
         bluff: {
           color: "blue",
-          prHandString: "",
+          prHandString: [],
           colorCard: "blue card-button"
         },
         checkCall: {
           color: "purple",
-          prHandString: "",
+          prHandString: [],
           colorCard: "purple card-button"
         },
         checkFold: {
           color: "red",
-          prHandString: "",
+          prHandString: [],
           colorCard: "red card-button"
         }
       },
@@ -96,22 +96,22 @@ export const initialState = {
         disabled: true,
         valuebet: {
           color: "green",
-          prHandString: "",
+          prHandString: [],
           colorCard: "green card-button"
         },
         bluff: {
           color: "blue",
-          prHandString: "",
+          prHandString: [],
           colorCard: "blue card-button"
         },
         checkCall: {
           color: "purple",
-          prHandString: "",
+          prHandString: [],
           colorCard: "purple card-button"
         },
         checkFold: {
           color: "red",
-          prHandString: "",
+          prHandString: [],
           colorCard: "red card-button"
         }
       }
@@ -130,10 +130,10 @@ const mainPageReducer = (state = initialState, action) =>
         draft.mode[[action.data.name]] = action.data.value; //sets the range street and values.
         break;
       case SET_HAND_RANGE:
-        console.log(action);
-        draft.mode[[draft.globalHands.mode.street]][
+        console.log(action.data);
+        draft.globalHands.ranges[[draft.globalHands.mode.street]][
           [draft.globalHands.mode.streetAction]
-        ].push(action.data);
+        ].prHandString.push(action.data.name);
         break;
       case SET_HAND_RANGE_FOLDER:
         break;

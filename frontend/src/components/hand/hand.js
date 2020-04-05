@@ -1,6 +1,8 @@
 import React from "react";
 import { Grid, Button } from "semantic-ui-react";
 import styled from "styled-components";
+import reducer from "../../containers/MainPage/reducer.js";
+import useInjectReducer from "../../HOC/useInjectReducer.js";
 
 const Hand = ({ onHandClick, cardOne, cardTwo, suit, classColor = false }) => {
   const classColors = () => {

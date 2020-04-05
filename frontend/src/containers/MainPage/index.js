@@ -30,7 +30,7 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const key = "globalHands";
+const key = "global";
 
 const MainPage = ({ globalHands }) => {
   useInjectReducer({ key, reducer });
@@ -42,7 +42,7 @@ const MainPage = ({ globalHands }) => {
     dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
   };
 
-  console.log(globalHands);
+  console.log(global);
   const handleClassColor = (cardOne, cardTwo, suit) => {
     if (globalHands && globalHands.mode.street) {
       return globalHands.ranges[[globalHands.mode.street]][
@@ -56,7 +56,7 @@ const MainPage = ({ globalHands }) => {
   const handClickHandler = (e, data) => {
     console.log(e);
     console.log(data);
-    dispatch(setHandRange({ data: data.name }));
+    dispatch(setHandRange(data));
   };
   const orderedCard = [
     "A",

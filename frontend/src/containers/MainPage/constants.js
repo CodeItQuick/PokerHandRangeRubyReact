@@ -4,7 +4,8 @@
  */
 
 export const SET_HAND_RANGE = "handrangeAPI/MainPage/SET_HAND_RANGE";
-export const SET_HAND_RANGE_SELECT = "handrangeAPI/MainPage/SET_HAND_RANGE";
+export const SET_HAND_RANGE_SELECT =
+  "handrangeAPI/MainPage/SET_HAND_RANGE_SELECT";
 export const GET_HAND_RANGE = "handrangeAPI/MainPage/GET_HAND_RANGE";
 export const SET_HAND_RANGE_FOLDER =
   "handrangeAPI/MainPage/SET_HAND_RANGE_FOLDER";
