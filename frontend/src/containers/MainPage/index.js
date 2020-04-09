@@ -1,6 +1,7 @@
 import React, { useState, useEffect, memo } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
+import { createStructuredSelector } from "reselect";
 import MainContainer from "../../components/MainContainer/index";
 import Board from "../../components/board/board";
 import Range from "../Range/index";
@@ -11,15 +12,11 @@ import { Row, Col } from "react-bootstrap";
 import BoardLegend from "../../components/BoardLegend/BoardLegend";
 import Hand from "../../components/hand/hand.js";
 import { makeSelectToken, makeSelectUser } from "./../Auth/selectors";
-import {
-  makeSelectHandRangeGroup,
-  makeSelectHandRangeFolder,
-  makeSelectGlobal
-} from "./selectors.js";
+import { makeSelectRanges, makeSelectMode } from "./selectors.js";
 import { getHandRange, setHandRangeSelect, setHandRange } from "./actions.js";
 import reducer from "./reducer.js";
 import { useInjectReducer } from "../../HOC/useInjectReducer.js";
-
+import { initialState } from "./reducer.js";
 import styled from "styled-components";
 
 const StyledButton = styled(Button)`
@@ -32,32 +29,35 @@ const StyledButton = styled(Button)`
 
 const key = "global";
 
-const MainPage = ({ globalHands }) => {
+const MainPage = ({
+  ranges = initialState.ranges,
+  mode = initialState.mode
+}) => {
   useInjectReducer({ key, reducer });
+  const [range, setRange] = useState();
 
   const dispatch = useDispatch();
 
   const handleStreet = (e, data) => {
-    console.log(data);
+    console.log(data); //?
     dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
   };
 
-  console.log(global);
-  const handleClassColor = (cardOne, cardTwo, suit) => {
-    if (globalHands && globalHands.mode.street) {
-      return globalHands.ranges[[globalHands.mode.street]][
-        [globalHands.mode.streetAction]
-      ].colorCard;
-    } else {
-      return "white card-button";
-    }
-  };
-
-  const handClickHandler = (e, data) => {
-    console.log(e);
-    console.log(data);
+  const handClickHandler = data => {
     dispatch(setHandRange(data));
   };
+  useEffect(() => {
+    console.log(ranges);
+    let toSetRange = {};
+    Object.keys(ranges).map(streets =>
+      Object.keys(streets).map(streetActions => {
+        if (streets === mode.street && streetActions === mode.streetAction) {
+          toSetRange.push(streetActions.prHandString);
+        }
+      })
+    );
+    setRange(toSetRange);
+  }, [ranges]);
   const orderedCard = [
     "A",
     "K",
@@ -78,12 +78,8 @@ const MainPage = ({ globalHands }) => {
       <MainContainer>
         <Row>
           <Col>
-            <Board
-              onHandClick={handClickHandler}
-              classColor={handleClassColor()}
-            >
-              {orderedCard}
-            </Board>
+            {ranges.Preflop.Raise4BetCall.prHandRanges}
+            <Board onHandClick={handClickHandler} ranges={range}></Board>
           </Col>
           {/* <Col><BoardLegend range0Combos={raise4BetCallCombos} range1Combos={raise4BetFoldCombos} range2Combos={raiseCallCombos} 
                                   range3Combos={raiseFoldCombos} range0Percent={raise4BetCallPercent}
@@ -95,9 +91,7 @@ const MainPage = ({ globalHands }) => {
       </MainContainer>
       <Row span={7}>
         <Button.Group size="large">
-          <Col>
-            <StyledButton>Preflop</StyledButton>
-          </Col>
+          <Col>Preflop</Col>
           <Col>
             <StyledButton.Or />
           </Col>
@@ -123,8 +117,8 @@ const MainPage = ({ globalHands }) => {
         <Col>
           <StyledButton
             onClick={handleStreet}
-            name="preflopRange"
-            value="Raise4betCall"
+            name="Preflop"
+            value="Raise4BetCall"
           >
             Raise/4bet/Call
           </StyledButton>
@@ -147,8 +141,8 @@ const MainPage = ({ globalHands }) => {
         <Col>
           <StyledButton
             onClick={handleStreet}
-            name="preflopRange"
-            value="Raise4betFold"
+            name="Preflop"
+            value="Raise4BetFold"
           >
             Raise/4bet/fold
           </StyledButton>
@@ -169,11 +163,7 @@ const MainPage = ({ globalHands }) => {
 
       <Row>
         <Col>
-          <StyledButton
-            onClick={handleStreet}
-            name="preflopRange"
-            value="RaiseCall"
-          >
+          <StyledButton onClick={handleStreet} name="Preflop" value="RaiseCall">
             Raise/Call
           </StyledButton>
         </Col>
@@ -192,11 +182,7 @@ const MainPage = ({ globalHands }) => {
       </Row>
       <Row>
         <Col>
-          <StyledButton
-            onClick={handleStreet}
-            name="preflopRange"
-            value="RaiseFold"
-          >
+          <StyledButton onClick={handleStreet} name="Preflop" value="RaiseFold">
             Raise/Fold
           </StyledButton>
         </Col>
@@ -217,17 +203,10 @@ const MainPage = ({ globalHands }) => {
   );
 };
 
-const makeMapStateToProps = () => {
-  const getGlobalHands = makeSelectGlobal();
-
-  const mapStateToProps = state => {
-    return {
-      globalHands: getGlobalHands(state)
-    };
-  };
-
-  return mapStateToProps;
-};
+const makeMapStateToProps = createStructuredSelector({
+  ranges: makeSelectRanges(),
+  mode: makeSelectMode()
+}); //?
 
 const withConnect = connect(makeMapStateToProps, null);
 

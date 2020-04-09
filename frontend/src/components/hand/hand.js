@@ -1,25 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Button } from "semantic-ui-react";
 import styled from "styled-components";
 import reducer from "../../containers/MainPage/reducer.js";
 import useInjectReducer from "../../HOC/useInjectReducer.js";
 
-const Hand = ({ onHandClick, cardOne, cardTwo, suit, classColor = false }) => {
-  const classColors = () => {
-    if (classColor) return classColor;
-    else return "white card-button";
-  };
-
+const Hand = ({ onHandClick, cards, colorCard }) => {
   return (
     <Grid.Column>
       <Button
-        onClick={onHandClick}
-        name={cardOne + cardTwo + suit}
-        className={classColors()}
+        onClick={() => onHandClick({ name: cards })}
+        className={colorCard}
       >
-        {cardOne}
-        {cardTwo}
-        {suit}
+        {cards}
       </Button>
     </Grid.Column>
   );
