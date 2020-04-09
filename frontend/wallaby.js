@@ -1,23 +1,29 @@
 var wallabyWebpack = require('wallaby-webpack');
 
-module.exports = function (wallaby) {
 
-  var webpackPostprocessor = wallabyWebpack({
-    // webpack options
-    resolve: {
-      extensions: ['.js', '.jsx']
-    }
-  });
+var webpackPostprocessor = wallabyWebpack({
+  // webpack options
+  emitModulePaths: true,
+
+  entry: {
+    test: 'src/*spec.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  }
+});
+
+module.exports = function (wallaby) {
 
   return {
     files: [
       {pattern: 'src/**/*.js*', load: false},
-      "!semantic/**/*",
-      "!src/**/*.test.js*",
+      {pattern: "!semantic/**/*", load: false},
+      {pattern: "!src/*.test.js*", load: false},
     ],
 
     tests: [
-      {pattern: 'test/**/*Spec.js*', load: false}
+      {pattern: 'test/*.spec.js*', load: false}
     ],
 
     compilers: {

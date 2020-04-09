@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Route, Switch } from "react-router-dom";
 import "./index.css";
 import App from "./containers/App/App";
 import * as serviceWorker from "./serviceWorker";
@@ -17,17 +18,18 @@ import { saveState } from "./localStorage";
 import configureStore from "./configureStore";
 import { ConnectedRouter } from "connected-react-router";
 import { ThemeProvider } from "styled-components";
+import initialState from "./containers/MainPage/reducer.js";
 
 //const store = createStore(combineReducers({rootReducer, handRangesAvailable}), applyMiddleware(thunk));
 // Create redux store with history
-const initialState = {};
+//const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById("app");
 
 store.subscribe(
   throttle(() => {
-    const { global, user, order } = store.getState();
-    saveState({ global, user, order });
+    const { global } = store.getState();
+    saveState({ global });
   }, 1000)
 );
 
@@ -35,7 +37,9 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <ThemeProvider theme={{ main: "mediumseagreen" }}>
-        <App data-test="AppComponent" />
+        <Switch>
+          <Route path="/" component={App} />
+        </Switch>
       </ThemeProvider>
     </ConnectedRouter>
   </Provider>,

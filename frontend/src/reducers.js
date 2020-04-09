@@ -13,10 +13,10 @@ import globalReducer from "./containers/MainPage/reducer";
  */
 export default function createReducer(injectedReducers = {}) {
   const rootReducer = combineReducers({
-    global: globalReducer,
+    globalState: globalReducer,
     router: connectRouter(history),
     ...injectedReducers
   });
 
   return rootReducer;
-}
+} //?
