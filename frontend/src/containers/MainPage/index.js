@@ -102,15 +102,21 @@ const MainPage = ({ ranges, mode, rangeColors }) => {
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>Valuebet</StyledButton>
+          <StyledButton onClick={handleStreet} name="Flop" value="Valuebet">
+            Valuebet
+          </StyledButton>
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>Valuebet</StyledButton>
+          <StyledButton onClick={handleStreet} name="Turn" value="Valuebet">
+            Valuebet
+          </StyledButton>
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>Valuebet</StyledButton>
+          <StyledButton onClick={handleStreet} name="River" value="Valuebet">
+            Valuebet
+          </StyledButton>
         </Col>
       </Row>
 
@@ -126,15 +132,21 @@ const MainPage = ({ ranges, mode, rangeColors }) => {
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>bluff</StyledButton>
+          <StyledButton onClick={handleStreet} name="Flop" value="Bluff">
+            bluff
+          </StyledButton>
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>bluff</StyledButton>
+          <StyledButton onClick={handleStreet} name="Turn" value="Bluff">
+            bluff
+          </StyledButton>
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>bluff</StyledButton>
+          <StyledButton onClick={handleStreet} name="River" value="Bluff">
+            bluff
+          </StyledButton>
         </Col>
       </Row>
 
@@ -146,15 +158,21 @@ const MainPage = ({ ranges, mode, rangeColors }) => {
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>Check/Call</StyledButton>
+          <StyledButton onClick={handleStreet} name="Flop" value="CheckCall">
+            Check/Call
+          </StyledButton>
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>Check/Call</StyledButton>
+          <StyledButton onClick={handleStreet} name="Turn" value="CheckCall">
+            Check/Call
+          </StyledButton>
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>Check Turn Call</StyledButton>
+          <StyledButton onClick={handleStreet} name="River" value="CheckCall">
+            Check Turn Call
+          </StyledButton>
         </Col>
       </Row>
       <Row>
@@ -165,15 +183,21 @@ const MainPage = ({ ranges, mode, rangeColors }) => {
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>Check/Fold</StyledButton>
+          <StyledButton onClick={handleStreet} name="Flop" value="CheckFold">
+            Check/Fold
+          </StyledButton>
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>Check/Fold</StyledButton>
+          <StyledButton onClick={handleStreet} name="Turn" value="CheckFold">
+            Check/Fold
+          </StyledButton>
         </Col>
         <Col></Col>
         <Col>
-          <StyledButton>Check Turn Fold</StyledButton>
+          <StyledButton onClick={handleStreet} name="River" value="CheckFold">
+            Check Turn Fold
+          </StyledButton>
         </Col>
       </Row>
     </>

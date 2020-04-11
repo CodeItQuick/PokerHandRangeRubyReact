@@ -68,7 +68,6 @@ const Board = ({ handClickHandler, ranges, rangeColors, mode }) => {
                 ...cardClone,
                 [hands]: { colorCards: cardColors + " button-card" }
               };
-              console.log(cardClone);
             }
           });
         }

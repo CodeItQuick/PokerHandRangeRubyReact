@@ -18,10 +18,10 @@ const initialState = {
     streetAction: ""
   },
   rangeColors: {
-    green: ["AA"],
-    blue: ["KK"],
-    purple: ["QQ"],
-    red: ["JJ"]
+    green: [],
+    blue: [],
+    purple: [],
+    red: []
   },
   ranges: {
     Preflop: {
@@ -53,22 +53,22 @@ const initialState = {
     },
     Flop: {
       disabled: true,
-      valuebet: {
+      Valuebet: {
         color: "green",
         prHandString: [],
         colorCard: "green card-button"
       },
-      bluff: {
+      Bluff: {
         color: "blue",
         prHandString: [],
         colorCard: "blue card-button"
       },
-      checkCall: {
+      CheckCall: {
         color: "purple",
         prHandString: [],
         colorCard: "purple card-button"
       },
-      checkFold: {
+      CheckFold: {
         color: "red",
         prHandString: [],
         colorCard: "red card-button"
@@ -76,22 +76,22 @@ const initialState = {
     },
     Turn: {
       disabled: true,
-      valuebet: {
+      Valuebet: {
         color: "green",
         prHandString: [],
         colorCard: "green card-button"
       },
-      bluff: {
+      Bluff: {
         color: "blue",
         prHandString: [],
         colorCard: "blue card-button"
       },
-      checkCall: {
+      CheckCall: {
         color: "purple",
         prHandString: [],
         colorCard: "purple card-button"
       },
-      checkFold: {
+      CheckFold: {
         color: "red",
         prHandString: [],
         colorCard: "red card-button"
@@ -99,22 +99,22 @@ const initialState = {
     },
     River: {
       disabled: true,
-      valuebet: {
+      Valuebet: {
         color: "green",
         prHandString: [],
         colorCard: "green card-button"
       },
-      bluff: {
+      Bluff: {
         color: "blue",
         prHandString: [],
         colorCard: "blue card-button"
       },
-      checkCall: {
+      CheckCall: {
         color: "purple",
         prHandString: [],
         colorCard: "purple card-button"
       },
-      checkFold: {
+      CheckFold: {
         color: "red",
         prHandString: [],
         colorCard: "red card-button"
@@ -122,17 +122,70 @@ const initialState = {
     }
   }
 };
+const orderedCard = [
+  "A",
+  "K",
+  "Q",
+  "J",
+  "T",
+  "9",
+  "8",
+  "7",
+  "6",
+  "5",
+  "4",
+  "3",
+  "2"
+];
 
+let getCards = (cardOne, cardTwo) => {
+  let card1 = "",
+    card2 = "";
+  if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
+    card1 = cardOne;
+    card2 = cardTwo;
+  } else if (cardOne === cardTwo) {
+    card1 = cardOne;
+    card2 = cardTwo;
+  } else {
+    card1 = cardTwo;
+    card2 = cardOne;
+  }
+  return card1 + card2;
+};
+const displayCardSuit = (cardOne, cardTwo) => {
+  let displaySuit = "";
+  if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
+    displaySuit = "s";
+  } else if (cardOne === cardTwo) {
+    displaySuit = "";
+  } else {
+    displaySuit = "o";
+  }
+  return displaySuit;
+};
 const mainPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case SET_HAND_RANGE_SELECT:
         console.log(draft);
+
+        if (draft.mode.street != action.data.name) {
+          draft.rangeColors = {
+            green: [],
+            blue: [],
+            purple: [],
+            red: []
+          }; //reset range colors for new range
+          let newRangeColors = {};
+          draft.ranges[[action.data.name]].map(streetAction => {
+            newRangeColors = {
+              [streetAction.color]: [...streetAction.prHandString]
+            };
+          });
+        }
         draft.mode.street = action.data.name;
         draft.mode.streetAction = action.data.value;
-        break;
-      case GET_HAND_RANGE:
-        draft.mode[[action.data.name]] = action.data.value; //sets the range street and values.
         break;
       case SET_HAND_RANGE:
         console.log(action);
