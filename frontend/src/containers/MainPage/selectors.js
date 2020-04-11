@@ -4,11 +4,32 @@
 
 import { createSelector } from "reselect";
 
-import { initialStates } from "./reducer.js";
+import { initialState } from "./reducer";
 
-const selectGlobal = state => state.global | initialStates; //needs to be changed to no dot
+const selectGlobal = state => state.global || initialState; //??
+const selectRouter = state => state.router;
 
-const makeSelectGlobal = () =>
-  createSelector(selectGlobal, globalState => globalState);
+const makeSelectMode = () => {
+  return createSelector(selectGlobal, global => {
+    return global.mode;
+  });
+}; //??
+const makeSelectRanges = () => {
+  return createSelector(selectGlobal, global => {
+    console.log(global);
+    if (global && global.mode && global.mode.street && global.mode.streetAction)
+      return global.ranges[[global.mode.street]][[global.mode.streetAction]];
+    else return initialState.ranges.Preflop.Raise4BetCall;
+  });
+}; //??
 
-export { makeSelectGlobal };
+const makeSelectRangeColors = () =>
+  createSelector(selectGlobal, globalState => globalState.rangeColors); //??
+
+export {
+  selectGlobal,
+  selectRouter,
+  makeSelectRanges,
+  makeSelectMode,
+  makeSelectRangeColors
+};

@@ -120,7 +120,9 @@
     "eslint-plugin-react": "^7.17.0",
     "jest": "^24.9.0",
     "jest-enzyme": "^7.1.2",
+    "jsdom-quokka-plugin": "^1.0.15",
     "semantic-ui-less": "^2.4.1",
+    "wallaby-webpack": "^3.9.15",
     "webpack": "^4.41.5"
   },
   "jest": {

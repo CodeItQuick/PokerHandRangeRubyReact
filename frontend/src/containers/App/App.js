@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Fragment, memo } from "react";
 import "./App.css";
 import Board from "../../components/board/board";
 import MainPage from "../MainPage/index";
@@ -13,11 +13,24 @@ import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "../../reducers/actions.js";
+import { useInjectReducer } from "../../HOC/useInjectReducer";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { createStructuredSelector } from "reselect";
+import {
+  makeSelectRanges,
+  makeSelectRangeColors,
+  makeSelectMode
+} from "../MainPage/selectors";
 
-function App() {
+import reducer from "../MainPage/reducer";
+
+const key = "global";
+
+const App = ({ ranges, mode, rangeColors }) => {
+  useInjectReducer({ key, reducer });
   // const [stripe, setStripe] = useState(null);
   const username = useSelector(state => state.user);
-
   // useEffect(() => {
   //   if (window.Stripe) {
   //     setStripe(window.Stripe("pk_test_3QHFTQccclvodS2QXldeAkSh00qBGSooM3"));
@@ -60,60 +73,49 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
-      <div className="App">
-        <header className="App-header">
-          <Menu inverted>
+    <Fragment>
+      <Menu inverted>
+        <Menu.Item>
+          <NavLink to="/">Home</NavLink>
+        </Menu.Item>
+        {username ? (
+          <>
+            <Menu.Item>{username}</Menu.Item>
             <Menu.Item>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to="/donate">Donate</NavLink>
             </Menu.Item>
-            {username ? (
-              <>
-                <Menu.Item>{username}</Menu.Item>
-                <Menu.Item>
-                  <NavLink to="/donate">Donate</NavLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <NavLink to="/" onClick={handleLogout}>
-                    Logout
-                  </NavLink>
-                </Menu.Item>
-              </>
-            ) : (
-              <>
-                <Menu.Item>
-                  <NavLink to="/register">Register</NavLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <NavLink to="/login">Login</NavLink>
-                </Menu.Item>
-              </>
-            )}
-          </Menu>
-          <Switch>
-            <Route path="/register" exact component={UserRegister} />
-            <Route path="/login" exact component={UserLogin} />
-            {/* <Route
-              path="/donate"
-              exact
-              render={() => {
-                return (
-                  <StripeProvider {...{ stripe }}>
-                    <Elements>
-                      <StripeHookProvider>
-                        <MyForm stripe={stripe} />
-                      </StripeHookProvider>
-                    </Elements>
-                  </StripeProvider>
-                );
-              }}
-            /> */}
-            <Route path="/" exact component={MainPage} />
-          </Switch>
-        </header>
-      </div>
-    </BrowserRouter>
+            <Menu.Item>
+              <NavLink to="/" onClick={handleLogout}>
+                Logout
+              </NavLink>
+            </Menu.Item>
+          </>
+        ) : (
+          <>
+            <Menu.Item>
+              <NavLink to="/register">Register</NavLink>
+            </Menu.Item>
+            <Menu.Item>
+              <NavLink to="/login">Login</NavLink>
+            </Menu.Item>
+          </>
+        )}
+      </Menu>
+      <MainPage
+        ranges={ranges}
+        mode={mode}
+        rangeColors={rangeColors}
+      ></MainPage>
+    </Fragment>
   );
-}
+};
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  ranges: makeSelectRanges(),
+  mode: makeSelectMode(),
+  rangeColors: makeSelectRangeColors()
+}); //?
+
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect, memo)(App);
