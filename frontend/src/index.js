@@ -18,13 +18,12 @@ import { saveState } from "./localStorage";
 import configureStore from "./configureStore";
 import { ConnectedRouter } from "connected-react-router";
 import { ThemeProvider } from "styled-components";
-import initialState from "./containers/MainPage/reducer.js";
+import { initialState } from "./containers/MainPage/reducer.js";
 
 //const store = createStore(combineReducers({rootReducer, handRangesAvailable}), applyMiddleware(thunk));
 // Create redux store with history
 //const initialState = {};
 const store = configureStore(initialState, history);
-const MOUNT_NODE = document.getElementById("app");
 
 store.subscribe(
   throttle(() => {

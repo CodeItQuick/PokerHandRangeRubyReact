@@ -12,10 +12,16 @@ import {
   SET_CLASS_COLOR
 } from "./constants.js";
 
-export const initialState = {
+const initialState = {
   mode: {
     street: "",
     streetAction: ""
+  },
+  rangeColors: {
+    green: ["AA"],
+    blue: ["KK"],
+    purple: ["QQ"],
+    red: ["JJ"]
   },
   ranges: {
     Preflop: {
@@ -121,6 +127,7 @@ const mainPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case SET_HAND_RANGE_SELECT:
+        console.log(draft);
         draft.mode.street = action.data.name;
         draft.mode.streetAction = action.data.value;
         break;
@@ -129,9 +136,14 @@ const mainPageReducer = (state = initialState, action) =>
         break;
       case SET_HAND_RANGE:
         console.log(action);
+
         draft.ranges[[draft.mode.street]][
           [draft.mode.streetAction]
-        ].prHandString.push(action.data.name);
+        ].prHandString.push(action.data.cards);
+        draft.rangeColors[
+          [draft.ranges[[draft.mode.street]][[draft.mode.streetAction]].color]
+        ].push(action.data.cards);
+        draft.rangeColors.green.push(action.data.cards);
         break;
       case SET_HAND_RANGE_FOLDER:
         break;
@@ -148,5 +160,5 @@ const mainPageReducer = (state = initialState, action) =>
         break;
     }
   });
-
 export default mainPageReducer;
+export { initialState };

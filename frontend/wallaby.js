@@ -1,41 +1,26 @@
-var wallabyWebpack = require('wallaby-webpack');
-
-
-var webpackPostprocessor = wallabyWebpack({
-  // webpack options
-  emitModulePaths: true,
-
-  entry: {
-    test: 'src/*spec.js',
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  }
-});
 
 module.exports = function (wallaby) {
 
-  return {
+  return {// tell wallaby to use automatic configuration
+    autoDetect: true,
+
     files: [
       {pattern: 'src/**/*.js*', load: false},
-      {pattern: "!semantic/**/*", load: false},
-      {pattern: "!src/*.test.js*", load: false},
+      "!semantic/**/*",
+      "!node_modules/**/*"
     ],
 
     tests: [
-      {pattern: 'test/*.spec.js*', load: false}
+      'test/*.js'
     ],
 
     compilers: {
       '**/*.js*': wallaby.compilers.babel()
     },
+    testFramework: 'mocha',
 
-    env: {kind: 'chrome'},
+    env: {type: 'node'},
 
-    postprocessor: webpackPostprocessor,
 
-    setup: function () {
-      window.__moduleBundler.loadTests();
-    }
   };
 };
