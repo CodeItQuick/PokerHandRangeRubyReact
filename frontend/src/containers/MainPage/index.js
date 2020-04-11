@@ -1,18 +1,22 @@
 import React, { useState, useEffect, memo } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
 import MainContainer from "../../components/MainContainer/index";
-import Board from "../../components/board/board";
-import Range from "../Range/index";
+import Board from "./Board/index.js";
 import { Button, Select } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 import prange from "prange";
 import { Row, Col } from "react-bootstrap";
 import BoardLegend from "../../components/BoardLegend/BoardLegend";
 import Hand from "../../components/hand/hand.js";
-import { makeSelectToken, makeSelectUser } from "./../Auth/selectors";
-import { makeSelectRanges, makeSelectMode } from "./selectors.js";
+import {
+  selectGlobal,
+  makeSelectRanges,
+  makeSelectMode,
+  makeSelectRangeColors
+} from "./selectors.js";
 import { getHandRange, setHandRangeSelect, setHandRange } from "./actions.js";
 import reducer from "./reducer.js";
 import { useInjectReducer } from "../../HOC/useInjectReducer.js";
@@ -29,57 +33,30 @@ const StyledButton = styled(Button)`
 
 const key = "global";
 
-const MainPage = ({
-  ranges = initialState.ranges,
-  mode = initialState.mode
-}) => {
+const MainPage = ({ ranges, mode, rangeColors }) => {
   useInjectReducer({ key, reducer });
-  const [range, setRange] = useState();
-
   const dispatch = useDispatch();
+  console.log(rangeColors);
 
   const handleStreet = (e, data) => {
     console.log(data); //?
     dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
   };
 
-  const handClickHandler = data => {
-    dispatch(setHandRange(data));
+  const handleClickHandler = (e, data) => {
+    console.log(data);
+    dispatch(setHandRange({ cards: data.hand }));
   };
-  useEffect(() => {
-    console.log(ranges);
-    let toSetRange = {};
-    Object.keys(ranges).map(streets =>
-      Object.keys(streets).map(streetActions => {
-        if (streets === mode.street && streetActions === mode.streetAction) {
-          toSetRange.push(streetActions.prHandString);
-        }
-      })
-    );
-    setRange(toSetRange);
-  }, [ranges]);
-  const orderedCard = [
-    "A",
-    "K",
-    "Q",
-    "J",
-    "T",
-    "9",
-    "8",
-    "7",
-    "6",
-    "5",
-    "4",
-    "3",
-    "2"
-  ];
   return (
     <>
       <MainContainer>
         <Row>
           <Col>
-            {ranges.Preflop.Raise4BetCall.prHandRanges}
-            <Board onHandClick={handClickHandler} ranges={range}></Board>
+            {ranges.prHandRanges}
+            <Board
+              handClickHandler={handleClickHandler}
+              rangeColors={rangeColors}
+            ></Board>
           </Col>
           {/* <Col><BoardLegend range0Combos={raise4BetCallCombos} range1Combos={raise4BetFoldCombos} range2Combos={raiseCallCombos} 
                                   range3Combos={raiseFoldCombos} range0Percent={raise4BetCallPercent}
@@ -202,12 +179,29 @@ const MainPage = ({
     </>
   );
 };
+MainPage.propTypes = {
+  ranges: PropTypes.object,
+  mode: PropTypes.object,
+  rangeColors: PropTypes.object
+};
 
-const makeMapStateToProps = createStructuredSelector({
-  ranges: makeSelectRanges(),
-  mode: makeSelectMode()
-}); //?
+const mapStateToProps = () => {
+  const getMapRange = makeSelectRanges();
+  const getRangeColors = makeSelectRangeColors();
+  const mapState = state => {
+    return {
+      ranges: getMapRange(state),
+      rangeColors: getRangeColors(state)
+    };
+  };
+  return mapState;
+}; //?
 
-const withConnect = connect(makeMapStateToProps, null);
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     dispatchToHandRange: (data) => dispatch(setHandRange(data))
+//   };
+// };
+const withConnect = connect(mapStateToProps, null);
 
 export default compose(withConnect, memo)(MainPage);

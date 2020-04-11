@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, Fragment } from "react";
+import React, { useEffect, useState, useRef, Fragment, memo } from "react";
 import "./App.css";
 import Board from "../../components/board/board";
 import MainPage from "../MainPage/index";
@@ -13,11 +13,24 @@ import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
 import userActions from "../../reducers/actions.js";
+import { useInjectReducer } from "../../HOC/useInjectReducer";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { createStructuredSelector } from "reselect";
+import {
+  makeSelectRanges,
+  makeSelectRangeColors,
+  makeSelectMode
+} from "../MainPage/selectors";
 
-const App = () => {
+import reducer from "../MainPage/reducer";
+
+const key = "global";
+
+const App = ({ ranges, mode, rangeColors }) => {
+  useInjectReducer({ key, reducer });
   // const [stripe, setStripe] = useState(null);
   const username = useSelector(state => state.user);
-
   // useEffect(() => {
   //   if (window.Stripe) {
   //     setStripe(window.Stripe("pk_test_3QHFTQccclvodS2QXldeAkSh00qBGSooM3"));
@@ -88,9 +101,21 @@ const App = () => {
           </>
         )}
       </Menu>
-      <MainPage></MainPage>
+      <MainPage
+        ranges={ranges}
+        mode={mode}
+        rangeColors={rangeColors}
+      ></MainPage>
     </Fragment>
   );
 };
 
-export default App;
+const mapStateToProps = createStructuredSelector({
+  ranges: makeSelectRanges(),
+  mode: makeSelectMode(),
+  rangeColors: makeSelectRangeColors()
+}); //?
+
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect, memo)(App);
