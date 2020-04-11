@@ -6,11 +6,11 @@ import Hand from "../src/components/hand/hand.js";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-function setup(cardOnes, cardTwos, suits, classColor, mockCallBack = jest.fn()) {
+function setup(cardOnes, cardTwos, suits, colorCards, mockCallBack = jest.fn()) {
   
   const props = { onHandClick: mockCallBack, 
     cardOne: cardOnes, cardTwo: cardTwos,
-    suit: suits, classColor: classColor}; //?
+    suit: suits, colorCards: colorCards}; //? 
 
   const enzymeWrapper = <Hand {...props} />;
 
