@@ -178,12 +178,12 @@ const mainPageReducer = (state = initialState, action) =>
             purple: [],
             red: []
           }; //reset range colors for new range
-          let newRangeColors = {};
-          draft.ranges[[action.data.name]].map(streetAction => {
-            newRangeColors = {
-              [streetAction.color]: [...streetAction.prHandString]
-            };
-          });
+          // let newRangeColors = {};
+          // draft.ranges[[action.data.name]].map(streetAction => {
+          //   newRangeColors = {
+          //     [streetAction.color]: [...streetAction.prHandString]
+          //   };
+          // });
         }
         draft.mode.street = action.data.name;
         draft.mode.streetAction = action.data.value;
