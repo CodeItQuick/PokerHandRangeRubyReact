@@ -19,6 +19,12 @@ const ColorCard = styled(animated.div)`
   font-size: 7px;
   text-align: center;
   color: white;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
   background-color: ${props => props.coloring};
 
   @media (min-width: 576px) and (max-width: 767.98px) {
@@ -128,6 +134,16 @@ const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
 
   // Set the drag hook and define component movement based on gesture data
   const bind = useGesture({
+    onDrag: props =>
+      onMouseOverHandler(
+        {
+          cards: props.args[props.args.length - 1],
+          onMouseDownEvent:
+            (props.memo !== props.args[props.args.length - 1] && props.down) ||
+            (props.first && props.down)
+        },
+        { threshold: 40, filterTaps: false }
+      ),
     onMove: props =>
       onMouseOverHandler(
         {
@@ -136,7 +152,7 @@ const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
             (props.memo !== props.args[0] && props.down) ||
             (props.first && props.down)
         },
-        { threshold: 1000 }
+        { threshold: 40, delay: true }
       )
   });
   useEffect(() => {
