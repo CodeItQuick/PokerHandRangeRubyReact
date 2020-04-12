@@ -139,32 +139,6 @@ const orderedCard = [
   "2"
 ];
 
-let getCards = (cardOne, cardTwo) => {
-  let card1 = "",
-    card2 = "";
-  if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
-    card1 = cardOne;
-    card2 = cardTwo;
-  } else if (cardOne === cardTwo) {
-    card1 = cardOne;
-    card2 = cardTwo;
-  } else {
-    card1 = cardTwo;
-    card2 = cardOne;
-  }
-  return card1 + card2;
-};
-const displayCardSuit = (cardOne, cardTwo) => {
-  let displaySuit = "";
-  if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
-    displaySuit = "s";
-  } else if (cardOne === cardTwo) {
-    displaySuit = "";
-  } else {
-    displaySuit = "o";
-  }
-  return displaySuit;
-};
 const mainPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
@@ -189,14 +163,12 @@ const mainPageReducer = (state = initialState, action) =>
               };
             }
           );
-          console.log(newRangeColors);
           draft.rangeColors = newRangeColors;
         }
         draft.mode.street = action.data.name;
         draft.mode.streetAction = action.data.value;
         break;
       case SET_HAND_RANGE:
-        console.log(action);
         const rangesIndex = draft.ranges[[draft.mode.street]][
           [draft.mode.streetAction]
         ].prHandString.indexOf(action.data.cards);
