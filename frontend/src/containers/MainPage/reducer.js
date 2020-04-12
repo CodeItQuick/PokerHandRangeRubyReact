@@ -169,7 +169,7 @@ const mainPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case SET_HAND_RANGE_SELECT:
-        console.log(draft);
+        console.log(action);
 
         if (draft.mode.street != action.data.name) {
           draft.rangeColors = {
@@ -178,26 +178,51 @@ const mainPageReducer = (state = initialState, action) =>
             purple: [],
             red: []
           }; //reset range colors for new range
-          // let newRangeColors = {};
-          // draft.ranges[[action.data.name]].map(streetAction => {
-          //   newRangeColors = {
-          //     [streetAction.color]: [...streetAction.prHandString]
-          //   };
-          // });
+          let newRangeColors = {};
+          Object.keys(draft.ranges[[action.data.name]]).forEach(
+            streetAction => {
+              console.log(streetAction);
+              newRangeColors = {
+                ...newRangeColors,
+                [draft.ranges[[action.data.name]][streetAction].color]:
+                  draft.ranges[[action.data.name]][streetAction].prHandString
+              };
+            }
+          );
+          console.log(newRangeColors);
+          draft.rangeColors = newRangeColors;
         }
         draft.mode.street = action.data.name;
         draft.mode.streetAction = action.data.value;
         break;
       case SET_HAND_RANGE:
         console.log(action);
-
-        draft.ranges[[draft.mode.street]][
+        const rangesIndex = draft.ranges[[draft.mode.street]][
           [draft.mode.streetAction]
-        ].prHandString.push(action.data.cards);
-        draft.rangeColors[
+        ].prHandString.indexOf(action.data.cards);
+
+        if (rangesIndex >= 0)
+          draft.ranges[[draft.mode.street]][
+            [draft.mode.streetAction]
+          ].prHandString.splice(rangesIndex, 1);
+        else
+          draft.ranges[[draft.mode.street]][
+            [draft.mode.streetAction]
+          ].prHandString.push(action.data.cards);
+
+        const colorIndex = draft.rangeColors[
           [draft.ranges[[draft.mode.street]][[draft.mode.streetAction]].color]
-        ].push(action.data.cards);
-        draft.rangeColors.green.push(action.data.cards);
+        ].indexOf(action.data.cards);
+
+        if (colorIndex >= 0)
+          draft.rangeColors[
+            [draft.ranges[[draft.mode.street]][[draft.mode.streetAction]].color]
+          ].splice(colorIndex, 1);
+        else
+          draft.rangeColors[
+            [draft.ranges[[draft.mode.street]][[draft.mode.streetAction]].color]
+          ].push(action.data.cards);
+
         break;
       case SET_HAND_RANGE_FOLDER:
         break;
