@@ -3,11 +3,14 @@ import { useDispatch } from "react-redux";
 
 import { Grid, Button } from "semantic-ui-react";
 import { Container, Row, Col } from "react-bootstrap";
+import { useDrag, useGesture, useMove } from "react-use-gesture";
+import { useSpring, animated } from "react-spring";
 
 import { setHandRange } from "../actions.js";
 import styled from "styled-components";
 
-const ColorCard = styled.button`
+const ColorCard = styled(animated.div)`
+  cursor: pointer;
   padding-left: 0px;
   padding-right: 2px;
   width: 100% !important;
@@ -92,12 +95,10 @@ let getCards = (cardOne, cardTwo) => {
   return card1 + card2;
 };
 
-const Board = ({ handClickHandler, ranges, rangeColors, mode }) => {
+const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
   const [manyHands, setManyHands] = useState();
   const [cards, setCards] = useState({});
   const dispatch = useDispatch();
-
-  console.log(rangeColors, ranges, mode);
 
   useEffect(() => {
     let cardClone = {};
@@ -122,12 +123,22 @@ const Board = ({ handClickHandler, ranges, rangeColors, mode }) => {
       })
     );
 
-    console.log(cardClone);
     setCards(cardClone);
   }, [rangeColors]);
 
-  console.log(cards["AKs"] ? cards["AKs"].colorCards : cards);
-
+  // Set the drag hook and define component movement based on gesture data
+  const bind = useGesture({
+    onMove: props =>
+      onMouseOverHandler(
+        {
+          cards: props.args[props.args.length - 1],
+          onMouseDownEvent:
+            (props.memo !== props.args[0] && props.down) ||
+            (props.first && props.down)
+        },
+        { threshold: 1000 }
+      )
+  });
   useEffect(() => {
     let toSetManyHands = [];
 
@@ -137,37 +148,35 @@ const Board = ({ handClickHandler, ranges, rangeColors, mode }) => {
         return acc;
       }, [])
     );
-    console.log(toSetManyHands);
     let setNewManyHands = toSetManyHands.map((row, idx) => {
-      let columnJSX = row.map(([cardOne, cardTwo]) => (
-        <StyledCol xs={1}>
-          <ColorCard
-            onClick={e =>
-              handClickHandler(e, {
-                cards:
-                  getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-              })
-            }
-            hand={
-              getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-            }
-            coloring={
-              cards[
+      let columnJSX = row.map(([cardOne, cardTwo]) => {
+        return (
+          <StyledCol xs={1}>
+            <ColorCard
+              {...bind(
                 getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-              ]
-                ? cards[
-                    [
-                      getCards(cardOne, cardTwo) +
-                        displayCardSuit(cardOne, cardTwo)
-                    ]
-                  ].colorCards
-                : "#AAA"
-            }
-          >
-            {[getCards(cardOne, cardTwo), displayCardSuit(cardOne, cardTwo)]}
-          </ColorCard>
-        </StyledCol>
-      ));
+              )}
+              hand={
+                getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
+              }
+              coloring={
+                cards[
+                  getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
+                ]
+                  ? cards[
+                      [
+                        getCards(cardOne, cardTwo) +
+                          displayCardSuit(cardOne, cardTwo)
+                      ]
+                    ].colorCards
+                  : "#AAA"
+              }
+            >
+              {[getCards(cardOne, cardTwo), displayCardSuit(cardOne, cardTwo)]}
+            </ColorCard>
+          </StyledCol>
+        );
+      });
       return <StyledRow xs={13}>{columnJSX}</StyledRow>;
     });
     setManyHands(setNewManyHands);
