@@ -1,10 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
-import Container from 'react-bootstrap/Container'
+import React from "react";
+import styled from "styled-components";
+import Container from "react-bootstrap/Container";
 
 const StyledContainer = styled(Container)`
   margin-top: 30px;
   margin-bottom: 50px;
+  width: 1100px;
 `;
 
 const MainContainer = ({ children }) => {

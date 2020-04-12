@@ -1,8 +1,19 @@
 import React, { useState, useEffect, memo } from "react";
-import { Grid, Button } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 
+import { Grid, Button } from "semantic-ui-react";
+import { Row, Col } from "react-bootstrap";
+
 import { setHandRange } from "../actions.js";
+import styled from "styled-components";
+
+const ColorCard = styled.button`
+  padding: 6px;
+  width: 45px;
+  text-align: center;
+  color: white;
+  background-color: ${props => props.coloring};
+`;
 
 const orderedCard = [
   "A",
@@ -63,10 +74,13 @@ const Board = ({ handClickHandler, ranges, rangeColors, mode }) => {
           getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo);
         if (rangeColors) {
           Object.keys(rangeColors).forEach(cardColors => {
-            if (rangeColors[cardColors].indexOf(hands) >= 0) {
+            if (
+              rangeColors[cardColors] &&
+              rangeColors[cardColors].indexOf(hands) >= 0
+            ) {
               cardClone = {
                 ...cardClone,
-                [hands]: { colorCards: cardColors + " button-card" }
+                [hands]: { colorCards: cardColors }
               };
             }
           });
@@ -83,47 +97,55 @@ const Board = ({ handClickHandler, ranges, rangeColors, mode }) => {
   useEffect(() => {
     let toSetManyHands = [];
 
-    orderedCard.forEach(cardOne =>
-      orderedCard.forEach(cardTwo => {
-        toSetManyHands = [
-          ...toSetManyHands,
-          <Grid.Column>
-            <Button
-              onClick={handClickHandler}
-              className={
-                cards[
+    toSetManyHands = orderedCard.map(cardOne =>
+      orderedCard.reduce((acc, cardTwo, idx) => {
+        acc.push([cardOne, cardTwo]);
+        return acc;
+      }, [])
+    );
+    console.log(toSetManyHands);
+    let setNewManyHands = toSetManyHands.map((row, idx) => {
+      let columnJSX = row.map(([cardOne, cardTwo]) => (
+        <ColorCard
+          onClick={e =>
+            handClickHandler(e, {
+              cards:
+                getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
+            })
+          }
+          hand={getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)}
+          coloring={
+            cards[
+              getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
+            ]
+              ? cards[
                   [
                     getCards(cardOne, cardTwo) +
                       displayCardSuit(cardOne, cardTwo)
                   ]
-                ]
-                  ? cards[
-                      [
-                        getCards(cardOne, cardTwo) +
-                          displayCardSuit(cardOne, cardTwo)
-                      ]
-                    ].colorCards
-                  : "white button-card"
-              }
-              hand={
-                getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-              }
-            >
-              {getCards(cardOne, cardTwo)}
-              {displayCardSuit(cardOne, cardTwo)}
-            </Button>
-          </Grid.Column>
-        ];
-      })
-    );
-
-    setManyHands(toSetManyHands);
+                ].colorCards
+              : "#AAA"
+          }
+        >
+          {[getCards(cardOne, cardTwo), displayCardSuit(cardOne, cardTwo)]}
+        </ColorCard>
+      ));
+      return <Row>{columnJSX}</Row>;
+    });
+    setManyHands(setNewManyHands);
   }, [rangeColors, cards]);
 
   return (
-    <Grid>
-      <Grid.Row columns={13}>{manyHands}</Grid.Row>
-    </Grid>
+    <div
+      style={{
+        marginLeft: "auto",
+        marginRight: "auto",
+        display: "flex",
+        flexWrap: "no-wrap"
+      }}
+    >
+      {manyHands}
+    </div>
   );
 };
 

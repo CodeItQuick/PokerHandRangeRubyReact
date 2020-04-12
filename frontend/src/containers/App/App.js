@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, Fragment, memo } from "react";
 import "./App.css";
-import Board from "../../components/board/board";
 import MainPage from "../MainPage/index";
 import UserLogin from "../Auth/UserLogin";
 import UserRegister from "../Auth/UserRegister";
