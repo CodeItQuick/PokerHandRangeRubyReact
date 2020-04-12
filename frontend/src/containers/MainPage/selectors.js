@@ -16,7 +16,6 @@ const makeSelectMode = () => {
 }; //??
 const makeSelectRanges = () => {
   return createSelector(selectGlobal, global => {
-    console.log(global);
     if (global && global.mode && global.mode.street && global.mode.streetAction)
       return global.ranges[[global.mode.street]][[global.mode.streetAction]];
     else return initialState.ranges.Preflop.Raise4BetCall;

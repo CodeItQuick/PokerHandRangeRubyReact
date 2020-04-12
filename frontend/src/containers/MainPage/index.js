@@ -29,29 +29,24 @@ const key = "global";
 const MainPage = ({ ranges, mode, rangeColors }) => {
   useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
-  console.log(mode);
+  const [mouseDownState, updateMouseDownState] = useState(false);
 
   const handleStreet = (e, data) => {
-    console.log(data); //?
     dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
   };
 
-  const handleClickHandler = (e, data) => {
-    console.log(e.target);
-    console.log(data);
-    dispatch(setHandRange({ cards: data.cards }));
+  const onMouseOverHandler = data => {
+    if (data.onMouseDownEvent) dispatch(setHandRange({ cards: data.cards }));
+    return data.cards;
   };
+
   const [deadCards, updateDeadCards] = useState();
-  const submitHandler = (e, data) => {
-    console.log(e);
-    console.log(data);
-    console.log(deadCards.split(","));
-  };
+
   return (
     <Container stackable>
       <Row>
         <Col>
-          <Form onSubmit={submitHandler}>
+          <Form>
             <Col
               style={{
                 display: "flex",
@@ -90,7 +85,7 @@ const MainPage = ({ ranges, mode, rangeColors }) => {
         </Col>
         <Col>
           <Board
-            handClickHandler={handleClickHandler}
+            onMouseOverHandler={onMouseOverHandler}
             rangeColors={rangeColors}
           ></Board>
           {/* <Col><BoardLegend range0Combos={raise4BetCallCombos} range1Combos={raise4BetFoldCombos} range2Combos={raiseCallCombos} 
