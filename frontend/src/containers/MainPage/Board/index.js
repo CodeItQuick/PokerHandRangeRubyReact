@@ -2,19 +2,53 @@ import React, { useState, useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 
 import { Grid, Button } from "semantic-ui-react";
-import { Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { setHandRange } from "../actions.js";
 import styled from "styled-components";
 
 const ColorCard = styled.button`
-  padding: 6px;
-  width: 45px;
+  padding-left: 0px;
+  padding-right: 2px;
+  width: 100% !important;
+  height: 20px !important;
+  margin: 0px;
+  font-size: 7px;
   text-align: center;
   color: white;
   background-color: ${props => props.coloring};
+
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    width: 20px;
+    padding: 0px;
+    font-size: 12px;
+  }
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    width: 30px;
+    padding: 0px;
+    font-size: 12px;
+  }
+  @media (min-width: 992px) {
+    width: 30px;
+    padding: 0px;
+    font-size: 12px;
+  }
 `;
 
+const StyledRow = styled(Row)`
+  margin: 0px;
+  width: 100%;
+  flex-wrap: nowrap !important;
+`;
+
+const StyledCol = styled(Col)`
+  margin: 0px;
+  width: 100% !important;
+  height: 20px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  justify-content: flex-start;
+`;
 const orderedCard = [
   "A",
   "K",
@@ -106,47 +140,40 @@ const Board = ({ handClickHandler, ranges, rangeColors, mode }) => {
     console.log(toSetManyHands);
     let setNewManyHands = toSetManyHands.map((row, idx) => {
       let columnJSX = row.map(([cardOne, cardTwo]) => (
-        <ColorCard
-          onClick={e =>
-            handClickHandler(e, {
-              cards:
-                getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-            })
-          }
-          hand={getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)}
-          coloring={
-            cards[
+        <StyledCol xs={1}>
+          <ColorCard
+            onClick={e =>
+              handClickHandler(e, {
+                cards:
+                  getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
+              })
+            }
+            hand={
               getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-            ]
-              ? cards[
-                  [
-                    getCards(cardOne, cardTwo) +
-                      displayCardSuit(cardOne, cardTwo)
-                  ]
-                ].colorCards
-              : "#AAA"
-          }
-        >
-          {[getCards(cardOne, cardTwo), displayCardSuit(cardOne, cardTwo)]}
-        </ColorCard>
+            }
+            coloring={
+              cards[
+                getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
+              ]
+                ? cards[
+                    [
+                      getCards(cardOne, cardTwo) +
+                        displayCardSuit(cardOne, cardTwo)
+                    ]
+                  ].colorCards
+                : "#AAA"
+            }
+          >
+            {[getCards(cardOne, cardTwo), displayCardSuit(cardOne, cardTwo)]}
+          </ColorCard>
+        </StyledCol>
       ));
-      return <Row>{columnJSX}</Row>;
+      return <StyledRow xs={13}>{columnJSX}</StyledRow>;
     });
     setManyHands(setNewManyHands);
   }, [rangeColors, cards]);
 
-  return (
-    <div
-      style={{
-        marginLeft: "auto",
-        marginRight: "auto",
-        display: "flex",
-        flexWrap: "no-wrap"
-      }}
-    >
-      {manyHands}
-    </div>
-  );
+  return <Container fluid>{manyHands}</Container>;
 };
 
 export default Board;
