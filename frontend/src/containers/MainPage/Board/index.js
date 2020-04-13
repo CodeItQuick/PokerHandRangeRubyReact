@@ -9,7 +9,7 @@ import { useSpring, animated } from "react-spring";
 import { setHandRange } from "../actions.js";
 import styled from "styled-components";
 
-const ColorCard = styled(animated.div)`
+const ColorCard = styled(animated.button)`
   cursor: pointer;
   padding-left: 0px;
   padding-right: 2px;
@@ -19,12 +19,6 @@ const ColorCard = styled(animated.div)`
   font-size: 7px;
   text-align: center;
   color: white;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
   background-color: ${props => props.coloring};
 
   @media (min-width: 576px) and (max-width: 767.98px) {
@@ -167,7 +161,10 @@ const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
     let setNewManyHands = toSetManyHands.map((row, idx) => {
       let columnJSX = row.map(([cardOne, cardTwo]) => {
         return (
-          <StyledCol xs={1}>
+          <StyledCol
+            xs={1}
+            key={getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)}
+          >
             <ColorCard
               {...bind(
                 getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
@@ -196,7 +193,7 @@ const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
       return <StyledRow xs={13}>{columnJSX}</StyledRow>;
     });
     setManyHands(setNewManyHands);
-  }, [rangeColors, cards]);
+  }, [rangeColors, cards, bind]);
 
   return <Container fluid>{manyHands}</Container>;
 };
