@@ -20,25 +20,8 @@ export function* generatorFunction(params) {
  */
 // export default function* handData() {
 //   yield all([takeLatest(CONSTANT, generatorFunction)]);
+// // }
+// export default function* listingData() {
+//   yield all([takeLatest(CONSTANT, generatorFunction)]);
 // }
-export default function* listingData() {
-  yield all([takeLatest(CONSTANT, generatorFunction)]);
-}
 // hooks/UseDataApi.js
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-const url = "http://localhost:3001/";
-
-const useRequest1 = ({ requestURL, getOrPost }) => {
-  // This is just for demo purposes, you probably want to separate the data from loading state and potentially add other states such as failures, etc..
-
-  try {
-    let response = yield(fetch(url + requestURL, getOrPost));
-  } catch (e) {
-    console.log(e);
-    //yield(put());
-  }
-};
-
-export default useRequest1;
