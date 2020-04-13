@@ -1,13 +1,8 @@
 import React, { useEffect, useState, useRef, Fragment, memo } from "react";
 import "./App.css";
 import MainPage from "../MainPage/index";
-import UserLogin from "../Auth/UserLogin";
-import UserRegister from "../Auth/UserRegister";
 // import { useStripe } from "../../HOC/useStripe/useStripe";
 // import { StripeProvider, Elements } from "react-stripe-elements";
-import MyForm from "../MyForm/MyForm";
-import useRequest1API from "../../HOC/API/useRequest1";
-import StripeHookProvider from "../../HOC/useStripe/StripeHookProvider";
 import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
