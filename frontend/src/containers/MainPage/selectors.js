@@ -25,10 +25,14 @@ const makeSelectRanges = () => {
 const makeSelectRangeColors = () =>
   createSelector(selectGlobal, globalState => globalState.rangeColors); //??
 
+const makeSelectRange = () =>
+  createSelector(selectGlobal, globalState => globalState.ranges); //??
+
 export {
   selectGlobal,
   selectRouter,
   makeSelectRanges,
+  makeSelectRange,
   makeSelectMode,
   makeSelectRangeColors
 };
