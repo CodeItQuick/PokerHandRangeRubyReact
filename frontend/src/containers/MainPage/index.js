@@ -43,7 +43,7 @@ const MainPage = ({ ranges, mode, rangeColors }) => {
   const [deadCards, updateDeadCards] = useState();
 
   return (
-    <Container stackable>
+    <Container stackable={true}>
       <Row>
         <Col>
           <Form>
