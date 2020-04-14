@@ -13,6 +13,7 @@ import BoardLegend from "../../components/BoardLegend/BoardLegend";
 import {
   selectGlobal,
   makeSelectRanges,
+  makeSelectRange,
   makeSelectMode,
   makeSelectRangeColors
 } from "./selectors.js";
@@ -26,7 +27,7 @@ import BoardCards from "./BoardCards";
 
 const key = "global";
 
-const MainPage = ({ ranges, mode, rangeColors }) => {
+const MainPage = ({ wholeRange, ranges, mode, rangeColors }) => {
   useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
   const [mouseDownState, updateMouseDownState] = useState(false);
@@ -88,12 +89,9 @@ const MainPage = ({ ranges, mode, rangeColors }) => {
             onMouseOverHandler={onMouseOverHandler}
             rangeColors={rangeColors}
           ></Board>
-          {/* <Col><BoardLegend range0Combos={raise4BetCallCombos} range1Combos={raise4BetFoldCombos} range2Combos={raiseCallCombos} 
-                                  range3Combos={raiseFoldCombos} range0Percent={raise4BetCallPercent}
-                                  range1Percent={raise4BetFoldPercent} range2Percent={raiseCallPercent}
-                                  range3Percent={raiseFoldPercent} range0PercentAll={raise4BetCallPercentAll}
-                                  range1PercentAll={raise4BetFoldPercentAll} range2PercentAll={raiseCallPercentAll}
-                                  range3PercentAll={raiseFoldPercentAll}></BoardLegend></Col> */}
+          <Col>
+            <BoardLegend wholeRange={wholeRange} mode={mode}></BoardLegend>
+          </Col>
         </Col>
       </Row>
     </Container>
@@ -108,10 +106,12 @@ MainPage.propTypes = {
 const mapStateToProps = () => {
   const getMapRange = makeSelectRanges();
   const getRangeColors = makeSelectRangeColors();
+  const getSelectRange = makeSelectRange();
   const mapState = state => {
     return {
       ranges: getMapRange(state),
-      rangeColors: getRangeColors(state)
+      rangeColors: getRangeColors(state),
+      wholeRange: getSelectRange(state)
     };
   };
   return mapState;
