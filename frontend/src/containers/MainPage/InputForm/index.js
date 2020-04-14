@@ -3,6 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { Form, Button } from "semantic-ui-react";
 import BoardCards from "./BoardCards";
+import StreetSelector from "./StreetSelector";
 
 const StyledForm = styled(Form)`
   background-color: #b2b8c0;
@@ -15,8 +16,7 @@ const InputForm = ({
   onHandleStreetHandler,
   onStreetChangeHandler,
   deadCards,
-  mode,
-  StreetSelector
+  mode
 }) => {
   return (
     <StyledForm>
@@ -31,7 +31,7 @@ const InputForm = ({
       </StyledBoardCol>
       <StreetSelector
         handleStreet={onHandleStreetHandler}
-        street={mode.street}
+        street={{ street: mode ? mode.street : "" }}
       ></StreetSelector>
       <Button label="assign"></Button>
       <Button label="Ranges"></Button>

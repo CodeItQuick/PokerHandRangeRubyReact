@@ -39,7 +39,7 @@ const StyledInvertedRow = styled(Table.Row)`
 const BoardLegend = ({ wholeRange, mode }) => {
   console.log(wholeRange);
   const numberOfCombos = comboNumber => {
-    if (wholeRange[[mode.street]] !== undefined)
+    if (mode && mode.street && wholeRange[[mode.street]] !== undefined)
       return wholeRange[[mode.street]][
         Object.keys(wholeRange[[mode.street]])[comboNumber]
       ].prHandString
@@ -54,7 +54,7 @@ const BoardLegend = ({ wholeRange, mode }) => {
   };
 
   const nameOfAction = comboNumber => {
-    if (wholeRange[[mode.street]] !== undefined)
+    if (mode && mode.street && wholeRange[[mode.street]] !== undefined)
       return Object.keys(wholeRange[[mode.street]])[comboNumber];
     else return "";
   };

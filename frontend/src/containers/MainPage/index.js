@@ -2,10 +2,7 @@ import React, { useState, useEffect, memo, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { createStructuredSelector } from "reselect";
-import MainContainer from "../../components/MainContainer/index";
 import Board from "./Board/index.js";
-import { Button, Select, Form } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 import prange from "prange";
 import { Row, Col, Container } from "react-bootstrap";
@@ -21,9 +18,6 @@ import { getHandRange, setHandRangeSelect, setHandRange } from "./actions.js";
 import reducer from "./reducer.js";
 import { useInjectReducer } from "../../HOC/useInjectReducer.js";
 
-import styled from "styled-components";
-import StreetSelector from "./StreetSelector";
-import BoardCards from "./InputForm/BoardCards";
 import { InputForm } from "./InputForm";
 
 const key = "global";
@@ -37,12 +31,12 @@ const MainPage = ({ wholeRange, ranges, mode, rangeColors }) => {
     dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
   };
 
+  const onChangeStreetHandler = e => updateDeadCards(e.target.value);
+
   const onMouseOverHandler = data => {
     if (data.onMouseDownEvent) dispatch(setHandRange({ cards: data.cards }));
     return data.cards;
   };
-
-  const onChangeStreetHandler = e => updateDeadCards(e.target.value);
 
   const [deadCards, updateDeadCards] = useState();
 
@@ -53,7 +47,6 @@ const MainPage = ({ wholeRange, ranges, mode, rangeColors }) => {
         onChangeStreetHandler={onChangeStreetHandler}
         deadCards={deadCards}
         mode={mode}
-        StreetSelector={StreetSelector}
       />
       <Board
         onMouseOverHandler={onMouseOverHandler}
