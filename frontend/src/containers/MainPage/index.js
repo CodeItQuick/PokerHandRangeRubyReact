@@ -2,10 +2,7 @@ import React, { useState, useEffect, memo, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { createStructuredSelector } from "reselect";
-import MainContainer from "../../components/MainContainer/index";
 import Board from "./Board/index.js";
-import { Button, Select, Form } from "semantic-ui-react";
 import { useSelector, useDispatch } from "react-redux";
 import prange from "prange";
 import { Row, Col, Container } from "react-bootstrap";
@@ -20,10 +17,8 @@ import {
 import { getHandRange, setHandRangeSelect, setHandRange } from "./actions.js";
 import reducer from "./reducer.js";
 import { useInjectReducer } from "../../HOC/useInjectReducer.js";
-import { initialState } from "./reducer.js";
-import styled from "styled-components";
-import StreetSelector from "./StreetSelector";
-import BoardCards from "./BoardCards";
+
+import { InputForm } from "./InputForm";
 
 const key = "global";
 
@@ -32,9 +27,11 @@ const MainPage = ({ wholeRange, ranges, mode, rangeColors }) => {
   const dispatch = useDispatch();
   const [mouseDownState, updateMouseDownState] = useState(false);
 
-  const handleStreet = (e, data) => {
+  const onHandleStreetHandler = (e, data) => {
     dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
   };
+
+  const onChangeStreetHandler = e => updateDeadCards(e.target.value);
 
   const onMouseOverHandler = data => {
     if (data.onMouseDownEvent) dispatch(setHandRange({ cards: data.cards }));
@@ -45,55 +42,17 @@ const MainPage = ({ wholeRange, ranges, mode, rangeColors }) => {
 
   return (
     <Container stackable={true}>
-      <Row>
-        <Col>
-          <Form>
-            <Col
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between"
-              }}
-            >
-              <Form.Input
-                label="Dead Cards"
-                placeholder="Enter dead cards, for example Ah, As, 2c"
-                style={{ width: 300 }}
-                name="deadcards"
-                onChange={e => updateDeadCards(e.target.value)}
-              ></Form.Input>
-              <Form.Button type="submit">Submit</Form.Button>
-            </Col>
-            <Col>
-              <BoardCards cardsFlipped={deadCards}></BoardCards>
-            </Col>
-            <Col>
-              <StreetSelector
-                handleStreet={handleStreet}
-                street={mode.street}
-              ></StreetSelector>
-            </Col>
-            <Col>
-              <Button label="assign"></Button>
-              <Button label="Ranges"></Button>
-            </Col>
-            <Col>
-              <Button label="Clear Selection"></Button>
-              <Button label="Clear Suits"></Button>
-              <Button label="Split Suits"></Button>
-            </Col>
-          </Form>
-        </Col>
-        <Col>
-          <Board
-            onMouseOverHandler={onMouseOverHandler}
-            rangeColors={rangeColors}
-          ></Board>
-          <Col>
-            <BoardLegend wholeRange={wholeRange} mode={mode}></BoardLegend>
-          </Col>
-        </Col>
-      </Row>
+      <InputForm
+        onHandleStreetHandler={onHandleStreetHandler}
+        onChangeStreetHandler={onChangeStreetHandler}
+        deadCards={deadCards}
+        mode={mode}
+      />
+      <Board
+        onMouseOverHandler={onMouseOverHandler}
+        rangeColors={rangeColors}
+      ></Board>
+      <BoardLegend wholeRange={wholeRange} mode={mode}></BoardLegend>
     </Container>
   );
 };

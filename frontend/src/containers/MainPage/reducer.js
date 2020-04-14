@@ -15,8 +15,8 @@ import {
 
 const initialState = {
   mode: {
-    street: "",
-    streetAction: ""
+    street: "Preflop",
+    streetAction: "Raise4BetCall"
   },
   rangeColors: {
     green: [],
