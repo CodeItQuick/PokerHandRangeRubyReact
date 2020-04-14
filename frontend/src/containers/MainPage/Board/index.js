@@ -13,8 +13,10 @@ const ColorCard = styled(animated.button)`
   cursor: pointer;
   padding-left: 0px;
   padding-right: 2px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   width: 100% !important;
-  height: 20px !important;
+  height: 40px !important;
   margin: 0px;
   font-size: 7px;
   text-align: center;
@@ -23,17 +25,17 @@ const ColorCard = styled(animated.button)`
 
   @media (min-width: 576px) and (max-width: 767.98px) {
     width: 20px;
-    padding: 0px;
+    padding: 5px;
     font-size: 12px;
   }
   @media (min-width: 768px) and (max-width: 991.98px) {
     width: 30px;
-    padding: 0px;
+    padding: 5px;
     font-size: 12px;
   }
   @media (min-width: 992px) {
     width: 30px;
-    padding: 0px;
+    padding: 10px;
     font-size: 12px;
   }
 `;
@@ -47,7 +49,7 @@ const StyledRow = styled(Row)`
 const StyledCol = styled(Col)`
   margin: 0px;
   width: 100% !important;
-  height: 20px !important;
+  height: 40px !important;
   padding-left: 0px !important;
   padding-right: 0px !important;
   justify-content: flex-start;
