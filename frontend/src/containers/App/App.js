@@ -17,9 +17,15 @@ import {
   makeSelectMode
 } from "../MainPage/selectors";
 
+import styled from "styled-components";
+
 import reducer from "../MainPage/reducer";
 
 const key = "global";
+
+const StyledFragment = styled.div`
+  background-color: #e2e3e6;
+`;
 
 const App = ({ ranges, mode, rangeColors }) => {
   useInjectReducer({ key, reducer });
@@ -67,7 +73,7 @@ const App = ({ ranges, mode, rangeColors }) => {
   };
 
   return (
-    <Fragment>
+    <StyledFragment>
       <Menu inverted>
         <Menu.Item>
           <NavLink to="/">Home</NavLink>
@@ -100,7 +106,7 @@ const App = ({ ranges, mode, rangeColors }) => {
         mode={mode}
         rangeColors={rangeColors}
       ></MainPage>
-    </Fragment>
+    </StyledFragment>
   );
 };
 

@@ -37,21 +37,27 @@ const StyledInvertedRow = styled(Table.Row)`
 `;
 
 const BoardLegend = ({ wholeRange, mode }) => {
-  console.log(Object.keys(wholeRange[[mode.street]])[1]);
-  const numberOfCombos = comboNumber =>
-    wholeRange[[mode.street]][
-      Object.keys(wholeRange[[mode.street]])[comboNumber]
-    ].prHandString
-      .map(acc => {
-        console.log(acc);
-        if (acc.indexOf("s") >= 0) return 4;
-        else if (acc.indexOf("o") >= 0) return 12;
-        else if (acc[1]) return 6;
-      })
-      .reduce((a, b) => a + b, 0);
+  console.log(wholeRange);
+  const numberOfCombos = comboNumber => {
+    if (wholeRange[[mode.street]] !== undefined)
+      return wholeRange[[mode.street]][
+        Object.keys(wholeRange[[mode.street]])[comboNumber]
+      ].prHandString
+        .map(acc => {
+          console.log(acc);
+          if (acc.indexOf("s") >= 0) return 4;
+          else if (acc.indexOf("o") >= 0) return 12;
+          else if (acc[1]) return 6;
+        })
+        .reduce((a, b) => a + b, 0);
+    else return null;
+  };
 
-  const nameOfAction = comboNumber =>
-    Object.keys(wholeRange[[mode.street]])[comboNumber];
+  const nameOfAction = comboNumber => {
+    if (wholeRange[[mode.street]] !== undefined)
+      return Object.keys(wholeRange[[mode.street]])[comboNumber];
+    else return "";
+  };
 
   return (
     <StyledContainer>
