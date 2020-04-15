@@ -9,22 +9,22 @@ const StyledContainer = styled(Container)`
 
 const StyledRedRow = styled(Table.Row)`
   color: white;
-  background-color: red;
+  background-color: #cf9ab7;
 `;
 
 const StyledVioletRow = styled(Table.Row)`
   color: white;
-  background-color: purple;
+  background-color: #9387b0;
 `;
 
 const StyledBlueRow = styled(Table.Row)`
-  color: white;
-  background-color: blue;
+  color: black;
+  background-color: #8590ac;
 `;
 
 const StyledGreenRow = styled(Table.Row)`
   color: white;
-  background-color: green;
+  background-color: #75989d;
 `;
 
 const StyledInvertedHeader = styled(Table.Header)`
@@ -37,14 +37,13 @@ const StyledInvertedRow = styled(Table.Row)`
 `;
 
 const BoardLegend = ({ wholeRange, mode }) => {
-  console.log(wholeRange);
+  //TODO: potential bug? method outside useEffect
   const numberOfCombos = comboNumber => {
     if (mode && mode.street && wholeRange[[mode.street]] !== undefined)
       return wholeRange[[mode.street]][
         Object.keys(wholeRange[[mode.street]])[comboNumber]
       ].prHandString
         .map(acc => {
-          console.log(acc);
           if (acc.indexOf("s") >= 0) return 4;
           else if (acc.indexOf("o") >= 0) return 12;
           else if (acc[1]) return 6;

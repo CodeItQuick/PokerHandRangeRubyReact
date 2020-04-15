@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { initialState } from '../src/containers/MainPage/reducer';
 import history from "../src/utils/history";
 import configureStore from "../src/configureStore.js";
-import Board from "../src/components/board/board.js";
+import Board from "../src/containers/MainPage/Board/";
 
 Enzyme.configure({ adapter: new Adapter() });
 
