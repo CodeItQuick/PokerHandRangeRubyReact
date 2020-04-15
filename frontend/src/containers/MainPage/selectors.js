@@ -10,8 +10,8 @@ const selectGlobal = state => state.global || initialState; //??
 const selectRouter = state => state.router;
 
 const makeSelectMode = () => {
-  return createSelector(selectGlobal, global => {
-    return global.mode;
+  return createSelector(selectGlobal, globalState => {
+    return globalState.mode;
   });
 }; //??
 const makeSelectRanges = () => {

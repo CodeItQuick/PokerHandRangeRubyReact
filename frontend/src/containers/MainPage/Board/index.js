@@ -151,6 +151,7 @@ const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
         { threshold: 40, delay: true }
       )
   });
+
   useEffect(() => {
     let toSetManyHands = [];
 
@@ -168,6 +169,9 @@ const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
             key={getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)}
           >
             <ColorCard
+              key={
+                getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
+              }
               {...bind(
                 getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
               )}
@@ -197,7 +201,7 @@ const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
     setManyHands(setNewManyHands);
   }, [rangeColors, cards, bind]);
 
-  return <Container fluid>{manyHands}</Container>;
+  return <Container fluid>{manyHands}</Container>; //TO-DO: BUG this generates console error
 };
 
 export default Board;

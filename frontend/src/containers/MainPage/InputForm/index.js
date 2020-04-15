@@ -1,17 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { Form, Button } from "semantic-ui-react";
 import BoardCards from "./BoardCards";
 import StreetSelector from "./StreetSelector";
 
-const StyledForm = styled(Form)`
-  background-color: #b2b8c0;
+const DeadCards = styled(Form.Input)`
+  width: 80%;
 `;
-const StyledBoardCol = styled(Col)`
-  background-color: #f2d8c7;
-  margin: 5%;
-`;
+
 const InputForm = ({
   onHandleStreetHandler,
   onStreetChangeHandler,
@@ -19,26 +16,24 @@ const InputForm = ({
   mode
 }) => {
   return (
-    <StyledForm>
-      <Form.Input
+    <Fragment>
+      <DeadCards
         label="Dead Cards"
         placeholder="Enter dead cards, for example Ah, As, 2c"
         name="deadcards"
         onChange={onStreetChangeHandler}
-      ></Form.Input>
-      <StyledBoardCol>
-        <BoardCards cardsFlipped={deadCards}></BoardCards>
-      </StyledBoardCol>
+      ></DeadCards>
+      <BoardCards cardsFlipped={deadCards}></BoardCards>
       <StreetSelector
-        handleStreet={onHandleStreetHandler}
-        street={{ street: mode ? mode.street : "" }}
+        onHandleStreetHandler={onHandleStreetHandler}
+        mode={mode}
       ></StreetSelector>
       <Button label="assign"></Button>
       <Button label="Ranges"></Button>
       <Button label="Clear Selection"></Button>
       <Button label="Clear Suits"></Button>
       <Button label="Split Suits"></Button>
-    </StyledForm>
+    </Fragment>
   );
 };
 

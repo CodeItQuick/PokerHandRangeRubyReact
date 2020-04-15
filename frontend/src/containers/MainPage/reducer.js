@@ -123,21 +123,6 @@ const initialState = {
     }
   }
 };
-const orderedCard = [
-  "A",
-  "K",
-  "Q",
-  "J",
-  "T",
-  "9",
-  "8",
-  "7",
-  "6",
-  "5",
-  "4",
-  "3",
-  "2"
-];
 
 const mainPageReducer = (state = initialState, action) =>
   produce(state, draft => {
@@ -169,9 +154,19 @@ const mainPageReducer = (state = initialState, action) =>
         draft.mode.streetAction = action.data.value;
         break;
       case SET_HAND_RANGE:
-        const rangesIndex = draft.ranges[[draft.mode.street]][
-          [draft.mode.streetAction]
-        ].prHandString.indexOf(action.data.cards);
+        let rangesIndex = -1;
+        console.log(draft.mode.street);
+        console.log(draft.mode.streetAction);
+        console.log(
+          draft.ranges[[draft.mode.street]][[draft.mode.streetAction]]
+        );
+        if (
+          draft.ranges[[draft.mode.street]][[draft.mode.streetAction]] !==
+          undefined
+        )
+          rangesIndex = draft.ranges[[draft.mode.street]][
+            [draft.mode.streetAction]
+          ].prHandString.indexOf(action.data.cards);
 
         if (rangesIndex >= 0)
           draft.ranges[[draft.mode.street]][
