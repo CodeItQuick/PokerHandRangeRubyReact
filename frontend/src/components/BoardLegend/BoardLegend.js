@@ -9,22 +9,22 @@ const StyledContainer = styled(Container)`
 
 const StyledRedRow = styled(Table.Row)`
   color: white;
-  background-color: #cf9ab7;
+  background-color: #ed87a7;
 `;
 
 const StyledVioletRow = styled(Table.Row)`
   color: white;
-  background-color: #9387b0;
+  background-color: #6b6c7c;
 `;
 
 const StyledBlueRow = styled(Table.Row)`
   color: black;
-  background-color: #8590ac;
+  background-color: #d3d3d3;
 `;
 
 const StyledGreenRow = styled(Table.Row)`
   color: white;
-  background-color: #75989d;
+  background-color: #8bddbe;
 `;
 
 const StyledInvertedHeader = styled(Table.Header)`

@@ -21,11 +21,12 @@ import { useInjectReducer } from "../../HOC/useInjectReducer.js";
 import { InputForm } from "./InputForm";
 
 const key = "global";
+//TO-DO: Rounded corners on navigation bar, spaces on buttons, more whitespace, needs instructions
 
 const MainPage = ({ wholeRange, ranges, mode, rangeColors }) => {
   useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
-  console.log(mode);
+  const [deadCards, updateDeadCards] = useState();
 
   const onHandleStreetHandler = (e, data) => {
     console.log(data);
@@ -39,8 +40,6 @@ const MainPage = ({ wholeRange, ranges, mode, rangeColors }) => {
     if (data.onMouseDownEvent) dispatch(setHandRange({ cards: data.cards }));
     return data.cards;
   };
-
-  const [deadCards, updateDeadCards] = useState();
 
   //TO-DO: need to align these left-to-right on big screens, top-to-bottom mobile
   return (

@@ -8,7 +8,7 @@ import StreetSelector from "./StreetSelector";
 const DeadCards = styled(Form.Input)`
   width: 80%;
 `;
-
+// TODO: Add functionality to assign, ranges, clear selection, clear suits, split suits
 const InputForm = ({
   onHandleStreetHandler,
   onStreetChangeHandler,
@@ -23,16 +23,11 @@ const InputForm = ({
         name="deadcards"
         onChange={onStreetChangeHandler}
       ></DeadCards>
-      <BoardCards cardsFlipped={deadCards}></BoardCards>
+      <BoardCards deadCards={deadCards} />
       <StreetSelector
         onHandleStreetHandler={onHandleStreetHandler}
         mode={mode}
       ></StreetSelector>
-      <Button label="assign"></Button>
-      <Button label="Ranges"></Button>
-      <Button label="Clear Selection"></Button>
-      <Button label="Clear Suits"></Button>
-      <Button label="Split Suits"></Button>
     </Fragment>
   );
 };
