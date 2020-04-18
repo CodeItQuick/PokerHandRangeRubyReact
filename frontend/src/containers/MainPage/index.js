@@ -21,27 +21,29 @@ import { useInjectReducer } from "../../HOC/useInjectReducer.js";
 import { InputForm } from "./InputForm";
 
 const key = "global";
+//TO-DO: Rounded corners on navigation bar, spaces on buttons, more whitespace, needs instructions
 
 const MainPage = ({ wholeRange, ranges, mode, rangeColors }) => {
   useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
-  const [mouseDownState, updateMouseDownState] = useState(false);
+  const [deadCards, updateDeadCards] = useState();
 
   const onHandleStreetHandler = (e, data) => {
+    console.log(data);
     dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
   };
 
   const onChangeStreetHandler = e => updateDeadCards(e.target.value);
 
   const onMouseOverHandler = data => {
+    console.log(data);
     if (data.onMouseDownEvent) dispatch(setHandRange({ cards: data.cards }));
     return data.cards;
   };
 
-  const [deadCards, updateDeadCards] = useState();
-
+  //TO-DO: need to align these left-to-right on big screens, top-to-bottom mobile
   return (
-    <Container stackable={true}>
+    <Container>
       <InputForm
         onHandleStreetHandler={onHandleStreetHandler}
         onChangeStreetHandler={onChangeStreetHandler}
@@ -66,11 +68,13 @@ const mapStateToProps = () => {
   const getMapRange = makeSelectRanges();
   const getRangeColors = makeSelectRangeColors();
   const getSelectRange = makeSelectRange();
+  const getMode = makeSelectMode();
   const mapState = state => {
     return {
       ranges: getMapRange(state),
       rangeColors: getRangeColors(state),
-      wholeRange: getSelectRange(state)
+      wholeRange: getSelectRange(state),
+      mode: getMode(state)
     };
   };
   return mapState;
