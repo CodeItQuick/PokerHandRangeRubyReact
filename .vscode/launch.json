@@ -8,7 +8,7 @@
             "name": "Rails server",
             "type": "Ruby",
             "request": "launch",
-            "program": "${workspaceRoot}/bin/rails",
+            "program": "${workspaceRoot}/backend/bin/rails",
             "args": [
                 "server",
                 "-p",
