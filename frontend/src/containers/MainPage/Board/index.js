@@ -20,7 +20,7 @@ const ColorCard = styled(animated.button)`
   margin: 0px;
   font-size: 7px;
   text-align: center;
-  color: white;
+  color: black;
   background-color: ${props => props.coloring};
 
   @media (min-width: 576px) and (max-width: 767.98px) {
@@ -97,11 +97,12 @@ let getCards = (cardOne, cardTwo) => {
   return card1 + card2;
 };
 
-const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
+const Board = ({ onMouseOverHandler, rangeColors }) => {
   const [manyHands, setManyHands] = useState();
   const [cards, setCards] = useState({});
-  const dispatch = useDispatch();
 
+  //This sets the cards to a value for reading later, listing the cards and
+  //the color in a single column is annoying/tedious
   useEffect(() => {
     let cardClone = {};
 
@@ -161,43 +162,28 @@ const Board = ({ onMouseOverHandler, ranges, rangeColors, mode }) => {
         return acc;
       }, [])
     );
+    console.log(toSetManyHands);
     let setNewManyHands = toSetManyHands.map((row, idx) => {
       let columnJSX = row.map(([cardOne, cardTwo]) => {
+        let cardHand =
+          getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo);
         return (
-          <StyledCol
-            xs={1}
-            key={getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)}
-          >
+          <StyledCol xs={1} key={cardHand}>
             <ColorCard
-              key={
-                getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-              }
-              {...bind(
-                getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-              )}
-              hand={
-                getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-              }
-              coloring={
-                cards[
-                  getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo)
-                ]
-                  ? cards[
-                      [
-                        getCards(cardOne, cardTwo) +
-                          displayCardSuit(cardOne, cardTwo)
-                      ]
-                    ].colorCards
-                  : "#AAA"
-              }
+              key={"colorcard" + cardHand}
+              id={"colorButton" + cardHand}
+              {...bind(cardHand)}
+              hand={cardHand}
+              coloring={cards[cardHand] ? cards[[cardHand]].colorCards : "#AAA"}
             >
-              {[getCards(cardOne, cardTwo), displayCardSuit(cardOne, cardTwo)]}
+              {cardHand}
             </ColorCard>
           </StyledCol>
         );
       });
       return <StyledRow xs={13}>{columnJSX}</StyledRow>;
     });
+    console.log(setNewManyHands);
     setManyHands(setNewManyHands);
   }, [rangeColors, cards, bind]);
 

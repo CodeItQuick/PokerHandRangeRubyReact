@@ -5,12 +5,12 @@ import { Button, Menu, Segment } from "semantic-ui-react";
 
 // TODO: FIX The colors so they use a palette
 
-// const StyledButton = styled(Button)`
-//   &&& {
-//     background-color: ${({color}) => (color ? color : "none")}
-//     width: 100%;
-//   }
-// `;
+const StyledButton = styled(Button)`
+  &&& {
+    background-color: ${({ color }) => (color ? color : "none")}
+    width: 100%;
+  }
+`;
 
 const StreetSelector = ({ onHandleStreetHandler, mode }) => {
   const [fourButtons, updateFourButtons] = useState();
@@ -18,15 +18,15 @@ const StreetSelector = ({ onHandleStreetHandler, mode }) => {
     Preflop: ["Raise4BetCall", "Raise4BetFold", "RaiseCall", "RaiseFold"],
     Postflop: ["Valuebet", "Bluff", "CheckCall", "CheckFold"]
   };
-  const colors = ["#D3D3D3", "#6B6C7C", "#ED87A7", "#8BDDBE"];
+  const colors = ["#8BDDBE", "#ED87A7", "#6B6C7C", "#D3D3D3"];
 
   useEffect(() => {
     let toStreetButtons = [];
-    streetActions[mode.street || "Preflop"].forEach(
+    streetActions[mode.street === "Preflop" ? "Preflop" : "Postflop"].forEach(
       (streetAction, idx) =>
         (toStreetButtons = [
           ...toStreetButtons,
-          <Button
+          <StyledButton
             id={mode.street + streetAction}
             onClick={onHandleStreetHandler}
             name={mode.street}
@@ -34,7 +34,7 @@ const StreetSelector = ({ onHandleStreetHandler, mode }) => {
             value={streetAction}
           >
             {streetAction}
-          </Button>
+          </StyledButton>
         ])
     );
     updateFourButtons(toStreetButtons);
@@ -44,6 +44,7 @@ const StreetSelector = ({ onHandleStreetHandler, mode }) => {
     <Fragment>
       <Menu attached="top" tabular>
         <Menu.Item
+          id="streetSelectPreflop"
           onClick={onHandleStreetHandler}
           name="Preflop"
           value="Raise4BetCall"
@@ -52,6 +53,7 @@ const StreetSelector = ({ onHandleStreetHandler, mode }) => {
           Preflop
         </Menu.Item>
         <Menu.Item
+          id="streetSelectFlop"
           onClick={onHandleStreetHandler}
           name="Flop"
           value="Valuebet"
@@ -60,6 +62,7 @@ const StreetSelector = ({ onHandleStreetHandler, mode }) => {
           Flop
         </Menu.Item>
         <Menu.Item
+          id="streetSelectTurn"
           onClick={onHandleStreetHandler}
           name="Turn"
           value="Valuebet"
@@ -68,6 +71,7 @@ const StreetSelector = ({ onHandleStreetHandler, mode }) => {
           Turn
         </Menu.Item>
         <Menu.Item
+          id="streetSelectRiver"
           onClick={onHandleStreetHandler}
           name="River"
           value="Valuebet"
@@ -84,7 +88,7 @@ const StreetSelector = ({ onHandleStreetHandler, mode }) => {
             height: "225px"
           }}
         >
-          {fourButtons || ""}
+          {fourButtons || null}
         </div>
       </Segment>
     </Fragment>
