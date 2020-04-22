@@ -2,16 +2,13 @@ import React from "react";
 import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import { Provider } from "react-redux";
-import { initialState } from '../../../src/containers/MainPage/reducer';
-import history from "../../../src/utils/history";
 import StreetSelector from "../../../src/containers/MainPage/InputForm/StreetSelector";
 
 Enzyme.configure({ adapter: new Adapter() });
 
 //streetSelectRiver
-function setup({onHandleStreetHandler, mode }) {
-  const props = { onHandleStreetHandler, mode };
+function setup({onHandleStreetHandler, onHandleStreetHandlerButtons, mode }) {
+  const props = { onHandleStreetHandler, onHandleStreetHandlerButtons, mode };
   const enzymeWrapper = (<StreetSelector  {...props} />);
 
   return enzymeWrapper;
@@ -32,15 +29,16 @@ describe("MainPage Container", () => {
     const mode = {street: 'Preflop', streetName: 'Raise4BetCall'};
     
     const onHandleStreetHandler = (jest.fn((e, data) => e));
+    const onHandleStreetHandlerButtons = (jest.fn((e, data) => e));
 
     let enzymeWrapper = [];
     
     streetActions.forEach((streetAction, idx) => {
       console.log(streetAction); //?
-      enzymeWrapper[idx] = mount(setup({onHandleStreetHandler, mode})); 
+      enzymeWrapper[idx] = mount(setup({onHandleStreetHandler, onHandleStreetHandlerButtons, mode})); 
 
       enzymeWrapper[idx].find('button#Preflop' + streetAction).simulate('click');
-      expect(onHandleStreetHandler).toBeCalledTimes(idx + 1); //?
+      expect(onHandleStreetHandlerButtons).toBeCalledTimes(idx + 1); //?
     
     });
 
@@ -52,14 +50,15 @@ describe("MainPage Container", () => {
       const mode = {street: 'Preflop', streetName: 'Raise4BetCall'};
       
       const onHandleStreetHandler = (jest.fn((e, data) => e));
-  
+      const onHandleStreetHandlerButtons = (jest.fn((e, data) => e));
+ 
       let enzymeWrapper = [];
       
       streetActions.forEach((streetAction, idx) => {
         console.log(streetAction); //?
-        enzymeWrapper[idx] = mount(setup({onHandleStreetHandler, mode})); 
+        enzymeWrapper[idx] = mount(setup({onHandleStreetHandler, onHandleStreetHandlerButtons, mode})); 
         console.log(streetAction); //?
-        enzymeWrapper[idx].find('a#' + streetAction).simulate('click');
+        enzymeWrapper[idx].find('a').at(idx).simulate('click');
         expect(onHandleStreetHandler).toBeCalledTimes(idx + 1); //?
       
       });

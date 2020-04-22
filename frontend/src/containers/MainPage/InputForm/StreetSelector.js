@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import { Button, Menu, Segment } from "semantic-ui-react";
+import { Button, Menu, Segment, Tab } from "semantic-ui-react";
 
 // TODO: FIX The colors so they use a palette
 
@@ -12,7 +12,47 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const StreetSelector = ({ onHandleStreetHandler, mode }) => {
+//FIXME: This is broken, need to make it a functioning tab component
+const panes = fourButtons => [
+  {
+    menuItem: "Preflop",
+    id: "streetSelectPreflop",
+    name: "Preflop",
+    value: "Raise4BetCall",
+    color: "black",
+    render: () => <Fragment>{fourButtons} </Fragment>
+  },
+  {
+    menuItem: "Flop",
+    id: "streetSelectFlop",
+    name: "Flop",
+    value: "Valuebet",
+    color: "black",
+    render: () => <Fragment>{fourButtons}</Fragment>
+  },
+  {
+    menuItem: "Turn",
+    id: "streetSelectTurn",
+    name: "Turn",
+    value: "Valuebet",
+    color: "black",
+    render: () => <Fragment>{fourButtons}</Fragment>
+  },
+  {
+    menuItem: "River",
+    id: "streetSelectRiver",
+    name: "River",
+    value: "Valuebet",
+    color: "black",
+    render: () => <Fragment>{fourButtons}</Fragment>
+  }
+];
+
+const StreetSelector = ({
+  onHandleStreetHandler,
+  onHandleStreetHandlerButtons,
+  mode: { street, streetAction }
+}) => {
   const [fourButtons, updateFourButtons] = useState();
   const streetActions = {
     Preflop: ["Raise4BetCall", "Raise4BetFold", "RaiseCall", "RaiseFold"],
@@ -22,14 +62,16 @@ const StreetSelector = ({ onHandleStreetHandler, mode }) => {
 
   useEffect(() => {
     let toStreetButtons = [];
-    streetActions[mode.street === "Preflop" ? "Preflop" : "Postflop"].forEach(
+    streetActions[street === "Preflop" ? "Preflop" : "Postflop"].forEach(
       (streetAction, idx) =>
         (toStreetButtons = [
           ...toStreetButtons,
           <StyledButton
-            id={mode.street + streetAction}
-            onClick={onHandleStreetHandler}
-            name={mode.street}
+            id={street + streetAction}
+            onClick={e =>
+              onHandleStreetHandlerButtons(e, { street, streetAction })
+            }
+            name={street}
             color={colors[[idx]]}
             value={streetAction}
           >
@@ -38,60 +80,14 @@ const StreetSelector = ({ onHandleStreetHandler, mode }) => {
         ])
     );
     updateFourButtons(toStreetButtons);
-  }, [mode.street]);
+  }, [street, onHandleStreetHandlerButtons]);
 
   return (
-    <Fragment>
-      <Menu attached="top" tabular>
-        <Menu.Item
-          id="streetSelectPreflop"
-          onClick={onHandleStreetHandler}
-          name="Preflop"
-          value="Raise4BetCall"
-          color="black"
-        >
-          Preflop
-        </Menu.Item>
-        <Menu.Item
-          id="streetSelectFlop"
-          onClick={onHandleStreetHandler}
-          name="Flop"
-          value="Valuebet"
-          color="black"
-        >
-          Flop
-        </Menu.Item>
-        <Menu.Item
-          id="streetSelectTurn"
-          onClick={onHandleStreetHandler}
-          name="Turn"
-          value="Valuebet"
-          color="black"
-        >
-          Turn
-        </Menu.Item>
-        <Menu.Item
-          id="streetSelectRiver"
-          onClick={onHandleStreetHandler}
-          name="River"
-          value="Valuebet"
-          color="black"
-        >
-          River
-        </Menu.Item>
-      </Menu>
-      <Segment attached="bottom">
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "auto auto",
-            height: "225px"
-          }}
-        >
-          {fourButtons || null}
-        </div>
-      </Segment>
-    </Fragment>
+    <Tab
+      tabular
+      onTabChange={onHandleStreetHandler}
+      panes={panes(fourButtons)}
+    ></Tab>
   );
 };
 

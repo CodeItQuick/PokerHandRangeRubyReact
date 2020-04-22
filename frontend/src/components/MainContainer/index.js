@@ -6,7 +6,7 @@ const StyledContainer = styled(Container)`
   margin-top: 30px;
   margin-bottom: 50px;
   width: 1100px;
-  background-color: #8a94a3;
+  background-color: #8a94a333;
 `;
 
 const MainContainer = ({ children }) => {

@@ -1,16 +1,11 @@
 import produce from "immer";
 
 import {
-  GET_HAND_RANGE,
   SET_HAND_RANGE,
-  SET_HAND_RANGE_FOLDER,
-  SET_HAND_RANGE_GROUP,
-  GET_HAND_RANGE_FOLDER,
-  CREATE_HAND_RANGE_FOLDER,
-  EDIT_HAND_RANGE_FOLDER,
   SET_HAND_RANGE_SELECT,
-  SET_CLASS_COLOR,
-  SET_HAND_RANGE_VALUES
+  INIT_CREATE_NEW_FOLDER,
+  CREATE_NEW_FOLDER_SUCCESS,
+  CREATE_NEW_FOLDER_FAIL
 } from "./constants.js";
 
 const initialState = {
@@ -18,6 +13,13 @@ const initialState = {
     street: "Preflop",
     streetAction: "Raise4BetCall"
   },
+  rangeSelectionArray: [
+    {
+      folderID: "",
+      OpeningRanges: [],
+      DefendingRanges: []
+    }
+  ],
   rangeColors: {
     "#8BDDBE": [],
     "#ED87A7": [],
@@ -123,11 +125,12 @@ const initialState = {
     }
   }
 };
-
+//TODO: Make ranges convert between easy to read ranges
 const mainPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
       case SET_HAND_RANGE_SELECT:
+        //Set the rangeColors for this mode
         if (draft.mode.street != action.data.name) {
           draft.rangeColors = {
             green: [],
@@ -147,6 +150,8 @@ const mainPageReducer = (state = initialState, action) =>
           );
           draft.rangeColors = newRangeColors;
         }
+
+        //Set the mode
         draft.mode.street = action.data.name;
         draft.mode.streetAction = action.data.value;
         break;
@@ -184,6 +189,22 @@ const mainPageReducer = (state = initialState, action) =>
 
         break;
 
+      case INIT_CREATE_NEW_FOLDER:
+        break;
+
+      case CREATE_NEW_FOLDER_SUCCESS:
+        draft.rangeSelectionArray[0].folderID =
+          action.data[0].hand_range_folder_id;
+        draft.rangeSelectionArray[0].OpeningRanges = action.data.filter(
+          (groups, idx) => groups.GroupName === "Opening Ranges"
+        );
+        draft.rangeSelectionArray[0].DefendingRanges = action.data.filter(
+          (groups, idx) => groups.GroupName === "Defending Ranges"
+        );
+        break;
+
+      case CREATE_NEW_FOLDER_FAIL:
+        break;
       default:
         break;
     }

@@ -2,14 +2,15 @@ import { call, put, takeLatest, all } from "redux-saga/effects";
 import { push } from "connected-react-router";
 import qs from "qs";
 
-import request from "utils/request";
+import request from "../../utils/request";
 import {
   USER_SIGNIN,
   USER_REQUESTED,
   AUTH_CHECK_STATE,
   USER_SIGNOUT,
-  USER_SIGNUP
-} from "./constants";
+  USER_SIGNUP,
+  INIT_REGISTER_USER
+} from "./constants.js";
 import {
   userSigninSuccess,
   userSigninFail,
@@ -22,7 +23,7 @@ import {
   userSignin
 } from "./actions";
 
-const baseURL = "https://localhost:3001/login";
+const baseURL = `${process.env.REACT_APP_API_URL}`;
 
 const stripHtmlTags = str => {
   if (str === null || str === "") return false;
@@ -56,12 +57,13 @@ export function* authStateSaga() {
   }
 }
 
-export function* userSigninSaga({ user: { username, password } }) {
+export function* userSigninSaga({ user: { name, password } }) {
+  console.log(name, password);
   const headers = {
     "Content-Type": "application/json"
   };
   const body = JSON.stringify({
-    username,
+    name,
     password
   });
 
@@ -75,11 +77,13 @@ export function* userSigninSaga({ user: { username, password } }) {
 
   try {
     const response = yield call(request, requestURL, requestParams);
-    const { token } = yield response.data;
+    console.log(response);
+    const { user, token } = response;
     yield localStorage.setItem("token", token);
     yield put(requestUser());
     yield put(userSigninSuccess(token));
   } catch (error) {
+    console.log(error);
     try {
       const err = yield error.response.json();
       if (
@@ -100,11 +104,14 @@ export function* userSigninSaga({ user: { username, password } }) {
 }
 
 export function* userSignupSaga({ user }) {
+  console.log("SAGA STARTED");
+  console.log(user);
   const params = qs.stringify(user);
   const requestURL = `${baseURL}/users?${params}`;
 
   try {
     const response = yield call(request, requestURL, { method: "POST" });
+    console.log(response);
     yield put(userSignin(user));
     yield put(userSigninSuccess(response));
   } catch (error) {
@@ -126,6 +133,37 @@ export default function* userRoot() {
     takeLatest(USER_REQUESTED, authStateSaga),
     takeLatest(AUTH_CHECK_STATE, authStateSaga),
     takeLatest(USER_SIGNOUT, logoutSaga),
-    takeLatest(USER_SIGNUP, userSignupSaga)
+    takeLatest(INIT_REGISTER_USER, userSignupSaga)
   ]);
 }
+// const loginUserHandler = async (e) => {
+//     e.preventDefault();
+//     // console.log(e);
+//     // console.log(e.target.username.value);
+//     // let newData = {"params": {
+//     //     "username": e.target.username.value,
+//     //     "email": e.target.email.value,
+//     //     //"password": e.target.password.value
+//     // }}
+
+//     // setPostQuery(newData);
+//     // let returnData = await dataState;
+
+//     fetch('http://localhost:3001/login', {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/json",
+//             "Accept": "application/json"
+//         },
+//         body: JSON.stringify({
+//             "username": e.target.username.value,
+//             "password": e.target.password.value
+//         })
+//     })
+//     .then(resp =>resp.json())
+//     .then(data => {
+//         localStorage.setItem("token", data.jwt);
+//         console.log(data);
+//     })
+
+//  };
