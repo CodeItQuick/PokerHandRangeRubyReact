@@ -32,9 +32,6 @@ After forking and downloading the repo, you should be able to run the front end 
 is run through the rails server with (in my case) a debugger with the following launch.json file:
 ```json
     {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
