@@ -9,6 +9,8 @@ import { initialState } from "./reducer";
 const selectGlobal = state => state.global || initialState; //??
 const selectRouter = state => state.router;
 
+const selectUser = state => state.user;
+
 const makeSelectMode = () => {
   return createSelector(selectGlobal, globalState => {
     return globalState.mode;
@@ -28,11 +30,14 @@ const makeSelectRangeColors = () =>
 const makeSelectRange = () =>
   createSelector(selectGlobal, globalState => globalState.ranges); //??
 
+const makeSelectUser = () => createSelector(selectUser, userState => userState);
+
 export {
   selectGlobal,
   selectRouter,
   makeSelectRanges,
   makeSelectRange,
   makeSelectMode,
-  makeSelectRangeColors
+  makeSelectRangeColors,
+  makeSelectUser
 };

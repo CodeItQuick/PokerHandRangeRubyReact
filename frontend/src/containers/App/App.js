@@ -20,6 +20,8 @@ import {
 import styled from "styled-components";
 
 import reducer from "../MainPage/reducer";
+import Navbar from "../../components/NavBar";
+import MainContainer from "../../components/MainContainer";
 
 const key = "global";
 
@@ -74,38 +76,14 @@ const App = ({ ranges, mode, rangeColors }) => {
 
   return (
     <StyledFragment>
-      <Menu inverted>
-        <Menu.Item>
-          <NavLink to="/">Home</NavLink>
-        </Menu.Item>
-        {username ? (
-          <>
-            <Menu.Item>{username}</Menu.Item>
-            <Menu.Item>
-              <NavLink to="/donate">Donate</NavLink>
-            </Menu.Item>
-            <Menu.Item>
-              <NavLink to="/" onClick={handleLogout}>
-                Logout
-              </NavLink>
-            </Menu.Item>
-          </>
-        ) : (
-          <>
-            <Menu.Item>
-              <NavLink to="/register">Register</NavLink>
-            </Menu.Item>
-            <Menu.Item>
-              <NavLink to="/login">Login</NavLink>
-            </Menu.Item>
-          </>
-        )}
-      </Menu>
-      <MainPage
-        ranges={ranges}
-        mode={mode}
-        rangeColors={rangeColors}
-      ></MainPage>
+      <MainContainer>
+        <Navbar />
+        <MainPage
+          ranges={ranges}
+          mode={mode}
+          rangeColors={rangeColors}
+        ></MainPage>
+      </MainContainer>
     </StyledFragment>
   );
 };
