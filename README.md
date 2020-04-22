@@ -14,6 +14,8 @@ Rather than using my coding skills to improve my poker player, the intention of 
 principles through the creation of a real-world application. I have some knowledge of this industry, although I am very out of practice
 with the latest theories. This application is meant to act as a showcase of my current coding skillet.
 
+# Technologies
+
 The following technologies were used in creating this application:
 (1) React
 (2) Redux
@@ -21,6 +23,8 @@ The following technologies were used in creating this application:
 (4) React Hooks
 (5) Javascript/Ruby
 (6) Wallaby/Jest/Enzyme testing service and VS Code plugin
+
+# Running the Application
 
 After forking and downloading the repo, you should be able to run the front end through npm install and then npm run. The backend
 is run through the rails server with (in my case) a debugger with the following launch.json file:
