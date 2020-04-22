@@ -49,7 +49,7 @@ is run through the rails server with (in my case) a debugger with the following 
     ]
 }
 ```
-Finally the website can be found live (usually) at the following netlify address: https://upbeat-jang-2f8339.netlify.app/
+Finally the website can be found live at the following netlify address: https://upbeat-jang-2f8339.netlify.app/
 
 Note: PR's are deployed to netlify for previews. The PR-style is out of sync with my typical workflow, and I plan to revamp
 the project management style in this project (mostly to simplify it). As always this is a bit of a work in progress.
