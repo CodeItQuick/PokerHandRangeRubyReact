@@ -51,7 +51,7 @@ const legendTable = (numberOfCombos, nameOfAction) => (
       <StyledGreenRow>
         <Table.Cell>{nameOfAction(1)}</Table.Cell>
         <Table.Cell>{numberOfCombos(1)}</Table.Cell>
-        <Table.Cell>
+        <Table.Cell id="Raise4BetValueTutorial">
           {(
             (100 * numberOfCombos(1)) /
             (numberOfCombos(1) +
@@ -65,7 +65,7 @@ const legendTable = (numberOfCombos, nameOfAction) => (
       <StyledVioletRow>
         <Table.Cell>{nameOfAction(2)}</Table.Cell>
         <Table.Cell>{numberOfCombos(2)}</Table.Cell>
-        <Table.Cell>
+        <Table.Cell id="Raise4BetBluffTutorial">
           {(
             (100 * numberOfCombos(2)) /
             (numberOfCombos(1) +
