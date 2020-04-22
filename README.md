@@ -28,7 +28,8 @@ The following technologies were used in creating this application:
 
 After forking and downloading the repo, you should be able to run the front end through npm install and then npm run. The backend
 is run through the rails server with (in my case) a debugger with the following launch.json file:
-{
+```json
+    {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
@@ -47,7 +48,7 @@ is run through the rails server with (in my case) a debugger with the following 
         }
     ]
 }
-
+```
 Finally the website can be found live (usually) at the following netlify address: https://upbeat-jang-2f8339.netlify.app/
 
 Note: PR's are deployed to netlify for previews. The PR-style is out of sync with my typical workflow, and I plan to revamp
