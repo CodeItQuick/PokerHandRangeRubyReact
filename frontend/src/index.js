@@ -20,6 +20,9 @@ import { ConnectedRouter } from "connected-react-router";
 import { ThemeProvider } from "styled-components";
 import { initialState } from "./containers/MainPage/reducer.js";
 
+import UserRegister from "./containers/Auth/Register/UserRegister.js";
+import Login from "./containers/Auth/Login/UserLogin.js";
+
 //const store = createStore(combineReducers({rootReducer, handRangesAvailable}), applyMiddleware(thunk));
 // Create redux store with history
 //const initialState = {};
@@ -27,8 +30,8 @@ const store = configureStore(initialState, history);
 
 store.subscribe(
   throttle(() => {
-    const { global } = store.getState();
-    saveState({ global });
+    const { global, user } = store.getState();
+    saveState({ global, user });
   }, 1000)
 );
 
@@ -37,7 +40,9 @@ ReactDOM.render(
     <ConnectedRouter history={history}>
       <ThemeProvider theme={{ main: "mediumseagreen" }}>
         <Switch>
-          <Route path="/" component={App} />
+          <Route exact path="/" component={App} />
+          <Route exact path="/register" component={UserRegister} />
+          <Route exact path="/login" component={Login} />
         </Switch>
       </ThemeProvider>
     </ConnectedRouter>

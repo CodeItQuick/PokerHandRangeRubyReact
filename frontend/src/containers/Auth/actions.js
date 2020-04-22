@@ -19,7 +19,10 @@ import {
   AUTH_CHECK_STATE,
   USER_SIGNUP,
   USER_SIGNUP_SUCCESS,
-  USER_SIGNUP_FAIL
+  USER_SIGNUP_FAIL,
+  INIT_REGISTER_USER,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAIL
 } from "./constants";
 
 export function userSignin(user) {
@@ -98,5 +101,26 @@ export function userSignupFail(error) {
   return {
     type: USER_SIGNUP_FAIL,
     error
+  };
+}
+
+export function initRegisterUser(user) {
+  return {
+    type: INIT_REGISTER_USER,
+    user
+  };
+}
+
+export function RegisterUserSuccess(data) {
+  return {
+    type: REGISTER_USER_SUCCESS,
+    data
+  };
+}
+
+export function RegisterUserFail(data) {
+  return {
+    type: REGISTER_USER_FAIL,
+    data
   };
 }

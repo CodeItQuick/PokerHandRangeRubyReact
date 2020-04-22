@@ -24,11 +24,15 @@ const makeSelectToken = () =>
 const makeSelectUser = () =>
   createSelector(selectUser, userState => userState.data);
 
+const makeSelectParams = () =>
+  createSelector(selectUser, userState => userState.params);
+
 export {
   selectUser,
   makeSelectLoading,
   makeSelectError,
   makeSelectLocation,
   makeSelectToken,
-  makeSelectUser
+  makeSelectUser,
+  makeSelectParams
 };

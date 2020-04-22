@@ -19,13 +19,13 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    user = User.new()
-    user.name = params[:name]
-    user.password = params[:password]
-    user.email = params[:email]
+    @user = User.new()
+    @user.name = params[:name]
+    @user.password = params[:password]
+    @user.email = params[:email]
 
-    if user.save
-      token = JWT.encode({user_id: user.id}, ENV['AUTH_SECRET'], 'HS256')
+    if @user.save
+      token = JWT.encode({user_id: @user.id}, ENV['AUTH_SECRET'], 'HS256')
       render json: @user, status: :created, location: @user, token: :token
     else
       render json: @user.errors, status: :unprocessable_entity
@@ -54,6 +54,6 @@ class UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :email, :password)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
 end
