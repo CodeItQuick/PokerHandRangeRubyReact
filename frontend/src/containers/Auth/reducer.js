@@ -5,15 +5,16 @@ import {
   USER_SIGNIN_FAIL,
   CLEAR_ERROR_STATE,
   USER_LOADED,
-  USER_SIGNUP,
-  USER_SIGNUP_SUCCESS,
   USER_SIGNOUT_SUCCESS,
-  USER_SIGNUP_FAIL
+  INIT_REGISTER_USER,
+  REGISTER_USER_SUCCESS,
+  REGISTER_USER_FAIL
 } from "./constants";
 
 export const initialState = {
   loading: false,
   error: { invalid: false, message: null },
+  params: {},
   data: false,
   token: null
 };
@@ -55,15 +56,16 @@ const authReducer = (state = initialState, action) =>
         draft.token = null;
         break;
 
-      case USER_SIGNUP:
+      case INIT_REGISTER_USER:
         draft.loading = true;
+        draft.params = action.user;
         break;
 
-      case USER_SIGNUP_SUCCESS:
+      case REGISTER_USER_SUCCESS:
         draft.loading = false;
         break;
 
-      case USER_SIGNUP_FAIL:
+      case REGISTER_USER_FAIL:
         draft.loading = false;
         draft.error.invalid = true;
         draft.error.message = action.error;

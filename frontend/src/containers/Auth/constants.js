@@ -24,3 +24,7 @@ export const USER_LOADED = "handrangeAPI/Auth/USER_LOADED";
 
 export const CLEAR_ERROR_STATE = "handrangeAPI/Auth/CLEAR_ERROR_STATE";
 export const AUTH_CHECK_STATE = "handrangeAPI/Auth/AUTH_CHECK_STATE";
+
+export const INIT_REGISTER_USER = "handrangeAPI/Auth/INIT_REGISTER_USER";
+export const REGISTER_USER_SUCCESS = "handrangeAPI/Auth/REGISTER_USER_SUCCESS";
+export const REGISTER_USER_FAIL = "handrangeAPI/Auth/REGISTER_USER_FAIL";

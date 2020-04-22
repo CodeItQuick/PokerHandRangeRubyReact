@@ -6,55 +6,89 @@ import Board from "./Board/index.js";
 import { useSelector, useDispatch } from "react-redux";
 import prange from "prange";
 import { Row, Col, Container } from "react-bootstrap";
-import BoardLegend from "../../components/BoardLegend/BoardLegend";
+import BoardLegend from "./BoardLegend/BoardLegend";
 import {
-  selectGlobal,
   makeSelectRanges,
   makeSelectRange,
   makeSelectMode,
-  makeSelectRangeColors
+  makeSelectRangeColors,
+  makeSelectUser
 } from "./selectors.js";
-import { getHandRange, setHandRangeSelect, setHandRange } from "./actions.js";
+import {
+  initCreateNewFolder,
+  setHandRangeSelect,
+  setHandRange,
+  getAllUserHandRanges
+} from "./actions.js";
+
 import reducer from "./reducer.js";
 import { useInjectReducer } from "../../HOC/useInjectReducer.js";
+import { useInjectSaga } from "../../HOC/injectSaga.js";
+import saga from "./saga.js";
 
+import ProductDescription from "./ProductDescription/index.js";
+import UserFunctionality from "./UserFunctionality/index.js";
+
+import { Button } from "semantic-ui-react";
 import { InputForm } from "./InputForm";
 
 const key = "global";
 //TO-DO: Rounded corners on navigation bar, spaces on buttons, more whitespace, needs instructions
 
-const MainPage = ({ wholeRange, ranges, mode, rangeColors }) => {
+const MainPage = ({ wholeRange, ranges, mode, rangeColors, user }) => {
   useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
   const dispatch = useDispatch();
-  const [deadCards, updateDeadCards] = useState();
 
-  const onHandleStreetHandler = (e, data) => {
-    console.log(data);
-    dispatch(setHandRangeSelect({ name: data.name, value: data.value }));
+  const onHandleStreetHandler = (e, { activeIndex, panes }) => {
+    console.log(panes);
+    dispatch(
+      setHandRangeSelect({
+        name: panes[activeIndex].name,
+        value: panes[activeIndex].value
+      })
+    );
   };
 
-  const onChangeStreetHandler = e => updateDeadCards(e.target.value);
+  const onHandleStreetHandlerButtons = (e, { street, streetAction }) => {
+    dispatch(setHandRangeSelect({ name: street, value: streetAction }));
+  };
 
   const onMouseOverHandler = data => {
-    console.log(data);
     if (data.onMouseDownEvent) dispatch(setHandRange({ cards: data.cards }));
     return data.cards;
+  };
+
+  const onTabChangeHandler = (e, { activeIndex }) => {
+    dispatch(getAllUserHandRanges(activeIndex));
+  };
+
+  const onClickNewFolderHandler = () => {
+    dispatch(initCreateNewFolder(user));
   };
 
   //TO-DO: need to align these left-to-right on big screens, top-to-bottom mobile
   return (
     <Container>
-      <InputForm
-        onHandleStreetHandler={onHandleStreetHandler}
-        onChangeStreetHandler={onChangeStreetHandler}
-        deadCards={deadCards}
-        mode={mode}
-      />
-      <Board
-        onMouseOverHandler={onMouseOverHandler}
-        rangeColors={rangeColors}
-      ></Board>
-      <BoardLegend wholeRange={wholeRange} mode={mode}></BoardLegend>
+      <Row>
+        <Col>
+          <InputForm
+            onHandleStreetHandler={onHandleStreetHandler}
+            onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
+            mode={mode}
+          />
+          <Board
+            onMouseOverHandler={onMouseOverHandler}
+            rangeColors={rangeColors}
+          ></Board>
+        </Col>
+        <Col>
+          <ProductDescription />
+          <BoardLegend wholeRange={wholeRange} mode={mode} />
+          <UserFunctionality onTabChangeHandler={onTabChangeHandler} />
+          <Button onClick={onClickNewFolderHandler}>Create New Folder </Button>
+        </Col>
+      </Row>
     </Container>
   );
 };
@@ -69,12 +103,14 @@ const mapStateToProps = () => {
   const getRangeColors = makeSelectRangeColors();
   const getSelectRange = makeSelectRange();
   const getMode = makeSelectMode();
+  const getUser = makeSelectUser();
   const mapState = state => {
     return {
       ranges: getMapRange(state),
       rangeColors: getRangeColors(state),
       wholeRange: getSelectRange(state),
-      mode: getMode(state)
+      mode: getMode(state),
+      user: getUser(state)
     };
   };
   return mapState;

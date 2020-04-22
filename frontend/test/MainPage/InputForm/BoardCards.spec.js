@@ -51,6 +51,8 @@ describe("Board Container", () => {
     })
   });
 
+
+  //FIXME: This test is passing when it should be failing
   test("The images render as cards are entered", () => {
     const mode = {street: 'Preflop', streetName: 'Raise4BetCall'};
 
