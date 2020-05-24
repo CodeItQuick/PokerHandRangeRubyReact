@@ -1,14 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Button, Container } from "semantic-ui-react";
+import { Button, Container, Table } from "semantic-ui-react";
 import { Row, Col } from "react-bootstrap";
 
 import styled from "styled-components";
 
 const styledCardBack = styled.img``;
-
-const FlexFragment = styled(Fragment)`
-  display: flex;
-`;
 
 const StyledCol = styled(Col)`
   display: flex;
@@ -25,7 +21,6 @@ const StyledRow = styled(Row)`
 //TODO: buttons that add two tone/rainbow/monotone/paired/HLL/etc.
 const BoardCards = ({ deadCards }) => {
   const [flippinCards, updateFlippinCards] = useState([]);
-  console.log(deadCards); //?
   useEffect(() => {
     if (deadCards && deadCards.indexOf(",") >= 0) {
       let flippinCardsClone = deadCards.split(",");
@@ -37,7 +32,7 @@ const BoardCards = ({ deadCards }) => {
   }, [deadCards]);
 
   return (
-    <FlexFragment>
+    <Table>
       <StyledRow>
         <Col xs={8} md={8} lg={8} className="text-center">
           <h4>Flop</h4>
@@ -84,7 +79,7 @@ const BoardCards = ({ deadCards }) => {
             : BoardCard("/assets/cards/back.png", 4)}
         </StyledCol>
       </StyledRow>
-    </FlexFragment>
+    </Table>
   );
 };
 

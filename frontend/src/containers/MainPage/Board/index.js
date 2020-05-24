@@ -6,6 +6,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useDrag, useGesture, useMove } from "react-use-gesture";
 import { useSpring, animated } from "react-spring";
 
+import { connect } from "react-redux";
+import { compose } from "redux";
+import {
+  makeSelectRangesPreflop,
+  makeSelectRangesPreflopOnly
+} from "../selectors";
+
 import { setHandRange } from "../actions.js";
 import styled from "styled-components";
 
@@ -22,8 +29,8 @@ const ColorCard = styled(animated.button)`
   text-align: center;
   color: black;
   background-color: ${props => props.coloring};
-
-  @media (min-width: 576px) and (max-width: 767.98px) {
+  border: ${({ border }) => (border ? "3px dashed black" : "none")} @media
+    (min-width: 576px) and (max-width: 767.98px) {
     width: 20px;
     padding: 5px;
     font-size: 12px;
@@ -97,7 +104,7 @@ let getCards = (cardOne, cardTwo) => {
   return card1 + card2;
 };
 
-const Board = ({ onMouseOverHandler, rangeColors }) => {
+const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
   const [manyHands, setManyHands] = useState();
   const [cards, setCards] = useState({});
 
@@ -108,17 +115,16 @@ const Board = ({ onMouseOverHandler, rangeColors }) => {
 
     orderedCard.forEach(cardOne =>
       orderedCard.forEach(cardTwo => {
-        let hands =
+        let hand =
           getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo);
-        if (rangeColors) {
-          Object.keys(rangeColors).forEach(cardColors => {
-            if (
-              rangeColors[cardColors] &&
-              rangeColors[cardColors].indexOf(hands) >= 0
-            ) {
+        if (PreflopRanges) {
+          PreflopRanges.forEach(({ Street, BetType, hands }, idx) => {
+            if (hands.indexOf(hand) >= 0) {
               cardClone = {
                 ...cardClone,
-                [hands]: { colorCards: cardColors }
+                [hand]: {
+                  colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][idx]
+                }
               };
             }
           });
@@ -127,7 +133,7 @@ const Board = ({ onMouseOverHandler, rangeColors }) => {
     );
 
     setCards(cardClone);
-  }, [rangeColors]);
+  }, [PreflopRanges]);
 
   // Set the drag hook and define component movement based on gesture data
   const bind = useGesture({
@@ -153,7 +159,17 @@ const Board = ({ onMouseOverHandler, rangeColors }) => {
       )
   });
 
+  console.log(PreflopRangesOnly);
+
   useEffect(() => {
+    let allPreflopHands = PreflopRangesOnly.reduce((acc, curr) => {
+      console.log(acc, curr);
+      if (acc.hands && curr.hands) return [...acc.hands, ...curr.hands];
+      else return [...acc, ...curr.hands];
+    });
+
+    console.log(allPreflopHands);
+
     let toSetManyHands = [];
 
     toSetManyHands = orderedCard.map(cardOne =>
@@ -167,6 +183,7 @@ const Board = ({ onMouseOverHandler, rangeColors }) => {
       let columnJSX = row.map(([cardOne, cardTwo]) => {
         let cardHand =
           getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo);
+
         return (
           <StyledCol xs={1} key={cardHand}>
             <ColorCard
@@ -174,7 +191,8 @@ const Board = ({ onMouseOverHandler, rangeColors }) => {
               id={"colorButton" + cardHand}
               {...bind(cardHand)}
               hand={cardHand}
-              coloring={cards[cardHand] ? cards[[cardHand]].colorCards : "#AAA"}
+              coloring={cards[cardHand] ? cards[cardHand].colorCards : "#AAA"}
+              border={allPreflopHands.indexOf(cardHand) >= 0}
             >
               {cardHand}
             </ColorCard>
@@ -185,9 +203,25 @@ const Board = ({ onMouseOverHandler, rangeColors }) => {
     });
     console.log(setNewManyHands);
     setManyHands(setNewManyHands);
-  }, [rangeColors, cards, bind]);
+  }, [cards, bind, PreflopRangesOnly]);
 
   return <Container fluid>{manyHands}</Container>; //TO-DO: BUG this generates console error
 };
 
-export default Board;
+const mapStateToProps = () => {
+  const getRangesPreflop = makeSelectRangesPreflop();
+  const getRangesPreflopOnly = makeSelectRangesPreflopOnly();
+
+  const mapState = state => {
+    return {
+      PreflopRanges: getRangesPreflop(state),
+      PreflopRangesOnly: getRangesPreflopOnly(state)
+    };
+  };
+
+  return mapState;
+}; //?
+
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect, memo)(Board);
