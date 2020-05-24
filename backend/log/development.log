@@ -43096,3 +43096,11 @@ Processing by HandRangesController#show_user_id as */*
 Completed 200 OK in 826ms (Views: 74.5ms | ActiveRecord: 181.0ms | Allocations: 11022)
 
 
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:07:27 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (229.2ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 267ms (Views: 32.8ms | ActiveRecord: 229.2ms | Allocations: 11013)
+
+
