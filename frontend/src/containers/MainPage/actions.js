@@ -1,10 +1,16 @@
 import {
   SET_HAND_RANGE,
   SET_HAND_RANGE_SELECT,
-  GET_ALL_USER_HAND_RANGES,
+  INIT_ALL_USER_HAND_RANGES,
+  ALL_USER_HAND_RANGES_SUCCESS,
+  ALL_USER_HAND_RANGES_FAIL,
   INIT_CREATE_NEW_FOLDER,
   CREATE_NEW_FOLDER_SUCCESS,
-  CREATE_NEW_FOLDER_FAIL
+  CREATE_NEW_FOLDER_FAIL,
+  SET_HAND_RANGE_GROUP,
+  SET_DYNAMIC_FOLDER_INFO,
+  SAVE_AND_LOAD,
+  LOAD_NEW_FOLDER
 } from "./constants";
 
 export function setHandRangeSelect(data) {
@@ -21,10 +27,22 @@ export function setHandRange(data) {
   };
 }
 
-export function getAllUserHandRanges(data) {
+export function initAllUserHandRanges() {
   return {
-    type: GET_ALL_USER_HAND_RANGES,
+    type: INIT_ALL_USER_HAND_RANGES
+  };
+}
+
+export function allUserHandRangesSuccess(data) {
+  return {
+    type: ALL_USER_HAND_RANGES_SUCCESS,
     data
+  };
+}
+
+export function allUserHandRangesFail() {
+  return {
+    type: ALL_USER_HAND_RANGES_FAIL
   };
 }
 
@@ -46,5 +64,31 @@ export function createNewFolderFail(data) {
   return {
     type: CREATE_NEW_FOLDER_FAIL,
     data
+  };
+}
+
+export function setHandRangeGroup(data) {
+  return {
+    type: SET_HAND_RANGE_GROUP,
+    data
+  };
+}
+
+export function setDynamicFolderInfo(data) {
+  return {
+    type: SET_DYNAMIC_FOLDER_INFO,
+    data
+  };
+}
+
+export function saveAndLoad() {
+  return {
+    type: SAVE_AND_LOAD
+  };
+}
+
+export function loadNewFolder() {
+  return {
+    type: LOAD_NEW_FOLDER
   };
 }

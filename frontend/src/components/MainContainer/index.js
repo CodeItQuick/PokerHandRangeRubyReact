@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 const StyledContainer = styled(Container)`
   margin-top: 30px;
   margin-bottom: 50px;
-  width: 1100px;
+  width: 1400px;
   background-color: #8a94a333;
 `;
 

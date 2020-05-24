@@ -1,6 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Row, Container, Button } from "react-bootstrap";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+
+import {
+  setDynamicFolderInfo,
+  saveAndLoad,
+  loadNewFolder,
+  setHandRangeSelect
+} from "../../actions.js";
 
 const StyledContainer = styled(Container)`
   display: block;
@@ -19,32 +27,91 @@ const StyledButton = styled(Button)`
     margin-top: 10px;
     margin-bottom: 10px;
     width: 200px;
+    background-color: ${props => (props.isactive ? "#777" : "#CCC")};
+    color: ${props => (props.isactive ? "#CCC" : "#000")};
   }
 `;
 
-const HandRangeContainer = ({ id }) => {
+const HandRangeContainer = ({ id, folderName, folderGroupName }) => {
+  const dispatch = useDispatch();
+  const [activeIndex, updateActiveIndex] = useState("UTG");
+
+  const onClickHandler = (e, data) => {
+    console.log(e.target.name);
+    updateActiveIndex(e.target.name);
+    dispatch(
+      setDynamicFolderInfo({
+        folderID: folderName,
+        folderSubgroupName: folderGroupName,
+        folderSubgroupRangeName: e.target.name
+      })
+    );
+    dispatch(
+      setHandRangeSelect({
+        name: "Preflop",
+        value: "Raise4BetCall",
+        newFolder: true
+      })
+    );
+  };
   return (
     <StyledContainer id={id}>
       {id === "OpeningRanges" ? (
         <StyledRow>
-          <StyledButton>Under The Gun</StyledButton>
+          <StyledButton
+            onClick={onClickHandler}
+            isactive={activeIndex === "UTG"}
+            name="UTG"
+          >
+            Under The Gun
+          </StyledButton>
         </StyledRow>
       ) : null}
       <StyledRow>
-        <StyledButton>Middle Position</StyledButton>
+        <StyledButton
+          onClick={onClickHandler}
+          isactive={activeIndex === "MP"}
+          name="MP"
+        >
+          Middle Position
+        </StyledButton>
       </StyledRow>
       <StyledRow>
-        <StyledButton>Cutoff</StyledButton>
+        <StyledButton
+          onClick={onClickHandler}
+          isactive={activeIndex === "CO"}
+          name="CO"
+        >
+          Cutoff
+        </StyledButton>
       </StyledRow>
       <StyledRow>
-        <StyledButton>Button</StyledButton>
+        <StyledButton
+          onClick={onClickHandler}
+          isactive={activeIndex === "BU"}
+          name="BU"
+        >
+          Button
+        </StyledButton>
       </StyledRow>
       <StyledRow>
-        <StyledButton>Small Blind</StyledButton>
+        <StyledButton
+          onClick={onClickHandler}
+          isactive={activeIndex === "SB"}
+          name="SB"
+        >
+          Small Blind
+        </StyledButton>
       </StyledRow>
       {id === "DefendingRanges" ? (
         <StyledRow>
-          <StyledButton>Big Blind</StyledButton>
+          <StyledButton
+            onClick={onClickHandler}
+            isactive={activeIndex === "BB"}
+            name="BB"
+          >
+            Big Blind
+          </StyledButton>
         </StyledRow>
       ) : null}
     </StyledContainer>
