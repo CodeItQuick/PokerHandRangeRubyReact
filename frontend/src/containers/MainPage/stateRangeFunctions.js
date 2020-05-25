@@ -1,5 +1,3 @@
-import initialState from "./reducer";
-
 export const mapNewHandRange = (
   oldHandRange,
   draftModeStreet,
@@ -16,7 +14,7 @@ export const mapNewHandRange = (
         let handsWithRemovedCards = rangeObj.hands;
         let indexHandInRange = handsWithRemovedCards.indexOf(actionDataCards);
         let numberHandsToRemove = 1;
-        handsWithRemovedCards.splice(indexHandInRange, numberHandsToRemove);
+        handsWithRemovedCards.slice(indexHandInRange, numberHandsToRemove);
         return {
           Street: rangeObj.Street,
           BetType: rangeObj.BetType,
@@ -33,12 +31,14 @@ export const mapNewHandRange = (
     }
   });
 
-export const saveOldRangeRepo = (rangeRepo, rangeSelectionArray, draftRanges) =>
+export const saveOldRangeRepo = (
+  initialState,
+  rangeRepo,
+  rangeSelectionArray,
+  draftRanges
+) =>
   rangeRepo.map(({ FolderName, FolderGroupName, Position, ranges }) => {
-    let defaultRanges = undefined;
-    console.log(ranges.length);
-    if (ranges.length < 16)
-      defaultRanges = JSON.parse(JSON.stringify(initialState.ranges));
+    let defaultRanges = JSON.parse(JSON.stringify(initialState.ranges));
 
     if (
       FolderName == rangeSelectionArray.folderID &&
@@ -60,7 +60,7 @@ export const saveOldRangeRepo = (rangeRepo, rangeSelectionArray, draftRanges) =>
       };
   });
 
-export const loadNewRange = (rangeRepo, actionData) => {
+export const loadNewRange = (initialState, rangeRepo, actionData) => {
   let filteredForPosition = rangeRepo.filter(
     ({ FolderName, FolderGroupName, Position, ranges }) =>
       FolderName == actionData.folderID &&
@@ -68,14 +68,11 @@ export const loadNewRange = (rangeRepo, actionData) => {
       Position == actionData.folderSubgroupRangeName
   );
 
-  console.log(filteredForPosition);
-
   let returnRanges = initialState.ranges.map(({ Street, BetType, hands }) => {
     let filteredForPositionRange = filteredForPosition[0].ranges.filter(
       pos => pos.Street == Street && pos.BetType == BetType
     );
 
-    console.log(filteredForPositionRange);
     return {
       Street,
       BetType,

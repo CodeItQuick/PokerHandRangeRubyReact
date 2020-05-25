@@ -43096,3 +43096,218 @@ Processing by HandRangesController#show_user_id as */*
 Completed 200 OK in 826ms (Views: 74.5ms | ActiveRecord: 181.0ms | Allocations: 11022)
 
 
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:07:27 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (229.2ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 267ms (Views: 32.8ms | ActiveRecord: 229.2ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:09:09 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (59.4ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 119ms (Views: 53.2ms | ActiveRecord: 59.4ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:10:37 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (152.9ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 186ms (Views: 32.4ms | ActiveRecord: 152.9ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:10:46 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (52.0ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 82ms (Views: 29.7ms | ActiveRecord: 52.0ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:11:32 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (134.2ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 177ms (Views: 41.4ms | ActiveRecord: 134.2ms | Allocations: 11016)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:12:42 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (7.8ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 24ms (Views: 14.7ms | ActiveRecord: 7.8ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:12:54 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (16.8ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 93ms (Views: 75.1ms | ActiveRecord: 16.8ms | Allocations: 11016)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:13:14 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (41.4ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 59ms (Views: 17.3ms | ActiveRecord: 41.4ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:13:25 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (83.6ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 96ms (Views: 11.6ms | ActiveRecord: 83.6ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:13:48 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (30.4ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 41ms (Views: 10.0ms | ActiveRecord: 30.4ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:13:59 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (35.5ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 46ms (Views: 9.4ms | ActiveRecord: 35.5ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:15:43 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (36.5ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 49ms (Views: 12.6ms | ActiveRecord: 36.5ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:16:23 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (19.4ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 48ms (Views: 24.2ms | ActiveRecord: 19.4ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:18:19 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (34.7ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 118ms (Views: 81.8ms | ActiveRecord: 34.7ms | Allocations: 11015)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:20:21 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (24.4ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 62ms (Views: 31.0ms | ActiveRecord: 24.4ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:24:51 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (62.1ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 113ms (Views: 45.9ms | ActiveRecord: 62.1ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:24:57 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (63.8ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 85ms (Views: 20.6ms | ActiveRecord: 63.8ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:25:04 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (33.0ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 60ms (Views: 26.3ms | ActiveRecord: 33.0ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:25:58 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (58.9ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 82ms (Views: 23.2ms | ActiveRecord: 58.9ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:26:24 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (5.9ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 112ms (Views: 105.1ms | ActiveRecord: 5.9ms | Allocations: 11015)
+
+
+Started POST "/login" for ::1 at 2020-05-24 12:26:32 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (37.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 347ms (Views: 15.2ms | ActiveRecord: 37.1ms | Allocations: 869)
+
+
+Started GET "/users/" for ::1 at 2020-05-24 12:26:33 -0300
+Processing by UsersController#index as */*
+  [1m[36mUser Load (11.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  ↳ app/controllers/users_controller.rb:11:in `index'
+Completed 200 OK in 14ms (Views: 2.2ms | ActiveRecord: 11.3ms | Allocations: 1329)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:26:35 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (69.1ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 79ms (Views: 9.3ms | ActiveRecord: 69.1ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:28:40 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (29.4ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 58ms (Views: 23.5ms | ActiveRecord: 29.4ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:29:19 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (93.2ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 122ms (Views: 28.0ms | ActiveRecord: 93.2ms | Allocations: 11013)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:30:14 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (40.1ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 81ms (Views: 35.5ms | ActiveRecord: 40.1ms | Allocations: 11012)
+
+
+Started GET "/hand_ranges/show_user_id/2" for ::1 at 2020-05-24 12:31:50 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (17.3ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 110ms (Views: 91.9ms | ActiveRecord: 17.3ms | Allocations: 11015)
+
+
