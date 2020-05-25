@@ -49,8 +49,6 @@ const FolderGroup = ({ FolderGroup, folderIdx = 0, folderName }) => {
     }
   });
 
-  console.log(FolderGroup);
-
   const onChangeHandler = (e, { activeIndex, panes }) => {
     dispatch(saveAndLoad());
     dispatch(

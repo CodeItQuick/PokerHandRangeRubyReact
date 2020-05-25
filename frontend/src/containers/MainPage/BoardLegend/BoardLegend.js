@@ -202,7 +202,6 @@ const BoardLegend = ({
   }, [street, streetAction]);
 
   //TODO: potential bug? method outside useEffect
-  console.log(wholeRange);
   useEffect(() => {
     let wholeRangeFiltered = wholeRange.filter(
       ({ hands, Street }) => hands && Street == street
@@ -216,7 +215,6 @@ const BoardLegend = ({
         else return acc + 6; //Pair Combos
       }, 0);
     });
-    console.log(wholeRangeFiltered);
     updateNumberOfCombos(wholeRangeFiltered);
   }, [wholeRange]);
 

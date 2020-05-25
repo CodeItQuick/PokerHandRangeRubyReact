@@ -58,7 +58,6 @@ export function* authStateSaga() {
 }
 
 export function* userSigninSaga({ user: { name, password } }) {
-  console.log(name, password);
   const headers = {
     "Content-Type": "application/json"
   };
@@ -77,13 +76,11 @@ export function* userSigninSaga({ user: { name, password } }) {
 
   try {
     const response = yield call(request, requestURL, requestParams);
-    console.log(response);
     const { user, token } = response;
     yield localStorage.setItem("token", token);
     yield put(requestUser());
     yield put(userSigninSuccess(token));
   } catch (error) {
-    console.log(error);
     try {
       const err = yield error.response.json();
       if (
@@ -104,8 +101,6 @@ export function* userSigninSaga({ user: { name, password } }) {
 }
 
 export function* userSignupSaga({ user }) {
-  console.log("SAGA STARTED");
-  console.log(user);
   const params = qs.stringify(user);
   const requestURL = `${baseURL}/users?${params}`;
 
@@ -136,34 +131,3 @@ export default function* userRoot() {
     takeLatest(INIT_REGISTER_USER, userSignupSaga)
   ]);
 }
-// const loginUserHandler = async (e) => {
-//     e.preventDefault();
-//     // console.log(e);
-//     // console.log(e.target.username.value);
-//     // let newData = {"params": {
-//     //     "username": e.target.username.value,
-//     //     "email": e.target.email.value,
-//     //     //"password": e.target.password.value
-//     // }}
-
-//     // setPostQuery(newData);
-//     // let returnData = await dataState;
-
-//     fetch('http://localhost:3001/login', {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//             "Accept": "application/json"
-//         },
-//         body: JSON.stringify({
-//             "username": e.target.username.value,
-//             "password": e.target.password.value
-//         })
-//     })
-//     .then(resp =>resp.json())
-//     .then(data => {
-//         localStorage.setItem("token", data.jwt);
-//         console.log(data);
-//     })
-
-//  };

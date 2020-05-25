@@ -37,7 +37,6 @@ const HandRangeContainer = ({ id, folderName, folderGroupName }) => {
   const [activeIndex, updateActiveIndex] = useState("UTG");
 
   const onClickHandler = (e, data) => {
-    console.log(e.target.name);
     updateActiveIndex(e.target.name);
     dispatch(
       setDynamicFolderInfo({
