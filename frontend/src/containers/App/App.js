@@ -11,11 +11,7 @@ import { useInjectReducer } from "../../HOC/useInjectReducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
-import {
-  makeSelectRanges,
-  makeSelectRangeColors,
-  makeSelectMode
-} from "../MainPage/selectors";
+import { makeSelectRanges, makeSelectMode } from "../MainPage/selectors";
 
 import styled from "styled-components";
 
@@ -34,7 +30,7 @@ const steps = [
   {
     selector: "button#PreflopRaise4BetCall",
     content:
-      "First pick your betting pattern, Raise4BetCall, in this case you will select your strongest hands that you always raise with. "
+      "First pick your betting pattern, Raise4BetCall, in this case you will select your strongest hands that you always raise with. Note: you may have to click back and forth to get the right button highlighted. "
   },
   {
     selector: "button#colorButtonAA",
@@ -54,7 +50,7 @@ const steps = [
   {
     selector: "#Raise4BetValueTutorial",
     content:
-      "How often are we bluffing raising just AA and AQo? Looks valuebet with aces 33% of the time!"
+      "How often are we bluffing raising just AA and AQo? Looks like we valuebet with aces 33% of the time!"
   },
   {
     selector: "#Raise4BetBluffTutorial",
@@ -62,9 +58,14 @@ const steps = [
       "How often are we bluffing raising just AA and AQo? Looks like we bluff twice as often at 67% as much as we valuebet. This ratio is much too high, we should now add kings and AKs to our range to balance our range."
   },
   {
+    selector: "button#PreflopRaise4BetCall",
+    content:
+      "We better put more hands into our value range, so lets go ahead and select Raise4BetCall again. "
+  },
+  {
     selector: "button#colorButtonKK , button#colorButtonAKs",
     content:
-      "You can click and drag now to select the two hands, KK and AKs,  to balance out your range."
+      "You can click and drag now to select the two hands, KK and AKs, to balance out your range."
   },
   {
     selector: "#Raise4BetBluffTutorial",
@@ -89,11 +90,7 @@ const App = ({ ranges, mode, rangeColors }) => {
     <StyledFragment>
       <MainContainer>
         <Navbar />
-        <MainPage
-          ranges={ranges}
-          mode={mode}
-          rangeColors={rangeColors}
-        ></MainPage>
+        <MainPage ranges={ranges} mode={mode}></MainPage>
         <Tour steps={steps} isOpen={isTourOpen} onRequestClose={closeTour} />
       </MainContainer>
     </StyledFragment>
@@ -102,8 +99,7 @@ const App = ({ ranges, mode, rangeColors }) => {
 
 const mapStateToProps = createStructuredSelector({
   ranges: makeSelectRanges(),
-  mode: makeSelectMode(),
-  rangeColors: makeSelectRangeColors()
+  mode: makeSelectMode()
 }); //?
 
 const withConnect = connect(mapStateToProps, null);

@@ -3,7 +3,6 @@ import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { Form, Button } from "semantic-ui-react";
 import BoardCards from "./BoardCards";
-import StreetSelector from "./StreetSelector";
 const DeadCards = styled(Form.Input)`
   width: 80%;
 `;
@@ -26,11 +25,6 @@ const InputForm = ({
         onChange={onChangeStreetHandler}
       ></DeadCards>
       <BoardCards deadCards={deadCards} />
-      <StreetSelector
-        onHandleStreetHandler={onHandleStreetHandler}
-        onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
-        mode={mode}
-      ></StreetSelector>
     </Fragment>
   );
 };
