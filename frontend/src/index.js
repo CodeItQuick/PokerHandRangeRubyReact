@@ -6,10 +6,6 @@ import App from "./containers/App/App";
 import * as serviceWorker from "./serviceWorker";
 import "semantic-ui-css/semantic.min.css";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, combineReducers } from "redux";
-import rootReducer from "./reducers/rootReducer";
-import thunk from "redux-thunk";
-import handRangesAvailable from "./reducers/HandRanges";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import throttle from "lodash/throttle";
