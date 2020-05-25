@@ -11,10 +11,12 @@ import Board from "../../../src/containers/MainPage/Board";
 
 Enzyme.configure({ adapter: new Adapter() });
 
+const store = configureStore(initialState, history);
+
 function setup({ onMouseOverHandler, rangeColors}) {
   const props = { onMouseOverHandler, rangeColors };
 
-  const enzymeWrapper = (<Board  {...props} />);
+  const enzymeWrapper = (<Provider store={store}><Board  {...props} /></Provider>);
 
   return enzymeWrapper;
 }

@@ -11,14 +11,14 @@ import {
   makeSelectRanges,
   makeSelectRange,
   makeSelectMode,
-  makeSelectRangeColors,
-  makeSelectUser
+  makeSelectUser,
+  makeSelectFolder
 } from "./selectors.js";
 import {
   initCreateNewFolder,
   setHandRangeSelect,
   setHandRange,
-  getAllUserHandRanges
+  initAllUserHandRanges
 } from "./actions.js";
 
 import reducer from "./reducer.js";
@@ -31,17 +31,43 @@ import UserFunctionality from "./UserFunctionality/index.js";
 
 import { Button } from "semantic-ui-react";
 import { InputForm } from "./InputForm";
+import styled from "styled-components";
+
+import { mapNewHandRange } from "./stateRangeFunctions";
+
+const MainPageContainer = styled.div`
+  display: flex;
+`;
+
+const LeftPane = styled.div`
+  margin: 25px;
+`;
+
+const RightPane = styled.div`
+  margin: 25px;
+`;
 
 const key = "global";
 //TO-DO: Rounded corners on navigation bar, spaces on buttons, more whitespace, needs instructions
 
-const MainPage = ({ wholeRange, ranges, mode, rangeColors, user }) => {
+const MainPage = ({
+  wholeRange,
+  ranges,
+  mode,
+  rangeColors,
+  user,
+  toAllUserHandRange,
+  mode: { street, streetAction }
+}) => {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    toAllUserHandRange();
+  }, [toAllUserHandRange]);
+
   const onHandleStreetHandler = (e, { activeIndex, panes }) => {
-    console.log(panes);
     dispatch(
       setHandRangeSelect({
         name: panes[activeIndex].name,
@@ -55,12 +81,20 @@ const MainPage = ({ wholeRange, ranges, mode, rangeColors, user }) => {
   };
 
   const onMouseOverHandler = data => {
-    if (data.onMouseDownEvent) dispatch(setHandRange({ cards: data.cards }));
+    if (data.onMouseDownEvent) {
+      let newHandRange = mapNewHandRange(
+        wholeRange,
+        street,
+        streetAction,
+        data.cards
+      );
+      dispatch(setHandRange(newHandRange));
+    }
     return data.cards;
   };
 
   const onTabChangeHandler = (e, { activeIndex }) => {
-    dispatch(getAllUserHandRanges(activeIndex));
+    dispatch(initAllUserHandRanges(activeIndex));
   };
 
   const onClickNewFolderHandler = () => {
@@ -69,27 +103,30 @@ const MainPage = ({ wholeRange, ranges, mode, rangeColors, user }) => {
 
   //TO-DO: need to align these left-to-right on big screens, top-to-bottom mobile
   return (
-    <Container>
-      <Row>
-        <Col>
-          <InputForm
-            onHandleStreetHandler={onHandleStreetHandler}
-            onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
-            mode={mode}
-          />
-          <Board
-            onMouseOverHandler={onMouseOverHandler}
-            rangeColors={rangeColors}
-          ></Board>
-        </Col>
-        <Col>
-          <ProductDescription />
-          <BoardLegend wholeRange={wholeRange} mode={mode} />
-          <UserFunctionality onTabChangeHandler={onTabChangeHandler} />
-          <Button onClick={onClickNewFolderHandler}>Create New Folder </Button>
-        </Col>
-      </Row>
-    </Container>
+    <MainPageContainer>
+      <LeftPane>
+        <InputForm
+          onHandleStreetHandler={onHandleStreetHandler}
+          onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
+          mode={mode}
+        />
+        <Board
+          onMouseOverHandler={onMouseOverHandler}
+          rangeColors={rangeColors}
+        ></Board>
+      </LeftPane>
+      <RightPane>
+        <ProductDescription />
+        <BoardLegend
+          wholeRange={wholeRange}
+          onHandleStreetHandler={onHandleStreetHandler}
+          onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
+          mode={mode}
+        />
+        <UserFunctionality onTabChangeHandler={onTabChangeHandler} />
+        <Button onClick={onClickNewFolderHandler}>Create New Folder </Button>
+      </RightPane>
+    </MainPageContainer>
   );
 };
 MainPage.propTypes = {
@@ -100,15 +137,14 @@ MainPage.propTypes = {
 
 const mapStateToProps = () => {
   const getMapRange = makeSelectRanges();
-  const getRangeColors = makeSelectRangeColors();
   const getSelectRange = makeSelectRange();
   const getMode = makeSelectMode();
   const getUser = makeSelectUser();
+
   const mapState = state => {
     return {
       ranges: getMapRange(state),
-      rangeColors: getRangeColors(state),
-      wholeRange: getSelectRange(state),
+      wholeRange: getSelectRange(state), //TODO: change to streetname
       mode: getMode(state),
       user: getUser(state)
     };
@@ -116,11 +152,11 @@ const mapStateToProps = () => {
   return mapState;
 }; //?
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     dispatchToHandRange: (data) => dispatch(setHandRange(data))
-//   };
-// };
-const withConnect = connect(mapStateToProps, null);
+const mapDispatchToProps = dispatch => {
+  return {
+    toAllUserHandRange: () => dispatch(initAllUserHandRanges())
+  };
+};
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default compose(withConnect, memo)(MainPage);

@@ -25,22 +25,22 @@ const data = [{  name: 'Preflop', value: 'Raise4BetFold' },
               {  name: 'River', value: 'CheckFold' }
 ];
 
-const sethandrange = [{cards: 'AKo', street: 'Preflop', streetAction: 'Raise4BetCall', rangeColors: {"#8BDDBE": ['AKo']}},
-                      {cards: 'AKo', street: 'Preflop', streetAction: 'Raise4BetFold', rangeColors: {"#ED87A7": ['AKo']}},
-                      {cards: 'AKo', street: 'Preflop', streetAction: 'RaiseCall', rangeColors: { "#6B6C7C": ['AKo']}},
-                      {cards: 'AKo', street: 'Preflop', streetAction: 'RaiseFold', rangeColors: { "#D3D3D3": ['AKo']}},
-                      {cards: 'AKo', street: 'Flop', streetAction: 'Valuebet', rangeColors: {"#8BDDBE": ['AKo']}},
-                      {cards: 'AKo', street: 'Flop', streetAction: 'Bluff', rangeColors: {"#ED87A7": ['AKo']}},
-                      {cards: 'AKo', street: 'Flop', streetAction: 'CheckCall', rangeColors: { "#6B6C7C": ['AKo']}},
-                      {cards: 'AKo', street: 'Flop', streetAction: 'CheckFold', rangeColors: { "#D3D3D3": ['AKo']} },
-                      {cards: 'AKo', street: 'Turn', streetAction: 'Valuebet', rangeColors: {"#8BDDBE": ['AKo']}},
-                      {cards: 'AKo', street: 'Turn', streetAction: 'Bluff', rangeColors: {"#ED87A7": ['AKo']}},
-                      {cards: 'AKo', street: 'Turn', streetAction: 'CheckCall', rangeColors: { "#6B6C7C": ['AKo']}},
-                      {cards: 'AKo', street: 'Turn', streetAction: 'CheckFold', rangeColors: { "#D3D3D3": ['AKo']} },
-                      {cards: 'AKo', street: 'River', streetAction: 'Valuebet', rangeColors: {"#8BDDBE": ['AKo']}},
-                      {cards: 'AKo', street: 'River', streetAction: 'Bluff', rangeColors: {"#ED87A7": ['AKo']}},
-                      {cards: 'AKo', street: 'River', streetAction: 'CheckCall', rangeColors: { "#6B6C7C": ['AKo']}},
-                      {cards: 'AKo', street: 'River', streetAction: 'CheckFold', rangeColors: { "#D3D3D3": ['AKo']} }];
+const sethandrange = [{cards: 'AKo', street: 'Preflop', streetAction: 'Raise4BetCall'},
+                      {cards: 'AKo', street: 'Preflop', streetAction: 'Raise4BetFold'},
+                      {cards: 'AKo', street: 'Preflop', streetAction: 'RaiseCall'},
+                      {cards: 'AKo', street: 'Preflop', streetAction: 'RaiseFold'},
+                      {cards: 'AKo', street: 'Flop', streetAction: 'Valuebet'},
+                      {cards: 'AKo', street: 'Flop', streetAction: 'Bluff'},
+                      {cards: 'AKo', street: 'Flop', streetAction: 'CheckCall'},
+                      {cards: 'AKo', street: 'Flop', streetAction: 'CheckFold'},
+                      {cards: 'AKo', street: 'Turn', streetAction: 'Valuebet'},
+                      {cards: 'AKo', street: 'Turn', streetAction: 'Bluff'},
+                      {cards: 'AKo', street: 'Turn', streetAction: 'CheckCall' },
+                      {cards: 'AKo', street: 'Turn', streetAction: 'CheckFold'},
+                      {cards: 'AKo', street: 'River', streetAction: 'Valuebet'},
+                      {cards: 'AKo', street: 'River', streetAction: 'Bluff'},
+                      {cards: 'AKo', street: 'River', streetAction: 'CheckCall'},
+                      {cards: 'AKo', street: 'River', streetAction: 'CheckFold' }];
 
 describe('MainPage reducer', () => {
     test('should return the initial state', function() {
@@ -74,13 +74,63 @@ describe('MainPage reducer', () => {
         console.log(oldState); //?
 
         let newState = JSON.parse(JSON.stringify(oldState));
-        newState.ranges[[sethandrange.street]][[sethandrange.streetAction]].prHandString = ['AKo'];
+
+        newState['ranges'] = newState.ranges.map(({Street, BetType, hands}) => {
+            let newHands = undefined;
+            if (Street == sethandrange.street && BetType == sethandrange.streetAction)
+                newHands = [...hands, sethandrange.cards];
+            return {Street, BetType, hands: newHands || hands};
+        });
+
+        console.log(newState); //?
+
+        expect(reducer(oldState, action)).toEqual(newState);   
+    });
+
+
+    test('The reducer with action ' + types.SET_DYNAMIC_FOLDER_INFO + 
+        ' should return the new hand range', () => {
+        const action = {type: types.SET_DYNAMIC_FOLDER_INFO, data: {
+            folderID: "My First Folder",
+            folderSubgroupName: "Opening Ranges",
+            folderSubgroupRangeName: "MP"}
+        };
+
+        let oldState = JSON.parse(JSON.stringify(defaultReducerState));
+        oldState['ranges']['Preflop']['Raise4BetCall'].prHandString = ['AA']; 
+        oldState["rangeColors"] = {
+            '#8BDDBE': ["AA"],
+            '#ED87A7': [],
+            '#6B6C7C': [],
+            '#D3D3D3': []
+        }
         
+        let newState = JSON.parse(JSON.stringify(oldState));
+        newState.rangeRepo["Evan's Second Folder"]['Opening Ranges']['UTG']['ranges'] = JSON.parse(JSON.stringify(defaultReducerState.ranges)); 
+        newState.rangeRepo["Evan's Second Folder"]['Opening Ranges']['UTG']['ranges']['Preflop']['Raise4BetCall'].prHandString = ['AA']; 
+        newState.rangeSelectionArray["folderSubgroupRangeName"] = "MP";
+        newState['ranges']['Preflop']['Raise4BetCall'].prHandString = [];
 
         const rangeColors = {...newState.rangeColors};
         newState.rangeColors = sethandrange.rangeColors;
         newState.rangeColors = {...rangeColors, ...newState.rangeColors};
 
-        expect(reducer(oldState, action)).toEqual(newState);   
+        expect(reducer(oldState, action)).toEqual(newState); 
+        
+        const secondAction = {type: types.SET_DYNAMIC_FOLDER_INFO, data: {
+            folderID: "Evan's Second Folder",
+            folderSubgroupName: "Opening Ranges",
+            folderSubgroupRangeName: "UTG"}
+        };
+
+        let finalState = JSON.parse(JSON.stringify(newState));
+
+        finalState.rangeRepo["Evan's Second Folder"]['Opening Ranges']['MP']['ranges'] = JSON.parse(JSON.stringify(defaultReducerState.ranges)); 
+        finalState.rangeRepo["Evan's Second Folder"]['Opening Ranges']['MP']['ranges']['Preflop']['Raise4BetCall'].prHandString = []; 
+        finalState['ranges']['Preflop']['Raise4BetCall'].prHandString = ['AA']; 
+         
+
+        expect(reducer(newState, action)).toEqual(finalState); 
+        
     });
 })
