@@ -50,7 +50,6 @@ export function* registerUser(params) {
   try {
     //yield call/put/cancelled APICALL
     const allRanges = yield call(request, requestUrl, requestParams);
-    console.log(allRanges);
   } catch (err) {
     //yield errorHandling
     console.log(err);
