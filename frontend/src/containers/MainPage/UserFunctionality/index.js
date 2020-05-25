@@ -23,9 +23,7 @@ const panes = Folder =>
 
 const UserFunctionality = ({ Folder }) => {
   const dispatch = useDispatch();
-  console.log(Folder);
   const onChangeHandler = (e, { activeIndex, panes }) => {
-    console.log(panes[activeIndex].menuItem);
     dispatch(
       setDynamicFolderInfo({
         folderID: panes[activeIndex].menuItem,

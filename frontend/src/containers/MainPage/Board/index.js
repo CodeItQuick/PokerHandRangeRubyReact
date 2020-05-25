@@ -29,8 +29,9 @@ const ColorCard = styled(animated.button)`
   text-align: center;
   color: black;
   background-color: ${props => props.coloring};
-  border: ${({ border }) => (border ? "3px dashed black" : "none")} @media
-    (min-width: 576px) and (max-width: 767.98px) {
+  border: ${({ border_attrib }) =>
+    border_attrib ? "3px dashed black" : "none"};
+  @media (min-width: 576px) and (max-width: 767.98px) {
     width: 20px;
     padding: 5px;
     font-size: 12px;
@@ -159,16 +160,11 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
       )
   });
 
-  console.log(PreflopRangesOnly);
-
   useEffect(() => {
     let allPreflopHands = PreflopRangesOnly.reduce((acc, curr) => {
-      console.log(acc, curr);
       if (acc.hands && curr.hands) return [...acc.hands, ...curr.hands];
       else return [...acc, ...curr.hands];
     });
-
-    console.log(allPreflopHands);
 
     let toSetManyHands = [];
 
@@ -178,7 +174,7 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
         return acc;
       }, [])
     );
-    console.log(toSetManyHands);
+
     let setNewManyHands = toSetManyHands.map((row, idx) => {
       let columnJSX = row.map(([cardOne, cardTwo]) => {
         let cardHand =
@@ -192,7 +188,7 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
               {...bind(cardHand)}
               hand={cardHand}
               coloring={cards[cardHand] ? cards[cardHand].colorCards : "#AAA"}
-              border={allPreflopHands.indexOf(cardHand) >= 0}
+              border_attrib={allPreflopHands.indexOf(cardHand) >= 0}
             >
               {cardHand}
             </ColorCard>
@@ -201,7 +197,7 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
       });
       return <StyledRow xs={13}>{columnJSX}</StyledRow>;
     });
-    console.log(setNewManyHands);
+
     setManyHands(setNewManyHands);
   }, [cards, bind, PreflopRangesOnly]);
 

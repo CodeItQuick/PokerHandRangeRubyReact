@@ -191,12 +191,13 @@ const mainPageReducer = (state = initialState, action) =>
 
       case SET_DYNAMIC_FOLDER_INFO:
         draft.rangeRepo = saveOldRangeRepo(
+          initialState,
           draft.rangeRepo,
           draft.rangeSelectionArray,
           draft.ranges
         );
         draft.rangeSelectionArray = action.data;
-        draft.ranges = loadNewRange(draft.rangeRepo, action.data);
+        draft.ranges = loadNewRange(initialState, draft.rangeRepo, action.data);
 
         break;
 
