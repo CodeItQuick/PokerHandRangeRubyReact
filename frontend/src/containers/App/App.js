@@ -6,7 +6,6 @@ import MainPage from "../MainPage/index";
 import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
 import { useDispatch, useSelector } from "react-redux";
-import userActions from "../../reducers/actions.js";
 import { useInjectReducer } from "../../HOC/useInjectReducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -81,10 +80,6 @@ const App = ({ ranges, mode, rangeColors }) => {
   const [isTourOpen, updateTourOpen] = useState(true);
 
   const closeTour = () => updateTourOpen(false);
-
-  const handleLogout = () => {
-    dispatch(userActions.logoutUser());
-  };
 
   return (
     <StyledFragment>
