@@ -51,3 +51,5 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'cors'
 
 gem 'jwt'
+
+gem 'aws-sdk-s3'
