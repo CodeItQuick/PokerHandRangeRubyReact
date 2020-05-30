@@ -1,0 +1,24 @@
+defaults: &defaults
+  host: 127.0.0.1
+  port: 27017
+  options:
+    w: 1
+    pool_size: 1
+    slave_ok: false
+    ssl: false
+
+development:
+  <<: *defaults
+  database: range_sharing_react_ruby_api_development
+
+test:
+  <<: *defaults
+  database: range_sharing_react_ruby_api_test
+  w: 0
+
+# set these environment variables on your prod server
+production:
+  <<: *defaults
+  database: range_sharing_react_ruby_api
+  username: <%= ENV['MONGO_USERNAME'] %>
+  password: <%= ENV['MONGO_PASSWORD'] %>

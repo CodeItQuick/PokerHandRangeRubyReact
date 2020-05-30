@@ -1,0 +1,5 @@
+{
+    "tableName": "DynamoDBTable",
+    "partitionKeyName": "ID",
+    "partitionKeyType": "N"
+}

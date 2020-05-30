@@ -1,7 +1,8 @@
-class HandRangeGroup < ApplicationRecord
-    belongs_to :hand_range
-    belongs_to :hand_range_folder
-    validates :hand_range_id, presence: true
-    validates :hand_range_folder_id, presence: true
-    
+class HandRangeGroup
+  include MongoMapper::Document
+
+  key :GroupName, String
+  key :hand_range_id, Integer
+  key :hand_range_folder_id, Integer
+
 end

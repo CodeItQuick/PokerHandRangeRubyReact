@@ -2,18 +2,12 @@
 
 one:
   RangeName: MyString
-  RangeScope0: MyString
-  RangeScope1: MyString
-  RangeScope2: MyString
-  RangeScope3: MyString
-  RangeScope4: MyString
-  UserID: 1
+  RangeScope: MyString
+  created_at: 2020-05-28 21:31:59
+  updated_at: 2020-05-28 21:31:59
 
 two:
   RangeName: MyString
-  RangeScope0: MyString
-  RangeScope1: MyString
-  RangeScope2: MyString
-  RangeScope3: MyString
-  RangeScope4: MyString
-  UserID: 1
+  RangeScope: MyString
+  created_at: 2020-05-28 21:31:59
+  updated_at: 2020-05-28 21:31:59

@@ -41,6 +41,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'mysql2'
+gem 'mongo_mapper'
+gem 'bson_ext'
 
 gem 'stripe'
 
@@ -52,4 +54,4 @@ gem 'cors'
 
 gem 'jwt'
 
-gem 'aws-sdk-s3'
+gem 'aws-sdk'

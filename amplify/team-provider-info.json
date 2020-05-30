@@ -1,0 +1,23 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-rangesharingreactrub-dev-205959-authRole",
+            "UnauthRoleArn": "arn:aws:iam::628132563466:role/amplify-rangesharingreactrub-dev-205959-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::628132563466:role/amplify-rangesharingreactrub-dev-205959-authRole",
+            "Region": "us-east-2",
+            "DeploymentBucketName": "amplify-rangesharingreactrub-dev-205959-deployment",
+            "UnauthRoleName": "amplify-rangesharingreactrub-dev-205959-unauthRole",
+            "StackName": "amplify-rangesharingreactrub-dev-205959",
+            "StackId": "arn:aws:cloudformation:us-east-2:628132563466:stack/amplify-rangesharingreactrub-dev-205959/252477e0-a13f-11ea-a18a-023ebc410218",
+            "AmplifyAppId": "d3jtmd4idtnbzk"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "d3jtmd4idtnbzk",
+                    "type": "cicd"
+                }
+            }
+        }
+    }
+}
