@@ -15,7 +15,7 @@
 # gem 'pg'
 #
 default: &default
-  adapter: mysql2
+  #adapter: mysql2
   encoding: utf8mb4
   username: root
 
@@ -27,7 +27,7 @@ default: &default
 
 development:
   <<: *default
-  adapter: mysql2
+  #adapter: mysql2
   encoding: utf8mb4
 
   database: RangeSharingReactRubyAPI_development
