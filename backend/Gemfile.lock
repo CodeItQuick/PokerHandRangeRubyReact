@@ -965,9 +965,7 @@ GEM
     bcrypt (3.1.13)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
-    bson (1.12.5)
-    bson_ext (1.12.5)
-      bson (~> 1.12.5)
+    bson (4.8.2)
     builder (3.2.4)
     byebug (11.1.1)
     concurrent-ruby (1.1.6)
@@ -1002,20 +1000,16 @@ GEM
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
-    mongo (1.12.5)
-      bson (= 1.12.5)
-    mongo_mapper (0.14.0)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0)
-      mongo (~> 1.8)
-      plucky (~> 0.7.0)
+    mongo (2.12.1)
+      bson (>= 4.8.2, < 5.0.0)
+    mongoid (7.0.7)
+      activemodel (>= 5.1, < 6.1)
+      mongo (>= 2.7.0, < 3.0.0)
     msgpack (1.3.3)
     multi_json (1.14.1)
     nio4r (2.5.2)
     nokogiri (1.10.8)
       mini_portile2 (~> 2.4.0)
-    plucky (0.7.0)
-      mongo (~> 1.5)
     puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
@@ -1082,13 +1076,12 @@ DEPENDENCIES
   aws-sdk
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
-  bson_ext
   byebug
   cors
   dotenv-rails
   jwt
   listen (>= 3.0.5, < 3.2)
-  mongo_mapper
+  mongoid (~> 7.0.5)
   puma (~> 4.3)
   rack-cors
   rails (~> 6.0.2, >= 6.0.2.1)
