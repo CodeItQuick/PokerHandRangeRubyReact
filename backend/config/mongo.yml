@@ -6,6 +6,7 @@ defaults: &defaults
     pool_size: 1
     slave_ok: false
     ssl: false
+    raise_not_found_error: false
 
 development:
   <<: *defaults

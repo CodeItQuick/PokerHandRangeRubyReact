@@ -1,5 +1,5 @@
 class HandRangeGroup
-  include MongoMapper::Document
+  include Mongoid::Document
 
   key :GroupName, String
   key :hand_range_id, Integer

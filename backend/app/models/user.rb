@@ -1,5 +1,5 @@
 class User
-  include MongoMapper::Document
+  include Mongoid::Document
 
   key :name, String
   t.string "name"
