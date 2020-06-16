@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - cd /home/app/webapp
+      - WORKDIR /home/app/webapp
       - gem install bundler
       - su app
       - bundler install
