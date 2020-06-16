@@ -20,7 +20,7 @@ default: &default
   username: root
 
   # The password associated with the postgres role (username).
-  password: 
+  password:
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -39,7 +39,7 @@ development:
   username: root
 
   # The password associated with the postgres role (username).
-  password: 
+  password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -53,7 +53,6 @@ development:
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
-
   # Minimum log levels, in increasing order:
   #   debug5, debug4, debug3, debug2, debug1,
   #   log, notice, warning, error, fatal, and panic
@@ -88,6 +87,7 @@ test:
 #
 production:
   <<: *default
+  host: mysql
   database: RangeSharingReactRubyAPI_production
-  username: RangeSharingReactRubyAPI
-  password: <%= ENV['RANGESHARINGREACTRUBYAPI_DATABASE_PASSWORD'] %>
+  username: root
+  password: <%= ENV.fetch("DB_PASSWORD") %>
