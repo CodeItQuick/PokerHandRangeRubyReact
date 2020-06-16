@@ -5,7 +5,6 @@ phases:
     commands:
       - cd ./backend
       - gem install bundler
-      - su app
       - bundler install
   pre_build:
     commands:
