@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - WORKDIR /home/app/webapp
+      - cd ./backend
       - gem install bundler
       - su app
       - bundler install
