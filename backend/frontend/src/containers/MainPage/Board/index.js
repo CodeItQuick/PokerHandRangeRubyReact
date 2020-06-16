@@ -10,11 +10,13 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import {
   makeSelectRangesPreflop,
-  makeSelectRangesPreflopOnly
+  makeSelectRangesPreflopOnly,
 } from "../selectors";
 
 import { setHandRange } from "../actions.js";
 import styled from "styled-components";
+
+//TODO: implement interact.js or draggable instead of this react library
 
 const ColorCard = styled(animated.button)`
   cursor: pointer;
@@ -28,7 +30,7 @@ const ColorCard = styled(animated.button)`
   font-size: 7px;
   text-align: center;
   color: black;
-  background-color: ${props => props.coloring};
+  background-color: ${(props) => props.coloring};
   border: ${({ border_attrib }) =>
     border_attrib ? "3px dashed black" : "none"};
   @media (min-width: 576px) and (max-width: 767.98px) {
@@ -75,7 +77,7 @@ const orderedCard = [
   "5",
   "4",
   "3",
-  "2"
+  "2",
 ];
 const displayCardSuit = (cardOne, cardTwo) => {
   let displaySuit = "";
@@ -114,8 +116,8 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
   useEffect(() => {
     let cardClone = {};
 
-    orderedCard.forEach(cardOne =>
-      orderedCard.forEach(cardTwo => {
+    orderedCard.forEach((cardOne) =>
+      orderedCard.forEach((cardTwo) => {
         let hand =
           getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo);
         if (PreflopRanges) {
@@ -124,8 +126,8 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
               cardClone = {
                 ...cardClone,
                 [hand]: {
-                  colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][idx]
-                }
+                  colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][idx],
+                },
               };
             }
           });
@@ -138,26 +140,26 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
 
   // Set the drag hook and define component movement based on gesture data
   const bind = useGesture({
-    onDrag: props =>
+    onDrag: (props) =>
       onMouseOverHandler(
         {
           cards: props.args[props.args.length - 1],
           onMouseDownEvent:
             (props.memo !== props.args[props.args.length - 1] && props.down) ||
-            (props.first && props.down)
+            (props.first && props.down),
         },
         { threshold: 40, filterTaps: false }
       ),
-    onMove: props =>
+    onMove: (props) =>
       onMouseOverHandler(
         {
           cards: props.args[props.args.length - 1],
           onMouseDownEvent:
             (props.memo !== props.args[0] && props.down) ||
-            (props.first && props.down)
+            (props.first && props.down),
         },
         { threshold: 40, delay: true }
-      )
+      ),
   });
 
   useEffect(() => {
@@ -168,7 +170,7 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
 
     let toSetManyHands = [];
 
-    toSetManyHands = orderedCard.map(cardOne =>
+    toSetManyHands = orderedCard.map((cardOne) =>
       orderedCard.reduce((acc, cardTwo, idx) => {
         acc.push([cardOne, cardTwo]);
         return acc;
@@ -208,10 +210,10 @@ const mapStateToProps = () => {
   const getRangesPreflop = makeSelectRangesPreflop();
   const getRangesPreflopOnly = makeSelectRangesPreflopOnly();
 
-  const mapState = state => {
+  const mapState = (state) => {
     return {
       PreflopRanges: getRangesPreflop(state),
-      PreflopRangesOnly: getRangesPreflopOnly(state)
+      PreflopRangesOnly: getRangesPreflopOnly(state),
     };
   };
 
