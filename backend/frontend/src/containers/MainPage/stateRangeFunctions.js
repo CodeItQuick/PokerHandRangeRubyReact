@@ -1,3 +1,6 @@
+import initialState from "./reducer";
+import { ranges } from "./sampleData";
+
 export const mapNewHandRange = (
   oldHandRange,
   draftModeStreet,
@@ -60,23 +63,24 @@ export const saveOldRangeRepo = (
       };
   });
 
-export const loadNewRange = (initialState, rangeRepo, actionData) => {
-  let filteredForPosition = rangeRepo.filter(
-    ({ FolderName, FolderGroupName, Position, ranges }) =>
+export const loadNewRange = (rangeRepo, actionData) => {
+  let filteredForPosition = rangeRepo.find(
+    ({ FolderName, FolderGroupName, Position }) =>
       FolderName == actionData.folderID &&
       FolderGroupName == actionData.folderSubgroupName &&
       Position == actionData.folderSubgroupRangeName
   );
 
-  let returnRanges = initialState.ranges.map(({ Street, BetType, hands }) => {
-    let filteredForPositionRange = filteredForPosition[0].ranges.filter(
+  let returnRanges = ranges.map(({ Street, BetType, hands }) => {
+    let filteredForPositionRange = filteredForPosition?.ranges.filter(
       pos => pos.Street == Street && pos.BetType == BetType
     );
 
+    console.log(filteredForPositionRange); //?
     return {
       Street,
       BetType,
-      hands: filteredForPositionRange[0].hands || hands
+      hands: filteredForPositionRange?.hands || hands
     };
   });
 

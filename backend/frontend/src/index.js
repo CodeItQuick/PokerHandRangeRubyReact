@@ -9,12 +9,12 @@ import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import throttle from "lodash/throttle";
-import history from "./utils/history";
 import { saveState } from "./localStorage";
 import configureStore from "./configureStore";
+import { initialState } from "./containers/MainPage/reducer.js";
+import history from "./utils/history";
 import { ConnectedRouter } from "connected-react-router";
 import { ThemeProvider } from "styled-components";
-import { initialState } from "./containers/MainPage/reducer.js";
 
 import UserRegister from "./containers/Auth/Register/UserRegister.js";
 import Login from "./containers/Auth/Login/UserLogin.js";

@@ -110,8 +110,6 @@
     "@babel/preset-env": "^7.9.0",
     "@craco/craco": "^5.6.2",
     "@semantic-ui-react/craco-less": "^1.2.1",
-    "babel-eslint": "^10.0.3",
-    "babel-loader": "^8.0.6",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^6.7.2",
@@ -125,8 +123,7 @@
     "jest-enzyme": "^7.1.2",
     "jsdom-quokka-plugin": "^1.0.15",
     "semantic-ui-less": "^2.4.1",
-    "wallaby-webpack": "^3.9.15",
-    "webpack": "^4.41.5"
+    "wallaby-webpack": "^3.9.15"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "src/setupTests.js"

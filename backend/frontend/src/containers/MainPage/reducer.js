@@ -16,155 +16,14 @@ import {
 } from "./constants.js";
 
 import { saveOldRangeRepo, loadNewRange } from "./stateRangeFunctions";
+import { sampleData, ranges } from "./sampleData.js";
 
 const initialState = {
-  mode: {
-    street: "Preflop",
-    streetAction: "Raise4BetCall"
-  },
-  rangeSelectionArray: {
-    folderID: "Evan's Second Folder",
-    folderSubgroupName: "Opening Ranges",
-    folderSubgroupRangeName: "UTG"
-  },
-  rangeColors: {
-    "0": [],
-    "1": [],
-    "2": [],
-    "3": []
-  },
-  rangeRepo: [
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "UTG",
-      ranges: [{}]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "MP",
-      ranges: [{}]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "CO",
-      ranges: [
-        {
-          Street: "Preflop",
-          BetType: "Raise4BetCall",
-          hands: []
-        }
-      ]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "BU",
-      ranges: [
-        {
-          Street: "Preflop",
-          BetType: "Raise4BetCall",
-          hands: []
-        }
-      ]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "SB",
-      ranges: [
-        {
-          Street: "Preflop",
-          BetType: "Raise4BetCall",
-          hands: []
-        }
-      ]
-    }
-  ],
-  ranges: [
-    {
-      Street: "Preflop",
-      BetType: "Raise4BetCall",
-      hands: []
-    },
-    {
-      Street: "Preflop",
-      BetType: "Raise4BetFold",
-      hands: []
-    },
-    {
-      Street: "Preflop",
-      BetType: "RaiseCall",
-      hands: []
-    },
-    {
-      Street: "Preflop",
-      BetType: "RaiseFold",
-      hands: []
-    },
-    {
-      Street: "Flop",
-      BetType: "Valuebet",
-      hands: []
-    },
-    {
-      Street: "Flop",
-      BetType: "Bluff",
-      hands: []
-    },
-    {
-      Street: "Flop",
-      BetType: "CheckCall",
-      hands: []
-    },
-    {
-      Street: "Flop",
-      BetType: "CheckFold",
-      hands: []
-    },
-    {
-      Street: "Turn",
-      BetType: "Valuebet",
-      hands: []
-    },
-    {
-      Street: "Turn",
-      BetType: "Bluff",
-      hands: []
-    },
-    {
-      Street: "Turn",
-      BetType: "CheckCall",
-      hands: []
-    },
-    {
-      Street: "Turn",
-      BetType: "CheckFold",
-      hands: []
-    },
-    {
-      Street: "River",
-      BetType: "Valuebet",
-      hands: []
-    },
-    {
-      Street: "River",
-      BetType: "Bluff",
-      hands: []
-    },
-    {
-      Street: "River",
-      BetType: "CheckCall",
-      hands: []
-    },
-    {
-      Street: "River",
-      BetType: "CheckFold",
-      hands: []
-    }
-  ]
+  mode: sampleData.mode,
+  rangeSelectionArray: sampleData.rangeSelectionArray,
+  rangeColors: sampleData.rangeColors,
+  rangeRepo: sampleData.rangeRepo,
+  ranges: ranges
 };
 
 //TODO: Make ranges convert between easy to read ranges
@@ -197,7 +56,7 @@ const mainPageReducer = (state = initialState, action) =>
           draft.ranges
         );
         draft.rangeSelectionArray = action.data;
-        draft.ranges = loadNewRange(initialState, draft.rangeRepo, action.data);
+        draft.ranges = loadNewRange(draft.rangeRepo, action.data);
 
         break;
 
