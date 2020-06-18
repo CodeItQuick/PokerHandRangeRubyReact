@@ -31,10 +31,7 @@ const makeSelectRanges = () => {
           Street == global.mode.street && BetType == global.mode.streetAction
         );
       })[0];
-    } else
-      return initialState.filter(({ Street, BetType }) => {
-        return Street == "Preflop" && BetType == "Raise4BetCall";
-      })[0];
+    } else return initialState;
   });
 };
 

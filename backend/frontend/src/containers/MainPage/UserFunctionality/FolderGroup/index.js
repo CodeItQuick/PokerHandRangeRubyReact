@@ -70,6 +70,7 @@ const FolderGroup = ({ FolderGroup, folderIdx = 0, folderName }) => {
 
   return (
     <Tab
+      data-test="folder-group"
       panes={panes(FolderGroup, folderIdx, folderName)}
       menu={{ fluid: true, vertical: true, tabular: true }}
       onTabChange={onChangeHandler}
