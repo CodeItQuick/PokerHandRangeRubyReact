@@ -25,21 +25,14 @@ function setup() {
 }
 
 describe("FolderGroup Component in MainPage Container", () => {
-  test.each([0])(
-    "When clicking folder 1, 2, or 3 active class is selected",
-    (folderNumbers) => {
-      let enzymeWrapper = mount(setup());
+  test("When clicking folder 1, 2, or 3 active class is selected", () => {
+    let enzymeWrapper = mount(setup());
 
-      // console.log(enzymeWrapper.find("a"));
-      //expect(enzymeWrapper.find("a").length).toBe(5);
-      const buttons = enzymeWrapper.find("a");
-      const folderTwo = buttons.at(folderNumbers);
+    // console.log(enzymeWrapper.find("a"));
+    //expect(enzymeWrapper.find("a").length).toBe(5);
+    const buttons = enzymeWrapper.find("a");
+    const folderTwo = buttons.get(1).props.onClick();
 
-      console.log(folderTwo); //?
-      folderTwo.simulate("click");
-      console.log(folderTwo.html()); //?
-
-      expect(folderTwo.render().hasClass("active item")).toBe(true);
-    }
-  );
+    expect(folderTwo.render().hasClass("active item")).toBe(true);
+  });
 });

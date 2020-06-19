@@ -4,7 +4,7 @@ import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import { Provider } from "react-redux";
-import { initialState } from '../../src/containers/MainPage/reducer';
+import { initialState } from "../../src/containers/MainPage/reducer";
 import history from "../../src/utils/history";
 import configureStore from "../../src/configureStore.js";
 
@@ -15,17 +15,20 @@ const store = configureStore(initialState, history);
 function setup() {
   const props = initialState;
 
-  const enzymeWrapper = shallow(<Provider store={store}><MainPage {...props} /></Provider>);
+  const enzymeWrapper = shallow(
+    <Provider store={store}>
+      <MainPage {...props} />
+    </Provider>
+  );
 
   return {
     props,
-    enzymeWrapper
-  }
+    enzymeWrapper,
+  };
 }
 describe("MainPage Container", () => {
   test("renders an element on the page", () => {
-    const {enzymeWrapper} = setup();
-    console.log(enzymeWrapper); //?
+    const { enzymeWrapper } = setup();
     expect(enzymeWrapper.length).toBe(1);
   });
 });

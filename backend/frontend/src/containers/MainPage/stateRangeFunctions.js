@@ -17,7 +17,6 @@ export const mapNewHandRange = (
       let indexHandInRange = handsWithRemovedCards.indexOf(actionDataCards);
       let numberHandsToRemove = 1;
       handsWithRemovedCards.splice(indexHandInRange, numberHandsToRemove);
-      console.log(handsWithRemovedCards);
       return {
         Street: rangeObj.Street,
         BetType: rangeObj.BetType,
@@ -39,47 +38,37 @@ export const saveOldRangeRepo = (
   rangeSelectionArray,
   draftRanges
 ) => {
-  let defaultRanges = JSON.parse(JSON.stringify(ranges));
-  rangeRepo.map(({ FolderName, FolderGroupName, Position, ranges }) => {
+  let defaultRanges = JSON.parse(JSON.stringify(draftRanges));
+  let rangeRepos = rangeRepo.map(repositoryRange => {
     if (
-      FolderName == rangeSelectionArray.folderID &&
-      FolderGroupName == rangeSelectionArray.folderSubgroupName &&
-      Position == rangeSelectionArray.folderSubgroupRangeName
+      repositoryRange.FolderName == rangeSelectionArray.folderID &&
+      repositoryRange.FolderGroupName ==
+        rangeSelectionArray.folderSubgroupName &&
+      repositoryRange.Position == rangeSelectionArray.folderSubgroupRangeName
     )
       return {
         FolderName: rangeSelectionArray.folderID,
         FolderGroupName: rangeSelectionArray.folderSubgroupName,
         Position: rangeSelectionArray.folderSubgroupRangeName,
-        ranges: defaultRanges || draftRanges
+        ranges: defaultRanges || ranges
       };
     else
       return {
-        FolderName,
-        FolderGroupName,
-        Position,
-        ranges: defaultRanges || ranges
+        FolderName: repositoryRange.FolderName,
+        FolderGroupName: repositoryRange.FolderGroupName,
+        Position: repositoryRange.Position,
+        ranges: repositoryRange.ranges || ranges
       };
   });
+  return rangeRepos;
 };
 export const loadNewRange = (rangeRepo, actionData) => {
-  let filteredForPosition = rangeRepo.find(
+  let filteredForPosition = rangeRepo?.filter(
     ({ FolderName, FolderGroupName, Position }) =>
-      FolderName == actionData.folderID &&
-      FolderGroupName == actionData.folderSubgroupName &&
-      Position == actionData.folderSubgroupRangeName
-  );
+      actionData.folderID == FolderName &&
+      actionData.folderSubgroupName == FolderGroupName &&
+      actionData.folderSubgroupRangeName == Position
+  )[0]?.ranges;
 
-  let returnRanges = ranges.map(({ Street, BetType, hands }) => {
-    let filteredForPositionRange = filteredForPosition?.ranges.filter(
-      pos => pos.Street == Street && pos.BetType == BetType
-    );
-
-    return {
-      Street,
-      BetType,
-      hands: filteredForPositionRange?.hands || hands
-    };
-  });
-
-  return returnRanges;
+  return filteredForPosition;
 };
