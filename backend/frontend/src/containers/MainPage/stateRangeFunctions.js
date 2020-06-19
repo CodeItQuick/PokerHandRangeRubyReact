@@ -11,38 +11,36 @@ export const mapNewHandRange = (
     let hasStreetAndCurrentBetType =
       rangeObj.Street == draftModeStreet &&
       rangeObj.BetType == draftModeStreetAction;
-    if (hasStreetAndCurrentBetType) {
-      let hasHandInRange = rangeObj.hands.indexOf(actionDataCards) >= 0;
-      if (hasHandInRange) {
-        let handsWithRemovedCards = rangeObj.hands;
-        let indexHandInRange = handsWithRemovedCards.indexOf(actionDataCards);
-        let numberHandsToRemove = 1;
-        handsWithRemovedCards.slice(indexHandInRange, numberHandsToRemove);
-        return {
-          Street: rangeObj.Street,
-          BetType: rangeObj.BetType,
-          hands: handsWithRemovedCards
-        };
-      } else
-        return {
-          Street: rangeObj.Street,
-          BetType: rangeObj.BetType,
-          hands: [...rangeObj.hands, actionDataCards]
-        };
-    } else {
-      return { ...rangeObj, hands: rangeObj.hands };
+    let hasHandInRange = rangeObj.hands.indexOf(actionDataCards) >= 0;
+    if (hasStreetAndCurrentBetType && hasHandInRange) {
+      let handsWithRemovedCards = JSON.parse(JSON.stringify(rangeObj.hands));
+      let indexHandInRange = handsWithRemovedCards.indexOf(actionDataCards);
+      let numberHandsToRemove = 1;
+      handsWithRemovedCards.splice(indexHandInRange, numberHandsToRemove);
+      console.log(handsWithRemovedCards);
+      return {
+        Street: rangeObj.Street,
+        BetType: rangeObj.BetType,
+        hands: handsWithRemovedCards
+      };
     }
+    if (hasStreetAndCurrentBetType && !hasHandInRange)
+      return {
+        Street: rangeObj.Street,
+        BetType: rangeObj.BetType,
+        hands: [...rangeObj.hands, actionDataCards]
+      };
+
+    return { ...rangeObj, hands: rangeObj.hands };
   });
 
 export const saveOldRangeRepo = (
-  initialState,
   rangeRepo,
   rangeSelectionArray,
   draftRanges
-) =>
+) => {
+  let defaultRanges = JSON.parse(JSON.stringify(ranges));
   rangeRepo.map(({ FolderName, FolderGroupName, Position, ranges }) => {
-    let defaultRanges = JSON.parse(JSON.stringify(initialState.ranges));
-
     if (
       FolderName == rangeSelectionArray.folderID &&
       FolderGroupName == rangeSelectionArray.folderSubgroupName &&
@@ -62,7 +60,7 @@ export const saveOldRangeRepo = (
         ranges: defaultRanges || ranges
       };
   });
-
+};
 export const loadNewRange = (rangeRepo, actionData) => {
   let filteredForPosition = rangeRepo.find(
     ({ FolderName, FolderGroupName, Position }) =>
@@ -76,7 +74,6 @@ export const loadNewRange = (rangeRepo, actionData) => {
       pos => pos.Street == Street && pos.BetType == BetType
     );
 
-    console.log(filteredForPositionRange); //?
     return {
       Street,
       BetType,

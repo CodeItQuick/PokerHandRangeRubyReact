@@ -13,106 +13,107 @@ const sampleData = {
     "1": [],
     "2": [],
     "3": []
-  },
-  rangeRepo: [
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "UTG",
-      ranges: [{}]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "MP",
-      ranges: [{}]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "CO",
-      ranges: [
-        {
-          Street: "Preflop",
-          BetType: "Raise4BetCall",
-          hands: []
-        }
-      ]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "BU",
-      ranges: [
-        {
-          Street: "Preflop",
-          BetType: "Raise4BetCall",
-          hands: []
-        }
-      ]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Opening Ranges",
-      Position: "SB",
-      ranges: [
-        {
-          Street: "Preflop",
-          BetType: "Raise4BetCall",
-          hands: []
-        }
-      ]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Defending Ranges",
-      Position: "UTG",
-      ranges: [{}]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Defending Ranges",
-      Position: "MP",
-      ranges: [{}]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Defending Ranges",
-      Position: "CO",
-      ranges: [
-        {
-          Street: "Preflop",
-          BetType: "Raise4BetCall",
-          hands: []
-        }
-      ]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Defending Ranges",
-      Position: "BU",
-      ranges: [
-        {
-          Street: "Preflop",
-          BetType: "Raise4BetCall",
-          hands: []
-        }
-      ]
-    },
-    {
-      FolderName: "Evan's Second Folder",
-      FolderGroupName: "Defending Ranges",
-      Position: "SB",
-      ranges: [
-        {
-          Street: "Preflop",
-          BetType: "Raise4BetCall",
-          hands: []
-        }
-      ]
-    }
-  ]
+  }
 };
+
+const rangeRepo = [
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Opening Ranges",
+    Position: "UTG",
+    ranges: [{}]
+  },
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Opening Ranges",
+    Position: "MP",
+    ranges: [{}]
+  },
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Opening Ranges",
+    Position: "CO",
+    ranges: [
+      {
+        Street: "Preflop",
+        BetType: "Raise4BetCall",
+        hands: []
+      }
+    ]
+  },
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Opening Ranges",
+    Position: "BU",
+    ranges: [
+      {
+        Street: "Preflop",
+        BetType: "Raise4BetCall",
+        hands: []
+      }
+    ]
+  },
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Opening Ranges",
+    Position: "SB",
+    ranges: [
+      {
+        Street: "Preflop",
+        BetType: "Raise4BetCall",
+        hands: []
+      }
+    ]
+  },
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Defending Ranges",
+    Position: "UTG",
+    ranges: [{}]
+  },
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Defending Ranges",
+    Position: "MP",
+    ranges: [{}]
+  },
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Defending Ranges",
+    Position: "CO",
+    ranges: [
+      {
+        Street: "Preflop",
+        BetType: "Raise4BetCall",
+        hands: []
+      }
+    ]
+  },
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Defending Ranges",
+    Position: "BU",
+    ranges: [
+      {
+        Street: "Preflop",
+        BetType: "Raise4BetCall",
+        hands: []
+      }
+    ]
+  },
+  {
+    FolderName: "Evan's Second Folder",
+    FolderGroupName: "Defending Ranges",
+    Position: "SB",
+    ranges: [
+      {
+        Street: "Preflop",
+        BetType: "Raise4BetCall",
+        hands: []
+      }
+    ]
+  }
+];
 
 const ranges = [
   {
@@ -197,4 +198,4 @@ const ranges = [
   }
 ];
 
-export { sampleData, ranges };
+export { sampleData, ranges, rangeRepo };
