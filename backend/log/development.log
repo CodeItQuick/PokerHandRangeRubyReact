@@ -43903,3 +43903,47 @@ Processing by HandRangesController#show_user_id as */*
 Completed 200 OK in 68ms (Views: 29.5ms | ActiveRecord: 37.0ms | Allocations: 11065)
 
 
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 13:32:30 -0300
+  [1m[35m (13.5ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (10.0ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 44ms (Views: 30.6ms | ActiveRecord: 10.0ms | Allocations: 11064)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 13:45:47 -0300
+  [1m[35m (28.4ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (28.1ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 69ms (Views: 32.6ms | ActiveRecord: 28.1ms | Allocations: 11064)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 13:45:57 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 265ms (Views: 2.2ms | ActiveRecord: 0.8ms | Allocations: 902)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2020-06-19 13:45:58 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:52:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16:in `show'
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 6.4ms | Allocations: 1247)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 13:46:01 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (6.5ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 23ms (Views: 16.0ms | ActiveRecord: 6.5ms | Allocations: 11065)
+
+
