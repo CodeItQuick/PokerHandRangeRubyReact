@@ -9,7 +9,7 @@ const Navbar = ({ username = false }) => {
       <Menu.Item>
         <NavLink to="/">Home</NavLink>
       </Menu.Item>
-      {username ? (
+      {username != false ? (
         <Fragment>
           <Menu.Item>{username ? username : ""}</Menu.Item>
           <Menu.Item>

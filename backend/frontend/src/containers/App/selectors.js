@@ -5,6 +5,10 @@ const selectGlobal = state => state.global || initialState;
 
 const selectRouter = state => state.router;
 
+const selectUser = state => state.user;
+
+const makeSelectUser = () => createSelector(selectUser, userState => userState);
+
 const makeSelectLoading = () =>
   createSelector(selectGlobal, globalState => globalState.loading);
 
@@ -17,7 +21,9 @@ const makeSelectMenu = slug =>
 export {
   selectGlobal,
   selectRouter,
+  selectUser,
   makeSelectLoading,
   makeSelectError,
-  makeSelectMenu
+  makeSelectMenu,
+  makeSelectUser
 };

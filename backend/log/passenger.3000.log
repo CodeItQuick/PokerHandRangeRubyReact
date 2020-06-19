@@ -1,0 +1,87 @@
+[ N 2020-06-19 11:24:56.2444 38492/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-06-19 11:24:56.2774 38494/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-06-19 11:24:56.2778 38494/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-06-19 11:24:56.3047 38494/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 38494
+[ N 2020-06-19 11:24:58.9363 38494/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+
+[ N 2020-06-19 11:28:32.7676 38494/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-06-19 11:28:32.7677 38494/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-06-19 11:28:32.7678 38494/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 38553, application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend (development)
+[ N 2020-06-19 11:28:32.7679 38494/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-06-19 11:28:32.7679 38494/Tb Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-06-19 11:28:32.7679 38494/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-06-19 11:28:32.7679 38494/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-06-19 11:28:32.7679 38494/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-06-19 11:28:32.7679 38494/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-06-19 11:28:32.7680 38494/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-06-19 11:28:32.7679 38494/Tb Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-06-19 11:28:32.7680 38494/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-06-19 11:28:32.7680 38494/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-06-19 11:28:32.7681 38494/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-06-19 11:28:32.7679 38494/Tj Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-06-19 11:28:32.7679 38494/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-06-19 11:28:32.7680 38494/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-06-19 11:28:32.7683 38494/Tj Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-06-19 11:28:32.7679 38494/Tl Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-06-19 11:28:32.7682 38494/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-06-19 11:28:32.7683 38494/Tl Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-06-19 11:28:32.7684 38494/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 38553, application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend (development)
+[ N 2020-06-19 11:28:33.6741 38494/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-06-19 11:28:48.8013 39281/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-06-19 11:28:48.8351 39283/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-06-19 11:28:48.8355 39283/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-06-19 11:28:48.8633 39283/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 39283
+[ N 2020-06-19 11:28:51.5011 39283/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+
+[ N 2020-06-19 11:42:08.8309 39283/T9 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-06-19 11:42:08.8310 39283/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-06-19 11:42:08.8310 39283/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 39344, application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend (development)
+[ N 2020-06-19 11:42:08.8313 39283/T9 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-06-19 11:42:08.8313 39283/Tf Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-06-19 11:42:08.8313 39283/Td Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-06-19 11:42:08.8314 39283/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-06-19 11:42:08.8314 39283/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-06-19 11:42:08.8314 39283/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-06-19 11:42:08.8314 39283/T9 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-06-19 11:42:08.8314 39283/Td Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-06-19 11:42:08.8314 39283/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-06-19 11:42:08.8314 39283/Tf Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-06-19 11:42:08.8314 39283/Tn Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-06-19 11:42:08.8313 39283/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-06-19 11:42:08.8314 39283/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-06-19 11:42:08.8315 39283/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-06-19 11:42:08.8315 39283/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-06-19 11:42:08.8315 39283/Tn Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-06-19 11:42:08.8316 39283/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-06-19 11:42:08.8318 39283/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-06-19 11:42:08.8319 39283/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 39344, application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend (development)
+[ N 2020-06-19 11:42:09.7245 39283/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+2020/06/19 11:43:55 [emerg] 40502#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:43:55 [emerg] 40502#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:43:55 [emerg] 40502#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:43:55 [emerg] 40502#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:43:55 [emerg] 40502#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:43:55 [emerg] 40502#0: still could not bind()
+2020/06/19 11:44:07 [emerg] 40546#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:07 [emerg] 40546#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:07 [emerg] 40546#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:07 [emerg] 40546#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:07 [emerg] 40546#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:07 [emerg] 40546#0: still could not bind()
+2020/06/19 11:44:21 [emerg] 40572#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:21 [emerg] 40572#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:21 [emerg] 40572#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:21 [emerg] 40572#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:21 [emerg] 40572#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:21 [emerg] 40572#0: still could not bind()
+2020/06/19 11:44:34 [emerg] 40604#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:34 [emerg] 40604#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:34 [emerg] 40604#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:34 [emerg] 40604#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:34 [emerg] 40604#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/19 11:44:34 [emerg] 40604#0: still could not bind()
+[ N 2020-06-19 11:46:13.9064 40757/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-06-19 11:46:13.9455 40759/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-06-19 11:46:13.9460 40759/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-06-19 11:46:13.9748 40759/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 40759
+[ N 2020-06-19 11:46:17.0120 40759/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)

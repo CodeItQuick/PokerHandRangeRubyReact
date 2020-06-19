@@ -14,9 +14,10 @@ import {
 export const initialState = {
   loading: false,
   error: { invalid: false, message: null },
-  params: {},
-  data: false,
-  token: null
+  email: false,
+  name: false,
+  token: null,
+  id: false
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -37,7 +38,10 @@ const authReducer = (state = initialState, action) =>
         break;
 
       case USER_LOADED:
-        draft.data = action.user;
+        console.log(action.user);
+        draft.email = action.user.email;
+        draft.name = action.user.name;
+        draft.id = action.user.id;
         break;
 
       case USER_SIGNIN_FAIL:

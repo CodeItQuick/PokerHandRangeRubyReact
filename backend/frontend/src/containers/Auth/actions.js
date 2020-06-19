@@ -46,9 +46,10 @@ export function userSigninFail(error) {
   };
 }
 
-export function requestUser() {
+export function requestUser(userid) {
   return {
-    type: USER_REQUESTED
+    type: USER_REQUESTED,
+    userid
   };
 }
 
