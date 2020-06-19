@@ -21,8 +21,7 @@ const makeSelectLocation = () =>
 const makeSelectToken = () =>
   createSelector(selectUser, userState => userState.token);
 
-const makeSelectUser = () =>
-  createSelector(selectUser, userState => userState.data);
+const makeSelectUser = () => createSelector(selectUser, userState => userState);
 
 const makeSelectParams = () =>
   createSelector(selectUser, userState => userState.params);

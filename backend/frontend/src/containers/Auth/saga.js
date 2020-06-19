@@ -41,8 +41,9 @@ export function* logoutSaga() {
   yield put(push("/"));
 }
 
-export function* authStateSaga() {
-  const requestURL = `${baseURL}/users/`;
+export function* authStateSaga({ userid }) {
+  console.log(userid);
+  const requestURL = `${baseURL}/users/${userid}`;
   const headers = {};
   const token = yield localStorage.getItem("token");
 
@@ -81,8 +82,9 @@ export function* userSigninSaga({ user: { name, password } }) {
   try {
     const response = yield call(request, requestURL, requestParams);
     const { user, token } = response;
+    console.log(user);
     yield localStorage.setItem("token", token);
-    yield put(requestUser());
+    yield put(requestUser(user.id));
     yield put(userSigninSuccess(token));
   } catch (error) {
     try {
@@ -109,7 +111,7 @@ export function* userSignupSaga({ user }) {
   const requestURL = `${baseURL}/users?${params}`;
 
   try {
-    const response = yield call(request, requestURL, { method: "POST" });
+    let response = yield call(request, requestURL, { method: "POST" });
     console.log(response);
     yield put(userSignin(user));
     yield put(userSigninSuccess(response));

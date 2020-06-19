@@ -29,6 +29,8 @@ function setup() {
 describe("MainPage Container", () => {
   test("renders an element on the page", () => {
     const { enzymeWrapper } = setup();
+    console.log(enzymeWrapper);
+
     expect(enzymeWrapper.length).toBe(1);
   });
 });

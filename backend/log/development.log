@@ -43393,3 +43393,513 @@ puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
 puma (4.3.5) lib/puma/server.rb:472:in `process_client'
 puma (4.3.5) lib/puma/server.rb:328:in `block in run'
 puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started HEAD "/" for 127.0.0.1 at 2020-06-19 11:00:35 -0300
+  [1m[35m (42.5ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (15.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.2ms | Allocations: 482)
+Completed 200 OK in 18ms (Views: 13.8ms | ActiveRecord: 0.0ms | Allocations: 2814)
+
+
+Started HEAD "/" for 127.0.0.1 at 2020-06-19 11:25:00 -0300
+  [1m[35m (17.9ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (25.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 10.5ms | Allocations: 317)
+Completed 200 OK in 17ms (Views: 13.2ms | ActiveRecord: 0.0ms | Allocations: 1778)
+
+
+Started HEAD "/" for 127.0.0.1 at 2020-06-19 11:28:53 -0300
+  [1m[35m (12.6ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.1ms | Allocations: 317)
+Completed 200 OK in 13ms (Views: 10.1ms | ActiveRecord: 0.0ms | Allocations: 1778)
+
+
+Started GET "/" for 127.0.0.1 at 2020-06-19 11:29:00 -0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 12.3ms | Allocations: 190)
+Completed 200 OK in 17ms (Views: 13.5ms | ActiveRecord: 0.0ms | Allocations: 698)
+
+
+Started GET "/favicon.ico" for 127.0.0.1 at 2020-06-19 11:29:01 -0300
+  
+ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+passenger (6.0.5) src/ruby_supportlib/phusion_passenger/rack/thread_handler_extension.rb:107:in `process_request'
+passenger (6.0.5) src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:149:in `accept_and_process_next_request'
+passenger (6.0.5) src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+passenger (6.0.5) src/ruby_supportlib/phusion_passenger/request_handler.rb:415:in `block (3 levels) in start_threads'
+passenger (6.0.5) src/ruby_supportlib/phusion_passenger/utils.rb:113:in `block in create_thread_and_abort_on_exception'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-06-19 11:29:06 -0300
+Processing by HandRangesController#index as HTML
+  [1m[36mHandRange Load (84.9ms)[0m  [1m[34mSELECT `hand_ranges`.* FROM `hand_ranges`[0m
+  ↳ app/controllers/hand_ranges_controller.rb:8:in `index'
+Completed 200 OK in 130ms (Views: 26.0ms | ActiveRecord: 97.1ms | Allocations: 24758)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 11:30:16 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (29.8ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 85ms (Views: 27.3ms | ActiveRecord: 37.9ms | Allocations: 23180)
+
+
+Started POST "/users?name=ev&email=ev%40ev.ca&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-06-19 11:30:48 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"ev", "email"=>"ev@ev.ca", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (5.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (20.6ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`name` = 'ev' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'ev@ev.ca' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 422 Unprocessable Entity in 346ms (Views: 0.2ms | ActiveRecord: 42.1ms | Allocations: 13438)
+
+
+Started POST "/users?name=ev&email=ev%40ev.ca&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-06-19 11:32:11 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"ev", "email"=>"ev@ev.ca", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`name` = 'ev' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'ev@ev.ca' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 422 Unprocessable Entity in 277ms (Views: 0.2ms | ActiveRecord: 1.0ms | Allocations: 4117)
+
+
+Started POST "/users?name=ev&email=ev%40ev.ca&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-06-19 11:32:24 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"ev", "email"=>"ev@ev.ca", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`name` = 'ev' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'ev@ev.ca' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 422 Unprocessable Entity in 274ms (Views: 0.2ms | ActiveRecord: 1.1ms | Allocations: 4117)
+
+
+Started POST "/users?name=evs&email=evs%40evs.ca&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-06-19 11:33:17 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"evs", "email"=>"evs@evs.ca", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`name` = 'evs' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'evs@evs.ca' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Create (6.1ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `created_at`, `updated_at`, `password_digest`) VALUES ('evs', 'evs@evs.ca', '2020-06-19 14:33:18.052292', '2020-06-19 14:33:18.052292', '$2a$12$2bnDaeCjLBuPAXrXuat51O13U0nClQb98qkREEoASp6/mgnz9LFh2')[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 201 Created in 289ms (Views: 0.7ms | ActiveRecord: 10.6ms | Allocations: 4933)
+
+
+Started POST "/users?name=evev&email=evev%40ev.ca&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-06-19 11:37:13 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"evev", "email"=>"evev@ev.ca", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`name` = 'evev' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'evev@ev.ca' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Create (4.0ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `created_at`, `updated_at`, `password_digest`) VALUES ('evev', 'evev@ev.ca', '2020-06-19 14:37:14.005437', '2020-06-19 14:37:14.005437', '$2a$12$LeL4QKi5o/T2BF0Ag/1BW.xrtGVrNBJmFfG7KmVuiRE5n7RZ2rMmm')[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 201 Created in 283ms (Views: 0.4ms | ActiveRecord: 6.1ms | Allocations: 4751)
+
+
+Started POST "/users?name=evevev&email=evevev%40evevev.ca&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-06-19 11:41:33 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"evevev", "email"=>"evevev@evevev.ca", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (1.0ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`name` = 'evevev' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'evevev@evevev.ca' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Create (6.9ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `created_at`, `updated_at`, `password_digest`) VALUES ('evevev', 'evevev@evevev.ca', '2020-06-19 14:41:33.946537', '2020-06-19 14:41:33.946537', '$2a$12$o.s.xRQhS4lnFB2WV3MnTuhT1os3wxAs9gmB7ebqSjIBA98iPqs/y')[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 201 Created in 287ms (Views: 0.5ms | ActiveRecord: 9.9ms | Allocations: 4751)
+
+
+Started HEAD "/" for 127.0.0.1 at 2020-06-19 11:46:20 -0300
+  [1m[35m (21.8ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/admin/.rvm/gems/ruby-2.6.3/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 40.1ms | Allocations: 317)
+Completed 200 OK in 51ms (Views: 46.1ms | ActiveRecord: 0.0ms | Allocations: 1778)
+
+
+Started POST "/users?name=evevevev&email=ev%40ev.ca&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-06-19 11:46:53 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"evevevev", "email"=>"ev@ev.ca", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (19.4ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`name` = 'evevevev' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'ev@ev.ca' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Create (64.7ms)[0m  [1m[32mINSERT INTO `users` (`name`, `email`, `created_at`, `updated_at`, `password_digest`) VALUES ('evevevev', 'ev@ev.ca', '2020-06-19 14:46:54.362705', '2020-06-19 14:46:54.362705', '$2a$12$B9IbyNUshwm8s2KEQnXQ4el4Pm0aetvYSIuwFapaKcXMLyx/mHHzK')[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (31.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 201 Created in 475ms (Views: 2.3ms | ActiveRecord: 154.7ms | Allocations: 11747)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 11:46:54 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evevevev", "password"=>"[FILTERED]", "auth"=>{"name"=>"evevevev", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (50.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evevevev' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 325ms (Views: 0.5ms | ActiveRecord: 50.2ms | Allocations: 1085)
+
+
+Started GET "/users/" for 127.0.0.1 at 2020-06-19 11:46:54 -0300
+Processing by UsersController#index as */*
+  [1m[36mUser Load (6.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  ↳ app/controllers/users_controller.rb:11:in `index'
+Completed 200 OK in 9ms (Views: 2.7ms | ActiveRecord: 6.3ms | Allocations: 1897)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 11:47:19 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evevevev", "password"=>"[FILTERED]", "auth"=>{"name"=>"evevevev", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (6.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evevevev' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 274ms (Views: 0.3ms | ActiveRecord: 6.8ms | Allocations: 902)
+
+
+Started GET "/users/" for 127.0.0.1 at 2020-06-19 11:47:19 -0300
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  ↳ app/controllers/users_controller.rb:11:in `index'
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.4ms | Allocations: 1894)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 11:47:22 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (9.0ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 190ms (Views: 89.4ms | ActiveRecord: 88.4ms | Allocations: 18135)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 11:47:44 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (27.0ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 42ms (Views: 14.6ms | ActiveRecord: 27.0ms | Allocations: 11065)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 11:59:39 -0300
+  [1m[35m (28.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (11.1ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 48ms (Views: 31.9ms | ActiveRecord: 11.1ms | Allocations: 11064)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 12:00:07 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (29.1ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 82ms (Views: 48.3ms | ActiveRecord: 29.1ms | Allocations: 11065)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 12:00:17 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (294.1ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 662ms (Views: 11.1ms | ActiveRecord: 294.1ms | Allocations: 902)
+
+
+Started GET "/users/" for 127.0.0.1 at 2020-06-19 12:00:18 -0300
+Processing by UsersController#index as */*
+  [1m[36mUser Load (56.3ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  ↳ app/controllers/users_controller.rb:11:in `index'
+Completed 200 OK in 65ms (Views: 7.8ms | ActiveRecord: 56.3ms | Allocations: 1894)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 12:01:21 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (28.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 339ms (Views: 2.6ms | ActiveRecord: 28.7ms | Allocations: 902)
+
+
+Started GET "/users/" for 127.0.0.1 at 2020-06-19 12:01:21 -0300
+Processing by UsersController#index as */*
+  [1m[36mUser Load (7.1ms)[0m  [1m[34mSELECT `users`.* FROM `users`[0m
+  ↳ app/controllers/users_controller.rb:11:in `index'
+Completed 200 OK in 26ms (Views: 17.8ms | ActiveRecord: 7.1ms | Allocations: 1894)
+
+
+DEPRECATION WARNING: Using `bin/rake routes` is deprecated and will be removed in Rails 6.1. Use `bin/rails routes` instead.
+ (called from load at /Users/admin/.rvm/gems/ruby-2.6.3/bin/rake:23)
+Started POST "/login" for 127.0.0.1 at 2020-06-19 12:44:30 -0300
+  [1m[35m (25.7ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (8.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 271ms (Views: 4.0ms | ActiveRecord: 8.2ms | Allocations: 901)
+
+
+Started GET "/users/[object%20Object]" for 127.0.0.1 at 2020-06-19 12:44:30 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"[object Object]"}
+  [1m[36mUser Load (11.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:52:in `set_user'
+Completed 404 Not Found in 26ms (ActiveRecord: 11.6ms | Allocations: 777)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=[object Object]):
+  
+app/controllers/users_controller.rb:52:in `set_user'
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 12:44:31 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (101.2ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 116ms (Views: 13.9ms | ActiveRecord: 101.2ms | Allocations: 11064)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 12:45:13 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (27.0ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 101ms (Views: 46.6ms | ActiveRecord: 27.0ms | Allocations: 11065)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 12:45:23 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 278ms (Views: 3.2ms | ActiveRecord: 6.7ms | Allocations: 902)
+
+
+Started GET "/users/[object%20Object]" for 127.0.0.1 at 2020-06-19 12:45:23 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"[object Object]"}
+  [1m[36mUser Load (6.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = NULL LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:52:in `set_user'
+Completed 404 Not Found in 8ms (ActiveRecord: 6.6ms | Allocations: 647)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=[object Object]):
+  
+app/controllers/users_controller.rb:52:in `set_user'
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 12:45:23 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (18.6ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 44ms (Views: 25.1ms | ActiveRecord: 18.6ms | Allocations: 11064)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 12:45:52 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 278ms (Views: 2.9ms | ActiveRecord: 1.8ms | Allocations: 902)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2020-06-19 12:45:52 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:52:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16:in `show'
+Completed 200 OK in 15ms (Views: 0.4ms | ActiveRecord: 2.4ms | Allocations: 1252)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 12:47:16 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (19.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 350ms (Views: 8.6ms | ActiveRecord: 19.5ms | Allocations: 902)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2020-06-19 12:47:17 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (101.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:52:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16:in `show'
+Completed 200 OK in 114ms (Views: 0.9ms | ActiveRecord: 101.1ms | Allocations: 1247)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 12:54:09 -0300
+  [1m[35m (19.2ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 279ms (Views: 2.3ms | ActiveRecord: 2.0ms | Allocations: 901)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2020-06-19 12:54:10 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:52:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16:in `show'
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 1247)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 12:55:15 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 264ms (Views: 0.4ms | ActiveRecord: 1.3ms | Allocations: 902)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2020-06-19 12:55:15 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (4.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:52:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16:in `show'
+Completed 200 OK in 8ms (Views: 0.9ms | ActiveRecord: 4.3ms | Allocations: 1247)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 13:01:00 -0300
+  [1m[35m (1.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 267ms (Views: 2.5ms | ActiveRecord: 1.3ms | Allocations: 901)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2020-06-19 13:01:01 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:52:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16:in `show'
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 1247)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 13:04:36 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (45.0ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 85ms (Views: 32.9ms | ActiveRecord: 45.0ms | Allocations: 11065)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 13:06:10 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (31.5ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 147ms (Views: 107.4ms | ActiveRecord: 31.5ms | Allocations: 11065)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 13:20:18 -0300
+  [1m[35m (9.7ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (71.5ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 115ms (Views: 39.8ms | ActiveRecord: 71.5ms | Allocations: 11064)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 13:20:35 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (22.6ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 50ms (Views: 26.9ms | ActiveRecord: 22.6ms | Allocations: 11065)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-06-19 13:20:42 -0300
+Processing by AuthController#login as */*
+  Parameters: {"name"=>"evant", "password"=>"[FILTERED]", "auth"=>{"name"=>"evant", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (19.2ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/auth_controller.rb:4:in `login'
+Completed 200 OK in 290ms (Views: 2.7ms | ActiveRecord: 19.2ms | Allocations: 902)
+
+
+Started GET "/users/3" for 127.0.0.1 at 2020-06-19 13:20:42 -0300
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (6.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:52:in `set_user'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT `users`.* FROM `users` WHERE `users`.`id` = 3 LIMIT 1[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16:in `show'
+Completed 200 OK in 13ms (Views: 0.4ms | ActiveRecord: 6.5ms | Allocations: 1247)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 13:20:45 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (11.8ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 84ms (Views: 70.9ms | ActiveRecord: 11.8ms | Allocations: 11067)
+
+
+Started GET "/hand_ranges/show_user_id/2" for 127.0.0.1 at 2020-06-19 13:21:00 -0300
+Processing by HandRangesController#show_user_id as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mHandRangeGroup Load (37.0ms)[0m  [1m[34mSELECT * FROM `hand_range_groups` INNER JOIN `hand_ranges` ON `hand_ranges`.`id` = `hand_range_groups`.`hand_range_id` INNER JOIN `hand_range_folders` ON `hand_range_folders`.`id` = `hand_range_groups`.`hand_range_folder_id` WHERE (hand_range_groups.hand_range_folder_id = hand_range_folders.id AND hand_range_groups.hand_range_id = hand_ranges.id AND hand_range_folders.user_id = 2)[0m
+  ↳ app/controllers/hand_ranges_controller.rb:21:in `show_user_id'
+Completed 200 OK in 68ms (Views: 29.5ms | ActiveRecord: 37.0ms | Allocations: 11065)
+
+
