@@ -16,13 +16,13 @@ import {
 } from "./constants.js";
 
 import { saveOldRangeRepo, loadNewRange } from "./stateRangeFunctions";
-import { sampleData, ranges } from "./sampleData.js";
+import { sampleData, ranges, rangeRepo } from "./sampleData.js";
 
 const initialState = {
   mode: sampleData.mode,
   rangeSelectionArray: sampleData.rangeSelectionArray,
   rangeColors: sampleData.rangeColors,
-  rangeRepo: sampleData.rangeRepo,
+  rangeRepo: rangeRepo,
   ranges: ranges
 };
 
@@ -50,7 +50,6 @@ const mainPageReducer = (state = initialState, action) =>
 
       case SET_DYNAMIC_FOLDER_INFO:
         draft.rangeRepo = saveOldRangeRepo(
-          initialState,
           draft.rangeRepo,
           draft.rangeSelectionArray,
           draft.ranges
