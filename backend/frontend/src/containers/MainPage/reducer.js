@@ -65,7 +65,6 @@ const mainPageReducer = (state = initialState, action) =>
 
       case ALL_USER_HAND_RANGES_SUCCESS:
         //Populate the range repository that holds all ranges from the DB
-        draft.rangeRepo = [];
         draft.rangeRepo = action.data.map(
           ({ FolderName, GroupName, RangeName, RangeScope }) => {
             return {
