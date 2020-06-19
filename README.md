@@ -17,6 +17,7 @@ with the latest theories. This application is meant to act as a showcase of my c
 # Technologies
 
 The following technologies were used in creating this application:
+
 ```
 (1) React
 (2) Redux
@@ -30,25 +31,23 @@ The following technologies were used in creating this application:
 
 After forking and downloading the repo, you should be able to run the front end through npm install and then npm run. The backend
 is run through the rails server with (in my case) a debugger with the following launch.json file:
+
 ```json
+{
+  "version": "0.2.0",
+  "configurations": [
     {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Rails server",
-            "type": "Ruby",
-            "request": "launch",
-            "program": "${workspaceRoot}/bin/rails",
-            "args": [
-                "server",
-                "-p",
-                "3001"
-            ]
-        }
-    ]
+      "name": "Rails server",
+      "type": "Ruby",
+      "request": "launch",
+      "program": "${workspaceRoot}/bin/rails",
+      "args": ["server", "-p", "3001"]
+    }
+  ]
 }
 ```
-Finally the website can be found live at the following netlify address: https://upbeat-jang-2f8339.netlify.app/
 
-Note: PR's are deployed to netlify for previews. The PR-style is out of sync with my typical workflow, and I plan to revamp
+Finally the website can be found live at the following AWS address: http://myrai-lbfar-1nlu9ptyqyk6-1001589239.us-east-2.elb.amazonaws.com
+
+Note: PR's are deployed to AWS for previews. The PR-style is out of sync with my typical workflow, and I plan to revamp
 the project management style in this project (mostly to simplify it). As always this is a bit of a work in progress.
