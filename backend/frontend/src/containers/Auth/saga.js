@@ -23,7 +23,11 @@ import {
   userSignin
 } from "./actions";
 
-const baseURL = `${process.env.REACT_APP_API_URL}`;
+let baseURL;
+
+if (process.env.NODE_ENV !== "production")
+  baseURL = `${process.env.REACT_APP_API_URL}`;
+else baseURL = `${process.env.REACT_APP_PRODUCTION_API_URL}`;
 
 const stripHtmlTags = str => {
   if (str === null || str === "") return false;
