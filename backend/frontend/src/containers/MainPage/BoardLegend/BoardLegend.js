@@ -182,6 +182,22 @@ const legendTable = (
   </Table>
 );
 
+export const countHandCombo = (wholeRange, street) => {
+  let wholeRangeFiltered = wholeRange.filter(
+    ({ hands, paramStreet }) => hands && paramStreet == street
+  );
+  wholeRangeFiltered = wholeRangeFiltered.map(({ hands }) => {
+    return hands.reduce((acc, hand) => {
+      if (hand.indexOf("s") >= 0) return acc + 4;
+      //Suited Combos
+      else if (hand.indexOf("o") >= 0) return acc + 12;
+      //Offsuit Combos
+      else return acc + 6; //Pair Combos
+    }, 0);
+  });
+  return wholeRangeFiltered;
+};
+
 const BoardLegend = ({
   wholeRange,
   onHandleStreetHandler,
@@ -196,6 +212,8 @@ const BoardLegend = ({
   const [currentStreet, updateCurrentStreet] = useState("Preflop");
   const [numberOfCombos, updateNumberOfCombos] = useState([0, 0, 0, 0]);
 
+  const inputBoard = "AsTs4d";
+
   useEffect(() => {
     if (street == "Preflop") updateCurrentStreet("Preflop");
     else updateCurrentStreet("Postflop");
@@ -203,19 +221,7 @@ const BoardLegend = ({
 
   //TODO: potential bug? method outside useEffect
   useEffect(() => {
-    let wholeRangeFiltered = wholeRange.filter(
-      ({ hands, Street }) => hands && Street == street
-    );
-    wholeRangeFiltered = wholeRangeFiltered.map(({ hands }) => {
-      return hands.reduce((acc, hand) => {
-        if (hand.indexOf("s") >= 0) return acc + 4;
-        //Suited Combos
-        else if (hand.indexOf("o") >= 0) return acc + 12;
-        //Offsuit Combos
-        else return acc + 6; //Pair Combos
-      }, 0);
-    });
-    updateNumberOfCombos(wholeRangeFiltered);
+    updateNumberOfCombos(countHandCombo(wholeRange, street));
   }, [wholeRange]);
 
   const panes = [
