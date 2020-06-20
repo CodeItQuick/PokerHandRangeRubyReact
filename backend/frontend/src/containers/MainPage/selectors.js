@@ -102,6 +102,9 @@ const makeSelectFolderRanges = () =>
     else return {};
   });
 
+const makeSelectDeadcards = () =>
+  createSelector(selectGlobal, globalState => globalState.deadcards);
+
 export {
   selectGlobal,
   selectRouter,
@@ -113,5 +116,6 @@ export {
   makeSelectUser,
   makeSelectFolder,
   makeSelectFolderGroup,
-  makeSelectRangeColors
+  makeSelectRangeColors,
+  makeSelectDeadcards
 };

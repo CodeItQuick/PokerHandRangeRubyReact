@@ -1,8 +1,11 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, memo } from "react";
 import { Button, Container, Table } from "semantic-ui-react";
 import { Row, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
 import styled from "styled-components";
+import { makeSelectDeadcards } from "../selectors";
 
 const styledCardBack = styled.img``;
 
@@ -19,7 +22,7 @@ const StyledRow = styled(Row)`
   width: 80%;
 `;
 //TODO: buttons that add two tone/rainbow/monotone/paired/HLL/etc.
-const BoardCards = ({ deadCards }) => {
+const BoardCards = ({ deadCards = [] }) => {
   const [flippinCards, updateFlippinCards] = useState([]);
   useEffect(() => {
     if (deadCards && deadCards.indexOf(",") >= 0) {
@@ -83,4 +86,16 @@ const BoardCards = ({ deadCards }) => {
   );
 };
 
-export default BoardCards;
+const mapStateToProps = () => {
+  const getDeadcards = makeSelectDeadcards();
+
+  const mapState = state => {
+    return {
+      deadCards: getDeadcards(state)
+    };
+  };
+  return mapState;
+}; //?
+const withConnect = connect(mapStateToProps, null);
+
+export default compose(withConnect, memo)(BoardCards);

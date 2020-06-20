@@ -12,7 +12,8 @@ import {
   makeSelectRange,
   makeSelectMode,
   makeSelectUser,
-  makeSelectFolder
+  makeSelectFolder,
+  makeSelectDeadcards
 } from "./selectors.js";
 import {
   initCreateNewFolder,
@@ -30,7 +31,7 @@ import ProductDescription from "./ProductDescription/index.js";
 import UserFunctionality from "./UserFunctionality/index.js";
 
 import { Button } from "semantic-ui-react";
-import { InputForm } from "./InputForm";
+import InputForm from "./InputForm";
 import styled from "styled-components";
 
 import { mapNewHandRange } from "./stateRangeFunctions";
@@ -57,7 +58,8 @@ const MainPage = ({
   rangeColors,
   user,
   toAllUserHandRange,
-  mode: { street, streetAction }
+  mode: { street, streetAction },
+  board
 }) => {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
@@ -140,13 +142,15 @@ const mapStateToProps = () => {
   const getSelectRange = makeSelectRange();
   const getMode = makeSelectMode();
   const getUser = makeSelectUser();
+  const getDeadcards = makeSelectDeadcards();
 
   const mapState = state => {
     return {
       ranges: getMapRange(state),
       wholeRange: getSelectRange(state), //TODO: change to streetname
       mode: getMode(state),
-      user: getUser(state)
+      user: getUser(state),
+      board: getDeadcards(state)
     };
   };
   return mapState;

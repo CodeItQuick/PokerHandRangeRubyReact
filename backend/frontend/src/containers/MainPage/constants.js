@@ -31,3 +31,6 @@ export const SET_DYNAMIC_FOLDER_INFO =
 export const SAVE_AND_LOAD = "handrangeAPI/MainPage/SAVE_AND_LOAD";
 
 export const LOAD_NEW_FOLDER = "handrangeAPI/MainPage/LOAD_NEW_FOLDER";
+
+export const SET_DEAD_CARDS = "handrangeAPI/MainPage/SET_DEAD_CARDS";
+export const GET_DEAD_CARDS = "handrangeAPI/MainPage/GET_DEAD_CARDS";

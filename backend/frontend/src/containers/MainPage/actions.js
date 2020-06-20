@@ -10,7 +10,9 @@ import {
   SET_HAND_RANGE_GROUP,
   SET_DYNAMIC_FOLDER_INFO,
   SAVE_AND_LOAD,
-  LOAD_NEW_FOLDER
+  LOAD_NEW_FOLDER,
+  SET_DEAD_CARDS,
+  GET_DEAD_CARDS
 } from "./constants";
 
 export function setHandRangeSelect(data) {
@@ -90,5 +92,12 @@ export function saveAndLoad() {
 export function loadNewFolder() {
   return {
     type: LOAD_NEW_FOLDER
+  };
+}
+
+export function setDeadCards(data) {
+  return {
+    type: SET_DEAD_CARDS,
+    data
   };
 }

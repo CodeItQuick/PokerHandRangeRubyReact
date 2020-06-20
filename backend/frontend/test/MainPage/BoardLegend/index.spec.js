@@ -10,11 +10,11 @@ describe("Board Legend", () => {
   test("The board legend counts the correct number of combitions for a suited hand", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = "AcTs4s";
-    const hand = ["AA"];
-    const wholeRange = [{ street: "Flop", hands: hand }];
+    const hand = ["AKs"];
+    const wholeRange = [{ Street: "Flop", hands: hand }];
     // When: I call some function (refactor a function)
-    const result = countHandCombo(wholeRange, "Flop");
+    const result = countHandCombo(wholeRange, "Flop", board);
     // Then: I expect the results of that to be... number of combos for a hand
-    expect(result).toBe(2);
+    expect(result).toStrictEqual([3]);
   });
 });
