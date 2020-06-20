@@ -12,7 +12,8 @@ import {
   LOAD_NEW_FOLDER,
   INIT_ALL_USER_HAND_RANGES,
   ALL_USER_HAND_RANGES_SUCCESS,
-  ALL_USER_HAND_RANGES_FAIL
+  ALL_USER_HAND_RANGES_FAIL,
+  SET_DEAD_CARDS
 } from "./constants.js";
 
 import { saveOldRangeRepo, loadNewRange } from "./stateRangeFunctions";
@@ -23,7 +24,8 @@ const initialState = {
   rangeSelectionArray: sampleData.rangeSelectionArray,
   rangeColors: sampleData.rangeColors,
   rangeRepo: rangeRepo,
-  ranges: ranges
+  ranges: ranges,
+  deadcards: []
 };
 
 //TODO: Make ranges convert between easy to read ranges
@@ -78,6 +80,10 @@ const mainPageReducer = (state = initialState, action) =>
         break;
 
       case ALL_USER_HAND_RANGES_FAIL:
+        break;
+
+      case SET_DEAD_CARDS:
+        draft.deadcards = action.data;
         break;
 
       default:

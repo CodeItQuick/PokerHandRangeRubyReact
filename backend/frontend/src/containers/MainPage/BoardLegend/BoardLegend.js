@@ -1,7 +1,16 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, memo } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import { Header, Table, Tab, Button } from "semantic-ui-react";
+import _ from "lodash";
+import useInjectReducer from "../../../HOC/useInjectReducer";
+
+import reducer from "../reducer";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { makeSelectDeadcards, makeSelectMode } from "../selectors";
+
+const key = "global";
 
 const StyledContainer = styled(Container)`
   font-size: 1rem;
@@ -182,47 +191,91 @@ const legendTable = (
   </Table>
 );
 
-export const countHandCombo = (wholeRange, street) => {
+const comboCounter = (hand, chosenStreet, board) => {
+  console.log(board[0]); //?let filteredBoard = [];
+  let filteredBoard = [];
+  if (chosenStreet == "Flop" && board.length >= 3)
+    filteredBoard = [
+      board[0].trim().charAt(0),
+      board[1].trim().charAt(0),
+      board[2].trim().charAt(0)
+    ];
+  else if (chosenStreet == "Turn" && board.length >= 4)
+    filteredBoard = [
+      board[0].trim().charAt(0),
+      board[1].trim().charAt(0),
+      board[2].trim().charAt(0),
+      board[3].trim().charAt(0)
+    ];
+  else if (chosenStreet == "River" && board.length >= 5)
+    filteredBoard = [
+      board[0].trim().charAt(0),
+      board[1].trim().charAt(0),
+      board[2].trim().charAt(0),
+      board[3].trim().charAt(0),
+      board[4].trim().charAt(0)
+    ];
+  if (hand.indexOf("s") >= 0) {
+    let numOccurances = _.countBy(filteredBoard);
+    let subtractFirstCard = numOccurances[hand.charAt(0)] || 0;
+    let subtractSecondCard = numOccurances[hand.charAt(1)] || 0;
+    let numCards = 4 - subtractFirstCard - subtractSecondCard;
+    return numCards;
+  }
+  //Suited Combos
+  else if (hand.indexOf("o") >= 0) {
+    let numOccurances = _.countBy(_.split(board, "", 12));
+    let subtractFirstCard = numOccurances[hand.charAt(0)] || 0;
+    let subtractSecondCard = numOccurances[hand.charAt(1)] || 0;
+    let numCards = (4 - subtractFirstCard) * (4 - subtractSecondCard) - 4;
+    return numCards;
+  }
+  //Offsuit Combos
+  else {
+    let numOccurances = _.countBy(_.split(board, "", 12));
+    let subtractFirstCard = numOccurances[hand.charAt(0)] || 0;
+    let subtractSecondCard = numOccurances[hand.charAt(1)] || 0;
+
+    let numCards = ((4 - subtractFirstCard) * (3 - subtractSecondCard)) / 2;
+    return numCards; //Pair Combos
+  }
+};
+
+export const countHandCombo = (wholeRange, chosenStreet, board) => {
   let wholeRangeFiltered = wholeRange.filter(
-    ({ hands, paramStreet }) => hands && paramStreet == street
+    ({ hands, Street }) => chosenStreet == Street
   );
-  wholeRangeFiltered = wholeRangeFiltered.map(({ hands }) => {
+  let wholeRangeNum = wholeRangeFiltered.map(({ hands }) => {
     return hands.reduce((acc, hand) => {
-      if (hand.indexOf("s") >= 0) return acc + 4;
-      //Suited Combos
-      else if (hand.indexOf("o") >= 0) return acc + 12;
-      //Offsuit Combos
-      else return acc + 6; //Pair Combos
+      console.log(hand, chosenStreet, board);
+      return acc + comboCounter(hand, chosenStreet, board);
     }, 0);
   });
-  return wholeRangeFiltered;
+  return wholeRangeNum;
 };
 
 const BoardLegend = ({
   wholeRange,
   onHandleStreetHandler,
   onHandleStreetHandlerButtons,
-  mode: { street, streetAction }
+  mode,
+  deadcards
 }) => {
+  useInjectReducer({ key, reducer });
   const streetActions = {
     Preflop: ["Raise4BetCall", "Raise4BetFold", "RaiseCall", "RaiseFold"],
-    Postflop: ["Valuebet", "Bluff", "CheckCall", "CheckFold"]
+    Flop: ["Valuebet", "Bluff", "CheckCall", "CheckFold"],
+    Turn: ["Valuebet", "Bluff", "CheckCall", "CheckFold"],
+    River: ["Valuebet", "Bluff", "CheckCall", "CheckFold"]
   };
 
-  const [currentStreet, updateCurrentStreet] = useState("Preflop");
+  console.log(mode.street);
   const [numberOfCombos, updateNumberOfCombos] = useState([0, 0, 0, 0]);
-
-  const inputBoard = "AsTs4d";
-
-  useEffect(() => {
-    if (street == "Preflop") updateCurrentStreet("Preflop");
-    else updateCurrentStreet("Postflop");
-  }, [street, streetAction]);
 
   //TODO: potential bug? method outside useEffect
   useEffect(() => {
-    updateNumberOfCombos(countHandCombo(wholeRange, street));
-  }, [wholeRange]);
+    updateNumberOfCombos(countHandCombo(wholeRange, mode.street, deadcards));
+  }, [wholeRange, mode.street, deadcards]);
 
   const panes = [
     {
@@ -235,8 +288,8 @@ const BoardLegend = ({
             numberOfCombos,
             nameOfAction,
             onHandleStreetHandlerButtons,
-            street,
-            streetActions[currentStreet]
+            mode.street,
+            streetActions[mode.street]
           )}{" "}
         </Fragment>
       )
@@ -251,8 +304,8 @@ const BoardLegend = ({
             numberOfCombos,
             nameOfAction,
             onHandleStreetHandlerButtons,
-            street,
-            streetActions[currentStreet]
+            mode.street,
+            streetActions[mode.street]
           )}
         </Fragment>
       )
@@ -267,8 +320,8 @@ const BoardLegend = ({
             numberOfCombos,
             nameOfAction,
             onHandleStreetHandlerButtons,
-            street,
-            streetActions[[currentStreet]]
+            mode.street,
+            streetActions[mode.street]
           )}
         </Fragment>
       )
@@ -283,16 +336,16 @@ const BoardLegend = ({
             numberOfCombos,
             nameOfAction,
             onHandleStreetHandlerButtons,
-            street,
-            streetActions[[currentStreet]]
+            mode.street,
+            streetActions[mode.street]
           )}
         </Fragment>
       )
     }
   ];
   const nameOfAction = comboNumber => {
-    if (street && wholeRange[[street]] !== undefined)
-      return Object.keys(wholeRange[[street]])[comboNumber];
+    if (mode.street && wholeRange[mode.street] !== undefined)
+      return Object.keys(wholeRange[mode.street])[comboNumber];
     else return "";
   };
 
@@ -307,4 +360,18 @@ const BoardLegend = ({
   );
 };
 
-export default BoardLegend;
+const mapStateToProps = () => {
+  const getDeadcards = makeSelectDeadcards();
+  const getMode = makeSelectMode();
+
+  const mapState = state => {
+    return {
+      deadcards: getDeadcards(state),
+      mode: getMode(state)
+    };
+  };
+  return mapState;
+}; //?
+
+const withConnect = connect(mapStateToProps, null);
+export default compose(withConnect, memo)(BoardLegend);

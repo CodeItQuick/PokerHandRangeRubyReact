@@ -85,3 +85,4 @@
 [ N 2020-06-19 11:46:13.9460 40759/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
 [ N 2020-06-19 11:46:13.9748 40759/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 40759
 [ N 2020-06-19 11:46:17.0120 40759/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ N 2020-06-20 15:08:13.1180 40759/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
