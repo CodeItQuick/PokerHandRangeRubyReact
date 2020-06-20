@@ -28,7 +28,7 @@ ENV HOME /root
 CMD ["/sbin/my_init"]
 
 # opt in for ruby support
-RUN /pd_build/ruby-2.6.6.sh
+RUN /pd_build/ruby-2.7.1.sh
 
 # ...put your own build instructions here...
 RUN mkdir /home/app/webapp/
