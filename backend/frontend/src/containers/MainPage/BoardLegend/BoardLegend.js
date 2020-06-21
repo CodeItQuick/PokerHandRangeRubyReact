@@ -192,35 +192,44 @@ const legendTable = (
 );
 
 const comboCounter = (hand, chosenStreet, board) => {
-  console.log(board[0]); //?let filteredBoard = [];
   let filteredBoard = [];
   if (chosenStreet == "Flop" && board.length >= 3)
-    filteredBoard = [
-      board[0].trim().charAt(0),
-      board[1].trim().charAt(0),
-      board[2].trim().charAt(0)
-    ];
+    filteredBoard = [board[0].trim(), board[1].trim(), board[2].trim()];
   else if (chosenStreet == "Turn" && board.length >= 4)
     filteredBoard = [
-      board[0].trim().charAt(0),
-      board[1].trim().charAt(0),
-      board[2].trim().charAt(0),
-      board[3].trim().charAt(0)
+      board[0].trim(),
+      board[1].trim(),
+      board[2].trim(),
+      board[3].trim()
     ];
   else if (chosenStreet == "River" && board.length >= 5)
     filteredBoard = [
-      board[0].trim().charAt(0),
-      board[1].trim().charAt(0),
-      board[2].trim().charAt(0),
-      board[3].trim().charAt(0),
-      board[4].trim().charAt(0)
+      board[0].trim(),
+      board[1].trim(),
+      board[2].trim(),
+      board[3].trim(),
+      board[4].trim()
     ];
   if (hand.indexOf("s") >= 0) {
-    let numOccurances = _.countBy(filteredBoard);
-    let subtractFirstCard = numOccurances[hand.charAt(0)] || 0;
-    let subtractSecondCard = numOccurances[hand.charAt(1)] || 0;
-    let numCards = 4 - subtractFirstCard - subtractSecondCard;
-    return numCards;
+    let filteredBoardCards = filteredBoard.map(boardCard =>
+      boardCard.charAt(0)
+    );
+    let specificHands = [
+      hand.charAt(0) + "s" + hand.charAt(1) + "s",
+      hand.charAt(0) + "c" + hand.charAt(1) + "c",
+      hand.charAt(0) + "d" + hand.charAt(1) + "d",
+      hand.charAt(0) + "h" + hand.charAt(1) + "h"
+    ];
+    let addCombos = filteredBoard.reduce((acc, boardCard) => {
+      let totalHands = specificHands.reduce((acc2, specificCards) => {
+        if (specificCards.indexOf(boardCard) >= 0) {
+          return [...acc2, specificCards];
+        } else return acc2;
+      }, [])[0];
+      if (totalHands) return { ...acc, [totalHands]: "" };
+      else return { ...acc };
+    }, 0);
+    return 4 - Object.keys(addCombos).length;
   }
   //Suited Combos
   else if (hand.indexOf("o") >= 0) {
@@ -247,7 +256,6 @@ export const countHandCombo = (wholeRange, chosenStreet, board) => {
   );
   let wholeRangeNum = wholeRangeFiltered.map(({ hands }) => {
     return hands.reduce((acc, hand) => {
-      console.log(hand, chosenStreet, board);
       return acc + comboCounter(hand, chosenStreet, board);
     }, 0);
   });
