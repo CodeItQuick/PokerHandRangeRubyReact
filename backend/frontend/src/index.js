@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Route, Switch } from "react-router-dom";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./containers/App/App";
 import * as serviceWorker from "./serviceWorker";
@@ -18,6 +18,8 @@ import { ThemeProvider } from "styled-components";
 
 import UserRegister from "./containers/Auth/Register/UserRegister.js";
 import Login from "./containers/Auth/Login/UserLogin.js";
+import { Auth0Provider } from "./react-auth0-spa";
+import config from "./auth_config";
 
 //const store = createStore(combineReducers({rootReducer, handRangesAvailable}), applyMiddleware(thunk));
 // Create redux store with history
@@ -31,18 +33,31 @@ store.subscribe(
   }, 1000)
 );
 
+const siteUrl = `${process.env.REACT_APP_PRODUCTION_API_URL}`;
+
+// A function that routes the user to the right place
+// after login
+const onRedirectCallback = appState => {
+  history.push(appState && siteUrl ? siteUrl : window.location.pathname);
+};
+
 ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <ThemeProvider theme={{ main: "mediumseagreen" }}>
-        <Switch>
+  <Auth0Provider
+    domain={config.domain}
+    client_id={config.clientId}
+    redirect_uri={siteUrl}
+    onRedirectCallback={onRedirectCallback}
+  >
+    <Provider store={store}>
+      <Router history={history}>
+        <ThemeProvider theme={{ main: "mediumseagreen" }}>
           <Route exact path="/" component={App} />
           <Route exact path="/register" component={UserRegister} />
           <Route exact path="/login" component={Login} />
-        </Switch>
-      </ThemeProvider>
-    </ConnectedRouter>
-  </Provider>,
+        </ThemeProvider>
+      </Router>
+    </Provider>
+  </Auth0Provider>,
   document.getElementById("root")
 );
 
