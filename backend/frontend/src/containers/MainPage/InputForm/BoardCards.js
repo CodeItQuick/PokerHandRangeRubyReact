@@ -22,17 +22,18 @@ const StyledRow = styled(Row)`
   width: 80%;
 `;
 //TODO: buttons that add two tone/rainbow/monotone/paired/HLL/etc.
-const BoardCards = ({ deadCards = [] }) => {
+const BoardCards = ({ deadcards = [] }) => {
   const [flippinCards, updateFlippinCards] = useState([]);
+  console.log(deadcards);
   useEffect(() => {
-    if (deadCards && deadCards.indexOf(",") >= 0) {
-      let flippinCardsClone = deadCards.split(",");
+    if (deadcards) {
+      let flippinCardsClone = deadcards;
       flippinCardsClone = flippinCardsClone.map(cards =>
         cards.toUpperCase().trim()
       );
       updateFlippinCards(flippinCardsClone);
     }
-  }, [deadCards]);
+  }, [deadcards]);
 
   return (
     <Table>
@@ -91,7 +92,7 @@ const mapStateToProps = () => {
 
   const mapState = state => {
     return {
-      deadCards: getDeadcards(state)
+      deadcards: getDeadcards(state)
     };
   };
   return mapState;
