@@ -1,22 +1,24 @@
 import React, { Fragment } from "react";
 
-import { Menu, Item } from "semantic-ui-react";
+import { Menu, Item, Button } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+import { useAuth0 } from "../../react-auth0-spa";
 
 const Navbar = ({ username = false }) => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   return (
     <Menu inverted>
-      <Menu.Item>
+      {/* <Menu.Item>
         <NavLink to="/">Home</NavLink>
       </Menu.Item>
-      {username != false ? (
+      {isAuthenticated != false ? (
         <Fragment>
           <Menu.Item>{username ? username : ""}</Menu.Item>
           <Menu.Item>
             <NavLink to="/donate">Donate</NavLink>
           </Menu.Item>
           <Menu.Item>
-            <NavLink to="/">Logout</NavLink>
+            <Button onClick={() => logout()}>Logout</Button>
           </Menu.Item>
         </Fragment>
       ) : (
@@ -25,10 +27,10 @@ const Navbar = ({ username = false }) => {
             <NavLink to="/register">Register</NavLink>
           </Menu.Item>
           <Menu.Item>
-            <NavLink to="/login">Login</NavLink>
+            <Button onClick={() => loginWithRedirect({})}>Login</Button>
           </Menu.Item>
         </Fragment>
-      )}
+      )} */}
     </Menu>
   );
 };

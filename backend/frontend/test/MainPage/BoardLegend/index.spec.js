@@ -7,7 +7,7 @@ import { countHandCombo } from "../../../src/containers/MainPage/BoardLegend/Boa
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("Board Legend", () => {
-  test("The board legend counts the correct number of combitions for a suited hand", () => {
+  test("The board legend counts the correct number of combinations for a suited hand", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["Ac", "Ts", "4s"];
     const hand = ["AKs"];
@@ -18,7 +18,7 @@ describe("Board Legend", () => {
     expect(result).toStrictEqual([3]);
   });
 
-  test("The board legend counts the correct number of combitions for a suited hand when the suits match", () => {
+  test("The board legend counts the correct number of combinations for a suited hand when the suits match", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["Ac", "Ts", "9s"];
     const hand = ["T9s"];
@@ -29,7 +29,7 @@ describe("Board Legend", () => {
     expect(result).toStrictEqual([3]);
   });
 
-  test("The board legend counts the correct number of combitions for a offsuit hand", () => {
+  test("The board legend counts the correct number of combinations for a offsuit hand", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["Ac", "Ts", "4s", "9d", "Ks"];
     const hand = ["AKo"];
