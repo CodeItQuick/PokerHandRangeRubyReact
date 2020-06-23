@@ -125,7 +125,7 @@ const MainPage = ({
           onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
           mode={mode}
         />
-        {/* <UserFunctionality onTabChangeHandler={onTabChangeHandler} /> */}
+        <UserFunctionality onTabChangeHandler={onTabChangeHandler} />
         {/* <Button onClick={onClickNewFolderHandler}>Create New Folder </Button> */}
       </RightPane>
     </MainPageContainer>
