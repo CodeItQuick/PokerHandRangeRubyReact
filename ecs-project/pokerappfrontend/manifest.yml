@@ -1,9 +1,9 @@
-# The manifest for the "firstpokerapp" application.
+# The manifest for the "pokerappfrontend" application.
 # Read the full specification for the "Load Balanced Web App" type at:
 #  https://github.com/aws/amazon-ecs-cli-v2/wiki/Manifests#load-balanced-web-app
 
 # Your application name will be used in naming your resources like log groups, services, etc.
-name: firstpokerapp
+name: pokerappfrontend
 # The "architecture" of the application you're running.
 type: Load Balanced Web App
 
@@ -11,7 +11,7 @@ image:
   # Path to your application's Dockerfile.
   build: ./Dockerfile
   # Port exposed through your container to route traffic to it.
-  port: 443
+  port: 80
 
 http:
   # Requests to this path will be forwarded to your service. 
