@@ -8,12 +8,12 @@ WORKDIR /frontend
 ENV PATH /frontend/node_modules/.bin:$PATH
 
 # install app dependencies
-COPY backend/frontend/package.json ./
-COPY backend/frontend/package-lock.json ./
+COPY frontend/package.json ./
+COPY frontend/package-lock.json ./
 RUN npm install
 
 # add app
-COPY backend/frontend/ ./
+COPY frontend ./
 
 # start app
 RUN npm run build
