@@ -1,7 +1,7 @@
 #!/bin/bash 
 
 # Go to the deployment directory
-cd /var/www/ec2-user/deployment
+cd /var/www/ec2-user/deployment/backend
 
 # Get temporaray credentials for AWS CodeCommit
 # - Remember that the instance must have access rights to the CodeCommit repositories in Gemfile.
@@ -14,4 +14,4 @@ git config --global credential.UseHttpPath true
 # - Without development and test gems
 # - Using gemfile in current directory
 # - Also quietly. No need to generate all logs.
-sudo bundle install --without development test --deployment --quiet
+bundle install --without development test --deployment
