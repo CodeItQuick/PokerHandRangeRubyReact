@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/ec2-user/
+    destination: /var/www/ec2-user/deployment
 permissions:
   - object: /var/www/ec2-user/deployment
     owner: ec2-user
