@@ -5,13 +5,15 @@ files:
     destination: /var/www/ec2-user/deployment
 permissions:
   - object: /var/www/ec2-user/deployment
-    # owner: ec2-user
-    # group: ec2-user
-    pattern: "*"
-    # mode: 775
+    mode: 644
+    acls:
+      - "d:u::rwx"
+      - "d:g::rwx"
+      - "d:o::rwx"
+    owner: ec2-user
     type:
-      - file
       - directory
+      - file
 hooks:
   BeforeInstall:
     - location: deployment_scripts/arrange-deployment-folders.sh
