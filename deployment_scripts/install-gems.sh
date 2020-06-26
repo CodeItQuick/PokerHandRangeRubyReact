@@ -14,4 +14,4 @@ git config --global credential.UseHttpPath true
 # - Without development and test gems
 # - Using gemfile in current directory
 # - Also quietly. No need to generate all logs.
-RAILS_ENV=production bundle install --binstubs /var/www/ec2-user/shared/bin --gemfile ./Gemfile --path /var/www/ec2-user/shared/bundle --without development test --deployment --quiet
+bundle install --binstubs /var/www/ec2-user/shared/bin --gemfile ./Gemfile --path /var/www/ec2-user/shared/bundle --without development test --deployment --quiet
