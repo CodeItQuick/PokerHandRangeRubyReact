@@ -4,11 +4,8 @@ cd /home/ec2-user
 yum update -y
 
 # Installing ruby version 2.7
-yum install ruby27 -y
-# Installing ruby development kit (needed to build gems)
-yum install ruby27-devel.x86_64 -y
-# Installing c++ garbage collector (needed to build gems)
-yum install gcc-c++ -y
-# Setting ruby version 2.7 as default
-alternatives --set ruby /usr/bin/ruby2.7
-gem2.7 install bundler --bindir /usr/bin
+sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | sudo bash -s stable
+sudo usermod -a -G rvm `whoami`
+rvm install ruby-2.7.1
+rvm --default use ruby-2.7.1
