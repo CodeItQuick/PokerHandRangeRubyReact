@@ -1,17 +1,31 @@
 version: 0.0
 os: linux
 files:
-  - source: /index.html
-    destination: /var/www/html/
+  - source: /
+    destination: /var/www/ec2-user/
+permissions:
+  - object: /var/www/ec2-user/deployment
+    owner: ec2-user
+    group: ec2-user
+    pattern: "*"
+    mode: 775
+    type:
+      - file
+      - directory
 hooks:
   BeforeInstall:
-    - location: scripts/install_dependencies
-      timeout: 300
+    - location: deployment_scripts/arrange-deployment-folders.sh
       runas: root
-    - location: scripts/start_server
-      timeout: 300
-      runas: root
-  ApplicationStop:
-    - location: scripts/stop_server
-      timeout: 300
+  AfterInstall:
+    - location: deployment_scripts/db-config.sh
+      runas: nginx
+    - location: deployment_scripts/install-gems.sh
+      runas: nginx
+    - location: deployment_scripts/compile-assets.sh
+      runas: nginx
+    - location: deployment_scripts/run-db-migrations.sh
+      runas: nginx
+
+  ApplicationStart:
+    - location: deployment_scripts/finish-installation.sh
       runas: root
