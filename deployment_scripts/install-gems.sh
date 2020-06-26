@@ -14,4 +14,4 @@ git config --global credential.UseHttpPath true
 # - Without development and test gems
 # - Using gemfile in current directory
 # - Also quietly. No need to generate all logs.
-bundle install --without development test --deployment --quiet
+sudo bundle install --without development test --deployment --quiet
