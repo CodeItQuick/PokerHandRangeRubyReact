@@ -1,5 +1,5 @@
 version: 0.0
-os: ubuntu
+os: linux
 files:
   - source: /
     destination: /var/www/ec2-user/deployment
@@ -9,14 +9,14 @@ hooks:
       runas: root
   AfterInstall:
     - location: deployment_scripts/set-permissions.sh
-    - location: deployment_scripts/db-config.sh
-      runas: ec2-user
-    - location: deployment_scripts/install-gems.sh
-      runas: ec2-user
-    - location: deployment_scripts/compile-assets.sh
-      runas: ec2-user
-    - location: deployment_scripts/run-db-migrations.sh
-      runas: ec2-user
+    # - location: deployment_scripts/db-config.sh
+    #   runas: ec2-user
+    # - location: deployment_scripts/install-gems.sh
+    #   runas: ec2-user
+    # - location: deployment_scripts/compile-assets.sh
+    #   runas: ec2-user
+    # - location: deployment_scripts/run-db-migrations.sh
+    #   runas: ec2-user
 
   ApplicationStart:
     - location: deployment_scripts/finish-installation.sh
