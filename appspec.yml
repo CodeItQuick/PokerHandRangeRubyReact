@@ -1,5 +1,5 @@
 version: 0.0
-os: linux
+os: ubuntu
 files:
   - source: /
     destination: /var/www/ec2-user/deployment
