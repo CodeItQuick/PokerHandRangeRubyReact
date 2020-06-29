@@ -249,3 +249,5 @@
 [ E 2020-06-26 05:14:59.7463 65674/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
 [ N 2020-06-27 05:14:57.6080 65674/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
 [ E 2020-06-27 05:14:57.6222 65674/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+[ N 2020-06-28 08:14:55.1136 65674/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-06-28 08:14:56.0224 65674/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
