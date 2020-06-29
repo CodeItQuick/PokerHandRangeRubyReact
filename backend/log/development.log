@@ -47258,3 +47258,32 @@ passenger (6.0.5) src/ruby_supportlib/phusion_passenger/request_handler/thread_h
 passenger (6.0.5) src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
 passenger (6.0.5) src/ruby_supportlib/phusion_passenger/request_handler.rb:415:in `block (3 levels) in start_threads'
 passenger (6.0.5) src/ruby_supportlib/phusion_passenger/utils.rb:113:in `block in create_thread_and_abort_on_exception'
+Started POST "/users?name=evant&email=evanontario%40hotmail.com&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-06-29 15:16:49 -0300
+  [1m[35m (159.5ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"evant", "email"=>"evanontario@hotmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (6.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (79.4ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (2.7ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'evanontario@hotmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (0.3ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 422 Unprocessable Entity in 1968ms (Views: 15.1ms | ActiveRecord: 1191.4ms | Allocations: 12580)
+
+
+Started POST "/users?name=evant&email=evanontario%40hotmail.com&password=[FILTERED]&password_confirmation=[FILTERED]" for 127.0.0.1 at 2020-06-29 15:16:57 -0300
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"evant", "email"=>"evanontario@hotmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`name` = 'evant' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM `users` WHERE `users`.`email` = 'evanontario@hotmail.com' LIMIT 1[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+  [1m[35m (1.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:27:in `create'
+Completed 422 Unprocessable Entity in 306ms (Views: 1.3ms | ActiveRecord: 2.2ms | Allocations: 4436)
+
+
