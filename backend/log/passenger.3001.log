@@ -20,3 +20,20 @@
 [ E 2020-06-27 08:22:20.4967 37578/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
 [ N 2020-06-28 07:22:18.5635 37578/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
 [ E 2020-06-28 07:22:18.5841 37578/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 16466 output: /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler/lockfile_parser.rb:108:in `warn_for_outdated_bundler_version': You must use Bundler 2 or greater with this lockfile. (Bundler::LockfileError)
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler/lockfile_parser.rb:95:in `initialize'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler/definition.rb:83:in `new'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler/definition.rb:83:in `initialize'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler/dsl.rb:234:in `new'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler/dsl.rb:234:in `to_definition'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler/dsl.rb:13:in `evaluate'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler/definition.rb:34:in `build'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler.rb:135:in `definition'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler.rb:101:in `setup'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/bundler/setup.rb:20:in `<top (required)>'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+[ E 2020-06-29 15:16:49.5986 37578/T13 age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend: The application process exited prematurely.
+  Error ID: f5271286
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-hpoU9v.html
+
