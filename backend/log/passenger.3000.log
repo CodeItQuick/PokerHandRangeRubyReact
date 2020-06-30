@@ -253,3 +253,33 @@
 [ E 2020-06-28 08:14:56.0224 65674/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
 [ N 2020-06-29 14:51:02.8763 65674/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
 [ E 2020-06-29 14:51:02.8952 65674/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-06-30 00:38:23.7103 65674/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-06-30 00:38:23.7126 65674/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-06-30 00:38:23.7131 65674/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 65725, application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend (development)
+[ N 2020-06-30 00:38:23.7161 65674/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-06-30 00:38:23.7172 65674/Tn Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-06-30 00:38:23.7173 65674/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-06-30 00:38:23.7174 65674/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-06-30 00:38:23.7164 65674/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-06-30 00:38:23.7167 65674/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-06-30 00:38:23.7168 65674/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-06-30 00:38:23.7174 65674/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-06-30 00:38:23.7172 65674/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-06-30 00:38:23.7181 65674/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-06-30 00:38:23.7182 65674/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-06-30 00:38:23.7173 65674/Tn Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-06-30 00:38:23.7166 65674/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-06-30 00:38:23.7187 65674/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-06-30 00:38:23.7188 65674/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-06-30 00:38:23.7190 65674/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-06-30 00:38:23.7209 65674/Tp Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-06-30 00:38:23.7210 65674/Tp Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-06-30 00:38:23.7233 65674/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 65725, application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend (development)
+[ N 2020-06-30 00:38:26.8503 65674/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+2020/06/30 00:38:26 [emerg] 50291#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/30 00:38:26 [emerg] 50291#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/30 00:38:26 [emerg] 50291#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/30 00:38:26 [emerg] 50291#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/30 00:38:26 [emerg] 50291#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+2020/06/30 00:38:26 [emerg] 50291#0: still could not bind()
