@@ -1,0 +1,1 @@
+git archive --format=zip HEAD:backend/ > deploy.zip; eb deploy;
