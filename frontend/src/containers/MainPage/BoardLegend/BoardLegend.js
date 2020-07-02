@@ -78,6 +78,7 @@ const legendTable = (
         <Table.Cell>{((numberOfCombos[0] / 1326) * 100).toFixed(2)}</Table.Cell>
         <Table.Cell>
           <Button
+            id="firstChoice"
             onClick={e =>
               onHandleStreetHandlerButtons(e, {
                 street,
@@ -104,6 +105,7 @@ const legendTable = (
         <Table.Cell>{((numberOfCombos[1] / 1326) * 100).toFixed(2)}</Table.Cell>
         <Table.Cell>
           <Button
+            id="secondChoice"
             onClick={e =>
               onHandleStreetHandlerButtons(e, {
                 street,
@@ -130,6 +132,7 @@ const legendTable = (
         <Table.Cell>{((numberOfCombos[2] / 1326) * 100).toFixed(2)}</Table.Cell>
         <Table.Cell>
           <Button
+            id="thirdChoice"
             onClick={e =>
               onHandleStreetHandlerButtons(e, {
                 street,
@@ -156,6 +159,7 @@ const legendTable = (
         <Table.Cell>{((numberOfCombos[3] / 1326) * 100).toFixed(2)}</Table.Cell>
         <Table.Cell>
           <Button
+            id="fourthChoice"
             onClick={e =>
               onHandleStreetHandlerButtons(e, {
                 street,

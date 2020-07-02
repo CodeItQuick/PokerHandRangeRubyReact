@@ -31,9 +31,9 @@ const StyledFragment = styled.div`
 `;
 const steps = [
   {
-    selector: "button#PreflopRaise4BetCall",
+    selector: "button#firstChoice",
     content:
-      "First pick your betting pattern, Raise4BetCall, in this case you will select your strongest hands that you always raise with. Note: you may have to click back and forth to get the right button highlighted. "
+      "First pick your betting pattern, Raise/4Bet/Call, in this case you will select your strongest hands that you always raise with. Note: you may have to click back and forth to get the right button highlighted. "
   },
   {
     selector: "button#colorButtonAA",
@@ -41,7 +41,7 @@ const steps = [
       "AA is by far the strongest hand in holdem, select this hand by turning the table column green to go in your strongest hand range "
   },
   {
-    selector: "button#PreflopRaise4BetFold",
+    selector: "button#secondChoice",
     content:
       "Next we are going to take one of our strongest hands and turn it into a bluff when someone raises us. Select Raise4BetFold next. "
   },
@@ -61,7 +61,7 @@ const steps = [
       "How often are we bluffing raising just AA and AQo? Looks like we bluff twice as often at 67% as much as we valuebet. This ratio is much too high, we should now add kings and AKs to our range to balance our range."
   },
   {
-    selector: "button#PreflopRaise4BetCall",
+    selector: "button#firstChoice",
     content:
       "We better put more hands into our value range, so lets go ahead and select Raise4BetCall again. "
   },
