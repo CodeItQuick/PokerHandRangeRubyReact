@@ -4,6 +4,7 @@
   "private": false,
   "proxy": "http://localhost:3000",
   "dependencies": {
+    "@auth0/auth0-react": "^1.0.0",
     "@auth0/auth0-spa-js": "^1.10.0",
     "@babel/polyfill": "^7.7.0",
     "@babel/register": "^7.9.0",
