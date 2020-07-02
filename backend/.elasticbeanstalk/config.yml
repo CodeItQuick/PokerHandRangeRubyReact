@@ -1,0 +1,19 @@
+branch-defaults:
+  master:
+    environment: Production3
+environment-defaults:
+  Production2:
+    branch: null
+    repository: null
+global:
+  application_name: ThirdPokerApp
+  default_ec2_keyname: NewestAWSKeyPair
+  default_platform: Passenger with Ruby 2.6 running on 64bit Amazon Linux
+  default_region: us-east-2
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: null
+  sc: git
+  workspace_type: Application
