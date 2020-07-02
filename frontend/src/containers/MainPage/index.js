@@ -2,7 +2,7 @@ import React, { useState, useEffect, memo, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import Board from "./Board/index.js";
+import Board from "./Board/index.js.js";
 import { useSelector, useDispatch } from "react-redux";
 import prange from "prange";
 import { Row, Col, Container } from "react-bootstrap";
@@ -14,21 +14,21 @@ import {
   makeSelectUser,
   makeSelectFolder,
   makeSelectDeadcards
-} from "./selectors.js";
+} from "./selectors.js.js";
 import {
   initCreateNewFolder,
   setHandRangeSelect,
   setHandRange,
   initAllUserHandRanges
-} from "./actions.js";
+} from "./actions.js.js";
 
-import reducer from "./reducer.js";
-import { useInjectReducer } from "../../HOC/useInjectReducer.js";
-import { useInjectSaga } from "../../HOC/injectSaga.js";
-import saga from "./saga.js";
+import reducer from "./reducer.js.js";
+import { useInjectReducer } from "../../HOC/useInjectReducer.js.js";
+import { useInjectSaga } from "../../HOC/injectSaga.js.js";
+import saga from "./saga.js.js";
 
-import ProductDescription from "./ProductDescription/index.js";
-import UserFunctionality from "./UserFunctionality/index.js";
+import ProductDescription from "./ProductDescription/index.js.js";
+import UserFunctionality from "./UserFunctionality/index.js.js";
 
 import { Button } from "semantic-ui-react";
 import InputForm from "./InputForm";
@@ -125,7 +125,7 @@ const MainPage = ({
           onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
           mode={mode}
         />
-        <UserFunctionality onTabChangeHandler={onTabChangeHandler} />
+        {/* <UserFunctionality onTabChangeHandler={onTabChangeHandler} /> */}
         {/* <Button onClick={onClickNewFolderHandler}>Create New Folder </Button> */}
       </RightPane>
     </MainPageContainer>
