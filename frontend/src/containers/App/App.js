@@ -67,8 +67,7 @@ const steps = [
   },
   {
     selector: "button#colorButtonKK , button#colorButtonAKs",
-    content:
-      "You can click and drag now to select the two hands, KK and AKs, to balance out your range."
+    content: "You can select AKs, to balance out your range."
   },
   {
     selector: "#Raise4BetBluffTutorial",
