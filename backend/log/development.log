@@ -47295,3 +47295,11 @@ Processing by HandRangesController#index as HTML
 Completed 200 OK in 400ms (Views: 71.6ms | ActiveRecord: 309.1ms | Allocations: 23847)
 
 
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-06-30 00:47:22 -0300
+  [1m[35m (3.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by HandRangesController#index as HTML
+  [1m[36mHandRange Load (27.3ms)[0m  [1m[34mSELECT `hand_ranges`.* FROM `hand_ranges`[0m
+  ↳ app/controllers/hand_ranges_controller.rb:8:in `index'
+Completed 200 OK in 87ms (Views: 59.6ms | ActiveRecord: 27.3ms | Allocations: 19358)
+
+

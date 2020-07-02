@@ -37,3 +37,7 @@ App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2
   Error ID: f5271286
   Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-hpoU9v.html
 
+[ N 2020-06-30 00:58:24.0038 37578/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-06-30 00:58:24.0168 37578/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+[ N 2020-07-01 15:58:20.0296 37578/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-07-01 15:58:20.5874 37578/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
