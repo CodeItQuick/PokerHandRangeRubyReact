@@ -2,7 +2,7 @@ import React, { useState, useEffect, memo, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import Board from "./Board/index.js.js";
+import Board from "./Board";
 import { useSelector, useDispatch } from "react-redux";
 import prange from "prange";
 import { Row, Col, Container } from "react-bootstrap";
@@ -14,21 +14,21 @@ import {
   makeSelectUser,
   makeSelectFolder,
   makeSelectDeadcards
-} from "./selectors.js.js";
+} from "./selectors";
 import {
   initCreateNewFolder,
   setHandRangeSelect,
   setHandRange,
   initAllUserHandRanges
-} from "./actions.js.js";
+} from "./actions";
 
-import reducer from "./reducer.js.js";
-import { useInjectReducer } from "../../HOC/useInjectReducer.js.js";
-import { useInjectSaga } from "../../HOC/injectSaga.js.js";
-import saga from "./saga.js.js";
+import reducer from "./reducer";
+import { useInjectReducer } from "../../HOC/useInjectReducer";
+import { useInjectSaga } from "../../HOC/injectSaga";
+import saga from "./saga";
 
-import ProductDescription from "./ProductDescription/index.js.js";
-import UserFunctionality from "./UserFunctionality/index.js.js";
+import ProductDescription from "./ProductDescription/index";
+import UserFunctionality from "./UserFunctionality/index";
 
 import { Button } from "semantic-ui-react";
 import InputForm from "./InputForm";
