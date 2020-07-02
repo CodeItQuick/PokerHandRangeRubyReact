@@ -23,18 +23,6 @@ const StyledRow = styled(Row)`
 `;
 //TODO: buttons that add two tone/rainbow/monotone/paired/HLL/etc.
 const BoardCards = ({ deadcards = [] }) => {
-  const [flippinCards, updateFlippinCards] = useState([]);
-  console.log(deadcards);
-  useEffect(() => {
-    if (deadcards) {
-      let flippinCardsClone = deadcards;
-      flippinCardsClone = flippinCardsClone.map(cards =>
-        cards.toUpperCase().trim()
-      );
-      updateFlippinCards(flippinCardsClone);
-    }
-  }, [deadcards]);
-
   return (
     <Table>
       <StyledRow>
@@ -50,36 +38,48 @@ const BoardCards = ({ deadcards = [] }) => {
       </StyledRow>
       <StyledRow>
         <StyledCol xs={8} md={8} lg={8}>
-          {Array.isArray(flippinCards) &&
-          flippinCards.length > 0 &&
-          flippinCards[0].length > 1
-            ? BoardCard("/assets/cards/" + flippinCards[0] + ".png", 0)
+          {Array.isArray(deadcards) &&
+          deadcards.length > 0 &&
+          deadcards[0].length > 1
+            ? BoardCard(
+                "/assets/cards/" + deadcards[0].toUpperCase().trim() + ".png",
+                0
+              )
             : BoardCard("/assets/cards/back.png", 0)}
 
-          {Array.isArray(flippinCards) &&
-          flippinCards.length > 1 &&
-          flippinCards[1].length > 1
-            ? BoardCard("/assets/cards/" + flippinCards[1] + ".png", 1)
+          {Array.isArray(deadcards) &&
+          deadcards.length > 1 &&
+          deadcards[1].length > 1
+            ? BoardCard(
+                "/assets/cards/" + deadcards[1].toUpperCase().trim() + ".png",
+                1
+              )
             : BoardCard("/assets/cards/back.png", 1)}
 
-          {Array.isArray(flippinCards) &&
-          flippinCards.length > 2 &&
-          flippinCards[2].length > 1
-            ? BoardCard("/assets/cards/" + flippinCards[2] + ".png", 2)
+          {Array.isArray(deadcards) &&
+          deadcards.length > 2 &&
+          deadcards[2].length > 1
+            ? BoardCard(
+                "/assets/cards/" + deadcards[2].toUpperCase().trim() + ".png",
+                2
+              )
             : BoardCard("/assets/cards/back.png", 2)}
         </StyledCol>
         <StyledCol xs={2} md={2} lg={2}>
-          {Array.isArray(flippinCards) &&
-          flippinCards.length > 3 &&
-          flippinCards[3].length > 1
-            ? BoardCard("/assets/cards/" + flippinCards[3] + ".png", 3)
+          {Array.isArray(deadcards) &&
+          deadcards.length > 3 &&
+          deadcards[3].length > 1
+            ? BoardCard(
+                "/assets/cards/" + deadcards[3].toUpperCase().trim() + ".png",
+                3
+              )
             : BoardCard("/assets/cards/back.png", 3)}
         </StyledCol>
         <StyledCol xs={2} md={2} lg={2}>
-          {Array.isArray(flippinCards) &&
-          flippinCards.length > 4 &&
-          flippinCards[4].length > 1
-            ? BoardCard("/assets/cards/" + flippinCards[4] + ".png", 4)
+          {Array.isArray(deadcards) &&
+          deadcards.length > 4 &&
+          deadcards[4].length > 1
+            ? BoardCard("/assets/cards/" + deadcards[4] + ".png", 4)
             : BoardCard("/assets/cards/back.png", 4)}
         </StyledCol>
       </StyledRow>

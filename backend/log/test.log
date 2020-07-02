@@ -1,0 +1,180 @@
+  [1m[35m (35.9ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (162.7ms)[0m  [1m[34mSELECT `ar_internal_metadata`.`value` FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1'[0m
+  [1m[35m (2.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (13.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (41.0ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (12.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (3.5ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (4.6ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (13.0ms)[0m  [1m[35mCREATE DATABASE `RangeSharingReactRubyAPI_test-1` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (9.1ms)[0m  [1m[35mCREATE DATABASE `RangeSharingReactRubyAPI_test-3` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (10.9ms)[0m  [1m[35mCREATE DATABASE `RangeSharingReactRubyAPI_test-2` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (10.6ms)[0m  [1m[35mCREATE DATABASE `RangeSharingReactRubyAPI_test-0` DEFAULT CHARACTER SET `utf8mb4`[0m
+  [1m[35m (2.6ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (1.1ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (4.0ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (1.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (113.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_range_folders` CASCADE[0m
+  [1m[35m (112.8ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_range_folders` CASCADE[0m
+  [1m[35m (114.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_range_folders` CASCADE[0m
+  [1m[35m (117.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_range_folders` CASCADE[0m
+  [1m[35m (115.7ms)[0m  [1m[35mCREATE TABLE `hand_range_folders` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `FolderName` varchar(255), `user_id` bigint,  INDEX `index_hand_range_folders_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (2.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_range_groups` CASCADE[0m
+  [1m[35m (130.7ms)[0m  [1m[35mCREATE TABLE `hand_range_folders` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `FolderName` varchar(255), `user_id` bigint,  INDEX `index_hand_range_folders_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (126.5ms)[0m  [1m[35mCREATE TABLE `hand_range_folders` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `FolderName` varchar(255), `user_id` bigint,  INDEX `index_hand_range_folders_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_range_groups` CASCADE[0m
+  [1m[35m (2.2ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_range_groups` CASCADE[0m
+  [1m[35m (138.0ms)[0m  [1m[35mCREATE TABLE `hand_range_folders` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `FolderName` varchar(255), `user_id` bigint,  INDEX `index_hand_range_folders_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (51.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_range_groups` CASCADE[0m
+  [1m[35m (127.7ms)[0m  [1m[35mCREATE TABLE `hand_range_groups` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `GroupName` varchar(255), `hand_range_id` bigint, `hand_range_folder_id` bigint,  INDEX `index_hand_range_groups_on_hand_range_folder_id`  (`hand_range_folder_id`),  INDEX `index_hand_range_groups_on_hand_range_id`  (`hand_range_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (44.7ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_ranges` CASCADE[0m
+  [1m[35m (178.4ms)[0m  [1m[35mCREATE TABLE `hand_range_groups` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `GroupName` varchar(255), `hand_range_id` bigint, `hand_range_folder_id` bigint,  INDEX `index_hand_range_groups_on_hand_range_folder_id`  (`hand_range_folder_id`),  INDEX `index_hand_range_groups_on_hand_range_id`  (`hand_range_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (130.9ms)[0m  [1m[35mCREATE TABLE `hand_range_groups` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `GroupName` varchar(255), `hand_range_id` bigint, `hand_range_folder_id` bigint,  INDEX `index_hand_range_groups_on_hand_range_folder_id`  (`hand_range_folder_id`),  INDEX `index_hand_range_groups_on_hand_range_id`  (`hand_range_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (171.2ms)[0m  [1m[35mCREATE TABLE `hand_range_groups` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `GroupName` varchar(255), `hand_range_id` bigint, `hand_range_folder_id` bigint,  INDEX `index_hand_range_groups_on_hand_range_folder_id`  (`hand_range_folder_id`),  INDEX `index_hand_range_groups_on_hand_range_id`  (`hand_range_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (3.0ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_ranges` CASCADE[0m
+  [1m[35m (1.9ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_ranges` CASCADE[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `hand_ranges` CASCADE[0m
+  [1m[35m (136.0ms)[0m  [1m[35mCREATE TABLE `hand_ranges` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `RangeName` varchar(255), `RangeScope` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `users` CASCADE[0m
+  [1m[35m (126.6ms)[0m  [1m[35mCREATE TABLE `hand_ranges` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `RangeName` varchar(255), `RangeScope` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE IF EXISTS `users` CASCADE[0m
+  [1m[35m (131.3ms)[0m  [1m[35mCREATE TABLE `hand_ranges` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `RangeName` varchar(255), `RangeScope` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (61.0ms)[0m  [1m[35mDROP TABLE IF EXISTS `users` CASCADE[0m
+  [1m[35m (191.9ms)[0m  [1m[35mCREATE TABLE `hand_ranges` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `RangeName` varchar(255), `RangeScope` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (1.1ms)[0m  [1m[35mDROP TABLE IF EXISTS `users` CASCADE[0m
+  [1m[35m (103.5ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `password_digest` varchar(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (93.1ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `password_digest` varchar(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (31.9ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `password_digest` varchar(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (35.3ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `name` varchar(255), `email` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL, `password_digest` varchar(255)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci[0m
+  [1m[35m (263.7ms)[0m  [1m[35mALTER TABLE `hand_range_folders` ADD CONSTRAINT `fk_rails_6cbc81d694`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (265.0ms)[0m  [1m[35mALTER TABLE `hand_range_folders` ADD CONSTRAINT `fk_rails_6cbc81d694`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (263.1ms)[0m  [1m[35mALTER TABLE `hand_range_folders` ADD CONSTRAINT `fk_rails_6cbc81d694`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (287.8ms)[0m  [1m[35mALTER TABLE `hand_range_folders` ADD CONSTRAINT `fk_rails_6cbc81d694`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (221.8ms)[0m  [1m[35mALTER TABLE `hand_range_groups` ADD CONSTRAINT `fk_rails_22ce966806`
+FOREIGN KEY (`hand_range_folder_id`)
+  REFERENCES `hand_range_folders` (`id`)
+[0m
+  [1m[35m (222.6ms)[0m  [1m[35mALTER TABLE `hand_range_groups` ADD CONSTRAINT `fk_rails_22ce966806`
+FOREIGN KEY (`hand_range_folder_id`)
+  REFERENCES `hand_range_folders` (`id`)
+[0m
+  [1m[35m (218.7ms)[0m  [1m[35mALTER TABLE `hand_range_groups` ADD CONSTRAINT `fk_rails_22ce966806`
+FOREIGN KEY (`hand_range_folder_id`)
+  REFERENCES `hand_range_folders` (`id`)
+[0m
+  [1m[35m (209.4ms)[0m  [1m[35mALTER TABLE `hand_range_groups` ADD CONSTRAINT `fk_rails_22ce966806`
+FOREIGN KEY (`hand_range_folder_id`)
+  REFERENCES `hand_range_folders` (`id`)
+[0m
+  [1m[35m (66.8ms)[0m  [1m[35mALTER TABLE `hand_range_groups` ADD CONSTRAINT `fk_rails_bd917f0a49`
+FOREIGN KEY (`hand_range_id`)
+  REFERENCES `hand_ranges` (`id`)
+[0m
+  [1m[35m (103.1ms)[0m  [1m[35mALTER TABLE `hand_range_groups` ADD CONSTRAINT `fk_rails_bd917f0a49`
+FOREIGN KEY (`hand_range_id`)
+  REFERENCES `hand_ranges` (`id`)
+[0m
+  [1m[35m (108.1ms)[0m  [1m[35mALTER TABLE `hand_range_groups` ADD CONSTRAINT `fk_rails_bd917f0a49`
+FOREIGN KEY (`hand_range_id`)
+  REFERENCES `hand_ranges` (`id`)
+[0m
+  [1m[35m (96.8ms)[0m  [1m[35mALTER TABLE `hand_range_groups` ADD CONSTRAINT `fk_rails_bd917f0a49`
+FOREIGN KEY (`hand_range_id`)
+  REFERENCES `hand_ranges` (`id`)
+[0m
+  [1m[35m (41.0ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (10.2ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200224121315)[0m
+  [1m[35m (11.1ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200209131435),
+(20200209204850),
+(20200216221500),
+(20200224121314);
+
+[0m
+  [1m[35m (12.3ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY)[0m
+  [1m[35m (4.0ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200224121315)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200209131435),
+(20200209204850),
+(20200216221500),
+(20200224121314);
+
+[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200224121315)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (1.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200209131435),
+(20200209204850),
+(20200216221500),
+(20200224121314);
+
+[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20200224121315)[0m
+  [1m[35m (13.6ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20200209131435),
+(20200209204850),
+(20200216221500),
+(20200224121314);
+
+[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (11.1ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (13.1ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.8ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2020-07-02 13:31:37.273216', '2020-07-02 13:31:37.273216')[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2020-07-02 13:31:37.275477', '2020-07-02 13:31:37.275477')[0m
+  [1m[35m (16.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2020-07-02 13:31:37.261848', '2020-07-02 13:31:37.261848')[0m
+  [1m[35m (76.1ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime(6) NOT NULL, `updated_at` datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.6ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (47.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (45.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (47.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '96da9b942f46ee518b331cb1b87b42d72faf3895', '2020-07-02 13:31:37.332166', '2020-07-02 13:31:37.332166')[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '96da9b942f46ee518b331cb1b87b42d72faf3895', '2020-07-02 13:31:37.332397', '2020-07-02 13:31:37.332397')[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.9ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '96da9b942f46ee518b331cb1b87b42d72faf3895', '2020-07-02 13:31:37.332363', '2020-07-02 13:31:37.332363')[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (31.5ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2020-07-02 13:31:37.340881', '2020-07-02 13:31:37.340881')[0m
+  [1m[35m (51.9ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (56.8ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (76.7ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (65.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'schema_sha1' LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('schema_sha1', '96da9b942f46ee518b331cb1b87b42d72faf3895', '2020-07-02 13:31:37.446672', '2020-07-02 13:31:37.446672')[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (35.5ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
