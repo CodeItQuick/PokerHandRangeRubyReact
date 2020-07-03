@@ -6,8 +6,6 @@ import Adapter from "enzyme-adapter-react-16";
 import reducer, { initialState } from "../../src/containers/MainPage/reducer";
 import * as types from "../../src/containers/MainPage/constants";
 
-const defaultReducerState = initialState;
-
 const data = [
   { name: "Preflop", value: "Raise4BetFold" },
   { name: "Preflop", value: "RaiseCall" },
@@ -28,7 +26,7 @@ const data = [
 
 describe("MainPage reducer", () => {
   test("should return the initial state", function() {
-    expect(reducer(undefined, {})).toEqual(defaultReducerState);
+    expect(reducer(undefined, {})).toEqual(initialState);
   });
 
   test.each(data)(
@@ -38,16 +36,46 @@ describe("MainPage reducer", () => {
     (data) => {
       const action = { type: types.SET_HAND_RANGE_SELECT, data };
 
-      let newState = JSON.parse(JSON.stringify(defaultReducerState));
+      let newState = JSON.parse(JSON.stringify(initialState));
       newState = {
-        ...defaultReducerState,
+        ...initialState,
         mode: {
           street: data.name,
           streetAction: data.value,
+          isIP: initialState.mode.isIP,
         },
       };
 
       expect(reducer(undefined, action)).toEqual(newState);
     }
   );
+
+  test("The reducer when action SET_IS_IP should return the new position, and the new range", () => {
+    const action = {
+      type: types.SET_IS_IP,
+      data: {
+        rangeRepoIP: initialState.ranges,
+        rangeRepoOOP: initialState.rangeRepoOOP,
+      },
+    };
+
+    let newState = JSON.parse(JSON.stringify(initialState));
+
+    console.log(newState); //?
+
+    newState = {
+      ...initialState,
+      mode: {
+        street: initialState.mode.street,
+        streetAction: initialState.mode.streetAction,
+        isIP: !initialState.mode.isIP,
+      },
+      rangeRepoIP: initialState.ranges,
+      rangeRepoOOP: initialState.rangeRepoOOP,
+    };
+
+    console.log(newState); //?
+
+    expect(reducer(undefined, action)).toEqual(newState);
+  });
 });

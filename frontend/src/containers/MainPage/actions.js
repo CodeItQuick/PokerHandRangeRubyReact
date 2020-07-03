@@ -12,7 +12,8 @@ import {
   SAVE_AND_LOAD,
   LOAD_NEW_FOLDER,
   SET_DEAD_CARDS,
-  GET_DEAD_CARDS
+  GET_DEAD_CARDS,
+  SET_IS_IP
 } from "./constants";
 
 export function setHandRangeSelect(data) {
@@ -98,6 +99,13 @@ export function loadNewFolder() {
 export function setDeadCards(data) {
   return {
     type: SET_DEAD_CARDS,
+    data
+  };
+}
+
+export function setIsIP(data) {
+  return {
+    type: SET_IS_IP,
     data
   };
 }

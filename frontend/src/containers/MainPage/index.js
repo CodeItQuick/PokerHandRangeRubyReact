@@ -28,7 +28,6 @@ import { useInjectSaga } from "../../HOC/injectSaga";
 import saga from "./saga";
 
 import ProductDescription from "./ProductDescription/index";
-import UserFunctionality from "./UserFunctionality/index";
 
 import { Button } from "semantic-ui-react";
 import InputForm from "./InputForm";
@@ -125,8 +124,6 @@ const MainPage = ({
           onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
           mode={mode}
         />
-        {/* <UserFunctionality onTabChangeHandler={onTabChangeHandler} /> */}
-        {/* <Button onClick={onClickNewFolderHandler}>Create New Folder </Button> */}
       </RightPane>
     </MainPageContainer>
   );

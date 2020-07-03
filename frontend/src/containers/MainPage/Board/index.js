@@ -10,7 +10,8 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import {
   makeSelectRangesPreflop,
-  makeSelectRangesPreflopOnly
+  makeSelectRangesPreflopOnly,
+  makeSelectPosition
 } from "../selectors";
 
 import { setHandRange } from "../actions.js";
@@ -107,7 +108,12 @@ let getCards = (cardOne, cardTwo) => {
   return card1 + card2;
 };
 
-const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
+const Board = ({
+  onMouseOverHandler,
+  PreflopRanges,
+  PreflopRangesOnly,
+  Position
+}) => {
   const [manyHands, setManyHands] = useState();
   const [cards, setCards] = useState({});
 
@@ -136,7 +142,7 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
     );
 
     setCards(cardClone);
-  }, [PreflopRanges]);
+  }, [PreflopRanges, Position]);
 
   // Set the drag hook and define component movement based on gesture data
   const bind = useGesture({
@@ -201,7 +207,7 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
     });
 
     setManyHands(setNewManyHands);
-  }, [cards, bind, PreflopRangesOnly]);
+  }, [cards, bind, PreflopRangesOnly, Position]);
 
   return <Container fluid>{manyHands}</Container>; //TO-DO: BUG this generates console error
 };
@@ -209,11 +215,13 @@ const Board = ({ onMouseOverHandler, PreflopRanges, PreflopRangesOnly }) => {
 const mapStateToProps = () => {
   const getRangesPreflop = makeSelectRangesPreflop();
   const getRangesPreflopOnly = makeSelectRangesPreflopOnly();
+  const getPosition = makeSelectPosition();
 
   const mapState = state => {
     return {
       PreflopRanges: getRangesPreflop(state),
-      PreflopRangesOnly: getRangesPreflopOnly(state)
+      PreflopRangesOnly: getRangesPreflopOnly(state),
+      Position: getPosition(state)
     };
   };
 

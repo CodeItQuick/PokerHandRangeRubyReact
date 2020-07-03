@@ -13,17 +13,19 @@ import {
   INIT_ALL_USER_HAND_RANGES,
   ALL_USER_HAND_RANGES_SUCCESS,
   ALL_USER_HAND_RANGES_FAIL,
-  SET_DEAD_CARDS
+  SET_DEAD_CARDS,
+  SET_IS_IP
 } from "./constants.js";
 
 import { saveOldRangeRepo, loadNewRange } from "./stateRangeFunctions";
-import { sampleData, ranges, rangeRepo } from "./sampleData.js";
+import { sampleData, ranges } from "./sampleData.js";
 
 const initialState = {
   mode: sampleData.mode,
   rangeSelectionArray: sampleData.rangeSelectionArray,
   rangeColors: sampleData.rangeColors,
-  rangeRepo: rangeRepo,
+  rangeRepoIP: sampleData.rangeRepoIP,
+  rangeRepoOOP: sampleData.rangeRepoOOP,
   ranges: ranges,
   deadcards: []
 };
@@ -32,6 +34,14 @@ const initialState = {
 const mainPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
+      case SET_IS_IP:
+        console.log(action); //?
+        draft.mode.isIP = action.data.position;
+        draft.rangeRepoIP = action.data.newRangeIP;
+        draft.rangeRepoOOP = action.data.newRangeOOP;
+        draft.ranges = action.data.newRanges;
+        break;
+
       case SET_HAND_RANGE_SELECT:
         draft.mode.street = action.data.name || "Preflop";
         draft.mode.streetAction = action.data.value;
