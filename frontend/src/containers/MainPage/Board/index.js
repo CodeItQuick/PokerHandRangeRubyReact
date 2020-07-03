@@ -13,7 +13,7 @@ import {
   makeSelectRangesPreflopOnly
 } from "../selectors";
 
-import { setHandRange } from "../actions.js";
+import { setHandRange } from "../actions";
 import styled from "styled-components";
 
 //TODO: implement interact.js or draggable instead of this react library

@@ -4,7 +4,7 @@ import FolderGroup from "./FolderGroup";
 
 import { connect, useDispatch } from "react-redux";
 import { compose } from "redux";
-import { makeSelectFolder } from "../selectors.js";
+import { makeSelectFolder } from "../selectors";
 import {
   setDynamicFolderInfo,
   saveAndLoad,

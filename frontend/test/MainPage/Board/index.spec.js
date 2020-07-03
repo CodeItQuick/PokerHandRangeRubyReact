@@ -1,14 +1,14 @@
 import React from "react";
-import MainPage from "../../../src/containers/MainPage/index.js";
+import MainPage from "../../../src/containers/MainPage/index";
 import Enzyme, { shallow, mount, render } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import { Provider } from "react-redux";
 import { initialState } from "../../../src/containers/MainPage/reducer";
 import history from "../../../src/utils/history";
-import configureStore from "../../../src/configureStore.js";
+import configureStore from "../../../src/configureStore";
 import Board from "../../../src/containers/MainPage/Board";
-import { ranges } from "../../../src/containers/MainPage/sampleData.js";
+import { ranges } from "../../../src/containers/MainPage/sampleData";
 
 Enzyme.configure({ adapter: new Adapter() });
 

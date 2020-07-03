@@ -8,7 +8,7 @@ import {
   saveAndLoad,
   loadNewFolder,
   setHandRangeSelect
-} from "../../actions.js";
+} from "../../actions";
 
 const StyledContainer = styled(Container)`
   display: block;

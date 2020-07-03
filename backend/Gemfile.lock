@@ -970,6 +970,8 @@ GEM
     aws-sigv4 (1.2.0)
       aws-eventstream (~> 1, >= 1.0.2)
     bcrypt (3.1.13)
+    binding_of_caller (0.8.0)
+      debug_inspector (>= 0.0.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -979,6 +981,10 @@ GEM
       multi_json
     couchbase (3.0.0.alpha.5)
     crass (1.0.6)
+    debase (0.2.4.1)
+      debase-ruby_core_source (>= 0.10.2)
+    debase-ruby_core_source (0.10.9)
+    debug_inspector (0.0.3)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
@@ -1055,6 +1061,8 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    ruby-debug-ide (0.6.0)
+      rake (>= 0.8.1)
     ruby_dep (1.5.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
@@ -1074,6 +1082,11 @@ GEM
       thread_safe (~> 0.1)
     tzinfo-data (1.2020.1)
       tzinfo (>= 1.0.0)
+    web-console (2.3.0)
+      activemodel (>= 4.0)
+      binding_of_caller (>= 0.7.2)
+      railties (>= 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -1090,6 +1103,7 @@ DEPENDENCIES
   byebug
   cors
   couchbase (= 3.0.0.alpha.5)
+  debase (= 0.2.4.1)
   dotenv-rails
   jwt
   listen (>= 3.0.5, < 3.2)
@@ -1098,10 +1112,12 @@ DEPENDENCIES
   puma (~> 4.3)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.1)
+  ruby-debug-ide (= 0.6.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   stripe
   tzinfo-data
+  web-console (~> 2.0)
 
 RUBY VERSION
    ruby 2.7.0p0

@@ -2,10 +2,10 @@ import React from "react";
 import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import FolderGroup from "../../../../src/containers/MainPage/UserFunctionality/FolderGroup/index.js";
+import FolderGroup from "../../../../src/containers/MainPage/UserFunctionality/FolderGroup/index";
 
 import configureStore from "../../../../src/configureStore";
-import { initialState } from "../../../../src/containers/MainPage/reducer.js";
+import { initialState } from "../../../../src/containers/MainPage/reducer";
 import history from "../../../../src/utils/history";
 import { Provider } from "react-redux";
 

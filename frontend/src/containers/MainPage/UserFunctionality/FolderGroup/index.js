@@ -3,16 +3,16 @@ import { Form, Input, Tab, Button } from "semantic-ui-react";
 
 import { connect, useDispatch } from "react-redux";
 import { compose } from "redux";
-import { makeSelectFolder, makeSelectFolderGroup } from "../../selectors.js";
+import { makeSelectFolder, makeSelectFolderGroup } from "../../selectors";
 
 import {
   setDynamicFolderInfo,
   saveAndLoad,
   loadNewFolder,
   setHandRangeSelect
-} from "../../actions.js";
+} from "../../actions";
 
-import HandRangeContainer from "./HandRangeContainer.js";
+import HandRangeContainer from "./HandRangeContainer";
 
 const panes = (FolderGroup, folderIdx, folderName) =>
   FolderGroup.map((curr, idx) => {

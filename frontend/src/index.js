@@ -18,7 +18,7 @@ import { ThemeProvider } from "styled-components";
 
 import UserRegister from "./containers/Auth/Register/UserRegister.js";
 import Login from "./containers/Auth/Login/UserLogin.js";
-import { Auth0Provider } from "./react-auth0-spa";
+import { Auth0Provider } from "./react-auth0-spa.js";
 import config from "./auth_config";
 
 //const store = createStore(combineReducers({rootReducer, handRangesAvailable}), applyMiddleware(thunk));

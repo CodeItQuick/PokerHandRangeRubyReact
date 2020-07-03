@@ -14,10 +14,10 @@ import {
   ALL_USER_HAND_RANGES_SUCCESS,
   ALL_USER_HAND_RANGES_FAIL,
   SET_DEAD_CARDS
-} from "./constants.js";
+} from "./constants";
 
 import { saveOldRangeRepo, loadNewRange } from "./stateRangeFunctions";
-import { sampleData, ranges, rangeRepo } from "./sampleData.js";
+import { sampleData, ranges, rangeRepo } from "./sampleData";
 
 const initialState = {
   mode: sampleData.mode,
