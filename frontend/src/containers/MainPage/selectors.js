@@ -105,10 +105,21 @@ const makeSelectFolderRanges = () =>
 const makeSelectDeadcards = () =>
   createSelector(selectGlobal, globalState => globalState.deadcards);
 
+const makeSelectRangeRepoIP = () =>
+  createSelector(selectGlobal, globalState => globalState.rangeRepoIP);
+
+const makeSelectRangeRepoOOP = () =>
+  createSelector(selectGlobal, globalState => globalState.rangeRepoOOP);
+
+const makeSelectPosition = () =>
+  createSelector(selectGlobal, globalState => globalState.mode.isIP);
+
 export {
   selectGlobal,
   selectRouter,
   makeSelectRanges,
+  makeSelectRangeRepoIP,
+  makeSelectRangeRepoOOP,
   makeSelectRangesPreflop,
   makeSelectRangesPreflopOnly,
   makeSelectRange,
@@ -117,5 +128,6 @@ export {
   makeSelectFolder,
   makeSelectFolderGroup,
   makeSelectRangeColors,
-  makeSelectDeadcards
+  makeSelectDeadcards,
+  makeSelectPosition
 };

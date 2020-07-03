@@ -34,3 +34,5 @@ export const LOAD_NEW_FOLDER = "handrangeAPI/MainPage/LOAD_NEW_FOLDER";
 
 export const SET_DEAD_CARDS = "handrangeAPI/MainPage/SET_DEAD_CARDS";
 export const GET_DEAD_CARDS = "handrangeAPI/MainPage/GET_DEAD_CARDS";
+
+export const SET_IS_IP = "handrangeAPI/MainPage/IS_IP";
