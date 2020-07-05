@@ -7,8 +7,10 @@ import { Provider } from "react-redux";
 import { initialState } from "../../../src/containers/MainPage/reducer";
 import history from "../../../src/utils/history";
 import configureStore from "../../../src/configureStore.js";
-import Board from "../../../src/containers/MainPage/Board";
+import Board, { calculateEquity } from "../../../src/containers/MainPage/Board";
 import { ranges } from "../../../src/containers/MainPage/sampleData.js";
+
+import { CardGroup, OddsCalculator } from "poker-odds-calculator";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -39,5 +41,18 @@ describe("MainPage Container", () => {
     const colorcardAA = enzymeWrapper.find("#colorButtonAA").get(0).props
       .coloring;
     expect(colorcardAA).toBe("#AAA");
+  });
+
+  test("Board correctly calculates equity for hand against other range", () => {
+    const player1Cards = CardGroup.fromString("JJ");
+    const player2Cards = CardGroup.fromString("AdKd");
+    const board = CardGroup.fromString("7d9dTs");
+
+    const result = OddsCalculator.calculate(
+      [player1Cards, player2Cards],
+      board
+    );
+
+    expect(calculateEquity("JJ")).toBe(`${result.equities[0].getEquity()}%`);
   });
 });
