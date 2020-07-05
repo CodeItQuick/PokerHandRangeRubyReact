@@ -76,19 +76,6 @@ const legendTable = (
           ).toFixed(2)}
         </Table.Cell>
         <Table.Cell>{((numberOfCombos[0] / 1326) * 100).toFixed(2)}</Table.Cell>
-        <Table.Cell>
-          <Button
-            id="firstChoice"
-            onClick={e =>
-              onHandleStreetHandlerButtons(e, {
-                street,
-                streetAction: streetActions[0]
-              })
-            }
-          >
-            Choose Hands
-          </Button>
-        </Table.Cell>
       </StyledGreenRow>
       <StyledVioletRow>
         <Table.Cell>{streetActions[1]}</Table.Cell>
@@ -103,19 +90,6 @@ const legendTable = (
           ).toFixed(2)}
         </Table.Cell>
         <Table.Cell>{((numberOfCombos[1] / 1326) * 100).toFixed(2)}</Table.Cell>
-        <Table.Cell>
-          <Button
-            id="secondChoice"
-            onClick={e =>
-              onHandleStreetHandlerButtons(e, {
-                street,
-                streetAction: streetActions[1]
-              })
-            }
-          >
-            Choose Hands
-          </Button>
-        </Table.Cell>
       </StyledVioletRow>
       <StyledBlueRow>
         <Table.Cell>{streetActions[2]}</Table.Cell>
@@ -130,19 +104,6 @@ const legendTable = (
           ).toFixed(2)}
         </Table.Cell>
         <Table.Cell>{((numberOfCombos[2] / 1326) * 100).toFixed(2)}</Table.Cell>
-        <Table.Cell>
-          <Button
-            id="thirdChoice"
-            onClick={e =>
-              onHandleStreetHandlerButtons(e, {
-                street,
-                streetAction: streetActions[2]
-              })
-            }
-          >
-            Choose Hands
-          </Button>
-        </Table.Cell>
       </StyledBlueRow>
       <StyledRedRow>
         <Table.Cell>{streetActions[3]}</Table.Cell>
@@ -157,19 +118,6 @@ const legendTable = (
           ).toFixed(2)}
         </Table.Cell>
         <Table.Cell>{((numberOfCombos[3] / 1326) * 100).toFixed(2)}</Table.Cell>
-        <Table.Cell>
-          <Button
-            id="fourthChoice"
-            onClick={e =>
-              onHandleStreetHandlerButtons(e, {
-                street,
-                streetAction: streetActions[3]
-              })
-            }
-          >
-            Choose Hands
-          </Button>
-        </Table.Cell>
       </StyledRedRow>
       <StyledInvertedRow>
         <Table.Cell>Total</Table.Cell>
@@ -363,11 +311,13 @@ const BoardLegend = ({
 
   return (
     <StyledContainer>
-      <Tab
-        panes={panes}
-        menu={{ fluid: true, tabular: true }}
-        onTabChange={onHandleStreetHandler}
-      />
+      {legendTable(
+        numberOfCombos,
+        nameOfAction,
+        onHandleStreetHandlerButtons,
+        mode.street,
+        streetActions[mode.street]
+      )}
     </StyledContainer>
   );
 };

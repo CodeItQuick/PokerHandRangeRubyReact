@@ -108,6 +108,10 @@ let getCards = (cardOne, cardTwo) => {
   return card1 + card2;
 };
 
+export const calculateEquity = cardHand => {
+  return "50%";
+};
+
 const Board = ({
   onMouseOverHandler,
   PreflopRanges,
@@ -199,6 +203,8 @@ const Board = ({
               border_attrib={allPreflopHands.indexOf(cardHand) >= 0}
             >
               {cardHand}
+              <br />
+              {calculateEquity(cardHand)}
             </ColorCard>
           </StyledCol>
         );

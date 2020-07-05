@@ -68,11 +68,11 @@ const MainPage = ({
     toAllUserHandRange();
   }, [toAllUserHandRange]);
 
-  const onHandleStreetHandler = (e, { activeIndex, panes }) => {
+  const onHandleStreetHandler = (e, { name, value }) => {
     dispatch(
       setHandRangeSelect({
-        name: panes[activeIndex].name,
-        value: panes[activeIndex].value
+        name,
+        value
       })
     );
   };
@@ -109,7 +109,6 @@ const MainPage = ({
         <InputForm
           onHandleStreetHandler={onHandleStreetHandler}
           onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
-          mode={mode}
         />
         <Board
           onMouseOverHandler={onMouseOverHandler}
