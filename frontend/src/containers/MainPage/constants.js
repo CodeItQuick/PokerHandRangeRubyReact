@@ -36,3 +36,6 @@ export const SET_DEAD_CARDS = "handrangeAPI/MainPage/SET_DEAD_CARDS";
 export const GET_DEAD_CARDS = "handrangeAPI/MainPage/GET_DEAD_CARDS";
 
 export const SET_IS_IP = "handrangeAPI/MainPage/IS_IP";
+export const LOAD_EQUITIES = "handrangeAPI/MainPage/LOAD_EQUITIES";
+export const LOAD_EQUITIES_SUCCESS =
+  "handrangeAPI/MainPage/LOAD_EQUITIES_SUCCESS";

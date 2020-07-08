@@ -94,14 +94,6 @@ const MainPage = ({
     return data.cards;
   };
 
-  const onTabChangeHandler = (e, { activeIndex }) => {
-    dispatch(initAllUserHandRanges(activeIndex));
-  };
-
-  const onClickNewFolderHandler = () => {
-    dispatch(initCreateNewFolder(user));
-  };
-
   //TO-DO: need to align these left-to-right on big screens, top-to-bottom mobile
   return (
     <MainPageContainer>
