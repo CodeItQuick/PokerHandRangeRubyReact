@@ -87,7 +87,7 @@ const App = ({ ranges, mode, user, rangeColors }) => {
   return (
     <StyledFragment>
       <MainContainer>
-        <Navbar username={user.name} />
+        {/* <Navbar username={user.name} /> */}
         <MainPage ranges={ranges} mode={mode}></MainPage>
         <Tour steps={steps} isOpen={isTourOpen} onRequestClose={closeTour} />
       </MainContainer>

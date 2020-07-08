@@ -13,7 +13,9 @@ import {
   LOAD_NEW_FOLDER,
   SET_DEAD_CARDS,
   GET_DEAD_CARDS,
-  SET_IS_IP
+  SET_IS_IP,
+  LOAD_EQUITIES,
+  LOAD_EQUITIES_SUCCESS
 } from "./constants";
 
 export function setHandRangeSelect(data) {
@@ -106,6 +108,19 @@ export function setDeadCards(data) {
 export function setIsIP(data) {
   return {
     type: SET_IS_IP,
+    data
+  };
+}
+
+export function loadEquities() {
+  return {
+    type: LOAD_EQUITIES
+  };
+}
+
+export function loadEquitiesSuccess(data) {
+  return {
+    type: LOAD_EQUITIES_SUCCESS,
     data
   };
 }

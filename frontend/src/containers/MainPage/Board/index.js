@@ -4,148 +4,55 @@ import { useDispatch } from "react-redux";
 import { Grid, Button } from "semantic-ui-react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useDrag, useGesture, useMove } from "react-use-gesture";
-import { useSpring, animated } from "react-spring";
 
 import { connect } from "react-redux";
 import { compose } from "redux";
 import {
   makeSelectRangesPreflop,
   makeSelectRangesPreflopOnly,
-  makeSelectPosition
+  makeSelectPosition,
+  makeSelectLoadEquities,
+  makeSelectDeadcards,
+  makeSelectOtherRange,
+  makeSelectHandEquities
 } from "../selectors";
 
-import { setHandRange } from "../actions.js";
-import styled from "styled-components";
+import { setHandRange, loadEquities, loadEquitiesSuccess } from "../actions.js";
 
+import { StyledCol, ColorCard, StyledRow } from "./Styles.js";
+import {
+  getCards,
+  displayCardSuit,
+  orderedCard,
+  addEquityCardGrid,
+  generateCardGrid
+} from "./StateUpdate";
 //TODO: implement interact.js or draggable instead of this react library
-
-const ColorCard = styled(animated.button)`
-  cursor: pointer;
-  padding-left: 0px;
-  padding-right: 2px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  width: 100% !important;
-  height: 40px !important;
-  margin: 0px;
-  font-size: 7px;
-  text-align: center;
-  color: black;
-  background-color: ${props => props.coloring};
-  ${props =>
-    props.border_attrib ? "border: 3px dashed black;" : "border: none;"}
-  @media (min-width: 576px) and (max-width: 767.98px) {
-    width: 20px;
-    padding: 5px;
-    font-size: 12px;
-  }
-  @media (min-width: 768px) and (max-width: 991.98px) {
-    width: 30px;
-    padding: 5px;
-    font-size: 12px;
-  }
-  @media (min-width: 992px) {
-    width: 30px;
-    padding: 10px;
-    font-size: 12px;
-  }
-`;
-
-const StyledRow = styled(Row)`
-  margin: 0px;
-  width: 100%;
-  flex-wrap: nowrap !important;
-`;
-
-const StyledCol = styled(Col)`
-  margin: 0px;
-  width: 100% !important;
-  height: 40px !important;
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-  justify-content: flex-start;
-`;
-const orderedCard = [
-  "A",
-  "K",
-  "Q",
-  "J",
-  "T",
-  "9",
-  "8",
-  "7",
-  "6",
-  "5",
-  "4",
-  "3",
-  "2"
-];
-const displayCardSuit = (cardOne, cardTwo) => {
-  let displaySuit = "";
-  if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
-    displaySuit = "s";
-  } else if (cardOne === cardTwo) {
-    displaySuit = "";
-  } else {
-    displaySuit = "o";
-  }
-  return displaySuit;
-};
-
-let getCards = (cardOne, cardTwo) => {
-  let card1 = "",
-    card2 = "";
-  if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
-    card1 = cardOne;
-    card2 = cardTwo;
-  } else if (cardOne === cardTwo) {
-    card1 = cardOne;
-    card2 = cardTwo;
-  } else {
-    card1 = cardTwo;
-    card2 = cardOne;
-  }
-  return card1 + card2;
-};
-
-export const calculateEquity = cardHand => {
-  return "50%";
-};
 
 const Board = ({
   onMouseOverHandler,
   PreflopRanges,
   PreflopRangesOnly,
-  Position
+  Position,
+  loadEquities,
+  deadcards,
+  otherRange,
+  handEquities
 }) => {
   const [manyHands, setManyHands] = useState();
   const [cards, setCards] = useState({});
+  const dispatch = useDispatch();
 
-  //This sets the cards to a value for reading later, listing the cards and
-  //the color in a single column is annoying/tedious
   useEffect(() => {
-    let cardClone = {};
+    let newCards = addEquityCardGrid(deadcards, otherRange, cards);
+    dispatch(loadEquitiesSuccess({ Position, newCards }));
+    if (Position == true) setCards(handEquities[0]);
+    else setCards(handEquities[1]);
+  }, [loadEquities]);
 
-    orderedCard.forEach(cardOne =>
-      orderedCard.forEach(cardTwo => {
-        let hand =
-          getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo);
-        if (PreflopRanges) {
-          PreflopRanges.forEach(({ Street, BetType, hands }, idx) => {
-            if (hands.indexOf(hand) >= 0) {
-              cardClone = {
-                ...cardClone,
-                [hand]: {
-                  colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][idx]
-                }
-              };
-            }
-          });
-        }
-      })
-    );
-
-    setCards(cardClone);
+  useEffect(() => {
+    let newCards = generateCardGrid(PreflopRanges, Position);
+    setCards(newCards);
   }, [PreflopRanges, Position]);
 
   // Set the drag hook and define component movement based on gesture data
@@ -204,7 +111,7 @@ const Board = ({
             >
               {cardHand}
               <br />
-              {calculateEquity(cardHand)}
+              {cards[cardHand] ? cards[cardHand].equity : "n/a"}
             </ColorCard>
           </StyledCol>
         );
@@ -222,12 +129,20 @@ const mapStateToProps = () => {
   const getRangesPreflop = makeSelectRangesPreflop();
   const getRangesPreflopOnly = makeSelectRangesPreflopOnly();
   const getPosition = makeSelectPosition();
+  const getLoadEquities = makeSelectLoadEquities();
+  const getCards = makeSelectDeadcards();
+  const getOtherRange = makeSelectOtherRange();
+  const getHandEquities = makeSelectHandEquities();
 
   const mapState = state => {
     return {
       PreflopRanges: getRangesPreflop(state),
       PreflopRangesOnly: getRangesPreflopOnly(state),
-      Position: getPosition(state)
+      Position: getPosition(state),
+      loadEquities: getLoadEquities(state),
+      handEquities: getHandEquities(state),
+      deadcards: getCards(state),
+      otherRange: getOtherRange(state)
     };
   };
 

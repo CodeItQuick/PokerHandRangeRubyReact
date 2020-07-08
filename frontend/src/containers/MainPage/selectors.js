@@ -114,6 +114,25 @@ const makeSelectRangeRepoOOP = () =>
 const makeSelectPosition = () =>
   createSelector(selectGlobal, globalState => globalState.mode.isIP);
 
+const makeSelectOtherRange = () => {
+  return createSelector(selectGlobal, globalState => {
+    if (globalState.mode.isIP)
+      return globalState.rangeRepoIP.filter(
+        ({ Street }) => Street == "Preflop"
+      );
+    else
+      return globalState.rangeRepoOOP.filter(
+        ({ Street }) => Street == "Preflop"
+      );
+  });
+};
+
+const makeSelectLoadEquities = () =>
+  createSelector(selectGlobal, globalState => globalState.loadEquities);
+
+const makeSelectHandEquities = () =>
+  createSelector(selectGlobal, globalState => globalState.handEquities);
+
 export {
   selectGlobal,
   selectRouter,
@@ -129,5 +148,8 @@ export {
   makeSelectFolderGroup,
   makeSelectRangeColors,
   makeSelectDeadcards,
-  makeSelectPosition
+  makeSelectPosition,
+  makeSelectLoadEquities,
+  makeSelectOtherRange,
+  makeSelectHandEquities
 };

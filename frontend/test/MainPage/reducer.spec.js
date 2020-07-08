@@ -1,10 +1,10 @@
 import React from "react";
-import MainPage from "../../src/containers/MainPage/";
+import MainPage from "../../src/pages/MainPage";
 import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
-import reducer, { initialState } from "../../src/containers/MainPage/reducer";
-import * as types from "../../src/containers/MainPage/constants";
+import reducer, { initialState } from "../../src/pages/MainPage/reducer";
+import * as types from "../../src/pages/MainPage/constants";
 
 const data = [
   { name: "Preflop", value: "Raise4BetFold" },

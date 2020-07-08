@@ -3,7 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import styled from "styled-components";
 import { Form, Button, Dropdown } from "semantic-ui-react";
 import BoardCards from "./BoardCards";
-import { setDeadCards, setIsIP } from "../actions";
+import { setDeadCards, setIsIP, loadEquities } from "../actions";
 import { compose } from "redux";
 import { connect, useDispatch } from "react-redux";
 import _ from "lodash";
@@ -55,6 +55,8 @@ const InputForm = ({
       setIsIP({ position: data.value, newRangeIP, newRangeOOP, newRanges })
     );
   };
+
+  const onCalculateEquities = () => dispatch(loadEquities());
 
   return (
     <Fragment style={{ display: "float" }}>
@@ -211,6 +213,11 @@ const InputForm = ({
             </Button>
           </Button.Group>
         )}
+      </div>
+      <div>
+        <Button onClick={() => onCalculateEquities()}>
+          Calculate Equities
+        </Button>
       </div>
       <BoardCards />
     </Fragment>

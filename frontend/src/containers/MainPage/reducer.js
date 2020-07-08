@@ -14,7 +14,9 @@ import {
   ALL_USER_HAND_RANGES_SUCCESS,
   ALL_USER_HAND_RANGES_FAIL,
   SET_DEAD_CARDS,
-  SET_IS_IP
+  SET_IS_IP,
+  LOAD_EQUITIES,
+  LOAD_EQUITIES_SUCCESS
 } from "./constants.js";
 
 import { saveOldRangeRepo, loadNewRange } from "./stateRangeFunctions";
@@ -27,15 +29,27 @@ const initialState = {
   rangeRepoIP: sampleData.rangeRepoIP,
   rangeRepoOOP: sampleData.rangeRepoOOP,
   ranges: ranges,
-  deadcards: []
+  deadcards: [],
+  loadEquities: false,
+  handEquities: [{}, {}]
 };
 
 //TODO: Make ranges convert between easy to read ranges
 const mainPageReducer = (state = initialState, action) =>
   produce(state, draft => {
     switch (action.type) {
+      case LOAD_EQUITIES:
+        draft.loadEquities = true;
+        break;
+
+      case LOAD_EQUITIES_SUCCESS:
+        console.log(action.data);
+        if (action.data.Position) draft.handEquities[0] = action.data.newCards;
+        else draft.handEquities[1] = action.data.newCards;
+        draft.loadEquities = false;
+        break;
+
       case SET_IS_IP:
-        console.log(action); //?
         draft.mode.isIP = action.data.position;
         draft.rangeRepoIP = action.data.newRangeIP;
         draft.rangeRepoOOP = action.data.newRangeOOP;
