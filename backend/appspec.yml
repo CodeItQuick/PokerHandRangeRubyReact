@@ -6,7 +6,6 @@ files:
 hooks:
   BeforeInstall:
     - location: deployment_scripts/arrange-deployment-folders.sh
-      runas: root
   AfterInstall:
     - location: deployment_scripts/set-permissions.sh
     # - location: deployment_scripts/db-config.sh
@@ -20,4 +19,3 @@ hooks:
 
   ApplicationStart:
     - location: deployment_scripts/finish-installation.sh
-      runas: root

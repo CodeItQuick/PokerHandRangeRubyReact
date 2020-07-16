@@ -18,7 +18,7 @@ import { ThemeProvider } from "styled-components";
 
 import UserRegister from "./containers/Auth/Register/UserRegister.js";
 import Login from "./containers/Auth/Login/UserLogin.js";
-import { Auth0Provider } from "./react-auth0-spa";
+// import { Auth0Provider } from "@auth0/auth0-react";
 import config from "./auth_config";
 
 //const store = createStore(combineReducers({rootReducer, handRangesAvailable}), applyMiddleware(thunk));
@@ -42,22 +42,22 @@ const onRedirectCallback = appState => {
 };
 
 ReactDOM.render(
-  <Auth0Provider
-    domain={config.domain}
-    client_id={config.clientId}
-    redirect_uri={siteUrl}
-    onRedirectCallback={onRedirectCallback}
-  >
-    <Provider store={store}>
-      <Router history={history}>
-        <ThemeProvider theme={{ main: "mediumseagreen" }}>
-          <Route exact path="/" component={App} />
-          <Route exact path="/register" component={UserRegister} />
-          <Route exact path="/login" component={Login} />
-        </ThemeProvider>
-      </Router>
-    </Provider>
-  </Auth0Provider>,
+  // <Auth0Provider
+  //   domain={config.domain}
+  //   client_id={config.clientId}
+  //   redirect_uri={siteUrl}
+  //   onRedirectCallback={onRedirectCallback}
+  // >
+  <Provider store={store}>
+    <Router history={history}>
+      <ThemeProvider theme={{ main: "mediumseagreen" }}>
+        <Route exact path="/" component={App} />
+        <Route exact path="/register" component={UserRegister} />
+        <Route exact path="/login" component={Login} />
+      </ThemeProvider>
+    </Router>
+  </Provider>,
+  // </Auth0Provider>,
   document.getElementById("root")
 );
 
