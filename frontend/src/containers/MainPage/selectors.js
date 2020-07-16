@@ -53,54 +53,9 @@ const makeSelectRangesPreflopOnly = () => {
 };
 
 const makeSelectRange = () =>
-  createSelector(selectGlobal, globalState => globalState.ranges); //??
-
-const makeSelectRangeColors = () =>
-  createSelector(selectGlobal, globalState => globalState.rangeColors);
+  createSelector(selectGlobal, globalState => globalState.ranges);
 
 const makeSelectUser = () => createSelector(selectUser, userState => userState);
-
-const makeSelectFolder = () =>
-  createSelector(selectGlobal, globalState => {
-    if (globalState.rangeRepo) {
-      let returnValues = globalState.rangeRepo.reduce((acc, { FolderName }) => {
-        if (acc.indexOf(FolderName) >= 0) return acc;
-        else return [...acc, FolderName];
-      }, []);
-      return returnValues;
-    }
-  });
-
-const makeSelectFolderGroup = () =>
-  createSelector(selectGlobal, globalState => {
-    if (globalState.rangeRepo) {
-      const selectedFolder = globalState.rangeSelectionArray.folderID;
-      let selectedFolderRange = globalState.rangeRepo.filter(
-        ({ FolderName }) => FolderName == selectedFolder
-      );
-
-      let returnValues = selectedFolderRange.reduce(
-        (acc, { FolderGroupName }) => {
-          if (acc.indexOf(FolderGroupName) >= 0) return acc;
-          else return [...acc, FolderGroupName];
-        },
-        []
-      );
-
-      return returnValues;
-    }
-  });
-
-const makeSelectFolderRanges = () =>
-  createSelector(selectGlobal, globalState => {
-    if (globalState.rangeRepo)
-      return Object.keys(globalState.rangeRepo).map(folder =>
-        Object.keys(folder).reduce(() => {
-          return { position: globalState["rangeRepo"][folder] };
-        })
-      );
-    else return {};
-  });
 
 const makeSelectDeadcards = () =>
   createSelector(selectGlobal, globalState => globalState.deadcards);
@@ -144,9 +99,6 @@ export {
   makeSelectRange,
   makeSelectMode,
   makeSelectUser,
-  makeSelectFolder,
-  makeSelectFolderGroup,
-  makeSelectRangeColors,
   makeSelectDeadcards,
   makeSelectPosition,
   makeSelectLoadEquities,

@@ -15,6 +15,8 @@ import {
   makeSelectPosition,
   makeSelectMode
 } from "../selectors";
+import InputStreet from "./InputStreet";
+import InputStreetAction from "./InputStreetAction";
 
 const options = [
   { key: "positionOOP", text: "OOP", value: false },
@@ -31,17 +33,16 @@ const InputForm = ({
   mode: { street, streetAction, isIP },
   ranges,
   rangeRepoOOP,
-  rangeRepoIP,
-  Position
+  rangeRepoIP
 }) => {
   const dispatch = useDispatch();
   const onChangeStreetHandler = e => {
     dispatch(setDeadCards(_.split(e.target.value, ",", 12)));
   };
 
-  const onChangePosition = (e, data) => {
+  const onChangePosition = (e, { value }) => {
     let newRangeIP, newRangeOOP, newRanges;
-    if (data.value) {
+    if (value) {
       newRanges = rangeRepoOOP;
       newRangeIP = ranges;
       newRangeOOP = rangeRepoOOP;
@@ -51,9 +52,7 @@ const InputForm = ({
       newRangeOOP = ranges;
     }
 
-    dispatch(
-      setIsIP({ position: data.value, newRangeIP, newRangeOOP, newRanges })
-    );
+    dispatch(setIsIP({ position: value, newRangeIP, newRangeOOP, newRanges }));
   };
 
   const onCalculateEquities = () => dispatch(loadEquities());
@@ -67,152 +66,37 @@ const InputForm = ({
         onChange={onChangeStreetHandler}
       ></DeadCards>
       <div>
-        Position:{" "}
-        <Dropdown
-          defaultValue={true}
-          options={options}
-          onChange={onChangePosition}
+        <Button
+          name="Position"
+          value={true}
+          active={isIP}
+          inverted
+          color="green"
+          onClick={onChangePosition}
+        >
+          In Position
+        </Button>
+        <Button
+          name="Position"
+          value={false}
+          active={!isIP}
+          inverted
+          color="green"
+          onClick={onChangePosition}
+        >
+          Out Of Position
+        </Button>
+      </div>
+      <InputStreet
+        onHandleStreetHandler={onHandleStreetHandler}
+        street={street}
+      />
+      <div>
+        <InputStreetAction
+          street={street}
+          streetAction={streetAction}
+          onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
         />
-      </div>
-      <div>
-        Street:
-        <Button.Group>
-          <Button
-            onClick={onHandleStreetHandler}
-            name="Preflop"
-            value="Raise4BetCall"
-          >
-            Preflop
-          </Button>
-          <Button.Or />
-          <Button onClick={onHandleStreetHandler} name="Flop" value="Valuebet">
-            Flop
-          </Button>
-          <Button.Or />
-          <Button onClick={onHandleStreetHandler} name="Turn" value="Valuebet">
-            Turn
-          </Button>
-          <Button.Or />
-          <Button onClick={onHandleStreetHandler} name="River" value="Valuebet">
-            River
-          </Button>
-        </Button.Group>
-      </div>
-      <div>
-        Street Action:
-        {street == "Preflop" ? (
-          <Button.Group inverted>
-            <Button
-              inverted
-              color="green"
-              id="firstChoice"
-              onClick={e =>
-                onHandleStreetHandlerButtons(e, {
-                  street,
-                  streetAction: "Raise4BetCall"
-                })
-              }
-            >
-              Raise/4bet/Call
-            </Button>
-            <Button.Or />
-            <Button
-              inverted
-              color="red"
-              id="firstChoice"
-              onClick={e =>
-                onHandleStreetHandlerButtons(e, {
-                  street,
-                  streetAction: "Raise4BetFold"
-                })
-              }
-            >
-              Raise/4bet/Fold
-            </Button>
-            <Button.Or />
-            <Button
-              inverted
-              color="grey"
-              id="firstChoice"
-              onClick={e =>
-                onHandleStreetHandlerButtons(e, {
-                  street,
-                  streetAction: "RaiseCall"
-                })
-              }
-            >
-              Raise/Call
-            </Button>
-            <Button.Or />
-            <Button
-              inverted
-              color="white"
-              id="firstChoice"
-              onClick={e =>
-                onHandleStreetHandlerButtons(e, {
-                  street,
-                  streetAction: "RaiseFold"
-                })
-              }
-            >
-              Raise/Fold
-            </Button>
-          </Button.Group>
-        ) : (
-          <Button.Group>
-            <Button
-              inverted
-              color="green"
-              onClick={e =>
-                onHandleStreetHandlerButtons(e, {
-                  street,
-                  streetAction: "Valuebet"
-                })
-              }
-            >
-              Valuebet
-            </Button>
-            <Button.Or />
-            <Button
-              inverted
-              color="red"
-              onClick={e =>
-                onHandleStreetHandlerButtons(e, {
-                  street,
-                  streetAction: "Bluff"
-                })
-              }
-            >
-              Bluff
-            </Button>
-            <Button.Or />
-            <Button
-              inverted
-              color="black"
-              onClick={e =>
-                onHandleStreetHandlerButtons(e, {
-                  street,
-                  streetAction: "CheckCall"
-                })
-              }
-            >
-              Check/Call
-            </Button>
-            <Button.Or />
-            <Button
-              inverted
-              color="white"
-              onClick={e =>
-                onHandleStreetHandlerButtons(e, {
-                  street,
-                  streetAction: "CheckFold"
-                })
-              }
-            >
-              Check/Fold
-            </Button>
-          </Button.Group>
-        )}
       </div>
       <div>
         <Button onClick={() => onCalculateEquities()}>

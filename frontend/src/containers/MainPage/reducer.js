@@ -19,7 +19,6 @@ import {
   LOAD_EQUITIES_SUCCESS
 } from "./constants.js";
 
-import { saveOldRangeRepo, loadNewRange } from "./stateRangeFunctions";
 import { sampleData, ranges } from "./sampleData.js";
 
 const initialState = {
@@ -43,10 +42,8 @@ const mainPageReducer = (state = initialState, action) =>
         break;
 
       case LOAD_EQUITIES_SUCCESS:
-        console.log(action.data);
         if (action.data.Position) draft.handEquities[0] = action.data.newCards;
         else draft.handEquities[1] = action.data.newCards;
-        draft.loadEquities = false;
         break;
 
       case SET_IS_IP:
@@ -54,60 +51,24 @@ const mainPageReducer = (state = initialState, action) =>
         draft.rangeRepoIP = action.data.newRangeIP;
         draft.rangeRepoOOP = action.data.newRangeOOP;
         draft.ranges = action.data.newRanges;
+        draft.loadEquities = false;
         break;
 
       case SET_HAND_RANGE_SELECT:
         draft.mode.street = action.data.name || "Preflop";
         draft.mode.streetAction = action.data.value;
+        draft.loadEquities = false;
         break;
 
       case SET_HAND_RANGE:
         draft.ranges = action.data;
+        draft.loadEquities = false;
 
-        break;
-
-      case INIT_CREATE_NEW_FOLDER:
-        break;
-
-      case CREATE_NEW_FOLDER_SUCCESS:
-        //Populate the range repository that holds all ranges from the DB
-        console.log(action.data);
-        break;
-
-      case SET_DYNAMIC_FOLDER_INFO:
-        draft.rangeRepo = saveOldRangeRepo(
-          draft.rangeRepo,
-          draft.rangeSelectionArray,
-          draft.ranges
-        );
-        draft.rangeSelectionArray = action.data;
-        draft.ranges = loadNewRange(draft.rangeRepo, action.data);
-
-        break;
-
-      case INIT_ALL_USER_HAND_RANGES:
-        draft.ranges = initialState.ranges;
-        break;
-
-      case ALL_USER_HAND_RANGES_SUCCESS:
-        //Populate the range repository that holds all ranges from the DB
-        draft.rangeRepo = action.data.map(
-          ({ FolderName, GroupName, RangeName, RangeScope }) => {
-            return {
-              FolderName,
-              FolderGroupName: GroupName,
-              Position: RangeName,
-              ranges: RangeScope
-            };
-          }
-        );
-        break;
-
-      case ALL_USER_HAND_RANGES_FAIL:
         break;
 
       case SET_DEAD_CARDS:
         draft.deadcards = action.data;
+        draft.loadEquities = false;
         break;
 
       default:

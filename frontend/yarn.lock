@@ -9,7 +9,7 @@
   dependencies:
     "@auth0/auth0-spa-js" "^1.9.0"
 
-"@auth0/auth0-spa-js@^1.10.0", "@auth0/auth0-spa-js@^1.9.0":
+"@auth0/auth0-spa-js@^1.9.0":
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@auth0/auth0-spa-js/-/auth0-spa-js-1.10.0.tgz#1be6536109a7c12255ceecae51b2a8fe82e9535b"
   integrity sha512-EUpnGK6GnKUiHnGbP+Y+yKD+FZ8/kEkjPeLxQi0gCGJkvTSLnKd/IbPJLUzyzXFTqDCw1ZkTu24/Uw5B3Ou2JQ==

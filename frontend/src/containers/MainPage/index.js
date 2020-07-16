@@ -11,12 +11,9 @@ import {
   makeSelectRanges,
   makeSelectRange,
   makeSelectMode,
-  makeSelectUser,
-  makeSelectFolder,
   makeSelectDeadcards
 } from "./selectors";
 import {
-  initCreateNewFolder,
   setHandRangeSelect,
   setHandRange,
   initAllUserHandRanges
@@ -55,7 +52,6 @@ const MainPage = ({
   ranges,
   mode,
   rangeColors,
-  user,
   toAllUserHandRange,
   mode: { street, streetAction },
   board
@@ -129,7 +125,6 @@ const mapStateToProps = () => {
   const getMapRange = makeSelectRanges();
   const getSelectRange = makeSelectRange();
   const getMode = makeSelectMode();
-  const getUser = makeSelectUser();
   const getDeadcards = makeSelectDeadcards();
 
   const mapState = state => {
@@ -137,7 +132,6 @@ const mapStateToProps = () => {
       ranges: getMapRange(state),
       wholeRange: getSelectRange(state), //TODO: change to streetname
       mode: getMode(state),
-      user: getUser(state),
       board: getDeadcards(state)
     };
   };

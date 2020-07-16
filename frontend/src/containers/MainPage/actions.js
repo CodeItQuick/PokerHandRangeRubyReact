@@ -38,66 +38,6 @@ export function initAllUserHandRanges() {
   };
 }
 
-export function allUserHandRangesSuccess(data) {
-  return {
-    type: ALL_USER_HAND_RANGES_SUCCESS,
-    data
-  };
-}
-
-export function allUserHandRangesFail() {
-  return {
-    type: ALL_USER_HAND_RANGES_FAIL
-  };
-}
-
-export function initCreateNewFolder(data) {
-  return {
-    type: INIT_CREATE_NEW_FOLDER,
-    data
-  };
-}
-
-export function createNewFolderSuccess(data) {
-  return {
-    type: CREATE_NEW_FOLDER_SUCCESS,
-    data
-  };
-}
-
-export function createNewFolderFail(data) {
-  return {
-    type: CREATE_NEW_FOLDER_FAIL,
-    data
-  };
-}
-
-export function setHandRangeGroup(data) {
-  return {
-    type: SET_HAND_RANGE_GROUP,
-    data
-  };
-}
-
-export function setDynamicFolderInfo(data) {
-  return {
-    type: SET_DYNAMIC_FOLDER_INFO,
-    data
-  };
-}
-
-export function saveAndLoad() {
-  return {
-    type: SAVE_AND_LOAD
-  };
-}
-
-export function loadNewFolder() {
-  return {
-    type: LOAD_NEW_FOLDER
-  };
-}
-
 export function setDeadCards(data) {
   return {
     type: SET_DEAD_CARDS,
@@ -118,9 +58,10 @@ export function loadEquities() {
   };
 }
 
-export function loadEquitiesSuccess(data) {
-  return {
-    type: LOAD_EQUITIES_SUCCESS,
-    data
-  };
-}
+//TODO: Implement this
+// export function loadEquitiesSuccess(data) {
+//   return {
+//     type: LOAD_EQUITIES_SUCCESS,
+//     data,
+//   };
+// }

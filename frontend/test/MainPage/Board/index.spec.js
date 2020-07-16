@@ -7,12 +7,13 @@ import { Provider } from "react-redux";
 import { initialState } from "../../../src/containers/MainPage/reducer";
 import history from "../../../src/utils/history";
 import configureStore from "../../../src/configureStore.js";
-import Board from "../../../src/containers/MainPage/Board";
+import Board, { calcEquities } from "../../../src/containers/MainPage/Board";
 import { calculateEquity } from "../../../src/containers/MainPage/Board/EquityCalculations";
 import { ranges } from "../../../src/containers/MainPage/sampleData.js";
 
 import { CardGroup, OddsCalculator } from "poker-odds-calculator";
 import prange from "prange";
+import { generateCardGrid } from "../../../src/containers/MainPage/Board/StateUpdate.js";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -46,7 +47,7 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other hand that are both pairs", () => {
-    const rangeOne = prange("JJ").join();
+    const rangeOne = prange("JJ");
     const rangeTwo = prange("AA");
     const board = "Td9d5c";
 
@@ -54,7 +55,7 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other hand that contains offsuit hands", () => {
-    const rangeOne = prange("JJ").join();
+    const rangeOne = prange("JJ");
     const rangeTwo = prange("AKo");
     const board = "Td9d5c";
 
@@ -62,7 +63,7 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other hand that contains suited hands", () => {
-    const rangeOne = prange("JJ").join();
+    const rangeOne = prange("JJ");
     const rangeTwo = prange("AKs");
     const board = "Td9d5c";
 
@@ -70,7 +71,7 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other multiple hands that contains pairs", () => {
-    const rangeOne = prange("JJ").join();
+    const rangeOne = prange("JJ");
     const rangeTwo = prange("KK, AA");
     const board = "Td9d5c";
 
@@ -78,7 +79,7 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other multiple hands that contains all possible inputs", () => {
-    const rangeOne = prange("JJ").join();
+    const rangeOne = prange("JJ");
     const rangeTwo = prange("KK, AKs, AKo");
     const board = "Td9d5c";
 
@@ -86,7 +87,7 @@ describe("MainPage Container", () => {
   });
 
   test("Board does not calculate equity for two overlapping hands", () => {
-    const rangeOne = prange("JJ").join();
+    const rangeOne = prange("JJ");
     const rangeTwo = prange("AJo");
     const board = "Td9d5c";
 
@@ -94,10 +95,28 @@ describe("MainPage Container", () => {
   });
 
   test("Board does not calculate equity for two non-existant board and hand combinations", () => {
-    const rangeOne = prange("JJ").join();
+    const rangeOne = prange("JJ");
     const rangeTwo = prange("ATo");
     const board = "Td9d5c";
 
     expect(calculateEquity(rangeOne, board, rangeTwo).toFixed(2)).toBe("0.79");
+  });
+
+  test("CalcEquities renders the correct object", () => {
+    let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges));
+    PreflopRanges = PreflopRanges.filter(({ Street }) => Street == "Preflop");
+
+    PreflopRanges[0].hands = ["AA"];
+
+    console.log(PreflopRanges); //?
+
+    const cards = generateCardGrid(PreflopRanges, true);
+    const otherRange = ["ATo"];
+    const board = ["Td", "9d", "5c"];
+    const street = "Flop";
+
+    expect(calcEquities(cards, board, PreflopRanges, street)).toStrictEqual({
+      AA: { colorCards: "#8bddbe", equity: "0.34" },
+    });
   });
 });

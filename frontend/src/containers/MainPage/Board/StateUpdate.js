@@ -1,4 +1,7 @@
+import React from "react";
 import { calculateEquity } from "./EquityCalculations.js";
+import { StyledCol, ColorCard, StyledRow } from "./Styles.js";
+
 export const orderedCard = [
   "A",
   "K",
@@ -55,7 +58,8 @@ export const generateCardGrid = (PreflopRanges, Position) => {
             cardClone = {
               ...cardClone,
               [hand]: {
-                colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][idx]
+                colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][idx],
+                equity: "n/a"
               }
             };
           }
@@ -86,4 +90,52 @@ export const addEquityCardGrid = (deadcards, otherRange, cards) => {
     };
   }, []);
   return newCards;
+};
+
+export const generateBoard = (PreflopRangesOnly, bind, cards) => {
+  let allPreflopHands = PreflopRangesOnly.reduce((acc, curr) => {
+    if (acc.hands && curr.hands) return [...acc.hands, ...curr.hands];
+    else return [...acc, ...curr.hands];
+  });
+
+  let toSetManyHands = [];
+
+  toSetManyHands = orderedCard.map(cardOne =>
+    orderedCard.reduce((acc, cardTwo, idx) => {
+      acc.push([cardOne, cardTwo]);
+      return acc;
+    }, [])
+  );
+
+  let setNewManyHands = toSetManyHands.map((row, idx) => {
+    let columnJSX = row.map(([cardOne, cardTwo]) => {
+      let cardHand =
+        getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo);
+
+      return (
+        <StyledCol xs={1} key={cardHand}>
+          <ColorCard
+            key={"colorcard" + cardHand}
+            id={"colorButton" + cardHand}
+            {...bind(cardHand)}
+            hand={cardHand}
+            coloring={
+              cards && cards.hasOwnProperty(cardHand)
+                ? cards[cardHand].colorCards
+                : "#AAA"
+            }
+            border_attrib={allPreflopHands.indexOf(cardHand) >= 0}
+          >
+            {cardHand}
+            <br />
+            {cards && cardHand && cards.hasOwnProperty(cardHand)
+              ? cards[cardHand].equity
+              : "n/a"}
+          </ColorCard>
+        </StyledCol>
+      );
+    });
+    return <StyledRow xs={13}>{columnJSX}</StyledRow>;
+  });
+  return setNewManyHands;
 };

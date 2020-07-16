@@ -10,50 +10,63 @@ import { compose } from "redux";
 import {
   makeSelectRangesPreflop,
   makeSelectRangesPreflopOnly,
-  makeSelectPosition,
   makeSelectLoadEquities,
   makeSelectDeadcards,
   makeSelectOtherRange,
-  makeSelectHandEquities
+  makeSelectHandEquities,
+  makeSelectMode
 } from "../selectors";
 
-import { setHandRange, loadEquities, loadEquitiesSuccess } from "../actions.js";
-
-import { StyledCol, ColorCard, StyledRow } from "./Styles.js";
-import {
-  getCards,
-  displayCardSuit,
-  orderedCard,
-  addEquityCardGrid,
-  generateCardGrid
-} from "./StateUpdate";
+import { generateCardGrid, generateBoard } from "./StateUpdate";
 //TODO: implement interact.js or draggable instead of this react library
+
+import { calculateEquity } from "./EquityCalculations";
+
+//FIXME: the equity is wrong on the river range vs range
+export const calcEquities = (cards, deadcards, otherRange, street) => {
+  let calcHandEquities;
+
+  console.log(cards, deadcards, otherRange, street); //?
+
+  let deadcardsForStreet;
+  if (street == "Preflop") deadcardsForStreet = "";
+  else if (street == "Flop") deadcardsForStreet = deadcards.slice(0, 3).join();
+  else if (street == "Turn") deadcardsForStreet = deadcards.slice(0, 4).join();
+  else if (street == "River") deadcardsForStreet = deadcards.slice(0, 5).join();
+
+  calcHandEquities = Object.keys(cards).reduce((acc, cardValue) => {
+    return {
+      ...acc,
+      [cardValue]: {
+        colorCards: cards[cardValue].colorCards,
+        equity: calculateEquity(
+          [cardValue],
+          deadcardsForStreet,
+          otherRange.reduce(
+            (acc, { hands: [handsArr] }) =>
+              handsArr ? [...acc, handsArr] : acc,
+            []
+          )
+        ).toFixed(2)
+      }
+    };
+  }, {});
+
+  return calcHandEquities;
+};
 
 const Board = ({
   onMouseOverHandler,
   PreflopRanges,
-  PreflopRangesOnly,
-  Position,
   loadEquities,
   deadcards,
   otherRange,
-  handEquities
+  handEquities,
+  mode: { street, streetAction, isIP }
 }) => {
   const [manyHands, setManyHands] = useState();
-  const [cards, setCards] = useState({});
+  const [cards, setCards] = useState();
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    let newCards = addEquityCardGrid(deadcards, otherRange, cards);
-    dispatch(loadEquitiesSuccess({ Position, newCards }));
-    if (Position == true) setCards(handEquities[0]);
-    else setCards(handEquities[1]);
-  }, [loadEquities]);
-
-  useEffect(() => {
-    let newCards = generateCardGrid(PreflopRanges, Position);
-    setCards(newCards);
-  }, [PreflopRanges, Position]);
 
   // Set the drag hook and define component movement based on gesture data
   const bind = useGesture({
@@ -80,69 +93,62 @@ const Board = ({
   });
 
   useEffect(() => {
-    let allPreflopHands = PreflopRangesOnly.reduce((acc, curr) => {
-      if (acc.hands && curr.hands) return [...acc.hands, ...curr.hands];
-      else return [...acc, ...curr.hands];
-    });
+    let newCards;
 
-    let toSetManyHands = [];
+    //set the new cards
+    let PosIndex = isIP ? "0" : "1";
+    //generate the card grid
+    newCards = generateCardGrid(PreflopRanges, isIP);
 
-    toSetManyHands = orderedCard.map(cardOne =>
-      orderedCard.reduce((acc, cardTwo, idx) => {
-        acc.push([cardOne, cardTwo]);
-        return acc;
-      }, [])
-    );
+    let displayCardsOr = newCards;
 
-    let setNewManyHands = toSetManyHands.map((row, idx) => {
-      let columnJSX = row.map(([cardOne, cardTwo]) => {
-        let cardHand =
-          getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo);
+    let generatedBoard = generateBoard(PreflopRanges, bind, displayCardsOr);
+    setManyHands(generatedBoard);
+    setCards(displayCardsOr);
+    //If there are new equities to be entered, dispatch the action
+  }, [PreflopRanges, isIP, handEquities]);
 
-        return (
-          <StyledCol xs={1} key={cardHand}>
-            <ColorCard
-              key={"colorcard" + cardHand}
-              id={"colorButton" + cardHand}
-              {...bind(cardHand)}
-              hand={cardHand}
-              coloring={cards[cardHand] ? cards[cardHand].colorCards : "#AAA"}
-              border_attrib={allPreflopHands.indexOf(cardHand) >= 0}
-            >
-              {cardHand}
-              <br />
-              {cards[cardHand] ? cards[cardHand].equity : "n/a"}
-            </ColorCard>
-          </StyledCol>
-        );
-      });
-      return <StyledRow xs={13}>{columnJSX}</StyledRow>;
-    });
+  useEffect(() => {
+    //set the new cards
+    let newCards = generateCardGrid(PreflopRanges, isIP);
 
-    setManyHands(setNewManyHands);
-  }, [cards, bind, PreflopRangesOnly, Position]);
+    if (loadEquities) {
+      let calcHandEquities = calcEquities(
+        newCards,
+        deadcards,
+        otherRange,
+        street
+      );
+
+      let displayCardsOr = calcHandEquities ? calcHandEquities : newCards;
+
+      let generatedBoard = generateBoard(PreflopRanges, bind, displayCardsOr);
+      setManyHands(generatedBoard);
+      //If there are new equities to be entered, dispatch the action
+      //TODO: Implement this
+      // dispatch(loadEquitiesSuccess({ Position, newCards: calcHandEquities }));
+    }
+  }, [loadEquities]);
 
   return <Container fluid>{manyHands}</Container>; //TO-DO: BUG this generates console error
 };
 
 const mapStateToProps = () => {
   const getRangesPreflop = makeSelectRangesPreflop();
-  const getRangesPreflopOnly = makeSelectRangesPreflopOnly();
-  const getPosition = makeSelectPosition();
   const getLoadEquities = makeSelectLoadEquities();
   const getCards = makeSelectDeadcards();
   const getOtherRange = makeSelectOtherRange();
   const getHandEquities = makeSelectHandEquities();
+  const getMode = makeSelectMode();
 
   const mapState = state => {
     return {
       PreflopRanges: getRangesPreflop(state),
-      PreflopRangesOnly: getRangesPreflopOnly(state),
-      Position: getPosition(state),
       loadEquities: getLoadEquities(state),
       handEquities: getHandEquities(state),
       deadcards: getCards(state),
-      otherRange: getOtherRange(state)
+      otherRange: getOtherRange(state),
+      mode: getMode(state)
     };
   };
 
