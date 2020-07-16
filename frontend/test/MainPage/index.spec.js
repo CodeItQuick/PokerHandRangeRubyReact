@@ -1,10 +1,10 @@
 import React from "react";
-import MainPage from "../../src/pages/MainPage";
+import MainPage from "../../src/containers/MainPage";
 import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import { Provider } from "react-redux";
-import { initialState } from "../../src/pages/MainPage/reducer";
+import { initialState } from "../../src/containers/MainPage/reducer";
 import history from "../../src/utils/history";
 import configureStore from "../../src/configureStore.js";
 

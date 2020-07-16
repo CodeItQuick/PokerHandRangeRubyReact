@@ -1,7 +1,10 @@
 import { CardGroup, OddsCalculator } from "poker-odds-calculator";
 import prange from "prange";
 export const calculateEquity = (handRange, inputBoard, rangeTwo) => {
-  let handRangeExpanded = expandSuitsPair(handRange);
+  if (handRange.length == 0 || rangeTwo.length == 0 || inputBoard.length < 3)
+    return 0;
+
+  let handRangeExpanded = handRange.map(handR => expandSuitsPair(handR))[0];
   let rangeTwoExpanded = rangeTwo.map(range => expandSuitsPair(range))[0];
   let equities = handRangeExpanded.reduce(
     (acc, handR) => [

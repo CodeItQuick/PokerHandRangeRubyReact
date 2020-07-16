@@ -1,26 +1,21 @@
-
-module.exports = function (wallaby) {
-
-  return {// tell wallaby to use automatic configuration
+module.exports = function(wallaby) {
+  return {
+    // tell wallaby to use automatic configuration
     autoDetect: true,
 
     files: [
-      {pattern: 'src/**/*.js*', load: false},
+      { pattern: "src/containers/**/*.js*", load: false },
       "!semantic/**/*",
-      "!node_modules/**/*"
+      "!node_modules/**/*",
     ],
 
-    tests: [
-      'test/**/*.js'
-    ],
+    tests: ["test/**/*.js"],
 
     compilers: {
-      '**/*.js*': wallaby.compilers.babel()
+      "**/*.js*": wallaby.compilers.babel(),
     },
-    testFramework: 'mocha',
+    testFramework: "mocha",
 
-    env: {type: 'node'},
-
-
+    env: { type: "node" },
   };
 };
