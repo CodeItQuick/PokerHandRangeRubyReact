@@ -64,11 +64,9 @@ describe("MainPage Login Selectors", () => {
 
     const getMakeSelectRanges = (state) => makeSelectRanges(state);
 
-    const results = {
-      BetType: "Raise4BetCall",
-      Street: "Preflop",
-      hands: [],
-    };
+    const results = initialState.ranges.filter(
+      ({ Street }) => Street == "Preflop"
+    );
 
     expect(getMakeSelectRanges()(mockParameters)).toEqual(results);
   });
@@ -201,7 +199,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectLoadEquities()(mockParameters)).toEqual(results);
   });
 
-  test("selectOtherRange should return an empty preflop range ", () => {
+  test("selectOtherRange should return a full range ", () => {
     const mockParameters = {
       global: {
         ...initialState,
@@ -210,9 +208,7 @@ describe("MainPage Login Selectors", () => {
 
     const getMakeSelectOtherRange = (state) => makeSelectOtherRange(state);
 
-    const initialRangePreflopOnly = initialState.ranges.filter(
-      ({ Street }) => Street == "Preflop"
-    );
+    const initialRangePreflopOnly = initialState.ranges;
 
     const results = [...initialRangePreflopOnly];
 
