@@ -96,7 +96,7 @@ export const generateBoard = (PreflopRangesOnly, bind, cards) => {
   let allPreflopHands = PreflopRangesOnly.reduce((acc, curr) => {
     if (acc.hands && curr.hands) return [...acc.hands, ...curr.hands];
     else return [...acc, ...curr.hands];
-  });
+  }, []);
 
   let toSetManyHands = [];
 

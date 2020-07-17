@@ -27,11 +27,9 @@ const makeSelectRanges = () => {
       global.ranges
     ) {
       return global.ranges.filter(({ Street, BetType }) => {
-        return (
-          Street == global.mode.street && BetType == global.mode.streetAction
-        );
-      })[0];
-    } else return initialState;
+        return Street == global.mode.street;
+      });
+    } else return initialState.ranges;
   });
 };
 
@@ -71,14 +69,10 @@ const makeSelectPosition = () =>
 
 const makeSelectOtherRange = () => {
   return createSelector(selectGlobal, globalState => {
-    if (globalState.mode.isIP)
-      return globalState.rangeRepoIP.filter(
-        ({ Street }) => Street == "Preflop"
-      );
-    else
-      return globalState.rangeRepoOOP.filter(
-        ({ Street }) => Street == "Preflop"
-      );
+    let rangeRepoPreflop = initialState.ranges;
+    if (globalState.mode.isIP) rangeRepoPreflop = globalState.rangeRepoIP;
+    else rangeRepoPreflop = globalState.rangeRepoOOP;
+    return rangeRepoPreflop;
   });
 };
 

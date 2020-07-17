@@ -98,7 +98,7 @@ const sampleData = {
     "3": []
   },
   rangeRepoIP: JSON.parse(JSON.stringify(ranges)),
-  rangeRepoOOP: JSON.parse(JSON.stringify(ranges))
+  rangeRepoOOP: [JSON.parse(JSON.stringify(ranges))]
 };
 
 export { sampleData, ranges };

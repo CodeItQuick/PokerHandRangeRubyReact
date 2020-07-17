@@ -79,7 +79,10 @@ const BoardCards = ({ deadcards = [] }) => {
           {Array.isArray(deadcards) &&
           deadcards.length > 4 &&
           deadcards[4].length > 1
-            ? BoardCard("/assets/cards/" + deadcards[4] + ".png", 4)
+            ? BoardCard(
+                "/assets/cards/" + deadcards[4].toUpperCase().trim() + ".png",
+                4
+              )
             : BoardCard("/assets/cards/back.png", 4)}
         </StyledCol>
       </StyledRow>

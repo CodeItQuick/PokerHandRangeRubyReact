@@ -1,7 +1,16 @@
 import React, { Fragment, useState, memo } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Container, Col, Row } from "react-bootstrap";
 import styled from "styled-components";
-import { Form, Button, Dropdown } from "semantic-ui-react";
+import {
+  Grid,
+  Segment,
+  Form,
+  Button,
+  Progress,
+  Label,
+  Step,
+  Icon
+} from "semantic-ui-react";
 import BoardCards from "./BoardCards";
 import { setDeadCards, setIsIP, loadEquities } from "../actions";
 import { compose } from "redux";
@@ -11,7 +20,7 @@ import _ from "lodash";
 import {
   makeSelectRangeRepoIP,
   makeSelectRangeRepoOOP,
-  makeSelectRange,
+  makeSelectRanges,
   makeSelectPosition,
   makeSelectMode
 } from "../selectors";
@@ -58,57 +67,91 @@ const InputForm = ({
   const onCalculateEquities = () => dispatch(loadEquities());
 
   return (
-    <Fragment style={{ display: "float" }}>
-      <DeadCards
-        label="Dead Cards"
-        placeholder="Enter dead cards, for example Ah, As, 2c"
-        name="deadcards"
-        onChange={onChangeStreetHandler}
-      ></DeadCards>
-      <div>
-        <Button
-          name="Position"
-          value={true}
-          active={isIP}
-          inverted
-          color="green"
-          onClick={onChangePosition}
-        >
-          In Position
-        </Button>
-        <Button
-          name="Position"
-          value={false}
-          active={!isIP}
-          inverted
-          color="green"
-          onClick={onChangePosition}
-        >
-          Out Of Position
-        </Button>
-      </div>
-      <InputStreet
-        onHandleStreetHandler={onHandleStreetHandler}
-        street={street}
-      />
-      <div>
-        <InputStreetAction
-          street={street}
-          streetAction={streetAction}
-          onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
-        />
-      </div>
-      <div>
-        <Button onClick={() => onCalculateEquities()}>
-          Calculate Equities
-        </Button>
-      </div>
-      <BoardCards />
-    </Fragment>
+    <div>
+      <Segment.Group inverted stacked size="massive">
+        <Segment.Group inverted color="green">
+          <Label ribbon color="green">
+            <Icon name="thumbs up" />
+            Board
+          </Label>
+          <Segment>
+            <DeadCards
+              placeholder="eg. Ah, As, 2c, 4d"
+              name="deadcards"
+              onChange={onChangeStreetHandler}
+            />
+            <BoardCards />
+          </Segment>
+        </Segment.Group>
+        <Segment.Group>
+          <Label color="red" ribbon>
+            <Icon name="thumbs down" />
+            Position
+          </Label>
+          <Segment>
+            <Button.Group>
+              <Button
+                name="Position"
+                value={true}
+                active={isIP}
+                inverted
+                color="blue"
+                onClick={onChangePosition}
+              >
+                In Position
+              </Button>
+              <Button.Or />
+              <Button
+                name="Position"
+                value={false}
+                active={!isIP}
+                inverted
+                color="blue"
+                onClick={onChangePosition}
+              >
+                Out Of Position
+              </Button>
+            </Button.Group>
+          </Segment>
+        </Segment.Group>
+        <Segment.Group>
+          <Label color="green" ribbon>
+            <Icon name="thumbs up" />
+            Street
+          </Label>
+          <Segment>
+            <InputStreet
+              onHandleStreetHandler={onHandleStreetHandler}
+              street={street}
+            />
+          </Segment>
+        </Segment.Group>
+        <Segment.Group>
+          <Label color="red" ribbon>
+            <Icon name="thumbs down" />
+            Action
+          </Label>
+          <Segment>
+            <InputStreetAction
+              street={street}
+              streetAction={streetAction}
+              onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
+            />
+          </Segment>
+        </Segment.Group>
+        <Segment.Group>
+          <Segment textAlign="center">
+            <Button color="purple" onClick={() => onCalculateEquities()}>
+              Calculate Equities
+            </Button>
+          </Segment>
+        </Segment.Group>
+      </Segment.Group>
+    </div>
   );
 };
 const mapStateToProps = () => {
-  const getRange = makeSelectRange();
+  const getRange = makeSelectRanges();
   const getRangeRepoIP = makeSelectRangeRepoIP();
   const getRangeRepoOOP = makeSelectRangeRepoOOP();
   const getPosition = makeSelectPosition();
