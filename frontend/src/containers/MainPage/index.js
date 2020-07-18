@@ -8,8 +8,8 @@ import prange from "prange";
 import { Row, Col, Container, PopoverTitle } from "react-bootstrap";
 import BoardLegend from "./BoardLegend/BoardLegend";
 import {
-  makeSelectRanges,
   makeSelectRange,
+  makeSelectSelectedRanges,
   makeSelectMode,
   makeSelectDeadcards,
   makeSelectRangeRepoIP,
@@ -51,6 +51,17 @@ const Title = styled.h1`
 const key = "global";
 //TO-DO: Rounded corners on navigation bar, spaces on buttons, more whitespace, needs instructions
 
+export const handsInRange = (inpRange, street) => {
+  console.log(inpRange);
+  if (inpRange.length == 0) return false;
+  let handsInRange = inpRange.filter(
+    ({ Street, hands }) => hands.length > 0 && Street == street
+  );
+  const isHandsSelected = handsInRange.length > 0;
+
+  return isHandsSelected;
+};
+
 const MainPage = ({
   wholeRange,
   ranges,
@@ -65,6 +76,17 @@ const MainPage = ({
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
   const dispatch = useDispatch();
+  const [handsIPUsed, setHandsIPUsed] = useState(
+    handsInRange(rangeRepoIP, street)
+  );
+  const [handsOOPUsed, setHandsOOPUsed] = useState(
+    handsInRange(rangeRepoIP, street)
+  );
+
+  useEffect(() => {
+    setHandsIPUsed(handsInRange(isIP ? ranges : rangeRepoIP, street));
+    setHandsOOPUsed(handsInRange(!isIP ? ranges : rangeRepoOOP, street));
+  }, [ranges, rangeRepoIP, street]);
 
   useEffect(() => {
     toAllUserHandRange();
@@ -86,7 +108,7 @@ const MainPage = ({
   const onMouseOverHandler = data => {
     if (data.onMouseDownEvent) {
       let newHandRange = mapNewHandRange(
-        wholeRange,
+        ranges,
         street,
         streetAction,
         data.cards
@@ -96,37 +118,19 @@ const MainPage = ({
     return data.cards;
   };
 
-  const handsInRange = (inpRange, street) => {
-    console.log(inpRange);
-    if (inpRange.length == 0 || Object.keys(inpRange).length > 0) return false;
-    let handsInRange = inpRange.filter(
-      ({ Street, hands }) => hands.length > 0 && Street == street
-    );
-    const isHandsSelected = handsInRange.length > 0;
-
-    return isHandsSelected;
-  };
-
   //TO-DO: need to align these left-to-right on big screens, top-to-bottom mobile
   return (
     <MainPageContainer>
       <LeftPane>
         <Segment inverted stacked size="tiny">
           <Step.Group fluid size="mini">
-            <Step
-              completed={
-                isIP
-                  ? handsInRange(rangeRepoIP, street) ||
-                    handsInRange(ranges, street)
-                  : handsInRange(rangeRepoIP, street)
-              }
-            >
+            <Step completed={handsIPUsed}>
               <Icon name="thumbs down" color="red" />
               <Step.Content>
                 <Step.Title>Hands for IP Selected on Flop</Step.Title>
               </Step.Content>
             </Step>
-            <Step completed={false}>
+            <Step completed={handsOOPUsed}>
               <Icon name="thumbs down" color="red" />
               <Step.Content>
                 <Step.Title>Hands for OOP Selected on Flop</Step.Title>
@@ -162,7 +166,7 @@ MainPage.propTypes = {
 
 const mapStateToProps = () => {
   const getMapRange = makeSelectRange();
-  const getSelectRange = makeSelectRange();
+  const getSelectRange = makeSelectSelectedRanges();
   const getMode = makeSelectMode();
   const getDeadcards = makeSelectDeadcards();
   const getRangeRepoIP = makeSelectRangeRepoIP();

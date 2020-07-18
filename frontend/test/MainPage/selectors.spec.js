@@ -55,22 +55,6 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectMode()(mockParameters)).toEqual(results);
   });
 
-  test("select ranges should return the BetType, Street, and hands ", () => {
-    const mockParameters = {
-      global: {
-        ...initialState,
-      },
-    };
-
-    const getMakeSelectRanges = (state) => makeSelectRanges(state);
-
-    const results = initialState.ranges.filter(
-      ({ Street }) => Street == "Preflop"
-    );
-
-    expect(getMakeSelectRanges()(mockParameters)).toEqual(results);
-  });
-
   test("select range repo should return in position ", () => {
     const mockParameters = {
       global: {
@@ -122,26 +106,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectRangesPreflop()(mockParameters)).toEqual(results);
   });
 
-  test("select preflop ranges only should return just the preflop ranges only ", () => {
-    const mockParameters = {
-      global: {
-        ...initialState,
-      },
-    };
-
-    const getMakeSelectRangesPreflopOnly = (state) =>
-      makeSelectRangesPreflopOnly(state);
-
-    const initialRangePreflopOnly = initialState.ranges.filter(
-      ({ Street }) => Street == "Preflop"
-    );
-
-    const results = [...initialRangePreflopOnly];
-
-    expect(getMakeSelectRangesPreflopOnly()(mockParameters)).toEqual(results);
-  });
-
-  test("make select range should return an empty preflop range", () => {
+  test("make select range should return an empty range", () => {
     const mockParameters = {
       global: {
         ...initialState,

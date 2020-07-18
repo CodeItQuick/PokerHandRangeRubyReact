@@ -1,5 +1,11 @@
 import { CardGroup, OddsCalculator } from "poker-odds-calculator";
 import prange from "prange";
+
+export const doesShareTwoCardsBetweenTwoHands = (handOne, handTwo) => {
+  return false;
+};
+
+//TODO: Inject OddsCalculator into this function so I can test it easier
 export const calculateEquity = (handRange, inputBoard, rangeTwo) => {
   if (handRange.length == 0 || rangeTwo.length == 0 || inputBoard.length < 3)
     return 0;
@@ -27,7 +33,7 @@ export const calculateEquity = (handRange, inputBoard, rangeTwo) => {
         .map(range => calculateOverallEquity(handR, inputBoard, range))
     ],
     []
-  ); //?
+  );
   let equity = equities.reduce((acc, curr) => {
     if (curr != -1) return acc + curr;
     else return acc;

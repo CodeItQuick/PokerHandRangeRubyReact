@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
+<coverage lines-valid="4" lines-covered="4" line-rate="1" branches-valid="0" branches-covered="0" branch-rate="1" timestamp="1594972044168" complexity="0" version="0.1">
+  <sources>
+    <source>/Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/frontend</source>
+  </sources>
+  <packages>
+    <class name="babel.config.js" filename="babel.config.js" line-rate="1" branch-rate="1">
+      <methods>
+        <method name="(anonymous_0)" hits="7" signature="()V">
+          <lines>
+            <line number="1" hits="7"/>
+          </lines>
+        </method>
+      </methods>
+      <lines>
+        <line number="1" hits="7" branch="false"/>
+        <line number="2" hits="7" branch="false"/>
+        <line number="3" hits="7" branch="false"/>
+      </lines>
+    </class>
+    <class name="jest.config.js" filename="jest.config.js" line-rate="1" branch-rate="1">
+      <methods>
+      </methods>
+      <lines>
+        <line number="4" hits="1" branch="false"/>
+      </lines>
+    </class>
+  </packages>
+</coverage>

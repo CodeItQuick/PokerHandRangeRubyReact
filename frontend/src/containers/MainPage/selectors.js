@@ -17,7 +17,7 @@ const makeSelectMode = () => {
     return globalState.mode;
   });
 };
-const makeSelectRanges = () => {
+const makeSelectSelectedRanges = () => {
   return createSelector(selectGlobal, global => {
     if (
       global &&
@@ -26,6 +26,18 @@ const makeSelectRanges = () => {
       global.mode.streetAction &&
       global.ranges
     ) {
+      return global.ranges.filter(({ Street, BetType }) => {
+        return (
+          Street == global.mode.street && BetType == global.mode.streetAction
+        );
+      });
+    } else return initialState.ranges;
+  });
+};
+
+const makeSelectSelectedStreet = () => {
+  return createSelector(selectGlobal, global => {
+    if (global && global.mode && global.mode.street && global.ranges) {
       return global.ranges.filter(({ Street, BetType }) => {
         return Street == global.mode.street;
       });
@@ -38,14 +50,6 @@ const makeSelectRangesPreflop = () => {
   return createSelector(selectGlobal, global => {
     if (global && global.mode && global.mode.street && global.mode.streetAction)
       return global.ranges.filter(({ Street }) => Street == global.mode.street);
-    else return initialState.ranges.filter(({ Street }) => Street == "Preflop");
-  });
-};
-
-const makeSelectRangesPreflopOnly = () => {
-  return createSelector(selectGlobal, global => {
-    if (global && global.mode && global.mode.street && global.mode.streetAction)
-      return global.ranges.filter(({ Street }) => Street == "Preflop");
     else return initialState.ranges.filter(({ Street }) => Street == "Preflop");
   });
 };
@@ -85,11 +89,11 @@ const makeSelectHandEquities = () =>
 export {
   selectGlobal,
   selectRouter,
-  makeSelectRanges,
+  makeSelectSelectedRanges,
+  makeSelectSelectedStreet,
   makeSelectRangeRepoIP,
   makeSelectRangeRepoOOP,
   makeSelectRangesPreflop,
-  makeSelectRangesPreflopOnly,
   makeSelectRange,
   makeSelectMode,
   makeSelectUser,

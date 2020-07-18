@@ -10,11 +10,6 @@ import { useInjectReducer } from "../../HOC/useInjectReducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
-import {
-  makeSelectRanges,
-  makeSelectMode,
-  makeSelectUser
-} from "../MainPage/selectors";
 
 import styled from "styled-components";
 
@@ -75,7 +70,7 @@ const steps = [
       "This is fantastic, now we are only bluffing approximately less than half the time! If someone tries to rebluff our raise back at them, they will be greeted with an allin against a very strong hand much too often for this to be a profitable move"
   }
 ];
-const App = ({ ranges, mode, user, rangeColors }) => {
+const App = ({}) => {
   useInjectReducer({ key, reducer });
   // const [stripe, setStripe] = useState(null);
   const username = useSelector(state => state.user);
@@ -88,7 +83,7 @@ const App = ({ ranges, mode, user, rangeColors }) => {
     <StyledFragment>
       <MainContainer>
         {/* <Navbar username={user.name} /> */}
-        <MainPage ranges={ranges} mode={mode}></MainPage>
+        <MainPage />
         <Tour steps={steps} isOpen={isTourOpen} onRequestClose={closeTour} />
       </MainContainer>
     </StyledFragment>
@@ -96,9 +91,9 @@ const App = ({ ranges, mode, user, rangeColors }) => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  ranges: makeSelectRanges(),
-  mode: makeSelectMode(),
-  user: makeSelectUser()
+  // ranges: makeSelectRanges(),
+  // mode: makeSelectMode(),
+  // user: makeSelectUser()
 }); //?
 
 const withConnect = connect(mapStateToProps, null);
