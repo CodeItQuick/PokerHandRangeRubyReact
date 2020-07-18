@@ -8,7 +8,11 @@ import useInjectReducer from "../../../HOC/useInjectReducer";
 import reducer from "../reducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { makeSelectDeadcards, makeSelectMode } from "../selectors";
+import {
+  makeSelectDeadcards,
+  makeSelectMode,
+  makeSelectSelectedStreet
+} from "../selectors";
 
 const key = "global";
 
@@ -53,16 +57,14 @@ const legendTable = (
   street,
   streetActions
 ) => (
-  <Table>
-    <StyledInvertedHeader>
-      <Table.Row>
+  <Table unstackable>
+    <Table.Body>
+      <StyledInvertedRow>
         <Table.HeaderCell>Name</Table.HeaderCell>
         <Table.HeaderCell>Range # Combos</Table.HeaderCell>
         <Table.HeaderCell>% of Range</Table.HeaderCell>
         <Table.HeaderCell>% of Hands</Table.HeaderCell>
-      </Table.Row>
-    </StyledInvertedHeader>
-    <Table.Body>
+      </StyledInvertedRow>
       <StyledGreenRow>
         <Table.Cell>{streetActions[0]}</Table.Cell>
         <Table.Cell>{numberOfCombos[0]}</Table.Cell>
@@ -73,7 +75,7 @@ const legendTable = (
               numberOfCombos[1] +
               numberOfCombos[2] +
               numberOfCombos[3])
-          ).toFixed(2)}
+          ).toFixed(2) || 0}
         </Table.Cell>
         <Table.Cell>{((numberOfCombos[0] / 1326) * 100).toFixed(2)}</Table.Cell>
       </StyledGreenRow>
@@ -162,6 +164,7 @@ const comboCounter = (hand, chosenStreet, board) => {
       board[3].trim(),
       board[4].trim()
     ];
+  //Suited Combos
   if (hand.indexOf("s") >= 0) {
     let filteredBoardCards = filteredBoard.map(boardCard =>
       boardCard.charAt(0)
@@ -178,27 +181,26 @@ const comboCounter = (hand, chosenStreet, board) => {
           return [...acc2, specificCards];
         } else return acc2;
       }, [])[0];
-      if (totalHands) return { ...acc, [totalHands]: "" };
+      if (totalHands) return { ...acc, [totalHands]: 0 };
       else return { ...acc };
     }, 0);
     return 4 - Object.keys(addCombos).length;
   }
-  //Suited Combos
+  //Offsuit Combos
   else if (hand.indexOf("o") >= 0) {
     let numOccurances = _.countBy(_.split(board, "", 12));
     let subtractFirstCard = numOccurances[hand.charAt(0)] || 0;
     let subtractSecondCard = numOccurances[hand.charAt(1)] || 0;
     let numCards = (4 - subtractFirstCard) * (4 - subtractSecondCard) - 4;
     return numCards;
-  }
-  //Offsuit Combos
-  else {
+  } else {
+    //Pair Combos
     let numOccurances = _.countBy(_.split(board, "", 12));
     let subtractFirstCard = numOccurances[hand.charAt(0)] || 0;
     let subtractSecondCard = numOccurances[hand.charAt(1)] || 0;
 
     let numCards = ((4 - subtractFirstCard) * (3 - subtractSecondCard)) / 2;
-    return numCards; //Pair Combos
+    return numCards;
   }
 };
 
@@ -211,6 +213,8 @@ export const countHandCombo = (wholeRange, chosenStreet, board) => {
       return acc + comboCounter(hand, chosenStreet, board);
     }, 0);
   });
+
+  console.log(wholeRangeFiltered);
   return wholeRangeNum;
 };
 
@@ -325,11 +329,13 @@ const BoardLegend = ({
 const mapStateToProps = () => {
   const getDeadcards = makeSelectDeadcards();
   const getMode = makeSelectMode();
+  const getSelectedRange = makeSelectSelectedStreet();
 
   const mapState = state => {
     return {
       deadcards: getDeadcards(state),
-      mode: getMode(state)
+      mode: getMode(state),
+      wholeRange: getSelectedRange(state)
     };
   };
   return mapState;

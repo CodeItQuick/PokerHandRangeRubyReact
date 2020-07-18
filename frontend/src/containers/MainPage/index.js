@@ -32,9 +32,14 @@ import InputForm from "./InputForm";
 import styled from "styled-components";
 
 import { mapNewHandRange } from "./stateRangeFunctions";
+import ProgressIndicator from "./ProgressIndicator";
 
 const MainPageContainer = styled.div`
-  display: flex;
+  display: block;
+
+  @media (min-width: 1200px) {
+    display: flex;
+  }
 `;
 
 const LeftPane = styled.div`
@@ -122,28 +127,16 @@ const MainPage = ({
   return (
     <MainPageContainer>
       <LeftPane>
-        <Segment inverted stacked size="tiny">
-          <Step.Group fluid size="mini">
-            <Step completed={handsIPUsed}>
-              <Icon name="thumbs down" color="red" />
-              <Step.Content>
-                <Step.Title>Hands for IP Selected on Flop</Step.Title>
-              </Step.Content>
-            </Step>
-            <Step completed={handsOOPUsed}>
-              <Icon name="thumbs down" color="red" />
-              <Step.Content>
-                <Step.Title>Hands for OOP Selected on Flop</Step.Title>
-              </Step.Content>
-            </Step>
-          </Step.Group>
-        </Segment>
+        <ProgressIndicator
+          street={street}
+          handsIPUsed={handsIPUsed}
+          handsOOPUsed={handsOOPUsed}
+        />
         <Board
           onMouseOverHandler={onMouseOverHandler}
           rangeColors={rangeColors}
         ></Board>
         <BoardLegend
-          wholeRange={wholeRange}
           onHandleStreetHandler={onHandleStreetHandler}
           onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
           mode={mode}

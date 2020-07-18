@@ -22,7 +22,8 @@ import {
   makeSelectRangeRepoOOP,
   makeSelectRange,
   makeSelectPosition,
-  makeSelectMode
+  makeSelectMode,
+  makeSelectDeadcards
 } from "../selectors";
 import InputStreet from "./InputStreet";
 import InputStreetAction from "./InputStreetAction";
@@ -42,7 +43,9 @@ const InputForm = ({
   mode: { street, streetAction, isIP },
   selectedRanges,
   rangeRepoOOP,
-  rangeRepoIP
+  rangeRepoIP,
+  deadcards,
+  ranges
 }) => {
   const dispatch = useDispatch();
   const onChangeStreetHandler = e => {
@@ -70,8 +73,17 @@ const InputForm = ({
     <div>
       <Segment.Group inverted stacked size="massive">
         <Segment.Group inverted color="green">
-          <Label ribbon color="green">
-            <Icon name="thumbs up" />
+          <Label
+            ribbon
+            color={
+              deadcards.length >= 3 && deadcards.length <= 5 ? "green" : "red"
+            }
+          >
+            {deadcards.length >= 3 && deadcards.length <= 5 ? (
+              <Icon name="thumbs up" />
+            ) : (
+              <Icon name="thumbs down" />
+            )}
             Board
           </Label>
           <Segment>
@@ -84,8 +96,7 @@ const InputForm = ({
           </Segment>
         </Segment.Group>
         <Segment.Group>
-          <Label color="red" ribbon>
-            <Icon name="thumbs down" />
+          <Label ribbon color="black">
             Position
           </Label>
           <Segment>
@@ -115,8 +126,7 @@ const InputForm = ({
           </Segment>
         </Segment.Group>
         <Segment.Group>
-          <Label color="green" ribbon>
-            <Icon name="thumbs up" />
+          <Label color="black" ribbon>
             Street
           </Label>
           <Segment>
@@ -127,8 +137,7 @@ const InputForm = ({
           </Segment>
         </Segment.Group>
         <Segment.Group>
-          <Label color="red" ribbon>
-            <Icon name="thumbs down" />
+          <Label color="black" ribbon>
             Action
           </Label>
           <Segment>
@@ -156,6 +165,8 @@ const mapStateToProps = () => {
   const getRangeRepoOOP = makeSelectRangeRepoOOP();
   const getPosition = makeSelectPosition();
   const getMode = makeSelectMode();
+  const getDeadcards = makeSelectDeadcards();
+  const getRanges = makeSelectRange();
 
   const mapState = state => {
     return {
@@ -163,7 +174,8 @@ const mapStateToProps = () => {
       rangeRepoIP: getRangeRepoIP(state),
       rangeRepoOOP: getRangeRepoOOP(state),
       Position: getPosition(state),
-      mode: getMode(state)
+      mode: getMode(state),
+      deadcards: getDeadcards(state)
     };
   };
   return mapState;

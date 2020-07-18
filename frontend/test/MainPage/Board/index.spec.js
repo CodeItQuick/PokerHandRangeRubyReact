@@ -19,6 +19,17 @@ Enzyme.configure({ adapter: new Adapter() });
 
 const store = configureStore(initialState, history);
 
+const Calculator = {
+  calculate: ([inputOne, inputTwo], inputThree) => {
+    return {
+      equities: [
+        { bestHandCount: 100, possibleHandsCount: 200, tieHandCount: 0 },
+        { bestHandCount: 100, possibleHandsCount: 200, tieHandCount: 0 },
+      ],
+    };
+  },
+};
+
 function setup(onMouseOverHandler) {
   let enzymeWrapper = (
     <Provider store={store}>
@@ -43,7 +54,7 @@ describe("MainPage Container", () => {
     const enzymeWrapper = mount(setup(jest.fn()));
     const colorcardAA = enzymeWrapper.find("#colorButtonAA").get(0).props
       .coloring;
-    expect(colorcardAA).toBe("#AAA");
+    expect(colorcardAA).toBe("555");
   });
 
   test("Board correctly calculates equity for hand against other hand that are both pairs", () => {
@@ -51,7 +62,9 @@ describe("MainPage Container", () => {
     const rangeTwo = prange("AA");
     const board = "Td9d5c";
 
-    expect(calculateEquity(rangeOne, board, rangeTwo).toFixed(2)).toBe("0.14");
+    expect(
+      calculateEquity(rangeOne, board, rangeTwo, Calculator).toFixed(2)
+    ).toBe("0.50");
   });
 
   test("Board correctly calculates equity for hand against other hand that contains offsuit hands", () => {
@@ -59,15 +72,30 @@ describe("MainPage Container", () => {
     const rangeTwo = prange("AKo");
     const board = "Td9d5c";
 
-    expect(calculateEquity(rangeOne, board, rangeTwo).toFixed(2)).toBe("0.75");
+    expect(
+      calculateEquity(rangeOne, board, rangeTwo, Calculator).toFixed(2)
+    ).toBe("0.50");
   });
 
   test("Board correctly calculates equity for hand against other hand that contains suited hands", () => {
+    let Calculator = {
+      calculate: ([inputOne, inputTwo], inputThree) => {
+        return {
+          equities: [
+            { bestHandCount: 100, possibleHandsCount: 200, tieHandCount: 0 },
+            { bestHandCount: 100, possibleHandsCount: 200, tieHandCount: 0 },
+          ],
+        };
+      },
+    };
+
     const rangeOne = prange("JJ");
     const rangeTwo = prange("AKs");
     const board = "Td9d5c";
 
-    expect(calculateEquity(rangeOne, board, rangeTwo).toFixed(2)).toBe("0.69");
+    expect(
+      calculateEquity(rangeOne, board, rangeTwo, Calculator).toFixed(2)
+    ).toBe("0.50");
   });
 
   test("Board correctly calculates equity for hand against other multiple hands that contains pairs", () => {
@@ -75,7 +103,9 @@ describe("MainPage Container", () => {
     const rangeTwo = prange("KK, AA");
     const board = "Td9d5c";
 
-    expect(calculateEquity(rangeOne, board, rangeTwo).toFixed(2)).toBe("0.14");
+    expect(
+      calculateEquity(rangeOne, board, rangeTwo, Calculator).toFixed(2)
+    ).toBe("0.50");
   });
 
   test("Board correctly calculates equity for hand against other multiple hands that contains all possible inputs", () => {
@@ -83,7 +113,9 @@ describe("MainPage Container", () => {
     const rangeTwo = prange("KK, AKs, AKo");
     const board = "Td9d5c";
 
-    expect(calculateEquity(rangeOne, board, rangeTwo).toFixed(2)).toBe("0.75");
+    expect(
+      calculateEquity(rangeOne, board, rangeTwo, Calculator).toFixed(2)
+    ).toBe("0.50");
   });
 
   test("Board does not calculate equity for two overlapping hands", () => {
@@ -91,7 +123,9 @@ describe("MainPage Container", () => {
     const rangeTwo = prange("AJo");
     const board = "Td9d5c";
 
-    expect(calculateEquity(rangeOne, board, rangeTwo).toFixed(2)).toBe("0.79");
+    expect(
+      calculateEquity(rangeOne, board, rangeTwo, Calculator).toFixed(2)
+    ).toBe("0.50");
   });
 
   test("Board does not calculate equity for two non-existant board and hand combinations", () => {
@@ -99,7 +133,9 @@ describe("MainPage Container", () => {
     const rangeTwo = prange("ATo");
     const board = "Td9d5c";
 
-    expect(calculateEquity(rangeOne, board, rangeTwo).toFixed(2)).toBe("0.79");
+    expect(
+      calculateEquity(rangeOne, board, rangeTwo, Calculator).toFixed(2)
+    ).toBe("0.50");
   });
 
   test("CalcEquities renders the correct object", () => {

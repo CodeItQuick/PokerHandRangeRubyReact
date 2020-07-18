@@ -122,16 +122,15 @@ export const generateBoard = (PreflopRangesOnly, bind, cards) => {
             coloring={
               cards && cards.hasOwnProperty(cardHand)
                 ? cards[cardHand].colorCards
-                : "#AAA"
-            } //here
+                : "555"
+            }
             border_attrib={allPreflopHands.indexOf(cardHand) >= 0}
           >
             {cardHand}
             <br />
             {cards && cardHand && cards.hasOwnProperty(cardHand)
               ? cards[cardHand].equity
-              : "n/a"}{" "}
-            //here
+              : "n/a"}
           </ColorCard>
         </StyledCol>
       );

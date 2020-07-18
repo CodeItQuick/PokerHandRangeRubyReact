@@ -6,7 +6,12 @@ export const doesShareTwoCardsBetweenTwoHands = (handOne, handTwo) => {
 };
 
 //TODO: Inject OddsCalculator into this function so I can test it easier
-export const calculateEquity = (handRange, inputBoard, rangeTwo) => {
+export const calculateEquity = (
+  handRange,
+  inputBoard,
+  rangeTwo,
+  Calculator = OddsCalculator
+) => {
   if (handRange.length == 0 || rangeTwo.length == 0 || inputBoard.length < 3)
     return 0;
 
@@ -30,7 +35,9 @@ export const calculateEquity = (handRange, inputBoard, rangeTwo) => {
             !(inputBoard.indexOf(rangeTwo.substr(2, 2)) >= 0) &&
             !(inputBoard.indexOf(handR.substr(2, 2)) >= 0)
         )
-        .map(range => calculateOverallEquity(handR, inputBoard, range))
+        .map(range =>
+          calculateOverallEquity(handR, inputBoard, range, Calculator)
+        )
     ],
     []
   );
@@ -42,18 +49,23 @@ export const calculateEquity = (handRange, inputBoard, rangeTwo) => {
   return equity;
 };
 
-const calculateOverallEquity = (handRange, inputBoard, rangeTwo) => {
+const calculateOverallEquity = (
+  handRange,
+  inputBoard,
+  rangeTwo,
+  Calculator = OddsCalculator
+) => {
   let handOne = handRange;
   let board = CardGroup.fromString(inputBoard);
 
   let player1Cards = CardGroup.fromString(handOne);
   let player2Cards = CardGroup.fromString(rangeTwo);
 
-  let result = OddsCalculator.calculate([player1Cards, player2Cards], board);
+  let result = Calculator.calculate([player1Cards, player2Cards], board);
 
-  let hand0Wins = result.equities[0].bestHandCount;
-  let totalIterations = result.equities[0].possibleHandsCount;
-  let tieCount = result.equities[0].tieHandCount;
+  let hand0Wins = result.equities[0].bestHandCount; //?
+  let totalIterations = result.equities[0].possibleHandsCount; //?
+  let tieCount = result.equities[0].tieHandCount; //?
 
   return (hand0Wins + tieCount) / (totalIterations + tieCount * 2);
 };

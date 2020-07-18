@@ -18,9 +18,7 @@ const BoardCard = (displayCard, idx) => (
   <img id={"Board" + idx + "Card"} alt="first card" src={displayCard} />
 );
 
-const StyledRow = styled(Row)`
-  width: 80%;
-`;
+const StyledRow = styled(Row)``;
 //TODO: buttons that add two tone/rainbow/monotone/paired/HLL/etc.
 const BoardCards = ({ deadcards = [] }) => {
   return (
