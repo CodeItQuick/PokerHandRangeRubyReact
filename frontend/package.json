@@ -28,6 +28,7 @@
     "lint-staged": "^9.5.0",
     "lodash": "^4.17.15",
     "moment": "^2.24.0",
+    "nyc": "^15.1.0",
     "poker-odds-calculator": "^0.3.1",
     "prange": "^0.2.3",
     "prettier": "^1.19.1",
@@ -85,7 +86,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "jest",
+    "test": "nyc -x \"**/tests/**\" --reporter=cobertura --reporter=text-summary jest",
     "eject": "craco eject"
   },
   "eslintConfig": {

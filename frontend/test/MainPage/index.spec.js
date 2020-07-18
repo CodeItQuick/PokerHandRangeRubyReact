@@ -1,5 +1,5 @@
 import React from "react";
-import MainPage from "../../src/containers/MainPage";
+import MainPage, { handsInRange } from "../../src/containers/MainPage";
 import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
@@ -32,5 +32,21 @@ describe("MainPage Container", () => {
     console.log(enzymeWrapper);
 
     expect(enzymeWrapper.length).toBe(1);
+  });
+
+  describe("handsInRange should return false when given an empty range", () => {
+    const range = initialState.ranges;
+    const street = "Flop";
+
+    expect(handsInRange(range, street)).toBe(false);
+  });
+
+  describe("handsInRange should return true when given a range with a value in it", () => {
+    const range = JSON.parse(JSON.stringify(initialState.ranges));
+    range[4].hands = ['AA'];
+
+    const street = "Flop";
+
+    expect(handsInRange(range, street)).toBe(true);
   });
 });

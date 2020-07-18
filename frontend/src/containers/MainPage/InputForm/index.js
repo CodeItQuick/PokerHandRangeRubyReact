@@ -20,7 +20,7 @@ import _ from "lodash";
 import {
   makeSelectRangeRepoIP,
   makeSelectRangeRepoOOP,
-  makeSelectRanges,
+  makeSelectRange,
   makeSelectPosition,
   makeSelectMode
 } from "../selectors";
@@ -40,7 +40,7 @@ const InputForm = ({
   onHandleStreetHandler,
   onHandleStreetHandlerButtons,
   mode: { street, streetAction, isIP },
-  ranges,
+  selectedRanges,
   rangeRepoOOP,
   rangeRepoIP
 }) => {
@@ -52,13 +52,13 @@ const InputForm = ({
   const onChangePosition = (e, { value }) => {
     let newRangeIP, newRangeOOP, newRanges;
     if (value) {
-      newRanges = rangeRepoOOP;
-      newRangeIP = ranges;
-      newRangeOOP = rangeRepoOOP;
-    } else {
       newRanges = rangeRepoIP;
       newRangeIP = rangeRepoIP;
-      newRangeOOP = ranges;
+      newRangeOOP = selectedRanges;
+    } else {
+      newRanges = rangeRepoOOP;
+      newRangeIP = selectedRanges;
+      newRangeOOP = rangeRepoOOP;
     }
 
     dispatch(setIsIP({ position: value, newRangeIP, newRangeOOP, newRanges }));
@@ -151,7 +151,7 @@ const InputForm = ({
   );
 };
 const mapStateToProps = () => {
-  const getRange = makeSelectRanges();
+  const getRange = makeSelectRange();
   const getRangeRepoIP = makeSelectRangeRepoIP();
   const getRangeRepoOOP = makeSelectRangeRepoOOP();
   const getPosition = makeSelectPosition();
@@ -159,7 +159,7 @@ const mapStateToProps = () => {
 
   const mapState = state => {
     return {
-      ranges: getRange(state),
+      selectedRanges: getRange(state),
       rangeRepoIP: getRangeRepoIP(state),
       rangeRepoOOP: getRangeRepoOOP(state),
       Position: getPosition(state),
