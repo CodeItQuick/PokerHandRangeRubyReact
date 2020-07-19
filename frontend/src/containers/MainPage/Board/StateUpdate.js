@@ -113,7 +113,7 @@ export const generateBoard = (PreflopRangesOnly, bind, cards) => {
         getCards(cardOne, cardTwo) + displayCardSuit(cardOne, cardTwo);
 
       return (
-        <StyledCol xs={1} key={cardHand}>
+        <StyledCol key={cardHand}>
           <ColorCard
             key={"colorcard" + cardHand}
             id={"colorButton" + cardHand}
@@ -135,7 +135,7 @@ export const generateBoard = (PreflopRangesOnly, bind, cards) => {
         </StyledCol>
       );
     });
-    return <StyledRow xs={13}>{columnJSX}</StyledRow>;
+    return <StyledRow>{columnJSX}</StyledRow>;
   });
   return setNewManyHands;
 };

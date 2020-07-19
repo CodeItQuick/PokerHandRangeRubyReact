@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState, memo } from "react";
-import { Button, Container, Table } from "semantic-ui-react";
+import { Button, Container, Table, Image } from "semantic-ui-react";
 import { Row, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -12,10 +12,11 @@ const styledCardBack = styled.img``;
 const StyledCol = styled(Col)`
   display: flex;
   justify-content: center;
+  padding: 0px !important;
 `;
 
 const BoardCard = (displayCard, idx) => (
-  <img id={"Board" + idx + "Card"} alt="first card" src={displayCard} />
+  <Image size="mini" id={"Board" + idx + "Card"} alt="card" src={displayCard} />
 );
 
 const StyledRow = styled(Row)``;
@@ -24,18 +25,12 @@ const BoardCards = ({ deadcards = [] }) => {
   return (
     <Table>
       <StyledRow>
-        <Col xs={8} md={8} lg={8} className="text-center">
-          <h4>Flop</h4>
-        </Col>
-        <Col xs={2} md={2} lg={2} className="text-center">
-          <h4>Turn</h4>
-        </Col>
-        <Col xs={2} md={2} lg={2} className="text-center">
-          <h4>River</h4>
-        </Col>
+        <Col className="text-center">Flop</Col>
+        <Col className="text-center">Turn</Col>
+        <Col className="text-center">River</Col>
       </StyledRow>
       <StyledRow>
-        <StyledCol xs={8} md={8} lg={8}>
+        <StyledCol>
           {Array.isArray(deadcards) &&
           deadcards.length > 0 &&
           deadcards[0].length > 1
@@ -63,7 +58,7 @@ const BoardCards = ({ deadcards = [] }) => {
               )
             : BoardCard("/assets/cards/back.png", 2)}
         </StyledCol>
-        <StyledCol xs={2} md={2} lg={2}>
+        <StyledCol xs={2}>
           {Array.isArray(deadcards) &&
           deadcards.length > 3 &&
           deadcards[3].length > 1
@@ -73,7 +68,7 @@ const BoardCards = ({ deadcards = [] }) => {
               )
             : BoardCard("/assets/cards/back.png", 3)}
         </StyledCol>
-        <StyledCol xs={2} md={2} lg={2}>
+        <StyledCol>
           {Array.isArray(deadcards) &&
           deadcards.length > 4 &&
           deadcards[4].length > 1

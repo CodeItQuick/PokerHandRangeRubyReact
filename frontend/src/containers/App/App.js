@@ -80,13 +80,11 @@ const App = ({}) => {
   const closeTour = () => updateTourOpen(false);
 
   return (
-    <StyledFragment>
-      <MainContainer>
-        {/* <Navbar username={user.name} /> */}
-        <MainPage />
-        <Tour steps={steps} isOpen={isTourOpen} onRequestClose={closeTour} />
-      </MainContainer>
-    </StyledFragment>
+    <MainContainer>
+      {/* <Navbar username={user.name} /> */}
+      <MainPage />
+      <Tour steps={steps} isOpen={isTourOpen} onRequestClose={closeTour} />
+    </MainContainer>
   );
 };
 

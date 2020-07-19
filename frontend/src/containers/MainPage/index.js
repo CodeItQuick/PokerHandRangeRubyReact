@@ -36,6 +36,7 @@ import ProgressIndicator from "./ProgressIndicator";
 
 const MainPageContainer = styled.div`
   display: block;
+  padding: 0px !important;
 
   @media (min-width: 1200px) {
     display: flex;
@@ -43,16 +44,19 @@ const MainPageContainer = styled.div`
 `;
 
 const LeftPane = styled.div`
-  margin: 25px;
+  padding: 0px !important;
+  @media (min-width: 1200px) {
+    margin: 25px;
+  }
 `;
 
 const RightPane = styled.div`
-  margin: 25px;
+  padding: 0px;
+  @media (min-width: 1200px) {
+    margin: 25px;
+  }
 `;
 
-const Title = styled.h1`
-  text-align: center;
-`;
 const key = "global";
 //TO-DO: Rounded corners on navigation bar, spaces on buttons, more whitespace, needs instructions
 
@@ -125,7 +129,7 @@ const MainPage = ({
 
   //TO-DO: need to align these left-to-right on big screens, top-to-bottom mobile
   return (
-    <MainPageContainer>
+    <Fragment>
       <LeftPane>
         <ProgressIndicator
           street={street}
@@ -148,7 +152,7 @@ const MainPage = ({
           onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
         />
       </RightPane>
-    </MainPageContainer>
+    </Fragment>
   );
 };
 MainPage.propTypes = {

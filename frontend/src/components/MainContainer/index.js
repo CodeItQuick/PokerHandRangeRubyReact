@@ -3,8 +3,12 @@ import styled from "styled-components";
 import Container from "react-bootstrap/Container";
 
 const StyledContainer = styled(Container)`
-  margin-top: 30px;
-  margin-bottom: 50px;
+  padding: 0px !important;
+  @media (min-width: 1200px) {
+    display: flex;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
 `;
 
 const MainContainer = ({ children }) => {

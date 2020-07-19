@@ -1,8 +1,7 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, memo, Fragment } from "react";
 import { useDispatch } from "react-redux";
 
-import { Grid, Button } from "semantic-ui-react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Grid, Button, Table } from "semantic-ui-react";
 import { useDrag, useGesture, useMove } from "react-use-gesture";
 
 import { connect } from "react-redux";
@@ -164,7 +163,11 @@ const Board = ({
     // dispatch(loadEquitiesSuccess({ Position, newCards: calcHandEquities }));
   }, [street, loadEquities]);
 
-  return <Container fluid>{manyHands}</Container>; //TO-DO: BUG this generates console error
+  return (
+    <Table celled striped unstackable>
+      <Table.Body>{manyHands}</Table.Body>
+    </Table>
+  ); //TO-DO: BUG this generates console error
 };
 
 const mapStateToProps = () => {
