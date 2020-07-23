@@ -7,7 +7,7 @@ import { useDrag, useGesture, useMove } from "react-use-gesture";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import {
-  makeSelectSelectedRanges,
+  makeSelectSelectedStreet,
   makeSelectLoadEquities,
   makeSelectDeadcards,
   makeSelectOtherRange,
@@ -17,16 +17,15 @@ import {
   makeSelectRangesPreflop
 } from "../selectors";
 
-import { generateCardGrid, generateBoard } from "./StateUpdate";
+import BoardOfHands from "./StateUpdate";
 //TODO: implement interact.js or draggable instead of this react library
 
 import { calculateEquity } from "./EquityCalculations";
+import CardHandSuit from "./CardHandSuit";
 
 //FIXME: the equity is wrong on the river range vs range
 export const calcEquities = (cards, deadcards, otherRange, street) => {
   let calcHandEquities;
-
-  console.log(cards, deadcards, otherRange, street); //?
 
   let deadcardsForStreet;
   if (street == "Preflop") deadcardsForStreet = "";
@@ -40,7 +39,7 @@ export const calcEquities = (cards, deadcards, otherRange, street) => {
       [cardValue]: {
         colorCards: cards[cardValue].colorCards,
         equity: calculateEquity(
-          [cardValue],
+          [new CardHandSuit(cardValue.substr(0, 1), cardValue.substr(1, 1))],
           deadcardsForStreet,
           otherRange.reduce(
             (acc, { hands: [handsArr] }) =>
@@ -53,42 +52,6 @@ export const calcEquities = (cards, deadcards, otherRange, street) => {
   }, {});
 
   return calcHandEquities;
-};
-
-const displayWidgetAndSetManyHands = (preflopRanges, isIP, bind) => {
-  let newCards;
-
-  //generate the card grid
-  newCards = generateCardGrid(preflopRanges, isIP);
-
-  let generatedBoard = generateBoard(preflopRanges, bind, newCards);
-
-  return [generatedBoard, newCards];
-};
-
-//TODO: make 119->131 should be a function
-const loadNewBoardOnLoadStreet = (
-  loadEquities,
-  ranges,
-  isIP,
-  otherRange,
-  street,
-  bind,
-  deadcards
-) => {
-  if (loadEquities) {
-    let newCards = generateCardGrid(ranges, isIP);
-    let calcHandEquities = calcEquities(
-      newCards,
-      deadcards,
-      otherRange,
-      street
-    );
-
-    let displayCardsOr = calcHandEquities ? calcHandEquities : newCards;
-
-    return generateBoard(ranges, bind, displayCardsOr);
-  }
 };
 
 const Board = ({
@@ -104,7 +67,7 @@ const Board = ({
   preflopRanges
 }) => {
   const [manyHands, setManyHands] = useState();
-  const [cards, setCards] = useState();
+  const [instanceOfBoardHands, updateInstanceOfBoardHands] = useState(false);
   const dispatch = useDispatch();
 
   // Set the drag hook and define component movement based on gesture data
@@ -132,53 +95,36 @@ const Board = ({
   });
 
   useEffect(() => {
-    const [newManyHands, newSetCards] = displayWidgetAndSetManyHands(
-      preflopRanges,
-      isIP,
-      bind
-    );
-    setManyHands(newManyHands);
-    setCards(newSetCards);
+    if (!instanceOfBoardHands)
+      updateInstanceOfBoardHands(new BoardOfHands(bind));
+
     //If there are new equities to be entered, dispatch the action
-  }, [SelectedStreet, preflopRanges, ranges, isIP, handEquities]);
+  }, [false, bind]);
 
   useEffect(() => {
-    //set the new cards
+    if (instanceOfBoardHands) {
+      instanceOfBoardHands.updateCardGrid(preflopRanges, SelectedRanges);
 
-    if (loadEquities) {
-      const newSetManyHands = loadNewBoardOnLoadStreet(
-        loadEquities,
-        ranges,
-        isIP,
-        otherRange,
-        street,
-        bind,
-        deadcards
-      );
-      setManyHands(newSetManyHands);
+      setManyHands(instanceOfBoardHands.view());
     }
-
     //If there are new equities to be entered, dispatch the action
-    //TODO: Implement this
-    // dispatch(loadEquitiesSuccess({ Position, newCards: calcHandEquities }));
-  }, [street, loadEquities]);
+  }, [instanceOfBoardHands, SelectedRanges, preflopRanges, bind]);
 
   return (
     <Table celled striped unstackable>
-      <Table.Body>{manyHands}</Table.Body>
+      {manyHands}
     </Table>
   ); //TO-DO: BUG this generates console error
 };
 
 const mapStateToProps = () => {
-  const getRangesSelected = makeSelectSelectedRanges();
+  const getRangesSelected = makeSelectSelectedStreet();
   const getLoadEquities = makeSelectLoadEquities();
   const getCards = makeSelectDeadcards();
   const getOtherRange = makeSelectOtherRange();
   const getHandEquities = makeSelectHandEquities();
   const getMode = makeSelectMode();
   const getRanges = makeSelectRange();
-  const getSelectedStreet = makeSelectSelectedRanges();
   const getRangesPreflop = makeSelectRangesPreflop();
 
   const mapState = state => {
@@ -190,7 +136,6 @@ const mapStateToProps = () => {
       deadcards: getCards(state),
       otherRange: getOtherRange(state),
       mode: getMode(state),
-      SelectedStreet: getSelectedStreet(state),
       preflopRanges: getRangesPreflop(state)
     };
   };

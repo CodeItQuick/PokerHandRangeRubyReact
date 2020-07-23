@@ -14,6 +14,7 @@ import { ranges } from "../../../src/containers/MainPage/sampleData.js";
 import { CardGroup, OddsCalculator } from "poker-odds-calculator";
 import prange from "prange";
 import { generateCardGrid } from "../../../src/containers/MainPage/Board/StateUpdate.js";
+import CardHandSuit from "../../../src/containers/MainPage/Board/CardHandSuit";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -58,8 +59,20 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other hand that are both pairs", () => {
-    const rangeOne = prange("JJ");
-    const rangeTwo = prange("AA");
+    const rangeOnePrange = prange("JJ");
+    const rangeOne = [
+      new CardHandSuit(
+        rangeOnePrange[0].substring(0, 1),
+        rangeOnePrange[0].substring(1, 2)
+      ),
+    ];
+    const rangeTwoPrange = prange("AA");
+    const rangeTwo = [
+      new CardHandSuit(
+        rangeTwoPrange[0].substring(0, 1),
+        rangeTwoPrange[0].substring(1, 2)
+      ),
+    ];
     const board = "Td9d5c";
 
     expect(
@@ -68,8 +81,20 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other hand that contains offsuit hands", () => {
-    const rangeOne = prange("JJ");
-    const rangeTwo = prange("AKo");
+    const rangeOnePrange = prange("JJ");
+    const rangeOne = [
+      new CardHandSuit(
+        rangeOnePrange[0].substring(0, 1),
+        rangeOnePrange[0].substring(1, 2)
+      ),
+    ];
+    const rangeTwoPrange = prange("AKo");
+    const rangeTwo = [
+      new CardHandSuit(
+        rangeTwoPrange[0].substring(0, 1),
+        rangeTwoPrange[0].substring(1, 2)
+      ),
+    ];
     const board = "Td9d5c";
 
     expect(
@@ -78,19 +103,20 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other hand that contains suited hands", () => {
-    let Calculator = {
-      calculate: ([inputOne, inputTwo], inputThree) => {
-        return {
-          equities: [
-            { bestHandCount: 100, possibleHandsCount: 200, tieHandCount: 0 },
-            { bestHandCount: 100, possibleHandsCount: 200, tieHandCount: 0 },
-          ],
-        };
-      },
-    };
-
-    const rangeOne = prange("JJ");
-    const rangeTwo = prange("AKs");
+    const rangeOnePrange = prange("JJ");
+    const rangeOne = [
+      new CardHandSuit(
+        rangeOnePrange[0].substring(0, 1),
+        rangeOnePrange[0].substring(1, 2)
+      ),
+    ];
+    const rangeTwoPrange = prange("AKs");
+    const rangeTwo = [
+      new CardHandSuit(
+        rangeTwoPrange[0].substring(0, 1),
+        rangeTwoPrange[0].substring(1, 2)
+      ),
+    ];
     const board = "Td9d5c";
 
     expect(
@@ -99,8 +125,17 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other multiple hands that contains pairs", () => {
-    const rangeOne = prange("JJ");
-    const rangeTwo = prange("KK, AA");
+    const rangeOnePrange = prange("JJ");
+    const rangeOne = [
+      new CardHandSuit(
+        rangeOnePrange[0].substring(0, 1),
+        rangeOnePrange[0].substring(1, 2)
+      ),
+    ];
+    const rangeTwoPrange = prange("KK, AA");
+    const rangeTwo = rangeTwoPrange.map(
+      (range) => new CardHandSuit(range.substring(0, 1), range.substring(1, 2))
+    );
     const board = "Td9d5c";
 
     expect(
@@ -109,8 +144,11 @@ describe("MainPage Container", () => {
   });
 
   test("Board correctly calculates equity for hand against other multiple hands that contains all possible inputs", () => {
-    const rangeOne = prange("JJ");
-    const rangeTwo = prange("KK, AKs, AKo");
+    const rangeOne = [new CardHandSuit("J", "J")];
+    const rangeTwoPrange = prange("KK, AKs, AKo");
+    const rangeTwo = rangeTwoPrange.map(
+      (hand) => new CardHandSuit(hand.substring(0, 1), hand.substring(1, 2))
+    );
     const board = "Td9d5c";
 
     expect(
@@ -119,9 +157,9 @@ describe("MainPage Container", () => {
   });
 
   test("Board does not calculate equity for two overlapping hands", () => {
-    const rangeOne = prange("JJ");
-    const rangeTwo = prange("AJo");
-    const board = "Td9d5c";
+    const rangeOne = [new CardHandSuit("J", "J")];
+    const rangeTwo = [new CardHandSuit("A", "J")];
+    const board = "Jd9d5c";
 
     expect(
       calculateEquity(rangeOne, board, rangeTwo, Calculator).toFixed(2)
@@ -129,8 +167,8 @@ describe("MainPage Container", () => {
   });
 
   test("Board does not calculate equity for two non-existant board and hand combinations", () => {
-    const rangeOne = prange("JJ");
-    const rangeTwo = prange("ATo");
+    const rangeOne = [new CardHandSuit("J", "J")];
+    const rangeTwo = [new CardHandSuit("A", "T")];
     const board = "Td9d5c";
 
     expect(
@@ -142,12 +180,12 @@ describe("MainPage Container", () => {
     let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges));
     PreflopRanges = PreflopRanges.filter(({ Street }) => Street == "Preflop");
 
-    PreflopRanges[0].hands = ["AA"];
+    const testHand = new CardHandSuit("A", "A");
 
-    console.log(PreflopRanges); //?
+    PreflopRanges[0].hands = [testHand];
 
     const cards = generateCardGrid(PreflopRanges, true);
-    const otherRange = ["ATo"];
+    console.log(cards); //?
     const board = ["Td", "9d", "5c"];
     const street = "Flop";
 

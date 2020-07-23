@@ -39,3 +39,5 @@ export const SET_IS_IP = "handrangeAPI/MainPage/IS_IP";
 export const LOAD_EQUITIES = "handrangeAPI/MainPage/LOAD_EQUITIES";
 export const LOAD_EQUITIES_SUCCESS =
   "handrangeAPI/MainPage/LOAD_EQUITIES_SUCCESS";
+
+export const RESET_STATE = "handrangeAPI/MainPage/RESET_STATE";

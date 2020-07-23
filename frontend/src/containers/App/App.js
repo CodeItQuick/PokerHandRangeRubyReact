@@ -5,7 +5,7 @@ import MainPage from "../MainPage/index";
 // import { StripeProvider, Elements } from "react-stripe-elements";
 import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector, Provider } from "react-redux";
 import { useInjectReducer } from "../../HOC/useInjectReducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -18,6 +18,12 @@ import Navbar from "../../components/NavBar";
 import MainContainer from "../../components/MainContainer";
 
 import Tour from "reactour";
+import { ErrorBoundary } from "../../utils/ErrorBoundary";
+
+import { initialState } from "./reducer.js";
+import history from "../../utils/history";
+import configureStore from "../../configureStore";
+import { createWaiter } from "../../create-waiter";
 
 const key = "global";
 
@@ -70,7 +76,11 @@ const steps = [
       "This is fantastic, now we are only bluffing approximately less than half the time! If someone tries to rebluff our raise back at them, they will be greeted with an allin against a very strong hand much too often for this to be a profitable move"
   }
 ];
-const App = ({}) => {
+const store = configureStore(initialState, history);
+
+const waitForData = createWaiter(store, state => state);
+
+const App = ({ global }) => {
   useInjectReducer({ key, reducer });
   // const [stripe, setStripe] = useState(null);
   const username = useSelector(state => state.user);
@@ -80,20 +90,16 @@ const App = ({}) => {
   const closeTour = () => updateTourOpen(false);
 
   return (
-    <MainContainer>
-      {/* <Navbar username={user.name} /> */}
-      <MainPage />
-      <Tour steps={steps} isOpen={isTourOpen} onRequestClose={closeTour} />
-    </MainContainer>
+    <ErrorBoundary>
+      <MainContainer>
+        {/* <Navbar username={user.name} /> */}
+        <MainPage />
+        <Tour steps={steps} isOpen={isTourOpen} onRequestClose={closeTour} />
+      </MainContainer>
+    </ErrorBoundary>
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  // ranges: makeSelectRanges(),
-  // mode: makeSelectMode(),
-  // user: makeSelectUser()
-}); //?
-
-const withConnect = connect(mapStateToProps, null);
+const withConnect = connect(null, null);
 
 export default compose(withConnect, memo)(App);

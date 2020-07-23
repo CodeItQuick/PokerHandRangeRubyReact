@@ -17,7 +17,7 @@ const makeSelectMode = () => {
     return globalState.mode;
   });
 };
-const makeSelectSelectedRanges = () => {
+const makeSelectSelectedStreetBetType = () => {
   return createSelector(selectGlobal, global => {
     if (
       global &&
@@ -37,22 +37,17 @@ const makeSelectSelectedRanges = () => {
 
 const makeSelectSelectedStreet = () => {
   return createSelector(selectGlobal, global => {
-    if (global && global.mode && global.mode.street && global.ranges) {
-      return global.ranges.filter(({ Street, BetType }) => {
-        return Street == global.mode.street;
-      });
-    } else return initialState.ranges;
+    return global.ranges.filter(({ Street }) => {
+      return Street == global?.mode?.street;
+    });
   });
 };
 
 //FIXME: Needs a rename because its all ranges
-const makeSelectRangesPreflop = () => {
-  return createSelector(selectGlobal, global => {
-    if (global && global.mode && global.mode.street && global.mode.streetAction)
-      return global.ranges.filter(({ Street }) => Street == global.mode.street);
-    else return initialState.ranges.filter(({ Street }) => Street == "Preflop");
-  });
-};
+const makeSelectRangesPreflop = () =>
+  createSelector(selectGlobal, global =>
+    global.ranges.filter(({ Street }) => Street == "Preflop")
+  );
 
 const makeSelectRange = () =>
   createSelector(selectGlobal, globalState => globalState.ranges);
@@ -89,7 +84,7 @@ const makeSelectHandEquities = () =>
 export {
   selectGlobal,
   selectRouter,
-  makeSelectSelectedRanges,
+  makeSelectSelectedStreetBetType,
   makeSelectSelectedStreet,
   makeSelectRangeRepoIP,
   makeSelectRangeRepoOOP,

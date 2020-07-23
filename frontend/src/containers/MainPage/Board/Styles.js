@@ -16,7 +16,7 @@ export const ColorCard = styled(animated.button)`
   ${props =>
     props.border_attrib
       ? "border: 2px dashed black;"
-      : "border: 0px solid black;"}
+      : "border: 2px solid #FFF;"}
   @media (min-width: 576px) {
     font-size: 12px;
   }

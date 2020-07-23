@@ -15,8 +15,12 @@ export const calculateEquity = (
   if (handRange.length == 0 || rangeTwo.length == 0 || inputBoard.length < 3)
     return 0;
 
-  let handRangeExpanded = handRange.map(handR => expandSuitsPair(handR))[0];
-  let rangeTwoExpanded = rangeTwo.map(range => expandSuitsPair(range))[0];
+  let handRangeExpanded = handRange.map(handR =>
+    expandSuitsPair(handR.getHand())
+  )[0];
+  let rangeTwoExpanded = rangeTwo.map(range => {
+    return expandSuitsPair(range.getHand());
+  })[0];
   let equities = handRangeExpanded.reduce(
     (acc, handR) => [
       ...acc,

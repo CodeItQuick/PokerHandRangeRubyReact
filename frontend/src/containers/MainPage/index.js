@@ -9,7 +9,7 @@ import { Row, Col, Container, PopoverTitle } from "react-bootstrap";
 import BoardLegend from "./BoardLegend/BoardLegend";
 import {
   makeSelectRange,
-  makeSelectSelectedRanges,
+  makeSelectSelectedStreetBetType,
   makeSelectMode,
   makeSelectDeadcards,
   makeSelectRangeRepoIP,
@@ -75,7 +75,6 @@ const MainPage = ({
   wholeRange,
   ranges,
   rangeColors,
-  toAllUserHandRange,
   mode,
   mode: { street, streetAction, isIP },
   board,
@@ -89,17 +88,13 @@ const MainPage = ({
     handsInRange(rangeRepoIP, street)
   );
   const [handsOOPUsed, setHandsOOPUsed] = useState(
-    handsInRange(rangeRepoIP, street)
+    handsInRange(rangeRepoOOP, street)
   );
 
   useEffect(() => {
     setHandsIPUsed(handsInRange(isIP ? ranges : rangeRepoIP, street));
     setHandsOOPUsed(handsInRange(!isIP ? ranges : rangeRepoOOP, street));
   }, [ranges, rangeRepoIP, street]);
-
-  useEffect(() => {
-    toAllUserHandRange();
-  }, [toAllUserHandRange]);
 
   const onHandleStreetHandler = (e, { name, value }) => {
     dispatch(
@@ -163,7 +158,7 @@ MainPage.propTypes = {
 
 const mapStateToProps = () => {
   const getMapRange = makeSelectRange();
-  const getSelectRange = makeSelectSelectedRanges();
+  const getSelectRange = makeSelectSelectedStreetBetType();
   const getMode = makeSelectMode();
   const getDeadcards = makeSelectDeadcards();
   const getRangeRepoIP = makeSelectRangeRepoIP();
@@ -182,11 +177,6 @@ const mapStateToProps = () => {
   return mapState;
 }; //?
 
-const mapDispatchToProps = dispatch => {
-  return {
-    toAllUserHandRange: () => dispatch(initAllUserHandRanges())
-  };
-};
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(mapStateToProps, null);
 
 export default compose(withConnect, memo)(MainPage);

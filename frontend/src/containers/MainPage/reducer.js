@@ -3,20 +3,11 @@ import produce from "immer";
 import {
   SET_HAND_RANGE,
   SET_HAND_RANGE_SELECT,
-  INIT_CREATE_NEW_FOLDER,
-  CREATE_NEW_FOLDER_SUCCESS,
-  CREATE_NEW_FOLDER_FAIL,
-  SET_HAND_RANGE_GROUP,
-  SET_DYNAMIC_FOLDER_INFO,
-  SAVE_AND_LOAD,
-  LOAD_NEW_FOLDER,
-  INIT_ALL_USER_HAND_RANGES,
-  ALL_USER_HAND_RANGES_SUCCESS,
-  ALL_USER_HAND_RANGES_FAIL,
   SET_DEAD_CARDS,
   SET_IS_IP,
   LOAD_EQUITIES,
-  LOAD_EQUITIES_SUCCESS
+  LOAD_EQUITIES_SUCCESS,
+  RESET_STATE
 } from "./constants.js";
 
 import { sampleData, ranges } from "./sampleData.js";
@@ -69,6 +60,10 @@ const mainPageReducer = (state = initialState, action) =>
       case SET_DEAD_CARDS:
         draft.deadcards = action.data;
         draft.loadEquities = false;
+        break;
+
+      case RESET_STATE:
+        draft = initialState;
         break;
 
       default:

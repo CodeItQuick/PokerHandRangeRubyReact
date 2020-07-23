@@ -20,6 +20,7 @@ import UserRegister from "./containers/Auth/Register/UserRegister.js";
 import Login from "./containers/Auth/Login/UserLogin.js";
 // import { Auth0Provider } from "@auth0/auth0-react";
 import config from "./auth_config";
+import { ErrorBoundary } from "./utils/ErrorBoundary";
 
 //const store = createStore(combineReducers({rootReducer, handRangesAvailable}), applyMiddleware(thunk));
 // Create redux store with history
@@ -28,8 +29,12 @@ const store = configureStore(initialState, history);
 
 store.subscribe(
   throttle(() => {
-    const { global, user } = store.getState();
-    saveState({ global, user });
+    try {
+      const { global, user } = store.getState();
+      saveState({ global, user });
+    } catch {
+      saveState({ global: initialState, user: {} });
+    }
   }, 1000)
 );
 
@@ -48,15 +53,17 @@ ReactDOM.render(
   //   redirect_uri={siteUrl}
   //   onRedirectCallback={onRedirectCallback}
   // >
-  <Provider store={store}>
-    <Router history={history}>
-      <ThemeProvider theme={{ main: "mediumseagreen" }}>
-        <Route exact path="/" component={App} />
-        <Route exact path="/register" component={UserRegister} />
-        <Route exact path="/login" component={Login} />
-      </ThemeProvider>
-    </Router>
-  </Provider>,
+  <ErrorBoundary>
+    <Provider store={store}>
+      <Router history={history}>
+        <ThemeProvider theme={{ main: "mediumseagreen" }}>
+          <Route exact path="/" component={App} />
+          <Route exact path="/register" component={UserRegister} />
+          <Route exact path="/login" component={Login} />
+        </ThemeProvider>
+      </Router>
+    </Provider>
+  </ErrorBoundary>,
   // </Auth0Provider>,
   document.getElementById("root")
 );

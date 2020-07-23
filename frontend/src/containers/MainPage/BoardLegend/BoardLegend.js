@@ -14,6 +14,8 @@ import {
   makeSelectSelectedStreet
 } from "../selectors";
 
+import CardHandSuit from "../Board/CardHandSuit";
+
 const key = "global";
 
 const StyledContainer = styled(Container)`
@@ -145,7 +147,10 @@ const legendTable = (
   </Table>
 );
 
-const comboCounter = (hand, chosenStreet, board) => {
+const comboCounter = (hands, chosenStreet, board) => {
+  console.log(hands);
+  if (!hands) return 0;
+
   let filteredBoard = [];
   if (chosenStreet == "Flop" && board.length >= 3)
     filteredBoard = [board[0].trim(), board[1].trim(), board[2].trim()];
@@ -164,16 +169,19 @@ const comboCounter = (hand, chosenStreet, board) => {
       board[3].trim(),
       board[4].trim()
     ];
+
+  let hand = new CardHandSuit(hands.cardOne, hands.cardTwo, hands.suit); //FIXME: UGLY
+
   //Suited Combos
-  if (hand.indexOf("s") >= 0) {
+  if (hand.isSuit("s")) {
     let filteredBoardCards = filteredBoard.map(boardCard =>
       boardCard.charAt(0)
     );
     let specificHands = [
-      hand.charAt(0) + "s" + hand.charAt(1) + "s",
-      hand.charAt(0) + "c" + hand.charAt(1) + "c",
-      hand.charAt(0) + "d" + hand.charAt(1) + "d",
-      hand.charAt(0) + "h" + hand.charAt(1) + "h"
+      hand.getHand().charAt(0) + "s" + hand.getHand().charAt(1) + "s",
+      hand.getHand().charAt(0) + "c" + hand.getHand().charAt(1) + "c",
+      hand.getHand().charAt(0) + "d" + hand.getHand().charAt(1) + "d",
+      hand.getHand().charAt(0) + "h" + hand.getHand().charAt(1) + "h"
     ];
     let addCombos = filteredBoard.reduce((acc, boardCard) => {
       let totalHands = specificHands.reduce((acc2, specificCards) => {
@@ -187,17 +195,17 @@ const comboCounter = (hand, chosenStreet, board) => {
     return 4 - Object.keys(addCombos).length;
   }
   //Offsuit Combos
-  else if (hand.indexOf("o") >= 0) {
+  else if (hand.isSuit("o")) {
     let numOccurances = _.countBy(_.split(board, "", 12));
-    let subtractFirstCard = numOccurances[hand.charAt(0)] || 0;
-    let subtractSecondCard = numOccurances[hand.charAt(1)] || 0;
+    let subtractFirstCard = numOccurances[hand.getHand().charAt(0)] || 0;
+    let subtractSecondCard = numOccurances[hand.getHand().charAt(1)] || 0;
     let numCards = (4 - subtractFirstCard) * (4 - subtractSecondCard) - 4;
     return numCards;
   } else {
     //Pair Combos
     let numOccurances = _.countBy(_.split(board, "", 12));
-    let subtractFirstCard = numOccurances[hand.charAt(0)] || 0;
-    let subtractSecondCard = numOccurances[hand.charAt(1)] || 0;
+    let subtractFirstCard = numOccurances[hand.getHand().charAt(0)] || 0;
+    let subtractSecondCard = numOccurances[hand.getHand().charAt(1)] || 0;
 
     let numCards = ((4 - subtractFirstCard) * (3 - subtractSecondCard)) / 2;
     return numCards;
@@ -214,7 +222,6 @@ export const countHandCombo = (wholeRange, chosenStreet, board) => {
     }, 0);
   });
 
-  console.log(wholeRangeFiltered);
   return wholeRangeNum;
 };
 
@@ -233,7 +240,6 @@ const BoardLegend = ({
     River: ["Valuebet", "Bluff", "CheckCall", "CheckFold"]
   };
 
-  console.log(mode.street);
   const [numberOfCombos, updateNumberOfCombos] = useState([0, 0, 0, 0]);
 
   //TODO: potential bug? method outside useEffect

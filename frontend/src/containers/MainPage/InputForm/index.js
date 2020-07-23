@@ -36,6 +36,26 @@ const options = [
 const DeadCards = styled(Form.Input)`
   width: 100%;
 `;
+
+export const assignPositions = (
+  rangeRepoIP,
+  rangeRepoOOP,
+  selectedRanges,
+  value
+) => {
+  let newRanges, newRangeIP, newRangeOOP;
+  if (value) {
+    newRanges = rangeRepoIP;
+    newRangeIP = rangeRepoIP;
+    newRangeOOP = selectedRanges;
+  } else {
+    newRanges = rangeRepoOOP;
+    newRangeIP = selectedRanges;
+    newRangeOOP = rangeRepoOOP;
+  }
+  return [newRangeIP, newRangeOOP, newRanges];
+};
+
 // TODO: Add functionality to assign, ranges, clear selection, clear suits, split suits
 const InputForm = ({
   onHandleStreetHandler,
@@ -53,16 +73,12 @@ const InputForm = ({
   };
 
   const onChangePosition = (e, { value }) => {
-    let newRangeIP, newRangeOOP, newRanges;
-    if (value) {
-      newRanges = rangeRepoIP;
-      newRangeIP = rangeRepoIP;
-      newRangeOOP = selectedRanges;
-    } else {
-      newRanges = rangeRepoOOP;
-      newRangeIP = selectedRanges;
-      newRangeOOP = rangeRepoOOP;
-    }
+    let [newRangeIP, newRangeOOP, newRanges] = assignPositions(
+      rangeRepoIP,
+      rangeRepoOOP,
+      selectedRanges,
+      value
+    );
 
     dispatch(setIsIP({ position: value, newRangeIP, newRangeOOP, newRanges }));
   };
