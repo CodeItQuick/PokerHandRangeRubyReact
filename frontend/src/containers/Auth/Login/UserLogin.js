@@ -8,16 +8,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { compose } from "redux";
 import { createStructuredSelector } from "reselect";
 
-import reducer from "../reducer.js";
-import saga from "../saga.js";
-import { initRegisterUser, userSignin } from "../actions.js";
+import reducer from "../reducer";
+import saga from "../saga";
+import { initRegisterUser, userSignin } from "../actions";
 
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Navbar from "../../../components/NavBar";
 
-import { useInjectReducer } from "../../../HOC/useInjectReducer.js";
-import { useInjectSaga } from "../../../HOC/injectSaga.js";
+import { useInjectReducer } from "../../../HOC/useInjectReducer";
+import { useInjectSaga } from "../../../HOC/injectSaga";
 import { makeSelectUser } from "../selectors";
 
 const key = "user";

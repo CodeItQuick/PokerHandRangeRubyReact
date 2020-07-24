@@ -8,15 +8,15 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import reducer from "../reducer.js";
 
-import saga from "../saga.js";
+import saga from "../saga";
 
 import { initRegisterUser } from "../actions.js";
 import { makeSelectParams } from "../selectors.js";
 
-import Navbar from "../../../components/NavBar/index.js";
-import MainContainer from "../../../components/MainContainer/index.js";
-import { useInjectReducer } from "../../../HOC/useInjectReducer.js";
-import { useInjectSaga } from "../../../HOC/injectSaga.js";
+import Navbar from "../../../components/NavBar";
+import MainContainer from "../../../components/MainContainer";
+import { useInjectReducer } from "../../../HOC/useInjectReducer";
+import { useInjectSaga } from "../../../HOC/injectSaga";
 
 const key = "user";
 

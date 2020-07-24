@@ -10,7 +10,7 @@ import {
   USER_SIGNOUT,
   USER_SIGNUP,
   INIT_REGISTER_USER
-} from "./constants.js";
+} from "./constants";
 import {
   userSigninSuccess,
   userSigninFail,

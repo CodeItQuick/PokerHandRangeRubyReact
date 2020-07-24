@@ -6,7 +6,7 @@ import Adapter from "enzyme-adapter-react-16";
 import { Provider } from "react-redux";
 import { initialState } from "../../src/containers/MainPage/reducer";
 import history from "../../src/utils/history";
-import configureStore from "../../src/configureStore.js";
+import configureStore from "../../src/configureStore";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -43,7 +43,7 @@ describe("MainPage Container", () => {
 
   describe("handsInRange should return true when given a range with a value in it", () => {
     const range = JSON.parse(JSON.stringify(initialState.ranges));
-    range[4].hands = ['AA'];
+    range[4].hands = ["AA"];
 
     const street = "Flop";
 

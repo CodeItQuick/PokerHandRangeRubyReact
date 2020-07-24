@@ -1,12 +1,36 @@
+
+require 'couchbase'
+include Couchbase
+
 class HandRangesController < ApplicationController
   before_action :set_hand_range, only: [:show, :update, :destroy]
 
   # GET /hand_ranges
   def index
+    
+    couchbase_search
+
     @hand_ranges = HandRange.all
 
-    render json: @hand_ranges
+    # render json: @hand_ranges
   end
+
+  def couchbase_search()
+    
+    bucket_name = "travel-sample"
+    scope_name = "myapp"
+    
+    options = Cluster::ClusterOptions.new
+    options.authenticate("Administrator", "RtR_07555")
+    cluster = Cluster.connect("couchbase://localhost", options)
+    bucket = cluster.bucket("travel-sample")
+
+    result = cluster.query("SELECT r.airlineid, a.name FROM `travel-sample` as r INNER JOIN `travel-sample` as a ON r.airlineid = meta(a).id WHERE r.type=\"route\" LIMIT 10")
+
+    render json: result.rows
+
+  end
+
 
   # GET /hand_ranges/1
   def show

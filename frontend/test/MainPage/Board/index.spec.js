@@ -1,5 +1,5 @@
 import React from "react";
-import MainPage from "../../../src/containers/MainPage/index.js";
+import MainPage from "../../../src/containers/MainPage/index";
 import Enzyme, { shallow, mount, render } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 

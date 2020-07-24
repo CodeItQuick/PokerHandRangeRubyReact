@@ -1,0 +1,149 @@
+<<<<<<< HEAD
+=======
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:30:31 -0300
+  [1m[35m (54.4ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (44.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HandRangesController#index as HTML
+  [1m[36mHandRange Load (42.1ms)[0m  [1m[34mSELECT `hand_ranges`.* FROM `hand_ranges`[0m
+  ↳ app/controllers/hand_ranges_controller.rb:13:in `index'
+Completed 200 OK in 184ms (Views: 84.7ms | ActiveRecord: 88.4ms | Allocations: 22335)
+
+
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:31:43 -0300
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 27ms (ActiveRecord: 0.0ms | Allocations: 441)
+
+
+  
+Couchbase::Error::AuthenticationFailure (unable open cluster at localhost: authentication_failure):
+  
+app/controllers/hand_ranges_controller.rb:25:in `couchbase_search'
+app/controllers/hand_ranges_controller.rb:11:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:31:57 -0300
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms | Allocations: 385)
+
+
+  
+Couchbase::Error::AuthenticationFailure (unable open cluster at localhost: authentication_failure):
+  
+app/controllers/hand_ranges_controller.rb:25:in `couchbase_search'
+app/controllers/hand_ranges_controller.rb:11:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:32:09 -0300
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms | Allocations: 385)
+
+
+  
+Couchbase::Error::AuthenticationFailure (unable open cluster at localhost: authentication_failure):
+  
+app/controllers/hand_ranges_controller.rb:25:in `couchbase_search'
+app/controllers/hand_ranges_controller.rb:11:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:33:35 -0300
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.0ms | Allocations: 402)
+
+
+  
+Couchbase::Error::AuthenticationFailure (unable open cluster at localhost: authentication_failure):
+  
+app/controllers/hand_ranges_controller.rb:25:in `couchbase_search'
+app/controllers/hand_ranges_controller.rb:11:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:34:09 -0300
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 0.0ms | Allocations: 405)
+
+
+  
+Couchbase::Error::BucketNotFound (unable open bucket "travel-sample": bucket_not_found):
+  
+app/controllers/hand_ranges_controller.rb:26:in `couchbase_search'
+app/controllers/hand_ranges_controller.rb:11:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:38:28 -0300
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 52ms (ActiveRecord: 0.0ms | Allocations: 399)
+
+
+  
+Couchbase::Error::UnsupportedOperation (unable to get list of the scopes of the bucket "travel-sample": unsupported_operation):
+  
+app/controllers/hand_ranges_controller.rb:29:in `couchbase_search'
+app/controllers/hand_ranges_controller.rb:11:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:38:59 -0300
+Processing by HandRangesController#index as HTML
+  [1m[36mHandRange Load (9.0ms)[0m  [1m[34mSELECT `hand_ranges`.* FROM `hand_ranges`[0m
+  ↳ app/controllers/hand_ranges_controller.rb:15:in `index'
+Completed 200 OK in 410ms (Views: 85.0ms | ActiveRecord: 234.7ms | Allocations: 21371)
+
+
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:43:36 -0300
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 49ms (Views: 1.2ms | ActiveRecord: 0.0ms | Allocations: 1341)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/hand_ranges_controller.rb:15:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:43:58 -0300
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 36ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 1401)
+
+
+  
+AbstractController::DoubleRenderError (Render and/or redirect were called multiple times in this action. Please note that you may only call render OR redirect, and at most once per action. Also note that neither redirect nor render terminate execution of the action, so if you want to exit an action after redirecting, you need to do something like "redirect_to(...) and return".):
+  
+app/controllers/hand_ranges_controller.rb:15:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:44:17 -0300
+Processing by HandRangesController#index as HTML
+Completed 200 OK in 26ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 1029)
+
+
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-02 16:54:25 -0300
+  [1m[35m (53.3ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+Processing by HandRangesController#index as HTML
+Completed 200 OK in 94ms (Views: 0.7ms | ActiveRecord: 0.0ms | Allocations: 1385)
+
+
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-24 12:12:24 -0300
+  [1m[35m (18.5ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (22.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms | Allocations: 520)
+
+
+  
+Couchbase::Error::BackendError (unable open cluster at localhost: no_endpoints_left):
+  
+app/controllers/hand_ranges_controller.rb:25:in `couchbase_search'
+app/controllers/hand_ranges_controller.rb:11:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-24 12:13:42 -0300
+  [1m[35m (12.5ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 520)
+
+
+  
+Couchbase::Error::BackendError (unable open cluster at localhost: no_endpoints_left):
+  
+app/controllers/hand_ranges_controller.rb:25:in `couchbase_search'
+app/controllers/hand_ranges_controller.rb:11:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-24 12:14:54 -0300
+  [1m[35m (22.7ms)[0m  [1m[35mSET NAMES utf8mb4,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by HandRangesController#index as HTML
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 520)
+
+
+  
+Couchbase::Error::BackendError (unable open cluster at localhost: no_endpoints_left):
+  
+app/controllers/hand_ranges_controller.rb:25:in `couchbase_search'
+app/controllers/hand_ranges_controller.rb:11:in `index'
+Started GET "/hand_ranges" for 127.0.0.1 at 2020-07-24 12:16:35 -0300
+Processing by HandRangesController#index as HTML
+Completed 200 OK in 3830ms (Views: 1.0ms | ActiveRecord: 0.0ms | Allocations: 7228)
+
+
+>>>>>>> Couchbase/InitialPR
