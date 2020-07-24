@@ -43,7 +43,7 @@ const InputStreetAction = ({
       <Button.Group inverted fluid>
         <Button
           inverted
-          color="black"
+          color="blue"
           id="thirdChoice"
           active={streetAction == "RaiseCall"}
           onClick={e =>
@@ -58,7 +58,7 @@ const InputStreetAction = ({
         <Button.Or />
         <Button
           inverted
-          color="white"
+          color="purple"
           id="fourthChoice"
           active={streetAction == "RaiseFold"}
           onClick={e =>
@@ -106,11 +106,11 @@ const InputStreetAction = ({
         </Button>
         <Button.Or />
       </Button.Group>
-      <Button.Group inverted fluid>
+      <Button.Group>
         <Button
           inverted
-          color="black"
           id="thirdChoice"
+          color="blue"
           active={streetAction == "CheckCall"}
           onClick={e =>
             onHandleStreetHandlerButtons(e, {
@@ -124,7 +124,7 @@ const InputStreetAction = ({
         <Button.Or />
         <Button
           inverted
-          color="white"
+          color="purple"
           id="fourthChoice"
           active={streetAction == "CheckFold"}
           onClick={e =>

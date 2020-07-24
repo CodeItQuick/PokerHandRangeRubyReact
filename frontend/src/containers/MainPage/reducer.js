@@ -7,7 +7,9 @@ import {
   SET_IS_IP,
   LOAD_EQUITIES,
   LOAD_EQUITIES_SUCCESS,
-  RESET_STATE
+  INIT_SAVE_SCENARIO,
+  SAVE_SCENARIO_SUCCESS,
+  SAVE_SCENARIO_FAILED
 } from "./constants.js";
 
 import { sampleData, ranges } from "./sampleData.js";
@@ -62,8 +64,17 @@ const mainPageReducer = (state = initialState, action) =>
         draft.loadEquities = false;
         break;
 
-      case RESET_STATE:
-        draft = initialState;
+      case INIT_SAVE_SCENARIO:
+        break;
+
+      case SAVE_SCENARIO_SUCCESS:
+        draft.rangeRepoIP = action.data.rangeRepoIP;
+        draft.rangeRepoOOP = action.data.rangeRepoOOP;
+        draft.deadcards = action.data.deadcards;
+        draft.mode = sampleData.mode;
+        break;
+
+      case SAVE_SCENARIO_FAILED:
         break;
 
       default:

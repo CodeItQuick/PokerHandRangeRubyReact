@@ -18,7 +18,7 @@ import { ThemeProvider } from "styled-components";
 
 import UserRegister from "./containers/Auth/Register/UserRegister.js";
 import Login from "./containers/Auth/Login/UserLogin.js";
-// import { Auth0Provider } from "@auth0/auth0-react";
+import { Auth0Provider } from "@auth0/auth0-react";
 import config from "./auth_config";
 import { ErrorBoundary } from "./utils/ErrorBoundary";
 
@@ -47,24 +47,25 @@ const onRedirectCallback = appState => {
 };
 
 ReactDOM.render(
-  // <Auth0Provider
-  //   domain={config.domain}
-  //   client_id={config.clientId}
-  //   redirect_uri={siteUrl}
-  //   onRedirectCallback={onRedirectCallback}
-  // >
   <ErrorBoundary>
-    <Provider store={store}>
-      <Router history={history}>
-        <ThemeProvider theme={{ main: "mediumseagreen" }}>
-          <Route exact path="/" component={App} />
-          <Route exact path="/register" component={UserRegister} />
-          <Route exact path="/login" component={Login} />
-        </ThemeProvider>
-      </Router>
-    </Provider>
-  </ErrorBoundary>,
-  // </Auth0Provider>,
+    <Auth0Provider
+      domain="dev-824eb3ar.us.auth0.com"
+      clientId="NTS7ZtvzLweGZjLhYDlhj9PsN44FDFel"
+      redirectUri="https://www.poker-range-appalyzer.com"
+      audience="https://dev-824eb3ar.us.auth0.com/api/v2/"
+      scope="read:current_user update:current_user_metadata"
+    >
+      <Provider store={store}>
+        <Router history={history}>
+          <ThemeProvider theme={{ main: "mediumseagreen" }}>
+            <Route exact path="/" component={App} />
+            <Route exact path="/register" component={UserRegister} />
+            <Route exact path="/login" component={Login} />
+          </ThemeProvider>
+        </Router>
+      </Provider>
+    </Auth0Provider>
+  </ErrorBoundary>, //{" "},
   document.getElementById("root")
 );
 

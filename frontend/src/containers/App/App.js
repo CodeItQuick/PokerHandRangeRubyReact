@@ -25,6 +25,8 @@ import history from "../../utils/history";
 import configureStore from "../../configureStore";
 import { createWaiter } from "../../create-waiter";
 
+import { useAuth0 } from "@auth0/auth0-react";
+
 const key = "global";
 
 const StyledFragment = styled.div`
@@ -81,18 +83,66 @@ const store = configureStore(initialState, history);
 const waitForData = createWaiter(store, state => state);
 
 const App = ({ global }) => {
+  const {
+    isAuthenticated,
+    loginWithRedirect,
+    logout,
+    user,
+    getAccessTokenSilently
+  } = useAuth0();
   useInjectReducer({ key, reducer });
   // const [stripe, setStripe] = useState(null);
   const username = useSelector(state => state.user);
   const dispatch = useDispatch();
   const [isTourOpen, updateTourOpen] = useState(true);
+  const [bearerToken, setBearerToken] = useState(null);
+  const [userMetadata, setUserMetadata] = useState(null);
+
+  useEffect(() => {
+    localStorage.setItem("Bearer", bearerToken);
+  }, [bearerToken]);
 
   const closeTour = () => updateTourOpen(false);
+
+  const getUserMetadata = async () => {
+    const domain = "dev-824eb3ar.us.auth0.com";
+
+    try {
+      const accessToken = await getAccessTokenSilently({
+        audience: `https://${domain}/api/v2/`,
+        scope: "read:current_user"
+      });
+
+      setBearerToken(accessToken);
+
+      const userDetailsByIdUrl = `https://${domain}/api/v2/users/${user.sub}`;
+
+      const metadataResponse = await fetch(userDetailsByIdUrl, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      });
+
+      const { user_metadata } = await metadataResponse.json();
+
+      setUserMetadata(user_metadata);
+      return accessToken;
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   return (
     <ErrorBoundary>
       <MainContainer>
-        {/* <Navbar username={user.name} /> */}
+        <Navbar
+          isAuthenticated={isAuthenticated}
+          loginWithRedirect={loginWithRedirect}
+          logout={logout}
+          user={user}
+          getAccessTokenSilently={getAccessTokenSilently}
+          getUserMetadata={getUserMetadata}
+        />
         <MainPage />
         <Tour steps={steps} isOpen={isTourOpen} onRequestClose={closeTour} />
       </MainContainer>

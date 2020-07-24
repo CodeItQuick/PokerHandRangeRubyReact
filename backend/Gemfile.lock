@@ -977,6 +977,7 @@ GEM
     concurrent-ruby (1.1.6)
     cors (1.0.1)
       multi_json
+    couchbase (3.0.0.alpha.5)
     crass (1.0.6)
     dotenv (2.7.5)
     dotenv-rails (2.7.5)
@@ -1088,6 +1089,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   cors
+  couchbase (= 3.0.0.alpha.5)
   dotenv-rails
   jwt
   listen (>= 3.0.5, < 3.2)
@@ -1102,7 +1104,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.6.6p146
+   ruby 2.7.0p0
 
 BUNDLED WITH
    2.1.4

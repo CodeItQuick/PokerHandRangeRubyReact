@@ -8,17 +8,13 @@ const ProgressIndicator = ({ street, handsIPUsed, handsOOPUsed }) => {
         <Step completed={handsIPUsed}>
           <Icon name="thumbs down" color="red" />
           <Step.Content>
-            <Step.Description>
-              Hands for IP Selected on {street}
-            </Step.Description>
+            <Step.Description>IP Selected on {street}</Step.Description>
           </Step.Content>
         </Step>
         <Step completed={handsOOPUsed}>
           <Icon name="thumbs down" color="red" />
           <Step.Content>
-            <Step.Description>
-              Hands for OOP Selected on {street}
-            </Step.Description>
+            <Step.Description>OOP Selected on {street}</Step.Description>
           </Step.Content>
         </Step>
       </Step.Group>

@@ -41,3 +41,39 @@ App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2
 [ E 2020-06-30 00:58:24.0168 37578/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
 [ N 2020-07-01 15:58:20.0296 37578/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
 [ E 2020-07-01 15:58:20.5874 37578/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+[ N 2020-07-24 00:23:05.4469 91444/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-07-24 00:23:05.4802 91446/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-07-24 00:23:05.4805 91446/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-07-24 00:23:05.5095 91446/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 91446
+[ N 2020-07-24 00:23:08.1858 91446/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-07-24 00:23:08.5925 91446/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-07-24 00:28:34.8842 91446/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-07-24 00:28:34.8843 91446/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-07-24 00:28:34.8844 91446/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 91515, application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend (development)
+[ N 2020-07-24 00:28:34.8846 91446/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-07-24 00:28:34.8846 91446/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-07-24 00:28:34.8847 91446/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-07-24 00:28:34.8846 91446/Tj Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-07-24 00:28:34.8846 91446/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-07-24 00:28:34.8848 91446/Tj Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-07-24 00:28:34.8846 91446/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-07-24 00:28:34.8846 91446/Td Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-07-24 00:28:34.8849 91446/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-07-24 00:28:34.8848 91446/Tp Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-07-24 00:28:34.8846 91446/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-07-24 00:28:34.8848 91446/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-07-24 00:28:34.8846 91446/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-07-24 00:28:34.8850 91446/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-07-24 00:28:34.8849 91446/Tp Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-07-24 00:28:34.8847 91446/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-07-24 00:28:34.8849 91446/Td Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-07-24 00:28:34.8850 91446/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-07-24 00:28:34.8852 91446/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 91515, application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend (development)
+[ N 2020-07-24 00:28:35.7096 91446/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-07-24 00:28:49.8858 91938/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-07-24 00:28:49.9194 91940/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-07-24 00:28:49.9197 91940/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-07-24 00:28:49.9483 91940/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 91940
+[ N 2020-07-24 00:28:52.5595 91940/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-07-24 00:28:52.5695 91940/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.

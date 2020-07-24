@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 const StyledContainer = styled(Container)`
   padding: 0px !important;
   @media (min-width: 1200px) {
-    display: flex;
+    display: block;
     margin-top: 30px;
     margin-bottom: 50px;
   }

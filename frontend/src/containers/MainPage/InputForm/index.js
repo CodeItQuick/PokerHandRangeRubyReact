@@ -17,6 +17,7 @@ import { compose } from "redux";
 import { connect, useDispatch } from "react-redux";
 import _ from "lodash";
 
+import { initSaveScenario } from "../actions";
 import {
   makeSelectRangeRepoIP,
   makeSelectRangeRepoOOP,
@@ -27,6 +28,7 @@ import {
 } from "../selectors";
 import InputStreet from "./InputStreet";
 import InputStreetAction from "./InputStreetAction";
+import ScenarioLoader from "../ScenarioLoader";
 
 const options = [
   { key: "positionOOP", text: "OOP", value: false },
@@ -64,10 +66,17 @@ const InputForm = ({
   selectedRanges,
   rangeRepoOOP,
   rangeRepoIP,
-  deadcards,
-  ranges
+  deadcards
 }) => {
   const dispatch = useDispatch();
+  const [state, setState] = useState({ active: false });
+
+  const onCloseModal = () => {
+    setState({
+      active: false
+    });
+  };
+
   const onChangeStreetHandler = e => {
     dispatch(setDeadCards(_.split(e.target.value, ",", 12)));
   };
@@ -169,6 +178,19 @@ const InputForm = ({
             <Button color="purple" onClick={() => onCalculateEquities()}>
               Calculate Equities
             </Button>
+            <Button onClick={() => setState({ active: true })}>
+              Open Saved Scenario
+            </Button>
+            <Button
+              onClick={() =>
+                dispatch(
+                  initSaveScenario({ deadcards: [rangeRepoIP, rangeRepoOOP] })
+                )
+              }
+            >
+              Save Scenario
+            </Button>
+            <ScenarioLoader active={state.active} onCloseModal={onCloseModal} />
           </Segment>
         </Segment.Group>
       </Segment.Group>
@@ -182,7 +204,6 @@ const mapStateToProps = () => {
   const getPosition = makeSelectPosition();
   const getMode = makeSelectMode();
   const getDeadcards = makeSelectDeadcards();
-  const getRanges = makeSelectRange();
 
   const mapState = state => {
     return {

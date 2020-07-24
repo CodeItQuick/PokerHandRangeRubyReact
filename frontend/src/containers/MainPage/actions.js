@@ -6,7 +6,8 @@ import {
   GET_DEAD_CARDS,
   SET_IS_IP,
   LOAD_EQUITIES,
-  RESET_STATE
+  RESET_STATE,
+  INIT_SAVE_SCENARIO
 } from "./constants";
 
 export function setHandRangeSelect(data) {
@@ -52,6 +53,13 @@ export function loadEquities() {
 export function resetState() {
   return {
     type: RESET_STATE
+  };
+}
+
+export function initSaveScenario(data) {
+  return {
+    type: INIT_SAVE_SCENARIO,
+    data
   };
 }
 

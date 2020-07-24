@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.7.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.1'
@@ -53,6 +53,7 @@ gem 'cors'
 gem 'jwt'
 gem 'aws-sdk', '~> 3'
 gem 'aws-sdk-rails'
+gem 'couchbase', "3.0.0.alpha.5"
 
 group :development do
   gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"

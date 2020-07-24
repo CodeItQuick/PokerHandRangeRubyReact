@@ -27,7 +27,7 @@ import { useInjectSaga } from "../../HOC/injectSaga";
 import saga from "./saga";
 
 import ProductDescription from "./ProductDescription/index";
-import { Grid, Segment, Step, Icon } from "semantic-ui-react";
+import { Grid, Segment, Step, Icon, Button } from "semantic-ui-react";
 import InputForm from "./InputForm";
 import styled from "styled-components";
 
@@ -124,7 +124,7 @@ const MainPage = ({
 
   //TO-DO: need to align these left-to-right on big screens, top-to-bottom mobile
   return (
-    <Fragment>
+    <MainPageContainer>
       <LeftPane>
         <ProgressIndicator
           street={street}
@@ -147,7 +147,7 @@ const MainPage = ({
           onHandleStreetHandlerButtons={onHandleStreetHandlerButtons}
         />
       </RightPane>
-    </Fragment>
+    </MainPageContainer>
   );
 };
 MainPage.propTypes = {

@@ -78,3 +78,65 @@ export default class CardHandSuit {
     return true;
   }
 }
+
+// const orderedCard = [];
+
+// export default class CardHandSuit {
+//   constructor(
+//     private _cardOne: string,
+//     private _cardTwo: string,
+//     private _suit?: string
+//   ) {
+//     this._setCardSuit();
+//     this._sortCards();
+//   }
+
+//   public getHand(): string {
+//     return `${this._cardOne}${this._cardTwo}${this._suit}`;
+//   }
+
+//   public getHandArray(): string[] {
+//     return [this._cardOne, this._cardTwo, this._suit];
+//   }
+
+//   public isSuit(suit: string): boolean {
+//     return this._suit === suit;
+//   }
+
+//   public isInRange(rangeObj: CardHandSuit[]): boolean {
+//     const filteredRangeObj = rangeObj.filter(
+//       cardHandSuitObj => (cardHandSuitObj.getHand() === this.getHand())
+//     );
+
+//     return filteredRangeObj.length > 0;
+//   }
+
+//   public indexsOf(arrayOfCardHandSuit: CardHandSuit[]): number {
+//     arrayOfCardHandSuit.forEach((cardHandSuits, idx) => {
+//       if (this.isInRange([cardHandSuits])) {
+//         return idx;
+//       }
+//     });
+
+//     return -1;
+//   }
+
+//   private _setCardSuit(): string {
+//     if (this._suit) {
+//       return;
+//     }
+
+//     if (this._cardOne === this._cardTwo) {
+//       this._suit = '';
+//       return;
+//     }
+
+//     this._suit = (orderedCard.indexOf(this._cardOne) < orderedCard.indexOf(this._cardTwo)) ? 's' : 'o';
+//   }
+
+//   private _sortCards(): void {
+//     if (orderedCard.indexOf(this._cardOne) > orderedCard.indexOf(this._cardTwo)) {
+//       this._cardOne, this._cardTwo = this._cardTwo, this._cardOne;
+//     }
+//   }
+// }

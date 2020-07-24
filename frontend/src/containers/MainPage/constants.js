@@ -41,3 +41,10 @@ export const LOAD_EQUITIES_SUCCESS =
   "handrangeAPI/MainPage/LOAD_EQUITIES_SUCCESS";
 
 export const RESET_STATE = "handrangeAPI/MainPage/RESET_STATE";
+
+export const INIT_SAVE_SCENARIO = "handrangeAPI/MainPage/INIT_SAVE_SCENARIO";
+
+export const SAVE_SCENARIO_SUCCESS =
+  "handrangeAPI/MainPage/SAVE_SCENARIO_SUCCESS";
+export const SAVE_SCENARIO_FAILED =
+  "handrangeAPI/MainPage/SAVE_SCENARIO_FAILED";
