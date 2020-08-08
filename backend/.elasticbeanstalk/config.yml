@@ -1,19 +1,27 @@
 branch-defaults:
   master:
-    environment: Production3
+    environment: PokerAppDocker
+    group_suffix: null
 environment-defaults:
-  Production2:
+  PokerAppDocker:
     branch: null
     repository: null
 global:
-  application_name: ThirdPokerApp
-  default_ec2_keyname: NewestAWSKeyPair
-  default_platform: Passenger with Ruby 2.6 running on 64bit Amazon Linux
-  default_region: us-east-2
+  application_name: PokerApp-Montreal-New
+  branch: null
+  default_ec2_keyname: ebs-keypair
+  default_platform: Docker running on 64bit Amazon Linux 2
+  default_region: ca-central-1
   include_git_submodules: true
   instance_profile: null
   platform_name: null
   platform_version: null
   profile: null
+  repository: null
   sc: git
   workspace_type: Application
+option_settings:
+  - option_name: MAIN_USER_USERNAME
+    value: CustomerQuery
+  - option_name: MAIN_USER_PASSWORD
+    value: veryHARDtoGUESS

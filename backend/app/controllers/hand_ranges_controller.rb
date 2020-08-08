@@ -1,6 +1,6 @@
 
-require 'couchbase'
-include Couchbase
+# require 'couchbase'
+# include Couchbase
 
 class HandRangesController < ApplicationController
   before_action :set_hand_range, only: [:show, :update, :destroy]
@@ -17,13 +17,13 @@ class HandRangesController < ApplicationController
 
   def couchbase_search()
     
-    bucket_name = "travel-sample"
+    bucket_name = "PokerRangeAppalyzer"
     scope_name = "myapp"
     
     options = Cluster::ClusterOptions.new
     options.authenticate("Administrator", "RtR_07555")
     cluster = Cluster.connect("couchbase://localhost", options)
-    bucket = cluster.bucket("travel-sample")
+    bucket = cluster.bucket("PokerRangeAppalyzer")
 
     result = cluster.query("SELECT r.airlineid, a.name FROM `travel-sample` as r INNER JOIN `travel-sample` as a ON r.airlineid = meta(a).id WHERE r.type=\"route\" LIMIT 10")
 

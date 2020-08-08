@@ -77,3 +77,62 @@ App 16466 output: 	from /Users/admin/.rvm/rubies/ruby-2.6.3/lib/ruby/site_ruby/2
 [ N 2020-07-24 00:28:49.9483 91940/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 91940
 [ N 2020-07-24 00:28:52.5595 91940/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
 [ E 2020-07-24 00:28:52.5695 91940/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+[ N 2020-08-02 12:45:58.9766 67600/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-08-02 12:45:59.0134 67602/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-08-02 12:45:59.0138 67602/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-08-02 12:45:59.0475 67602/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 67602
+[ N 2020-08-02 12:46:01.7382 67602/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-08-02 12:46:01.7462 67602/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 67620 output: Error: The application encountered the following error: Could not find couchbase-3.0.0.alpha.5 in any of the sources (Bundler::GemNotFound)
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/spec_set.rb:86:in `block in materialize'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/spec_set.rb:80:in `map!'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/spec_set.rb:80:in `materialize'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/definition.rb:170:in `specs'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/definition.rb:237:in `specs_for'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/definition.rb:226:in `requested_specs'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/runtime.rb:101:in `block in definition_method'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/runtime.rb:20:in `setup'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler.rb:149:in `setup'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/setup.rb:20:in `block in <top (required)>'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/ui/shell.rb:136:in `with_level'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/ui/shell.rb:88:in `silence'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/setup.rb:20:in `<top (required)>'
+App 67620 output:     /Users/admin/.rvm/rubies/ruby-2.6.6/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+App 67620 output:     /Users/admin/.rvm/rubies/ruby-2.6.6/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:361:in `activate_gem'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:221:in `block in run_load_path_setup_code'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:525:in `running_bundler'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:220:in `run_load_path_setup_code'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:91:in `preload_app'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:189:in `block in <module:App>'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:378:in `run_block_and_record_step_progress'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:188:in `<module:App>'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+[ E 2020-08-02 12:46:05.2829 67602/Tr age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerApp/RangeSharingReactRubyAPI/backend: The application encountered the following error: Could not find couchbase-3.0.0.alpha.5 in any of the sources (Bundler::GemNotFound)
+  Error ID: eaedc1fd
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-pSkKvI.html
+
+[ E 2020-08-02 12:46:05.2954 67602/T8 age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is eaedc1fd. Please see earlier logs for details about the error.
+
+[ N 2020-08-02 12:46:27.9196 67602/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-08-02 12:46:27.9196 67602/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-08-02 12:46:27.9197 67602/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-08-02 12:46:27.9197 67602/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-08-02 12:46:27.9197 67602/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-08-02 12:46:27.9197 67602/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-08-02 12:46:27.9198 67602/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-08-02 12:46:27.9197 67602/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-08-02 12:46:27.9199 67602/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-08-02 12:46:27.9199 67602/Tp Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-08-02 12:46:27.9197 67602/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-08-02 12:46:27.9197 67602/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-08-02 12:46:27.9198 67602/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-08-02 12:46:27.9200 67602/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-08-02 12:46:27.9197 67602/Tn Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-08-02 12:46:27.9199 67602/Tp Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-08-02 12:46:27.9197 67602/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-08-02 12:46:27.9199 67602/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-08-02 12:46:27.9201 67602/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-08-02 12:46:27.9200 67602/Tn Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-08-02 12:46:28.5346 67602/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished

@@ -1,10 +1,10 @@
 branch-defaults:
   master:
-    environment: null
+    environment: production
 environment-defaults:
   Secondpokerapp-env:
-    branch: null
-    repository: null
+    branch: master
+    repository: LighsailDeploy
 global:
   application_name: SecondPokerApp
   branch: null

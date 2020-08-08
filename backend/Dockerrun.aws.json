@@ -1,0 +1,45 @@
+{
+  "AWSEBDockerrunVersion": "2",
+  "containerDefinitions": [
+    {
+      "name": "app",
+      "image": "628132563466.dkr.ecr.ca-central-1.amazonaws.com/pokerapp2:app",
+      "essential": true,
+      "memory": 256,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 3000
+        }
+      ]
+    },
+    {
+      "name": "couchbase",
+      "image": "couchbase",
+      "essential": false,
+      "memory": 2048,
+      "portMappings": [
+        {
+          "hostPort": 8091,
+          "containerPort": 8091
+        },
+        {
+          "hostPort": 8092,
+          "containerPort": 8092
+        },
+        {
+          "hostPort": 8093,
+          "containerPort": 8093
+        },
+        {
+          "hostPort": 8094,
+          "containerPort": 8094
+        },
+        {
+          "hostPort": 11210,
+          "containerPort": 11210
+        }
+      ]
+    }
+  ]
+}

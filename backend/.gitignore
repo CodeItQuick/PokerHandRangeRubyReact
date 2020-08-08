@@ -35,3 +35,5 @@ frontend/build/*
 
 # Local Netlify folder
 .netlify
+
+/.ebextensions/config.yml
