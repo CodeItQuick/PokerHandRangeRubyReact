@@ -4,9 +4,10 @@ import { Route, BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
 import App from "./containers/App/App";
 import * as serviceWorker from "./serviceWorker";
-import "semantic-ui-css/semantic.min.css";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import "semantic-ui-less/semantic.less";
 
 import throttle from "lodash/throttle";
 import { saveState } from "./localStorage";
@@ -14,11 +15,12 @@ import configureStore from "./configureStore";
 import { initialState } from "./containers/MainPage/reducer.js";
 import history from "./utils/history";
 import { ConnectedRouter } from "connected-react-router";
-import { ThemeProvider } from "styled-components";
 
 import { Auth0Provider } from "@auth0/auth0-react";
 import config from "./auth_config";
 import { ErrorBoundary } from "./utils/ErrorBoundary";
+
+import HttpsRedirect from "react-https-redirect";
 
 //const store = createStore(combineReducers({rootReducer, handRangesAvailable}), applyMiddleware(thunk));
 // Create redux store with history
@@ -46,21 +48,21 @@ const onRedirectCallback = appState => {
 
 ReactDOM.render(
   <ErrorBoundary>
-    <Auth0Provider
-      domain="dev-824eb3ar.us.auth0.com"
-      clientId="NTS7ZtvzLweGZjLhYDlhj9PsN44FDFel"
-      redirectUri="https://www.poker-range-appalyzer.com"
-      audience="https://dev-824eb3ar.us.auth0.com/api/v2/"
-      scope="read:current_user update:current_user_metadata"
-    >
-      <Provider store={store}>
-        <Router history={history}>
-          <ThemeProvider theme={{ main: "mediumseagreen" }}>
+    <HttpsRedirect>
+      <Auth0Provider
+        domain="dev-824eb3ar.us.auth0.com"
+        clientId="NTS7ZtvzLweGZjLhYDlhj9PsN44FDFel"
+        redirectUri="https://www.poker-range-appalyzer.com"
+        audience="https://dev-824eb3ar.us.auth0.com/api/v2/"
+        scope="read:current_user update:current_user_metadata"
+      >
+        <Provider store={store}>
+          <Router history={history}>
             <Route exact path="/" component={App} />
-          </ThemeProvider>
-        </Router>
-      </Provider>
-    </Auth0Provider>
+          </Router>
+        </Provider>
+      </Auth0Provider>
+    </HttpsRedirect>
   </ErrorBoundary>, //{" "},
   document.getElementById("root")
 );

@@ -8,7 +8,7 @@ import { initialState } from "../../src/containers/MainPage/reducer";
 import history from "../../src/utils/history";
 import configureStore from "../../src/configureStore";
 import RangeObject from "../../src/containers/MainPage/RangeObject";
-import CardHandSuit from "../../src/containers/MainPage/Board/CardHandSuit";
+import { CardHandSuitClosure } from "../../src/containers/MainPage/Board/CardHandSuit";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -44,11 +44,11 @@ describe("MainPage Container", () => {
     expect(handsInRange(range, street)).toBe(false);
   });
 
-  describe("handsInRange should return false when given an empty range", () => {
+  describe("handsInRange should return true when given a range with AA", () => {
     const range = initialState.ranges.map((range) => {
       if (range.Street == "Preflop")
         return new RangeObject("Preflop", range.BetType, [
-          new CardHandSuit("A", "A"),
+          CardHandSuitClosure("A", "A"),
         ]);
       else return new RangeObject(range.Street, range.BetType, []);
     });

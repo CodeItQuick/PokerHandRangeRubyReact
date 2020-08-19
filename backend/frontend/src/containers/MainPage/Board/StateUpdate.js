@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledCol, ColorCard, StyledRow } from "./Styles.js";
 
-import CardHandSuit from "./CardHandSuit";
+import { CardHandSuitClosure } from "./CardHandSuit";
 import TableGridColumn from "./TableGridColumn";
 import RangeObject from "../RangeObject";
 
@@ -46,7 +46,7 @@ export default class BoardOfHands {
 
   generateCardGrid() {
     let cardGrid = this.orderedCard.map(cardOne =>
-      this.orderedCard.map(cardTwo => new CardHandSuit(cardOne, cardTwo))
+      this.orderedCard.map(cardTwo => CardHandSuitClosure(cardOne, cardTwo))
     );
     return cardGrid;
   }
@@ -109,7 +109,14 @@ export const generateCardGrid = (PreflopRanges, Position) => {
       cardClone = {
         ...cardClone,
         [hand.getHand()]: {
-          colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][idx],
+          colorCards: [
+            "#0F6125",
+            "#ed87a7",
+            "#3ac0ff",
+            "#dc73ff",
+            "#003d3e",
+            "#8A4000"
+          ][idx],
           equity: "n/a"
         }
       };

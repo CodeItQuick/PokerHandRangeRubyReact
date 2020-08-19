@@ -1,23 +1,67 @@
-import React, { memo } from "react";
+import React, { memo, useCallback, useState, useEffect } from "react";
 import { Table, Button } from "semantic-ui-react";
 import { compose } from "redux";
 import { connect, useDispatch } from "react-redux";
 import { makeSelectMode, makeSelectSelectedStreet } from "../selectors";
 import { setHandRangeSelect } from "../actions";
+import InputStreet from "../InputForm/InputStreet";
 
 const buttonColors = {
   Valuebet: "green",
   Bluff: "red",
   CheckCall: "blue",
   CheckFold: "purple",
+  SmallValuebet: "teal",
+  SmallBluff: "orange",
   Raise4BetCall: "green",
   Raise4BetFold: "red",
   RaiseCall: "blue",
-  RaiseFold: "purple"
+  RaiseFold: "violet",
+  CheckDown: "blue"
 };
 
-const CurrentRanges = ({ mode: { streetAction, street }, selectedStreet }) => {
+const displayProperRange = (isIP, street, RangeObject) => {
+  if (
+    street === "Flop" &&
+    isIP == false &&
+    RangeObject.getRangesObject().BetType === "Valuebet"
+  )
+    return "Value Check-Raise";
+  if (
+    street === "Flop" &&
+    isIP == false &&
+    RangeObject.getRangesObject().BetType === "Bluff"
+  )
+    return "Bluff Check-Raise";
+
+  return RangeObject.getRangesObject().BetType;
+};
+
+const rangeText = (rangeObject, betType, streetAction) => {
+  if (
+    rangeObject.getFriendlyRangeOutput().length < 3 &&
+    betType === streetAction
+  )
+    return "Please select a hand";
+  else if (
+    rangeObject.getFriendlyRangeOutput().length < 3 &&
+    betType !== streetAction
+  )
+    return "You must select this Bet Type to add to this range.";
+  else return rangeObject.getFriendlyRangeOutput();
+};
+
+const CurrentRanges = ({
+  mode: { streetAction, street, isIP },
+  selectedStreet
+}) => {
   const dispatch = useDispatch();
+  const [changingStreet, updateChangingStreet] = useState(selectedStreet);
+
+  useEffect(() => {
+    updateChangingStreet(selectedStreet);
+  }, [selectedStreet]);
+
   const onHandleStreetHandler = (e, { name, value }) => {
     dispatch(
       setHandRangeSelect({
@@ -26,31 +70,44 @@ const CurrentRanges = ({ mode: { streetAction, street }, selectedStreet }) => {
       })
     );
   };
+
   return (
-    <Table celled structured>
-      <Table.Body>
-        {selectedStreet.map((RangeObject, idx) => (
-          <Table.Row>
-            <Table.Cell collapsing>
-              <Button
-                onClick={onHandleStreetHandler}
-                id="streetFourthChoice"
-                name={street}
-                value={RangeObject.getRangesObject().BetType}
-                active={RangeObject.getRangesObject().BetType == streetAction}
-                inverted
-                color={buttonColors[RangeObject.getRangesObject().BetType]}
-              >
-                {RangeObject.getRangesObject().BetType}
-              </Button>
-            </Table.Cell>
-            <Table.Cell>
-              {RangeObject.getFriendlyRangeOutput() || ""}
-            </Table.Cell>
-          </Table.Row>
-        ))}
-      </Table.Body>
-    </Table>
+    <>
+      <Table celled structured selectable>
+        <Table.Body stackable>
+          {changingStreet.map((RangeObject, idx) => (
+            <Table.Row>
+              <Table.Cell>
+                <Button
+                  onClick={onHandleStreetHandler}
+                  id={
+                    "street" +
+                    ["First", "Second", "Third", "Fourth"][idx] +
+                    "Choice"
+                  }
+                  name={street}
+                  value={RangeObject.getRangesObject().BetType}
+                  active={
+                    RangeObject.getRangesObject().BetType === streetAction
+                  }
+                  inverted
+                  color={buttonColors[RangeObject.getRangesObject().BetType]}
+                >
+                  {displayProperRange(isIP, street, RangeObject)}
+                </Button>
+              </Table.Cell>
+              <Table.Cell>
+                {rangeText(
+                  RangeObject,
+                  RangeObject.getRangesObject().BetType,
+                  streetAction
+                )}
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+    </>
   );
 };
 

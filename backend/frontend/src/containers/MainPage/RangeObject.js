@@ -7,36 +7,31 @@ class RangeObject {
   }
 
   getFriendlyRangeOutput() {
-    let shortHandNotation = prange.reverse(
-      this.cardSuitHandArray.reduce((acc, curr) => {
-        if (curr.length > 4) {
-          return acc;
-        } else return [...acc, curr.getHand()];
-      }, [])
-    );
+    const validRange = this.cardSuitHandArray.reduce((acc, curr) => {
+      if (curr.getHand().length > 3) return acc;
+      else return [...acc, curr.getHand()];
+    }, []);
+
+    let shortHandNotation = prange.reverse(validRange);
 
     let extraCardsNotation = [],
       newSuit;
 
     this.cardSuitHandArray.forEach(SuitHand => {
-      console.log(SuitHand.getHand());
-      if (SuitHand.getHand().length > 4) {
+      if (SuitHand.getHand().length > 3) {
         newSuit = SuitHand.getHand();
-        newSuit = newSuit.replace(/s/, "");
-        newSuit = newSuit.replace(/o/, "");
-        newSuit = newSuit.replace(/ /g, "");
-        newSuit = newSuit.replace(/Spade/g, "s");
-        newSuit = newSuit.replace(/Club/g, "c");
-        newSuit = newSuit.replace(/Diamond/g, "d");
-        newSuit = newSuit.replace(/Heart/g, "h");
-        extraCardsNotation.push(newSuit);
+        extraCardsNotation = [...extraCardsNotation, newSuit];
       }
     });
 
     shortHandNotation =
       shortHandNotation + ", " + extraCardsNotation.join(", ");
 
-    return shortHandNotation;
+    if (
+      shortHandNotation.trim().substr(shortHandNotation.length - 2, 1) === ","
+    )
+      return shortHandNotation.trim().substr(0, shortHandNotation.length - 2);
+    else return shortHandNotation.trim().substr(0, shortHandNotation.length);
   }
 
   getRangesObject() {
@@ -68,18 +63,30 @@ class RangeObject {
       case "CheckFold":
         idx = 3;
         break;
+      case "SmallValuebet":
+        idx = 4;
+        break;
+      case "SmallBluff":
+        idx = 5;
+        break;
       default:
         break;
     }
     this.cardSuitHandArray.forEach(CardSuitHand => {
-      if (CardSuitHand)
-        cardClone = {
-          ...cardClone,
+      if (CardSuitHand.getHand().length > 0)
+        Object.assign(cardClone, {
           [CardSuitHand.getHand()]: {
-            colorCards: ["#8bddbe", "#ed87a7", "#3ac0ff", "#dc73ff"][idx],
+            colorCards: [
+              "#0F6125",
+              "#ed87a7",
+              "#3ac0ff",
+              "#dc73ff",
+              "#003d3e",
+              "#8A4000"
+            ][idx],
             equity: "n/a"
           }
-        };
+        });
     });
 
     return cardClone;

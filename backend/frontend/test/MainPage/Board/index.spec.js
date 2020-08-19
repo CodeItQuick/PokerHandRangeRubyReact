@@ -8,7 +8,6 @@ import { initialState } from "../../../src/containers/MainPage/reducer";
 import history from "../../../src/utils/history";
 import configureStore from "../../../src/configureStore.js";
 import Board, { calcEquities } from "../../../src/containers/MainPage/Board";
-import { calculateEquity } from "../../../src/containers/MainPage/Board/EquityCalculations";
 import { ranges } from "../../../src/containers/MainPage/sampleData.js";
 
 import { CardGroup, OddsCalculator } from "poker-odds-calculator";
@@ -53,8 +52,8 @@ describe("MainPage Container", () => {
 
   test("board renders with a grey card-button object when rendered", () => {
     const enzymeWrapper = mount(setup(jest.fn()));
-    const colorcardAA = enzymeWrapper.find("#colorButtonAA").get(0).props
+    const colorcardAA = enzymeWrapper.find("#colorColumnButtonAA").get(0).props
       .coloring;
-    expect(colorcardAA).toBe("555");
+    expect(colorcardAA).toStrictEqual(["#DDD"]);
   });
 });

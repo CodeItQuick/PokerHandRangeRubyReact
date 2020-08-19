@@ -23,15 +23,6 @@ import {
 } from "../../src/containers/MainPage/selectors.js";
 import RangeObject from "../../src/containers/MainPage/RangeObject.js";
 
-Enzyme.configure({ adapter: new Adapter() });
-
-function setup({ onMouseOverHandler, rangeColors }) {
-  const props = { onMouseOverHandler, rangeColors };
-
-  const enzymeWrapper = <Board {...props} />;
-
-  return enzymeWrapper;
-}
 describe("MainPage Login Selectors", () => {
   test("mode should return the current mode ", () => {
     const mockParameters = {
@@ -41,6 +32,7 @@ describe("MainPage Login Selectors", () => {
           street: "Preflop",
           streetAction: "Raise4BetFold",
           isIP: true,
+          streetSelection: [],
         },
       },
     };
@@ -51,6 +43,7 @@ describe("MainPage Login Selectors", () => {
       street: "Preflop",
       streetAction: "Raise4BetFold",
       isIP: true,
+      streetSelection: [],
     };
 
     expect(getMakeSelectMode()(mockParameters)).toEqual(results);

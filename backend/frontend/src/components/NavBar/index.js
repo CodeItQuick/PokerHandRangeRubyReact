@@ -1,11 +1,12 @@
 import React, { Fragment, useState, useEffect, memo } from "react";
 
-import { Menu, Item, Button } from "semantic-ui-react";
+import { Menu, Item, Button, Dropdown, Icon } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, connect } from "react-redux";
 import {
   initGetAllScenario,
-  initSaveScenario
+  initSaveScenario,
+  changeUseOneFlopBetsize
 } from "../../containers/MainPage/actions";
 import ScenarioLoader from "../../containers/MainPage/ScenarioLoader";
 import {
@@ -28,7 +29,8 @@ const Navbar = ({
   selectedRanges,
   rangeRepoIP,
   rangeRepoOOP,
-  mode: { isIP }
+  mode: { isIP, useTwoFlopSizes },
+  updateTourOpen
 }) => {
   const dispatch = useDispatch();
   const [state, setState] = useState({ active: false });
@@ -41,36 +43,71 @@ const Navbar = ({
   return (
     <Menu inverted>
       <Menu.Item>
-        <NavLink to="/">Home</NavLink>
-        <Button
-          inverted
-          onClick={() => {
-            dispatch(initGetAllScenario(token));
-            setState({ active: true });
-          }}
-        >
-          Open Saved Scenario
-        </Button>
-        <Button
-          inverted
-          onClick={() => {
-            dispatch(
-              initSaveScenario({
-                token,
-                deadcards: deadcards.toString(),
-                user: "evan", //FIXME: shouldn't be here at all, not sure what it will break
-                rangeRepoIP: isIP
-                  ? selectedRanges.map(range => range.getRangesObject())
-                  : rangeRepoIP.map(range => range.getRangesObject()),
-                rangeRepoOOP: !isIP
-                  ? selectedRanges.map(range => range.getRangesObject())
-                  : rangeRepoOOP.map(range => range.getRangesObject())
-              })
-            );
-          }}
-        >
-          Save Scenario
-        </Button>
+        <Dropdown text="File">
+          <Dropdown.Menu>
+            <Dropdown.Item
+              text="Open Scenario"
+              onClick={() => {
+                dispatch(initGetAllScenario(token));
+                setState({ active: true });
+              }}
+            />
+            <Dropdown.Item
+              text="Save Scenario"
+              onClick={() => {
+                dispatch(
+                  initSaveScenario({
+                    token,
+                    deadcards: deadcards.toString(),
+                    user: "evan", //FIXME: shouldn't be here at all, not sure what it will break
+                    rangeRepoIP: isIP
+                      ? selectedRanges.map(range => range.getRangesObject())
+                      : rangeRepoIP.map(range => range.getRangesObject()),
+                    rangeRepoOOP: !isIP
+                      ? selectedRanges.map(range => range.getRangesObject())
+                      : rangeRepoOOP.map(range => range.getRangesObject())
+                  })
+                );
+              }}
+            />
+          </Dropdown.Menu>
+        </Dropdown>
+      </Menu.Item>
+      <Menu.Item>
+        <Dropdown text="Edit">
+          <Dropdown.Menu>
+            <Dropdown.Item
+              text={
+                <>
+                  {" "}
+                  Use One Flop Betsize
+                  {!useTwoFlopSizes ? <Icon name="checkmark" /> : ""}
+                </>
+              }
+              onClick={() => dispatch(changeUseOneFlopBetsize(false))}
+            />
+            <Dropdown.Item
+              text={
+                <>
+                  {" "}
+                  {useTwoFlopSizes ? <Icon name="checkmark" /> : ""} Use Two
+                  Flop Betsize
+                </>
+              }
+              onClick={() => dispatch(changeUseOneFlopBetsize(true))}
+            />
+          </Dropdown.Menu>
+        </Dropdown>
+      </Menu.Item>
+      <Menu.Item>
+        <Dropdown text="Tutorials">
+          <Dropdown.Menu>
+            <Dropdown.Item
+              text="Quick Basic Tutorial"
+              onClick={() => updateTourOpen(true)}
+            />
+          </Dropdown.Menu>
+        </Dropdown>
         <ScenarioLoader
           active={state.active}
           onCloseModal={onCloseModal}
@@ -80,15 +117,11 @@ const Navbar = ({
       {isAuthenticated ? (
         <Fragment>
           <Menu.Item>{user.name || ""}</Menu.Item>
-          <Menu.Item>
-            <Button onClick={() => logout()}>Logout</Button>
-          </Menu.Item>
+          <Menu.Item onClick={() => logout()}>Logout</Menu.Item>
         </Fragment>
       ) : (
         <Fragment>
-          <Menu.Item>
-            <Button onClick={() => loginWithRedirect()}>Login</Button>
-          </Menu.Item>
+          <Menu.Item onClick={() => loginWithRedirect()}>Login</Menu.Item>
         </Fragment>
       )}
     </Menu>

@@ -8,6 +8,9 @@ export const ColorCard = styled(animated.button)`
   width: 100% !important;
   border-color: rgba(0, 0, 0, 1);
   background-color: rgba(0, 0, 0, 0);
+  font-size: 8px;
+  padding: 0px;
+
   @media (min-width: 576px) {
     font-size: 12px;
   }
@@ -21,13 +24,14 @@ export const StyledRow = styled(Table.Row)`
 export const StyledCol = styled(Table.Cell)`
   padding: 0px !important;
   margin: 0px;
+  color: ${props => (props.suitString.length > 2 ? "white" : "black")};
   background-image: ${props =>
     props.suitString.length > 9
       ? " linear-gradient(to right, " + props.suitString + ")"
       : "none"};
   background-color: ${props =>
     props.suitString.length <= 9
-      ? props.coloring + " !important"
+      ? props.suitString + " !important"
       : "none !important"};
 
   border: ${props =>

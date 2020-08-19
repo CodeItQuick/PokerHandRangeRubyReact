@@ -17,9 +17,9 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
     setOpens(open);
   }, [open]);
 
-  const onSuitSelectHandler = (e, { assignedSuit }) =>
-    dispatch(changeModeSuitSelection(assignedSuit));
-
+  const onSuitSelectHandler = (e, { assignedsuit }) => {
+    dispatch(changeModeSuitSelection(assignedsuit));
+  };
   return (
     <Modal
       show={opens}
@@ -39,8 +39,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Spade Spade"
-                  active={(suitSelection || []).indexOf("Spade Spade") >= 0}
+                  assignedsuit="ss"
+                  active={(suitSelection || []).indexOf("ss") >= 0}
                 >
                   Spade Spade
                 </Button>
@@ -50,8 +50,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Spade Club"
-                  active={(suitSelection || []).indexOf("Spade Club") >= 0}
+                  assignedsuit="sc"
+                  active={(suitSelection || []).indexOf("sc") >= 0}
                 >
                   Spade Club
                 </Button>
@@ -61,8 +61,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Spade Diamond"
-                  active={(suitSelection || []).indexOf("Spade Diamond") >= 0}
+                  assignedsuit="sd"
+                  active={(suitSelection || []).indexOf("sd") >= 0}
                 >
                   Spade Diamond
                 </Button>
@@ -72,8 +72,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Spade Heart"
-                  active={(suitSelection || []).indexOf("Spade Heart") >= 0}
+                  assignedsuit="sh"
+                  active={(suitSelection || []).indexOf("sh") >= 0}
                 >
                   Spade Heart
                 </Button>
@@ -85,8 +85,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Club Spade"
-                  active={(suitSelection || []).indexOf("Club Spade") >= 0}
+                  assignedsuit="cs"
+                  active={(suitSelection || []).indexOf("cs") >= 0}
                 >
                   Club Spade
                 </Button>
@@ -96,8 +96,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Club Club"
-                  active={(suitSelection || []).indexOf("Club Club") >= 0}
+                  assignedsuit="cc"
+                  active={(suitSelection || []).indexOf("cc") >= 0}
                 >
                   Club Club
                 </Button>
@@ -107,8 +107,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Club Diamond"
-                  active={(suitSelection || []).indexOf("Club Diamond") >= 0}
+                  assignedsuit="cd"
+                  active={(suitSelection || []).indexOf("cd") >= 0}
                 >
                   Club Diamond
                 </Button>
@@ -118,8 +118,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Club Heart"
-                  active={(suitSelection || []).indexOf("Club Heart") >= 0}
+                  assignedsuit="ch"
+                  active={(suitSelection || []).indexOf("ch") >= 0}
                 >
                   Club Heart
                 </Button>
@@ -131,8 +131,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Diamond Spade"
-                  active={(suitSelection || []).indexOf("Diamond Spade") >= 0}
+                  assignedsuit="ds"
+                  active={(suitSelection || []).indexOf("ds") >= 0}
                 >
                   Diamond Spade
                 </Button>
@@ -142,8 +142,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Diamond Club"
-                  active={(suitSelection || []).indexOf("Diamond Club") >= 0}
+                  assignedsuit="dc"
+                  active={(suitSelection || []).indexOf("dc") >= 0}
                 >
                   Diamond Club
                 </Button>
@@ -153,8 +153,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Diamond Diamond"
-                  active={(suitSelection || []).indexOf("Diamond Diamond") >= 0}
+                  assignedsuit="dd"
+                  active={(suitSelection || []).indexOf("dd") >= 0}
                 >
                   Diamond Diamond
                 </Button>
@@ -164,8 +164,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Diamond Heart"
-                  active={(suitSelection || []).indexOf("Diamond Heart") >= 0}
+                  assignedsuit="dh"
+                  active={(suitSelection || []).indexOf("dh") >= 0}
                 >
                   Diamond Heart
                 </Button>
@@ -177,8 +177,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Heart Spade"
-                  active={(suitSelection || []).indexOf("Heart Spade") >= 0}
+                  assignedsuit="hs"
+                  active={(suitSelection || []).indexOf("hs") >= 0}
                 >
                   Heart Spade
                 </Button>
@@ -188,8 +188,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Heart Club"
-                  active={(suitSelection || []).indexOf("Heart Club") >= 0}
+                  assignedsuit="hc"
+                  active={(suitSelection || []).indexOf("hc") >= 0}
                 >
                   Heart Club
                 </Button>
@@ -199,8 +199,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Heart Diamond"
-                  active={(suitSelection || []).indexOf("Heart Diamond") >= 0}
+                  assignedsuit="hd"
+                  active={(suitSelection || []).indexOf("hd") >= 0}
                 >
                   Heart Diamond
                 </Button>
@@ -210,8 +210,8 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
                   inverted
                   color="blue"
                   onClick={onSuitSelectHandler}
-                  assignedSuit="Heart Heart"
-                  active={(suitSelection || []).indexOf("Heart Heart") >= 0}
+                  assignedsuit="hh"
+                  active={(suitSelection || []).indexOf("hh") >= 0}
                 >
                   Heart Heart
                 </Button>

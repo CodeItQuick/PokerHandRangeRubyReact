@@ -16,7 +16,8 @@ import {
   INIT_GET_ALL_SCENARIO,
   GET_ALL_SCENARIO_FAIL,
   GET_ALL_SCENARIO_SUCCESS,
-  CHANGE_MODE_SUIT_SELECTED
+  CHANGE_MODE_SUIT_SELECTED,
+  CHANGE_USE_ONE_FLOP_BETSIZE
 } from "./constants";
 
 export function setHandRangeSelect(data) {
@@ -125,6 +126,13 @@ export function getAllScenarioFail(data) {
 export function changeModeSuitSelection(data) {
   return {
     type: CHANGE_MODE_SUIT_SELECTED,
+    data
+  };
+}
+
+export function changeUseOneFlopBetsize(data) {
+  return {
+    type: CHANGE_USE_ONE_FLOP_BETSIZE,
     data
   };
 }

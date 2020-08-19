@@ -11,7 +11,6 @@ import BoardOfHands, {
   generateCardGrid,
   orderedCard,
 } from "../../../src/containers/MainPage/Board/StateUpdate";
-import { calculateEquity } from "../../../src/containers/MainPage/Board/EquityCalculations";
 import CardHandSuit from "../../../src/containers/MainPage/Board/CardHandSuit";
 import { ranges } from "../../../src/containers/MainPage/sampleData.js";
 import { bind } from "../../../src/containers/MainPage/Board/index.js";
@@ -52,7 +51,14 @@ describe("State Update Functions", () => {
 
     expect(newCardGrid).toStrictEqual({
       AA: {
-        colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][0],
+        colorCards: [
+          "#0F6125",
+          "#ed87a7",
+          "#3ac0ff",
+          "#dc73ff",
+          "#003d3e",
+          "#8A4000",
+        ][0],
         equity: "n/a",
       },
     });
@@ -69,7 +75,7 @@ describe("State Update Functions", () => {
 
     expect(newCardGrid).toStrictEqual({
       AA: {
-        colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][1],
+        colorCards: ["#0F6125", "#ed87a7", "#6b6c7c", "#d3d3d3"][1],
         equity: "n/a",
       },
     });
@@ -86,7 +92,14 @@ describe("State Update Functions", () => {
 
     expect(newCardGrid).toStrictEqual({
       AA: {
-        colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][2],
+        colorCards: [
+          "#0F6125",
+          "#ed87a7",
+          "#3ac0ff",
+          "#dc73ff",
+          "#003d3e",
+          "#8A4000",
+        ][2],
         equity: "n/a",
       },
     });
@@ -94,7 +107,7 @@ describe("State Update Functions", () => {
 
   test(" generate CardGrid generates an AA object when given an AA range", () => {
     let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
-      ({ Street }) => Street == "Preflop"
+      ({ Street }) => Street === "Preflop"
     );
     let AAHandObj = new CardHandSuit("A", "A");
     PreflopRanges[3].hands = [AAHandObj];
@@ -103,7 +116,14 @@ describe("State Update Functions", () => {
 
     expect(newCardGrid).toStrictEqual({
       AA: {
-        colorCards: ["#8bddbe", "#ed87a7", "#6b6c7c", "#d3d3d3"][3],
+        colorCards: [
+          "#0F6125",
+          "#ed87a7",
+          "#3ac0ff",
+          "#dc73ff",
+          "#003d3e",
+          "#8A4000",
+        ][3],
         equity: "n/a",
       },
     });

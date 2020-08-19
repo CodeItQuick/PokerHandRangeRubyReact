@@ -17,8 +17,7 @@ import {
   GET_ALL_SCENARIO_FAIL,
   INIT_GET_SCENARIO,
   CHANGE_MODE_SUIT_SELECTED,
-  SET_SUIT_MODE,
-  SET_HAND_RANGE_ARRAY
+  CHANGE_USE_ONE_FLOP_BETSIZE
 } from "./constants.js";
 
 import { sampleData, ranges } from "./sampleData.js";
@@ -70,6 +69,20 @@ const mainPageReducer = (state = initialState, action) =>
 
       case SET_DEAD_CARDS:
         draft.deadcards = action.data;
+        if (action.data.length > 4) {
+          draft.mode.street = "River";
+          draft.mode.streetAction = "Valuebet";
+        } else if (action.data.length > 3) {
+          draft.mode.street = "Turn";
+          draft.mode.streetAction = "Valuebet";
+        } else if (action.data.length > 2) {
+          draft.mode.street = "Flop";
+          draft.mode.streetAction = "Valuebet";
+        } else {
+          draft.mode.street = "Preflop";
+          draft.mode.streetAction = "Raise4BetCall";
+        }
+
         draft.loadEquities = false;
         break;
 
@@ -113,6 +126,10 @@ const mainPageReducer = (state = initialState, action) =>
           );
         } else
           draft.mode.suitSelection = [...draft.mode.suitSelection, action.data];
+        break;
+
+      case CHANGE_USE_ONE_FLOP_BETSIZE:
+        draft.mode.useTwoFlopSizes = action.data;
         break;
 
       default:

@@ -51,44 +51,42 @@ const ProgressIndicator = ({
     );
   };
   return (
-    <Segment inverted stacked size="tiny">
-      <Step.Group fluid size="tiny">
-        <Step completed={handsIPUsed}>
-          <Icon name="thumbs down" color="red" />
-          <Step.Content>
-            <Step.Description>
-              <Button
-                name="Position"
-                value={true}
-                active={isIP}
-                inverted
-                color="blue"
-                onClick={onChangePosition}
-              >
-                In Position
-              </Button>
-            </Step.Description>
-          </Step.Content>
-        </Step>
-        <Step completed={handsOOPUsed}>
-          <Icon name="thumbs down" color="red" />
-          <Step.Content>
-            <Step.Description>
-              <Button
-                name="Position"
-                value={false}
-                active={!isIP}
-                inverted
-                color="blue"
-                onClick={onChangePosition}
-              >
-                Out Of Position
-              </Button>
-            </Step.Description>
-          </Step.Content>
-        </Step>
-      </Step.Group>
-    </Segment>
+    <Step.Group fluid>
+      <Step completed={handsIPUsed}>
+        <Icon name="thumbs down" color="red" />
+        <Step.Content>
+          <Step.Description>
+            <Button
+              name="Position"
+              value={true}
+              active={isIP}
+              inverted
+              primary
+              onClick={onChangePosition}
+            >
+              <strong>In Position</strong>
+            </Button>
+          </Step.Description>
+        </Step.Content>
+      </Step>
+      <Step completed={handsOOPUsed}>
+        <Icon name="thumbs down" color="red" />
+        <Step.Content>
+          <Step.Description>
+            <Button
+              name="Position"
+              value={false}
+              active={!isIP}
+              inverted
+              primary
+              onClick={onChangePosition}
+            >
+              <strong>Out Of Position</strong>
+            </Button>
+          </Step.Description>
+        </Step.Content>
+      </Step>
+    </Step.Group>
   );
 };
 

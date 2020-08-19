@@ -1,5 +1,4 @@
 import React from "react";
-import Enzyme, { shallow, mount, render } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 import { initialState } from "../../../src/containers/MainPage/reducer";
@@ -7,11 +6,7 @@ import history from "../../../src/utils/history";
 import configureStore from "../../../src/configureStore.js";
 
 import RangeObject from "../../../src/containers/MainPage/RangeObject";
-import CardHandSuit from "../../../src/containers/MainPage/Board/CardHandSuit";
-
-Enzyme.configure({ adapter: new Adapter() });
-
-const store = configureStore(initialState, history);
+import { CardHandSuitClosure } from "../../../src/containers/MainPage/Board/CardHandSuit";
 
 describe("RangeObject Class", () => {
   test("can be constructed with a street, streetAction, and array of hands", () => {
@@ -21,9 +16,9 @@ describe("RangeObject Class", () => {
   });
 
   test("can be transformed into a data value object to be stored", () => {
-    const AKsuited = new CardHandSuit("A", "K", "s");
-    const AA = new CardHandSuit("A", "A");
-    const AKoffsuit = new CardHandSuit("A", "K", "o");
+    const AKsuited = CardHandSuitClosure("A", "K", "s");
+    const AA = CardHandSuitClosure("A", "A");
+    const AKoffsuit = CardHandSuitClosure("A", "K", "o");
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
@@ -37,9 +32,9 @@ describe("RangeObject Class", () => {
     });
   });
   test("can be transformed into a data value object to be stored", () => {
-    const AKsuited = new CardHandSuit("A", "K", "s");
-    const AA = new CardHandSuit("A", "A");
-    const AKoffsuit = new CardHandSuit("A", "K", "o");
+    const AKsuited = CardHandSuitClosure("A", "K", "s");
+    const AA = CardHandSuitClosure("A", "A");
+    const AKoffsuit = CardHandSuitClosure("A", "K", "o");
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
@@ -48,23 +43,23 @@ describe("RangeObject Class", () => {
 
     expect(rangeObject.displayInfo()).toStrictEqual({
       AA: {
-        colorCards: "#8bddbe",
+        colorCards: "#0F6125",
         equity: "n/a",
       },
       AKo: {
-        colorCards: "#8bddbe",
+        colorCards: "#0F6125",
         equity: "n/a",
       },
       AKs: {
-        colorCards: "#8bddbe",
+        colorCards: "#0F6125",
         equity: "n/a",
       },
     });
   });
   test("can be transformed into a data value object to be stored", () => {
-    const AKsuited = new CardHandSuit("A", "K", "s");
-    const AA = new CardHandSuit("A", "A");
-    const AKoffsuit = new CardHandSuit("A", "K", "o");
+    const AKsuited = CardHandSuitClosure("A", "K", "s");
+    const AA = CardHandSuitClosure("A", "A");
+    const AKoffsuit = CardHandSuitClosure("A", "K", "o");
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
@@ -79,9 +74,9 @@ describe("RangeObject Class", () => {
   });
 
   test("can be transformed into a data value object to be stored", () => {
-    const AKsuited = new CardHandSuit("A", "K", "s");
-    const AA = new CardHandSuit("A", "A");
-    const AKoffsuit = new CardHandSuit("A", "K", "o");
+    const AKsuited = CardHandSuitClosure("A", "K", "s");
+    const AA = CardHandSuitClosure("A", "A");
+    const AKoffsuit = CardHandSuitClosure("A", "K", "o");
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
@@ -93,5 +88,47 @@ describe("RangeObject Class", () => {
       AA,
       AKoffsuit,
     ]);
+  });
+
+  test("displayFriendlyRangeSuit displays a valid range for AA, AKs, AQo", () => {
+    const AAhand = CardHandSuitClosure("A", "A");
+    const AKohand = CardHandSuitClosure("Q", "A");
+    const AKshand = CardHandSuitClosure("A", "K");
+
+    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+      AAhand,
+      AKohand,
+      AKshand,
+    ]);
+
+    expect(rangeObject.getFriendlyRangeOutput()).toEqual("AA, AQo, AKs");
+  });
+
+  test("displayFriendlyRangeSuit displays a condensed valid range for AA, AKs, AKo", () => {
+    const AAhand = CardHandSuitClosure("A", "A");
+    const AKohand = CardHandSuitClosure("K", "A");
+    const AKshand = CardHandSuitClosure("A", "K");
+
+    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+      AAhand,
+      AKohand,
+      AKshand,
+    ]);
+
+    expect(rangeObject.getFriendlyRangeOutput()).toEqual("AA, AK");
+  });
+
+  test("displayFriendlyRangeSuit displays a condensed valid range for AA, As9s, Tc8d", () => {
+    const AAhand = CardHandSuitClosure("A", "A");
+    const A9sshand = CardHandSuitClosure("A", "9", "ss");
+    const AKshand = CardHandSuitClosure("A", "K");
+
+    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+      AAhand,
+      A9sshand,
+      AKshand,
+    ]);
+
+    expect(rangeObject.getFriendlyRangeOutput()).toEqual("AA, AKs, As9s");
   });
 });

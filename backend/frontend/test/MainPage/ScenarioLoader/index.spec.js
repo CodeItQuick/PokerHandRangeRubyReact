@@ -42,7 +42,7 @@ describe("ScenarioLoader", () => {
 
     const scenarios = new Scenarios([scenario]);
 
-    expect(scenarios.displayScenarios()).toStrictEqual([
+    expect(scenarios.displayScenarios()).toEqual([
       <div>
         <ScenarioComponent scenario={scenario} />
       </div>,
@@ -57,7 +57,7 @@ describe("ScenarioLoader", () => {
 
     const scenarios = new Scenarios([scenario1, scenario2]);
 
-    expect(scenarios.displayScenarios()).toStrictEqual([
+    expect(scenarios.displayScenarios()).toEqual([
       <div>
         <ScenarioComponent scenario={scenario1} />
       </div>,

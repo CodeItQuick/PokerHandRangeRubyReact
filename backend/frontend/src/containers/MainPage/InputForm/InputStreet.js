@@ -1,57 +1,50 @@
 import React from "react";
-import { Button } from "semantic-ui-react";
+import { Button, Segment } from "semantic-ui-react";
 
 const InputStreet = ({ onHandleStreetHandler, street }) => {
   return (
-    <Button.Group>
-      <Button
-        onClick={onHandleStreetHandler}
+    <Segment.Group
+      size="tiny"
+      horizontal
+      style={{ height: "40px", fontSize: "12px !important" }}
+    >
+      <Segment
         id="streetFirstChoice"
         name="Preflop"
         value="Raise4BetCall"
-        active={street == "Preflop"}
-        inverted
+        inverted={street == "Preflop"}
         color="blue"
       >
         Preflop
-      </Button>
-      <Button.Or />
-      <Button
-        onClick={onHandleStreetHandler}
+      </Segment>
+      <Segment
         id="streetSecondChoice"
         name="Flop"
         value="Valuebet"
-        active={street == "Flop"}
-        inverted
+        inverted={street == "Flop"}
         color="blue"
       >
         Flop
-      </Button>
-      <Button.Or />
-      <Button
-        onClick={onHandleStreetHandler}
+      </Segment>
+      <Segment
         id="streetThirdChoice"
         name="Turn"
         value="Valuebet"
-        active={street == "Turn"}
-        inverted
+        inverted={street == "Turn"}
         color="blue"
       >
         Turn
-      </Button>
-      <Button.Or />
-      <Button
-        onClick={onHandleStreetHandler}
+      </Segment>
+      <Segment
         id="streetFourthChoice"
         name="River"
         value="Valuebet"
-        active={street == "River"}
-        inverted
+        inverted={street == "River"}
         color="blue"
       >
         River
-      </Button>
-    </Button.Group>
+      </Segment>
+    </Segment.Group>
   );
 };
 

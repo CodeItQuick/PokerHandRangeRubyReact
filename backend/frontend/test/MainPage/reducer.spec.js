@@ -43,6 +43,8 @@ describe("MainPage reducer", () => {
           street: data.name,
           streetAction: data.value,
           isIP: initialState.mode.isIP,
+          suitSelection: [],
+          useTwoFlopSizes: false,
         },
       };
 
@@ -80,6 +82,8 @@ describe("MainPage reducer", () => {
         street: initialState.mode.street,
         streetAction: initialState.mode.streetAction,
         isIP: true,
+        suitSelection: [],
+        useTwoFlopSizes: false,
       },
       ranges: newRangeIP,
       rangeRepoIP: newRangeIP,
@@ -127,6 +131,13 @@ describe("MainPage reducer", () => {
     newState = {
       ...initialState,
       deadcards,
+      mode: {
+        street: "Flop",
+        streetAction: "Valuebet",
+        isIP: true,
+        suitSelection: [],
+        useTwoFlopSizes: false,
+      },
     };
 
     expect(reducer(undefined, action)).toEqual(newState);

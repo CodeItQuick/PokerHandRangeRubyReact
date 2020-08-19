@@ -45,6 +45,7 @@ const LeftPane = styled.div`
   padding: 0px !important;
   @media (min-width: 1200px) {
     margin: 25px;
+    width: 900px;
   }
 `;
 
@@ -80,7 +81,6 @@ const MainPage = ({
 }) => {
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
-
   const dispatch = useDispatch();
   const [handsIPUsed, setHandsIPUsed] = useState(
     handsInRange(rangeRepoIP, street)
@@ -97,7 +97,7 @@ const MainPage = ({
   useEffect(() => {
     setHandsIPUsed(handsInRange(isIP ? ranges : rangeRepoIP, street));
     setHandsOOPUsed(handsInRange(!isIP ? ranges : rangeRepoOOP, street));
-  }, [ranges, rangeRepoIP, street]);
+  }, [ranges, rangeRepoIP, rangeRepoOOP, street, isIP]);
 
   const onHandleStreetHandler = (e, { name, value }) => {
     dispatch(
@@ -115,9 +115,37 @@ const MainPage = ({
   const onMouseOverHandler = data => {
     if (data.onMouseDownEvent) {
       let newHandRange = [];
+      //if a suited hand was selected, and the suitSelection is offsuit, just return
+      if (
+        suitSelection.filter(
+          suit =>
+            suit &&
+            data.cards.substring(2, 3) === "s" &&
+            suit.substring(0, 1) !== suit.substring(1, 2)
+        ).length > 0
+      )
+        return;
+      //if a offsuit hand was selected, and the suitSelection is suited, just return
+      if (
+        suitSelection.filter(
+          suit =>
+            suit &&
+            (data.cards.substring(2, 3) === "o" || data.cards.length === 2) &&
+            suitSelection[0].substring(0, 1) ===
+              suitSelection[0].substring(1, 2)
+        ).length > 0
+      )
+        return;
       if (suitSelection.length > 0) {
         suitSelection.forEach(suit => {
-          newHandRange = [...newHandRange, data.cards + suit];
+          if (suit)
+            newHandRange = [
+              ...newHandRange,
+              data.cards.substring(0, 1) +
+                suit.substring(0, 1) +
+                data.cards.substring(1, 2) +
+                suit.substring(1, 2)
+            ];
         });
         dispatch(
           setHandRange(

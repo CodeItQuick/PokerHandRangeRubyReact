@@ -9,7 +9,8 @@ import {
   Progress,
   Label,
   Step,
-  Icon
+  Icon,
+  Dropdown
 } from "semantic-ui-react";
 import BoardCards from "./BoardCards";
 import { setDeadCards, setIsIP, loadEquities } from "../actions";
@@ -27,18 +28,40 @@ import {
   makeSelectDeadcards
 } from "../selectors";
 import InputStreet from "./InputStreet";
-import InputStreetAction from "./InputStreetAction";
-import ScenarioLoader from "../ScenarioLoader";
-import { useAuth0 } from "@auth0/auth0-react";
-
-const options = [
-  { key: "positionOOP", text: "OOP", value: false },
-  { key: "positionIP", text: "IP", value: true }
-];
 
 const DeadCards = styled(Form.Input)`
   width: 100%;
 `;
+
+const addSuits = rank =>
+  ["c", "s", "h", "d"].map(suited => {
+    return {
+      key: rank + suited,
+      text: rank + suited,
+      value: rank + suited
+    };
+  });
+
+const stateOptions = [
+  "A",
+  "K",
+  "Q",
+  "J",
+  "T",
+  "9",
+  "8",
+  "7",
+  "6",
+  "5",
+  "4",
+  "3",
+  "2"
+].reduce((acc, rank) => [...acc, ...addSuits(rank)], []);
+const stateOptionsSuit = _.map(["c", "s", "h", "d"], (state, index) => ({
+  key: state,
+  text: state,
+  value: state
+}));
 
 export const assignPositions = (
   rangeRepoIP,
@@ -80,13 +103,13 @@ const InputForm = ({
     });
   };
 
-  const onChangeStreetHandler = e => {
-    dispatch(setDeadCards(_.split(e.target.value, ",", 12)));
+  const onChangeStreetHandler = (e, { value: values }) => {
+    dispatch(setDeadCards(values));
   };
 
   return (
     <div>
-      <Segment.Group inverted stacked size="massive">
+      <Segment.Group inverted stacked>
         <Segment.Group inverted color="green">
           <Label
             ribbon
@@ -101,19 +124,23 @@ const InputForm = ({
             )}
             Board
           </Label>
-          <Segment>
-            <DeadCards
-              placeholder="eg. Ah, As, 2c, 4d"
-              name="deadcards"
-              onChange={onChangeStreetHandler}
-            />
-            <BoardCards />
-          </Segment>
+
+          <InputStreet street={street} />
+          <Dropdown
+            placeholder="Choose multiple cards"
+            fluid
+            selection
+            multiple
+            search
+            options={stateOptions}
+            value={deadcards}
+            onChange={onChangeStreetHandler}
+          />
         </Segment.Group>
 
         <Segment.Group>
           <Segment textAlign="center">
-            <Button onClick={onManuallyChooseSuitsHandler}>
+            <Button color="blue" onClick={onManuallyChooseSuitsHandler}>
               Manually Choose Suits
             </Button>
           </Segment>

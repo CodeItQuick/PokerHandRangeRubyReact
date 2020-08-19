@@ -40,6 +40,16 @@ const ranges = [
     hands: []
   },
   {
+    Street: "Flop",
+    BetType: "SmallValuebet",
+    hands: []
+  },
+  {
+    Street: "Flop",
+    BetType: "SmallBluff",
+    hands: []
+  },
+  {
     Street: "Turn",
     BetType: "Valuebet",
     hands: []
@@ -85,7 +95,8 @@ const sampleData = {
     street: "Preflop",
     streetAction: "Raise4BetCall",
     suitSelection: [],
-    isIP: true
+    isIP: true,
+    useTwoFlopSizes: false
   },
   rangeSelectionArray: {
     folderID: "Evan's Second Folder",

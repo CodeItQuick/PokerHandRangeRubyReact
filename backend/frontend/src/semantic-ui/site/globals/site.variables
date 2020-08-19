@@ -1,0 +1,14 @@
+/*******************************
+     User Global Variables
+*******************************/
+
+@lightGreen            : #0F6125;
+@red                   : #A30B00;
+@lightRed              : #A30B00;
+@blue                  : #005e8a; 
+@lightBlue             : #005e8a;
+@greenRibbonShadow     : #0F6125;
+@lightTeal             : #005757;
+@lightOrange           : #8A4000;
+@lightPurple           : #8A00B8;
+@green                 : #0F6125;

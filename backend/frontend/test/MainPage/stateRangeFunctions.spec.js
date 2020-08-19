@@ -16,18 +16,12 @@ describe("MainPage reducer", () => {
     );
     const draftModeStreet = "Flop";
     const draftModeStreetAction = "Bluff";
-    const actionDataCards = "AA";
+    const actionDataCards = ["AA"];
 
     let newHandRange = JSON.parse(JSON.stringify(initialState.ranges)).map(
       ({ Street, BetType, hands }, idx) => {
         if (idx === 5)
-          return new RangeObject(Street, BetType, [
-            new CardHandSuit(
-              actionDataCards.substr(0, 1),
-              actionDataCards.substr(1, 1),
-              ""
-            ),
-          ]).getRangesObject();
+          return { Street: draftModeStreet, BetType, hands: ["AA"] };
         else return new RangeObject(Street, BetType, []).getRangesObject();
       }
     );

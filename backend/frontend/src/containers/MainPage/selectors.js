@@ -8,7 +8,16 @@ import { initialState } from "./reducer";
 import Scenario from "./ScenarioLoader/Scenario";
 import Scenarios from "./ScenarioLoader/Scenarios";
 import RangeObject from "./RangeObject";
-import CardHandSuit from "./Board/CardHandSuit";
+import { CardHandSuitClosure } from "./Board/CardHandSuit";
+
+const copyHands = hands =>
+  hands.map(hand =>
+    CardHandSuitClosure(
+      hand.length <= 3 ? hand.substr(0, 1) : hand.substr(0, 2),
+      hand.length <= 3 ? hand.substr(1, 1) : hand.substr(2, 2),
+      hand.length <= 3 ? hand.substr(2, hand.length - 1) : ""
+    )
+  );
 
 const selectGlobal = state => state.global || initialState; //??
 const selectRouter = state => state.router;
@@ -34,35 +43,12 @@ const makeSelectSelectedStreetBetType = () => {
         )
         .map(
           ({ Street, BetType, hands }) =>
-            new RangeObject(
-              Street,
-              BetType,
-              hands.map(
-                hand =>
-                  new CardHandSuit(
-                    hand[0],
-                    hand[1],
-                    hand.length > 2 ? hand.substr(2, hand.length - 1) : ""
-                  )
-              )
-            )
+            new RangeObject(Street, BetType, copyHands(hands))
         );
     } else
       return initialState.ranges.map(
         ({ Street, BetType, hands }) =>
-          new RangeObject(
-            Street,
-            BetType,
-            hands.map(
-              hand =>
-                new CardHandSuit(
-                  hand[0],
-                  hand[1],
-
-                  hand.length > 2 ? hand.substr(2, hand.length - 1) : ""
-                )
-            )
-          )
+          new RangeObject(Street, BetType, copyHands(hands))
       );
   });
 };
@@ -70,22 +56,16 @@ const makeSelectSelectedStreetBetType = () => {
 const makeSelectSelectedStreet = () =>
   createSelector(selectGlobal, global =>
     global.ranges
-      .filter(({ Street }) => Street == global?.mode?.street)
+      .filter(
+        ({ Street, BetType }) =>
+          Street === global?.mode?.street &&
+          (global?.mode?.useTwoFlopSizes
+            ? true
+            : !(BetType === "SmallValuebet" || BetType === "SmallBluff"))
+      )
       .map(
         ({ Street, BetType, hands }) =>
-          new RangeObject(
-            Street,
-            BetType,
-            hands.map(
-              hand =>
-                new CardHandSuit(
-                  hand[0],
-                  hand[1],
-
-                  hand.length > 2 ? hand.substr(2, hand.length - 1) : ""
-                )
-            )
-          )
+          new RangeObject(Street, BetType, copyHands(hands))
       )
   );
 
@@ -97,7 +77,11 @@ const makeSelectRangesPreviousStreet = () =>
           return Street === "Preflop";
         if (global.mode.street === "Turn" && global.mode.isIP == true)
           return (
-            Street === "Flop" && (BetType === "Valuebet" || BetType === "Bluff")
+            Street === "Flop" &&
+            (BetType === "Valuebet" ||
+              BetType === "Bluff" ||
+              BetType === "SmallValuebet" ||
+              BetType === "SmallBluff")
           );
         if (global.mode.street === "River" && global.mode.isIP == true)
           return (
@@ -113,18 +97,7 @@ const makeSelectRangesPreviousStreet = () =>
       })
       .map(
         ({ Street, BetType, hands }) =>
-          new RangeObject(
-            Street,
-            BetType,
-            hands.map(
-              hand =>
-                new CardHandSuit(
-                  hand[0],
-                  hand[1],
-                  hand.length > 2 ? hand.substr(2, hand.length - 1) : ""
-                )
-            )
-          )
+          new RangeObject(Street, BetType, copyHands(hands))
       )
   );
 
@@ -135,18 +108,7 @@ const makeSelectRangesPreflop = () =>
       .filter(({ Street }) => Street == "Preflop")
       .map(
         ({ Street, BetType, hands }) =>
-          new RangeObject(
-            Street,
-            BetType,
-            hands.map(
-              hand =>
-                new CardHandSuit(
-                  hand[0],
-                  hand[1],
-                  hand.length > 2 ? hand.substr(2, hand.length - 1) : ""
-                )
-            )
-          )
+          new RangeObject(Street, BetType, copyHands(hands))
       )
   );
 
@@ -154,18 +116,7 @@ const makeSelectRange = () =>
   createSelector(selectGlobal, globalState =>
     globalState.ranges.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(
-          Street,
-          BetType,
-          hands.map(
-            hand =>
-              new CardHandSuit(
-                hand[0],
-                hand[1],
-                hand.length > 2 ? hand.substr(2, hand.length - 1) : ""
-              )
-          )
-        )
+        new RangeObject(Street, BetType, copyHands(hands))
     )
   );
 
@@ -178,14 +129,7 @@ const makeSelectRangeRepoIP = () =>
   createSelector(selectGlobal, globalState =>
     globalState.rangeRepoIP.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(
-          Street,
-          BetType,
-          hands.map(
-            hand =>
-              new CardHandSuit(hand[0], hand[1], hand.length > 2 ? hand[2] : "")
-          )
-        )
+        new RangeObject(Street, BetType, copyHands(hands))
     )
   );
 
@@ -193,14 +137,7 @@ const makeSelectRangeRepoOOP = () =>
   createSelector(selectGlobal, globalState =>
     globalState.rangeRepoOOP.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(
-          Street,
-          BetType,
-          hands.map(
-            hand =>
-              new CardHandSuit(hand[0], hand[1], hand.length > 2 ? hand[2] : "")
-          )
-        )
+        new RangeObject(Street, BetType, copyHands(hands))
     )
   );
 
@@ -213,34 +150,12 @@ const makeSelectOtherRange = () => {
     if (globalState.mode.isIP)
       rangeRepoPreflop = globalState.rangeRepoIP.map(
         ({ Street, BetType, hands }) =>
-          new RangeObject(
-            Street,
-            BetType,
-            hands.map(
-              hand =>
-                new CardHandSuit(
-                  hand.substr(0, 1),
-                  hand.substr(1, 1),
-                  hand.length > 2 ? hand.substring(1, hand.length - 1) : ""
-                )
-            )
-          )
+          new RangeObject(Street, BetType, copyHands(hands))
       );
     else
       rangeRepoPreflop = globalState.rangeRepoOOP.map(
         ({ Street, BetType, hands }) =>
-          new RangeObject(
-            Street,
-            BetType,
-            hands.map(
-              hand =>
-                new CardHandSuit(
-                  hand[0],
-                  hand[1],
-                  hand.length > 2 ? hand[2] : ""
-                )
-            )
-          )
+          new RangeObject(Street, BetType, copyHands(hands))
       );
     return rangeRepoPreflop;
   });

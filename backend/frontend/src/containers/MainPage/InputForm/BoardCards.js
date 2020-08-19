@@ -32,7 +32,6 @@ const BoardCards = ({ mode: { street }, deadcards = [] }) => {
       })
     );
   };
-  console.log(street);
   return (
     <Table>
       <StyledRow>
@@ -42,7 +41,7 @@ const BoardCards = ({ mode: { street }, deadcards = [] }) => {
             id="streetFirstChoice"
             name="Preflop"
             value="Raise4BetCall"
-            active={street == "Preflop"}
+            active={street === "Preflop"}
             inverted
             color="blue"
           >
@@ -55,7 +54,7 @@ const BoardCards = ({ mode: { street }, deadcards = [] }) => {
             id="streetSecondChoice"
             name="Flop"
             value="Valuebet"
-            active={street == "Flop"}
+            active={street === "Flop"}
             inverted
             color="blue"
           >
@@ -68,7 +67,7 @@ const BoardCards = ({ mode: { street }, deadcards = [] }) => {
             id="streetThirdChoice"
             name="Turn"
             value="Valuebet"
-            active={street == "Turn"}
+            active={street === "Turn"}
             inverted
             color="blue"
           >
@@ -81,7 +80,7 @@ const BoardCards = ({ mode: { street }, deadcards = [] }) => {
             id="streetFourthChoice"
             name="River"
             value="Valuebet"
-            active={street == "River"}
+            active={street === "River"}
             inverted
             color="blue"
           >

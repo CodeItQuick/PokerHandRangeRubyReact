@@ -14,35 +14,18 @@ import {
   makeSelectSelectedStreet
 } from "../selectors";
 
-import CardHandSuit from "../Board/CardHandSuit";
+import { CardHandSuitClosure } from "../Board/CardHandSuit";
 
 const StyledContainer = styled(Container)`
   font-size: 1rem;
 `;
 
-const StyledGreenRow = styled(Table.Row)`
-  color: black;
-  background-color: #8bddbe;
-`;
-
-const StyledVioletRow = styled(Table.Row)`
-  color: black;
-  background-color: #ed87a7;
-`;
-
-const StyledBlueRow = styled(Table.Row)`
+const StyledColorRow = styled(Table.Cell)`
   color: white;
-  background-color: #3ac0ff;
-`;
-
-const StyledRedRow = styled(Table.Row)`
-  color: white;
-  background-color: #dc73ff;
-`;
-
-const StyledInvertedHeader = styled(Table.Header)`
-  color: white;
-  background-color: black;
+  background-color: ${props =>
+    ["#0f6125", "#a30b00", "#005e8a", "#8e00bd", "#003d3e", "#713400"][
+      props.index
+    ]};
 `;
 const StyledInvertedRow = styled(Table.Row)`
   color: white;
@@ -50,11 +33,29 @@ const StyledInvertedRow = styled(Table.Row)`
 `;
 //TODO: Make a board legend for Preflop/Flop/Turn/River
 
+const generatedLegendTable = (streetActions, numberOfCombos, index) => {
+  return (
+    <Table.Row>
+      <StyledColorRow index={index}>
+        <strong>{streetActions[index]}</strong>
+      </StyledColorRow>
+      <Table.Cell>{numberOfCombos[index]}</Table.Cell>
+      <Table.Cell id="Raise4BetValueTutorial">
+        {numberOfCombos.reduce((acc, curr, idx) => acc + curr, 0) !== 0
+          ? (
+              (100 * numberOfCombos[index]) /
+              numberOfCombos.reduce((acc, curr, idx) => acc + curr, 0)
+            ).toFixed(2)
+          : "0"}
+      </Table.Cell>
+      <Table.Cell>{((numberOfCombos[0] / 1326) * 100).toFixed(2)}</Table.Cell>
+    </Table.Row>
+  );
+};
+
 const legendTable = (
   numberOfCombos,
-  nameOfAction,
-  onHandleStreetHandlerButtons,
-  street,
+  indexOfActions = [0, 1, 2, 3],
   streetActions
 ) => (
   <Table unstackable fixed>
@@ -65,195 +66,14 @@ const legendTable = (
         <Table.HeaderCell>% of Range</Table.HeaderCell>
         <Table.HeaderCell>% of Hands</Table.HeaderCell>
       </StyledInvertedRow>
-      <StyledGreenRow>
-        <Table.Cell>{streetActions[0]}</Table.Cell>
-        <Table.Cell>{numberOfCombos[0]}</Table.Cell>
-        <Table.Cell id="Raise4BetValueTutorial">
-          {(
-            (100 * numberOfCombos[0]) /
-            (numberOfCombos[0] +
-              numberOfCombos[1] +
-              numberOfCombos[2] +
-              numberOfCombos[3])
-          ).toFixed(2) || 0}
-        </Table.Cell>
-        <Table.Cell>{((numberOfCombos[0] / 1326) * 100).toFixed(2)}</Table.Cell>
-      </StyledGreenRow>
-      <StyledVioletRow>
-        <Table.Cell>{streetActions[1]}</Table.Cell>
-        <Table.Cell>{numberOfCombos[1]}</Table.Cell>
-        <Table.Cell id="Raise4BetBluffTutorial">
-          {(
-            (100 * numberOfCombos[1]) /
-            (numberOfCombos[0] +
-              numberOfCombos[1] +
-              numberOfCombos[2] +
-              numberOfCombos[3])
-          ).toFixed(2)}
-        </Table.Cell>
-        <Table.Cell>{((numberOfCombos[1] / 1326) * 100).toFixed(2)}</Table.Cell>
-      </StyledVioletRow>
-      <StyledBlueRow>
-        <Table.Cell>{streetActions[2]}</Table.Cell>
-        <Table.Cell>{numberOfCombos[2]}</Table.Cell>
-        <Table.Cell>
-          {(
-            (100 * numberOfCombos[2]) /
-            (numberOfCombos[0] +
-              numberOfCombos[1] +
-              numberOfCombos[2] +
-              numberOfCombos[3])
-          ).toFixed(2)}
-        </Table.Cell>
-        <Table.Cell>{((numberOfCombos[2] / 1326) * 100).toFixed(2)}</Table.Cell>
-      </StyledBlueRow>
-      <StyledRedRow>
-        <Table.Cell>{streetActions[3]}</Table.Cell>
-        <Table.Cell>{numberOfCombos[3]}</Table.Cell>
-        <Table.Cell>
-          {(
-            (100 * numberOfCombos[3]) /
-            (numberOfCombos[0] +
-              numberOfCombos[1] +
-              numberOfCombos[2] +
-              numberOfCombos[3])
-          ).toFixed(2)}
-        </Table.Cell>
-        <Table.Cell>{((numberOfCombos[3] / 1326) * 100).toFixed(2)}</Table.Cell>
-      </StyledRedRow>
-      <StyledInvertedRow>
-        <Table.Cell>Total</Table.Cell>
-        <Table.Cell>
-          {numberOfCombos[0] +
-            numberOfCombos[1] +
-            numberOfCombos[2] +
-            numberOfCombos[3]}
-        </Table.Cell>
-        <Table.Cell></Table.Cell>
-        <Table.Cell>
-          {(
-            (100 *
-              (numberOfCombos[0] +
-                numberOfCombos[1] +
-                numberOfCombos[2] +
-                numberOfCombos[3])) /
-            1326
-          ).toFixed(2)}
-        </Table.Cell>
-      </StyledInvertedRow>
+      {indexOfActions.map(index =>
+        generatedLegendTable(streetActions, numberOfCombos, index)
+      )}
     </Table.Body>
   </Table>
 );
 
-const comboCounter = (hands, chosenStreet, board) => {
-  if (!hands) return 0;
-
-  let filteredBoard = [];
-  if (chosenStreet == "Flop" && board.length >= 3)
-    filteredBoard = [board[0].trim(), board[1].trim(), board[2].trim()];
-  else if (chosenStreet == "Turn" && board.length >= 4)
-    filteredBoard = [
-      board[0].trim(),
-      board[1].trim(),
-      board[2].trim(),
-      board[3].trim()
-    ];
-  else if (chosenStreet == "River" && board.length >= 5)
-    filteredBoard = [
-      board[0].trim(),
-      board[1].trim(),
-      board[2].trim(),
-      board[3].trim(),
-      board[4].trim()
-    ];
-
-  let boardContains = [];
-  if (!(filteredBoard == false))
-    boardContains = filteredBoard.filter(boardCard => {
-      if (
-        boardCard == false ||
-        boardCard == undefined ||
-        hands == undefined ||
-        hands == false
-      )
-        return false;
-      if (hands.length === 2 && boardCard.substr(0, 1) == hands.substr(0, 1))
-        return 3;
-      return (
-        (boardCard &&
-          hands &&
-          hands.length >= 2 &&
-          boardCard.substr(0, 1) === hands.substr(0, 1) &&
-          boardCard.substr(1, 1) === hands.substr(3, 1).toLowerCase()) ||
-        (boardCard &&
-          hands &&
-          hands.length > 5 &&
-          boardCard.substr(0, 1) === hands.substr(1, 1) &&
-          boardCard.substr(1, 1) ===
-            hands
-              .split(" ")[1]
-              .substr(0, 1)
-              .toLowerCase()) ||
-        (boardCard &&
-          hands.length > 2 &&
-          hands.substr(0, 1) === hands.substr(1, 1) &&
-          boardCard.substr(1, 1) === hands.substr(2, 1).toLowerCase())
-      );
-    });
-
-  if (hands.length > 4 && boardContains.length === 0) return 1;
-  if (hands.length > 4 && boardContains.length > 0) return 0;
-
-  let hand = new CardHandSuit(
-    hands.cardOne,
-    hands.cardTwo,
-    hands ? hands.substr(2, hands.length - 1) : ""
-  ); //FIXME: UGLY
-
-  // For specific combos
-  if (hand.getCards().length > 4) return 1;
-
-  //Suited Combos
-  if (hand.isSuit("s")) {
-    let specificHands = [
-      hand.getHand().charAt(0) + "s" + hand.getHand().charAt(1) + "s",
-      hand.getHand().charAt(0) + "c" + hand.getHand().charAt(1) + "c",
-      hand.getHand().charAt(0) + "d" + hand.getHand().charAt(1) + "d",
-      hand.getHand().charAt(0) + "h" + hand.getHand().charAt(1) + "h"
-    ];
-    let addCombos = filteredBoard.reduce((acc, boardCard) => {
-      let totalHands = specificHands.reduce((acc2, specificCards) => {
-        if (specificCards.indexOf(boardCard) >= 0) {
-          return [...acc2, specificCards];
-        } else return acc2;
-      }, [])[0];
-      if (totalHands) return { ...acc, [totalHands]: 0 };
-      else return { ...acc };
-    }, 0);
-    return 4 - Object.keys(addCombos).length;
-  }
-  //Offsuit Combos
-  else if (hand.isSuit("o")) {
-    let numOccurances = _.countBy(_.split(board, "", 12));
-    let subtractFirstCard = numOccurances[hand.getHand().charAt(0)] || 0;
-    let subtractSecondCard = numOccurances[hand.getHand().charAt(1)] || 0;
-    let numCards = (4 - subtractFirstCard) * (4 - subtractSecondCard) - 4;
-    return numCards;
-  } else {
-    //Pair Combos
-    let numOccurances = _.countBy(_.split(board, "", 12));
-    let subtractFirstCard = numOccurances[hand.getHand().charAt(0)] || 0;
-    let subtractSecondCard = numOccurances[hand.getHand().charAt(1)] || 0;
-
-    let numCards = ((4 - subtractFirstCard) * (3 - subtractSecondCard)) / 2;
-    return numCards;
-  }
-};
-
 export const countHandCombo = (wholeRange, chosenStreet, board) => {
-  let filteredRange = wholeRange.filter(
-    rangeObject => rangeObject.filterForHandsInRange(chosenStreet).length == 0
-  );
   let wholeRangeNum = wholeRange.map(rangeObject =>
     rangeObject.allHandsOneArray().reduce((acc, hand) => {
       return acc + comboCounter(hand.getHand(), chosenStreet, board);
@@ -263,20 +83,100 @@ export const countHandCombo = (wholeRange, chosenStreet, board) => {
   return wholeRangeNum;
 };
 
+const comboCounter = (hands, chosenStreet, board) => {
+  if (!hands) return 0;
+
+  let hand;
+
+  if (hands.length === 2)
+    hand = CardHandSuitClosure(hands.substr(0, 1), hands.substr(1, 1));
+  if (hands.length === 3)
+    hand = CardHandSuitClosure(
+      hands.substr(0, 1),
+      hands.substr(1, 1),
+      hands ? hands.substr(2, 1) : ""
+    );
+  //FIXME: UGLY
+  else if (hands.length === 4)
+    hand = CardHandSuitClosure(hands.substr(0, 2), hands.substr(2, 2), ""); //FIXME: UGLY
+
+  if (hands.length > 3) {
+    let transformedCardHand = [
+      hand.getHand().substr(0, 2),
+      hand.getHand().substr(2, 2)
+    ];
+
+    if (
+      board.includes(transformedCardHand[0]) ||
+      board.includes(transformedCardHand[1])
+    )
+      return 0;
+    return 1;
+  }
+
+  //Suited Combos
+  let numberOfSuitedCombos = suitednessComboCounter(hand, board, "s");
+  if (numberOfSuitedCombos > 0) return numberOfSuitedCombos;
+  //Offsuit Combos
+  const numberOffsuitCombos = suitednessComboCounter(hand, board, "o");
+  if (numberOffsuitCombos > 0) return numberOffsuitCombos;
+  //Pair Combos
+  const numberPairCombos = pairComboCounter(hand, board);
+  return numberPairCombos;
+};
+
+const suitednessComboCounter = (hand, board, offsuitOrSuitedValue) => {
+  if (hand.isSuit(offsuitOrSuitedValue)) {
+    let numOccurances = _.countBy(
+      _.split(board, "", offsuitOrSuitedValue === "s" ? 4 : 12)
+    );
+    let subtractFirstCard = numOccurances[hand.getHand().charAt(0)] || 0;
+    let subtractSecondCard = numOccurances[hand.getHand().charAt(1)] || 0;
+    let numCards =
+      offsuitOrSuitedValue === "s"
+        ? 4 - subtractFirstCard - subtractSecondCard
+        : (4 - subtractFirstCard) * (3 - subtractSecondCard);
+    return numCards;
+  }
+};
+
+const pairComboCounter = (hand, board) => {
+  //Pair Combos
+  let numOccurances = _.countBy(_.split(board, "", 12));
+  let subtractFirstCard = numOccurances[hand.getHand().charAt(0)] || 0;
+  let subtractSecondCard = numOccurances[hand.getHand().charAt(1)] || 0;
+
+  let numCards = ((4 - subtractFirstCard) * (3 - subtractSecondCard)) / 2;
+  return numCards;
+};
+
 const BoardLegend = ({
   wholeRange,
   onHandleStreetHandlerButtons,
-  mode: { street },
+  mode: { street, useTwoFlopSizes },
   deadcards
 }) => {
   const streetActions = {
     Preflop: ["Raise4BetCall", "Raise4BetFold", "RaiseCall", "RaiseFold"],
-    Flop: ["Valuebet", "Bluff", "CheckCall", "CheckFold"],
+    Flop: [
+      "Valuebet",
+      "Bluff",
+      "CheckCall",
+      "CheckFold",
+      "SmallValuebet",
+      "SmallBluff"
+    ],
     Turn: ["Valuebet", "Bluff", "CheckCall", "CheckFold"],
     River: ["Valuebet", "Bluff", "CheckCall", "CheckFold"]
   };
-
+  const [indexOfActions, updateIndexOfActions] = useState([0, 1, 2, 3]);
   const [numberOfCombos, updateNumberOfCombos] = useState([0, 0, 0, 0]);
+
+  useEffect(() => {
+    if (useTwoFlopSizes && street === "Flop")
+      updateIndexOfActions([0, 1, 2, 3, 4, 5]);
+    else updateIndexOfActions([0, 1, 2, 3]);
+  }, [useTwoFlopSizes, street]);
 
   //TODO: potential bug? method outside useEffect
   useEffect(() => {
@@ -291,13 +191,7 @@ const BoardLegend = ({
 
   return (
     <StyledContainer>
-      {legendTable(
-        numberOfCombos,
-        nameOfAction,
-        onHandleStreetHandlerButtons,
-        street,
-        streetActions[street]
-      )}
+      {legendTable(numberOfCombos, indexOfActions, streetActions[street])}
     </StyledContainer>
   );
 };
