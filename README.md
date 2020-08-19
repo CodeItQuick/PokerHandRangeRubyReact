@@ -10,7 +10,7 @@ hands postflop that involve breaking your poker range down into several categori
 This app allows you to check whether your range is balanced on all streets preflop through the hand range charts, and postflop
 through Doug Polks method.
 
-Rather than using my coding skills to improve my poker player, the intention of this project is to learn react and web development
+Rather than using my coding skills to improve my poker player skills, the intention of this project is to learn react and web development
 principles through the creation of a real-world application. I have some knowledge of this industry, although I am very out of practice
 with the latest theories. This application is meant to act as a showcase of my current coding skillset.
 
