@@ -14,10 +14,9 @@ import {
   makeSelectSelectedStreet,
   makeSelectDeadcards,
   makeSelectRange,
-  makeSelectRangeRepoIP,
-  makeSelectRangeRepoOOP
 } from "../../containers/MainPage/selectors";
 import { compose } from "redux";
+import { makeSelectRangeRepoIP, makeSelectRangeRepoOOP } from "../../containers/MainPage/ProgressIndicator/selector";
 
 const Navbar = ({
   isAuthenticated,

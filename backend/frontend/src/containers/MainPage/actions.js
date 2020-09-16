@@ -1,138 +1,209 @@
 import {
-  SET_HAND_RANGE,
-  SET_HAND_RANGE_SELECT,
-  INIT_ALL_USER_HAND_RANGES,
-  SET_DEAD_CARDS,
-  GET_DEAD_CARDS,
-  SET_IS_IP,
-  LOAD_EQUITIES,
-  RESET_STATE,
+	SET_HAND_RANGE,
+	SET_HAND_RANGE_SELECT,
+	INIT_ALL_USER_HAND_RANGES,
+	SET_DEAD_CARDS,
+	GET_DEAD_CARDS,
+	SET_IS_IP,
+	LOAD_EQUITIES,
+	RESET_STATE,
   INIT_SAVE_SCENARIO,
-  SAVE_SCENARIO_SUCCESS,
-  SAVE_SCENARIO_FAILED,
-  INIT_GET_SCENARIO,
-  GET_SCENARIO_SUCCESS,
-  GET_SCENARIO_FAIL,
-  INIT_GET_ALL_SCENARIO,
-  GET_ALL_SCENARIO_FAIL,
-  GET_ALL_SCENARIO_SUCCESS,
-  CHANGE_MODE_SUIT_SELECTED,
-  CHANGE_USE_ONE_FLOP_BETSIZE
-} from "./constants";
+  MAIN_SET_IS_IP,
+} from './constants';
+import { mapNewHandRange } from './stateRangeFunctions';
 
-export function setHandRangeSelect(data) {
+export function initMainSetIsIP(data) {
+  return {
+    type: MAIN_SET_IS_IP,
+    data
+  }
+}
+
+export function mainSetIsIP({newRangeIP, newRangeOOP, newRanges}, state) {
+  return {
+      ...state,
+      rangeRepoOOP: newRangeOOP,
+      rangeRepoIP: newRangeIP,
+      ranges: newRanges
+		}
+};
+
+export function initSetHandRangeSelect(data) {
   return {
     type: SET_HAND_RANGE_SELECT,
     data
-  };
+  }
+}
+export function setHandRangeSelect({ name, value }, state) {
+	return {
+		...state,
+		mode: {
+			suitSelection: state?.mode?.suitSelection || [],
+			isIP: state?.mode?.isIP || true,
+			useTwoFlopSizes: state?.mode?.useTwoFlopSizes || false,
+			street: name || 'Preflop',
+			streetAction: value
+		},
+		loadEquities: false
+	};
 }
 
-export function setHandRange(data, cards) {
+export function initSetHandRange(data) {
   return {
     type: SET_HAND_RANGE,
-    data,
-    cards
-  };
+    data
+  }
 }
-
-export function initAllUserHandRanges() {
+export function setHandRange(ranges, state) {
   return {
-    type: INIT_ALL_USER_HAND_RANGES
-  };
+		...state,
+    	ranges: [...ranges]
+	};
 }
 
-export function setDeadCards(data) {
+export function initSetDeadCards(data) {
   return {
     type: SET_DEAD_CARDS,
     data
-  };
+  }
 }
 
-export function setIsIP(data) {
-  return {
-    type: SET_IS_IP,
-    data
-  };
+export function setDeadCards(data, state) {
+	if (data.length > 4) {
+		return {
+      ...state,
+      deadcards: data,
+			mode: {
+        isIP: state?.mode?.isIP || true,
+        suitSelection: state?.mode?.suitSelection || [],
+        useTwoFlopSizes: state?.mode?.useTwoFlopSizes || false,
+				street: 'River',
+				streetAction: 'Valuebet'
+			}
+		};
+	} else if (data.length > 3) {
+		return {
+      ...state,
+      deadcards: data,
+			mode: {
+        isIP: state?.mode?.isIP || true,
+        suitSelection: state?.mode?.suitSelection || [],
+        useTwoFlopSizes: state?.mode?.useTwoFlopSizes || false,
+				street: 'Turn',
+				streetAction: 'Valuebet'
+			}
+		};
+	} else if (data.length > 2) {
+		return {
+      ...state,
+      deadcards: data,
+			mode: {
+        isIP: state?.mode?.isIP || true,
+        suitSelection: state?.mode?.suitSelection || [],
+        useTwoFlopSizes: state?.mode?.useTwoFlopSizes || false,
+				street: 'Flop',
+				streetAction: 'Valuebet'
+			}
+		};
+	} else {
+		return {
+      ...state,
+      deadcards: data,
+			mode: {
+        isIP: state?.mode?.isIP || true,
+        suitSelection: state?.mode?.suitSelection || [],
+        useTwoFlopSizes: state?.mode?.useTwoFlopSizes || false,
+				street: 'Preflop',
+				streetAction: 'Raise4BetCall'
+			}
+		};
+	}
 }
 
-export function loadEquities() {
-  return {
-    type: LOAD_EQUITIES
-  };
+export function getScenarioSuccess(data, state) {
+	return {
+    ...state,
+		rangeRepoIP: data.results[0].t.rangeRepo[0],
+		rangeRepoOOP: data.results[0].t.rangeRepo[1],
+		deadcards: data.results[0].t.board.split(','),
+		mode: {
+			isIP: true
+		},
+		ranges: data.results[0].t.rangeRepo[0]
+	};
 }
 
-export function resetState() {
-  return {
-    type: RESET_STATE
-  };
+export function getScenarioFail(data, state) {
+	return {
+    ...state,
+		data
+	};
+}
+
+export function getAllScenarioSuccess(action, state) {
+	return {
+    ...state,
+		scenarioBoards: action.data.map(({ t: { board } }) => board)
+	};
 }
 
 export function initSaveScenario(data) {
-  return {
+	return {
     type: INIT_SAVE_SCENARIO,
-    data
-  };
+		data
+	};
 }
 
-export function saveScenarioSuccess(data) {
-  return {
-    type: SAVE_SCENARIO_SUCCESS,
-    data
-  };
+export function saveScenarioSuccess(data, state) {
+	return {
+    ...state,
+		data
+	};
 }
-export function saveScenarioFail(data) {
-  return {
-    type: SAVE_SCENARIO_FAILED,
-    data
-  };
-}
-export function initGetScenario(data) {
-  return {
-    type: INIT_GET_SCENARIO,
-    data
-  };
+export function initGetScenario(data, state) {
+	return {
+    ...state,
+		data
+	};
 }
 
-export function getScenarioSuccess(data) {
-  return {
-    type: GET_SCENARIO_SUCCESS,
-    data
-  };
-}
-export function getScenarioFail(data) {
-  return {
-    type: GET_SCENARIO_FAIL,
-    data
-  };
-}
-export function initGetAllScenario(data) {
-  return {
-    type: INIT_GET_ALL_SCENARIO,
-    data
-  };
-}
-export function getAllScenarioSuccess(data) {
-  return {
-    type: GET_ALL_SCENARIO_SUCCESS,
-    data
-  };
-}
-export function getAllScenarioFail(data) {
-  return {
-    type: GET_ALL_SCENARIO_FAIL,
-    data
-  };
-}
-export function changeModeSuitSelection(data) {
-  return {
-    type: CHANGE_MODE_SUIT_SELECTED,
-    data
-  };
+export function initGetAllScenario(data, state) {
+	return {
+    ...state,
+		data
+	};
 }
 
-export function changeUseOneFlopBetsize(data) {
-  return {
-    type: CHANGE_USE_ONE_FLOP_BETSIZE,
-    data
-  };
+export function getAllScenarioFail(data, state) {
+	return {
+    ...state,
+		data
+	};
+}
+
+export function changeModeSuitSelection(mode, action, state) {
+	if (mode.suitSelection.indexOf(action.data) >= 0) {
+		return {
+      		...state,
+			mode: {
+				suitSelection: mode.suitSelection.filter((cardsSuit) => cardsSuit !== action.data)
+			}
+		};
+	} else {
+		return {
+      		...state,
+			mode: {
+				suitSelection: [ ...mode.suitSelection, action.data ]
+			}
+		};
+	}
+}
+
+export function changeUseOneFlopBetsize(data, state) {
+	return {
+    ...state,
+		mode: {
+			useTwoFlopSizes: data
+		}
+	};
 }
