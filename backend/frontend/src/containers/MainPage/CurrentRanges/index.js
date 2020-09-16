@@ -2,9 +2,10 @@ import React, { memo, useCallback, useState, useEffect } from "react";
 import { Table, Button } from "semantic-ui-react";
 import { compose } from "redux";
 import { connect, useDispatch } from "react-redux";
-import { makeSelectMode, makeSelectSelectedStreet } from "../selectors";
-import { setHandRangeSelect } from "../actions";
-import InputStreet from "../InputForm/InputStreet";
+import { makeSelectMode, makeSelectSelectedStreet } from "./selector";
+import { initSetHandRangeSelect } from "./actions";
+import useInjectReducer from "../../../HOC/useInjectReducer";
+import reducer from './reducer'
 
 const buttonColors = {
   Valuebet: "green",
@@ -50,13 +51,14 @@ const rangeText = (rangeObject, betType, streetAction) => {
     return "You must select this Bet Type to add to this range.";
   else return rangeObject.getFriendlyRangeOutput();
 };
-
+const key = 'global'
 const CurrentRanges = ({
   mode: { streetAction, street, isIP },
   selectedStreet
 }) => {
+	useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
-  const [changingStreet, updateChangingStreet] = useState(selectedStreet);
+ const [changingStreet, updateChangingStreet] = useState(selectedStreet);
 
   useEffect(() => {
     updateChangingStreet(selectedStreet);
@@ -64,7 +66,7 @@ const CurrentRanges = ({
 
   const onHandleStreetHandler = (e, { name, value }) => {
     dispatch(
-      setHandRangeSelect({
+      initSetHandRangeSelect({
         name,
         value
       })

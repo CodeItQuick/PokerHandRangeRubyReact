@@ -5,6 +5,7 @@
   "proxy": "https://www.poker-range-appalyzer.com",
   "dependencies": {
     "@auth0/auth0-react": "^1.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.11.0",
     "@babel/polyfill": "^7.7.0",
     "@babel/register": "^7.9.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
