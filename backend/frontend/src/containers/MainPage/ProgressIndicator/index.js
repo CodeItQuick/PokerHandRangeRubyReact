@@ -39,10 +39,8 @@ export const handsInRange = (inpRange, street) => {
 	return isHandsSelected;
 };
 
-const key = 'global';
 const ProgressIndicator = ({ street, isIP, rangeRepoIP, rangeRepoOOP, selectedRanges }) => {
 	const dispatch = useDispatch();
-	useInjectReducer({ key, reducer });
 	const [ handsIPUsed, setHandsIPUsed ] = useState(handsInRange(rangeRepoIP, street));
 	const [ handsOOPUsed, setHandsOOPUsed ] = useState(handsInRange(rangeRepoOOP, street));
 

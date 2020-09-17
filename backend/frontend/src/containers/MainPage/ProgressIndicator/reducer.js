@@ -1,6 +1,5 @@
 import { SET_IS_IP } from './constants';
 import { setIsIP } from './action';
-import { useDispatch } from 'react-redux';
 import { initialState } from '../reducer';
 const progressIndicatorReducer = function(state = initialState, action) {
 	switch (action.type) {

@@ -9,7 +9,6 @@ import mainPageReducer from '../reducer';
 export const currentRangesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_HAND_RANGE_SELECT:
-			console.log(state);
 			return setHandRangeSelect(action.data, state);
 
 		default:

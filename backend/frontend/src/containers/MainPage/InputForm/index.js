@@ -41,9 +41,9 @@ const stateOptionsSuit = _.map([ 'c', 's', 'h', 'd' ], (state, index) => ({
 	value: state
 }));
 
-export const assignPositions = (rangeRepoIP, rangeRepoOOP, selectedRanges, value) => {
+export const assignPositions = (rangeRepoIP, rangeRepoOOP, selectedRanges, isIP) => {
 	let newRanges, newRangeIP, newRangeOOP;
-	if (value) {
+	if (isIP) {
 		newRanges = rangeRepoIP.map((RangeObj) => RangeObj.getRangesObject());
 		newRangeIP = rangeRepoIP.map((RangeObj) => RangeObj.getRangesObject());
 		newRangeOOP = selectedRanges.map((RangeObj) => RangeObj.getRangesObject());

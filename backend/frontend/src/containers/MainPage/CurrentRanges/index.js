@@ -51,12 +51,10 @@ const rangeText = (rangeObject, betType, streetAction) => {
     return "You must select this Bet Type to add to this range.";
   else return rangeObject.getFriendlyRangeOutput();
 };
-const key = 'global'
 const CurrentRanges = ({
   mode: { streetAction, street, isIP },
   selectedStreet
 }) => {
-	useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
  const [changingStreet, updateChangingStreet] = useState(selectedStreet);
 

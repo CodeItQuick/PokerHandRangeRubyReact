@@ -67,6 +67,6 @@ export const mainPageReducer = (state = initialState, action) => {
 const combined = (functionOne, functionTwo, functionThree) => (state, action) =>
 	functionOne(functionTwo(functionThree(state, action), action), action);
 
-const combine = combined(mainPageReducer, currentRangesReducer, progressIndicatorReducer);
+const combine = combined(mainPageReducer, progressIndicatorReducer, currentRangesReducer);
 export default combine;
 export { initialState };
