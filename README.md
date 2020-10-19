@@ -38,3 +38,6 @@ The video was a project feature done by streamer "tbdgamer" on my react project.
 
 Note: PR's are deployed to AWS for previews. The PR-style is out of sync with my typical workflow, and I plan to revamp
 the project management style in this project (mostly to simplify it). As always this is a bit of a work in progress.
+
+# Thanks
+Thanks to mahonz for the help in developing the application from the client-perspective.
