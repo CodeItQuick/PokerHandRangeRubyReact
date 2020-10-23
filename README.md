@@ -43,8 +43,8 @@ the project management style in this project (mostly to simplify it). As always 
 
 For reference on experience with working in other open source projects, see these two PR's into open-sauced:
 
-First low-friction PR: https://github.com/open-sauced/open-sauced/pull/847
-Second PR with feedback: https://github.com/open-sauced/open-sauced/pull/850
+1. First low-friction PR: https://github.com/open-sauced/open-sauced/pull/847
+1. Second PR with feedback: https://github.com/open-sauced/open-sauced/pull/850
 
 # Thanks
 Thanks to mahonz for the help in developing the application from the client-perspective.
