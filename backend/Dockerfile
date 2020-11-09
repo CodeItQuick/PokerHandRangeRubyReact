@@ -1,5 +1,5 @@
 # pull official base image
-FROM centos/nodejs-12-centos7 as build-stage
+FROM 12.19.0-alpine3.10 as build-stage
 
 # set working directory
 WORKDIR /frontend
