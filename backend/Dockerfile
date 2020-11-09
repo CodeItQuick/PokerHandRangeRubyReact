@@ -1,5 +1,5 @@
 # pull official base image
-FROM 12.19.0-alpine3.10 as build-stage
+FROM node:12.19.0 as build-stage
 
 # set working directory
 WORKDIR /frontend
