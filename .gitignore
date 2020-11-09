@@ -34,3 +34,4 @@ frontend/build/*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+**/secrets.yml
