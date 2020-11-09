@@ -1,12 +1,9 @@
-import React from 'react';
-import MainPage from '../../src/containers/MainPage';
-import Enzyme, { shallow, mount } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
 import reducer, { initialState } from '../../src/containers/MainPage/reducer';
 import * as types from '../../src/containers/MainPage/constants';
+import { setHandRangeSelect, setHandRange, initSetHandRange, initSetDeadCards } from '../../src/containers/MainPage/actions';
 
 const data = [
+	{ name: 'Preflop', value: 'Raise4BetCall' },
 	{ name: 'Preflop', value: 'Raise4BetFold' },
 	{ name: 'Preflop', value: 'RaiseCall' },
 	{ name: 'Preflop', value: 'RaiseFold' },
@@ -32,7 +29,7 @@ describe('MainPage reducer', () => {
 	test.each(data)(
 		'The reducer with action ' + types.SET_HAND_RANGE_SELECT + ' should return the new mode',
 		(data) => {
-			const action = { type: types.SET_HAND_RANGE_SELECT, data };
+			const action = setHandRangeSelect(data);
 
 			let newState = JSON.parse(JSON.stringify(initialState));
 			const result = {
@@ -56,10 +53,7 @@ describe('MainPage reducer', () => {
 		ranges[0] = { ...ranges, hands: [ 'AA' ] };
 
 		//When
-		const action = {
-			type: types.SET_HAND_RANGE,
-			data: [ ...ranges ]
-		};
+		const action = initSetHandRange(ranges);
 
 		//Then
 		let newState = JSON.parse(JSON.stringify(initialState));
@@ -77,10 +71,7 @@ describe('MainPage reducer', () => {
 		const deadcards = [ 'Ac', 'Td', '5h' ];
 
 		//When
-		const action = {
-			type: types.SET_DEAD_CARDS,
-			data: deadcards
-		};
+		const action = initSetDeadCards(deadcards);
 
 		//Then
 		let newState = JSON.parse(JSON.stringify(initialState));

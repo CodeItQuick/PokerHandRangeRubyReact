@@ -1,0 +1,2 @@
+class RangeHandMetum < ApplicationRecord
+end

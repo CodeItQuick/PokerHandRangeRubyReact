@@ -136,3 +136,190 @@ App 67620 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src
 [ N 2020-08-02 12:46:27.9201 67602/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
 [ N 2020-08-02 12:46:27.9200 67602/Tn Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
 [ N 2020-08-02 12:46:28.5346 67602/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-09-17 10:04:39.5988 80242/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-09-17 10:04:39.6324 80244/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-09-17 10:04:39.6332 80244/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-09-17 10:04:39.6698 80244/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 80244
+[ N 2020-09-17 10:04:42.4085 80244/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-09-17 10:04:42.4201 80244/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-09-17 10:41:34.8956 80244/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-09-17 10:41:34.8956 80244/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-09-17 10:41:34.8964 80244/Th Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-09-17 10:41:34.8964 80244/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-09-17 10:41:34.8965 80244/Tp Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-09-17 10:41:34.8964 80244/Td Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-09-17 10:41:34.8964 80244/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-09-17 10:41:34.8964 80244/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-09-17 10:41:34.8964 80244/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-09-17 10:41:34.8964 80244/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-09-17 10:41:34.8965 80244/Tp Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-09-17 10:41:34.8964 80244/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-09-17 10:41:34.8967 80244/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-09-17 10:41:34.8967 80244/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-09-17 10:41:34.8967 80244/Td Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-09-17 10:41:34.8967 80244/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-09-17 10:41:34.8967 80244/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-09-17 10:41:34.8967 80244/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-09-17 10:41:34.8967 80244/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-09-17 10:41:34.8967 80244/Th Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-09-17 10:41:35.5887 80244/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-09-17 11:16:59.3939 82483/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-09-17 11:16:59.4262 82485/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-09-17 11:16:59.4266 82485/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-09-17 11:16:59.4524 82485/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 82485
+[ N 2020-09-17 11:17:02.1098 82485/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-09-17 11:17:02.1198 82485/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 82535 output: [ 2020-09-17 11:17:31.7826 82535/0x00007f8d2238e558(Worker 1) utils.rb ]: *** Exception ArgumentError in Rack application object (Missing `secret_key_base` for 'production' environment, set this string with `rails credentials:edit`) (process 82535, thread 0x00007f8d2238e558(Worker 1)):
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:588:in `validate_secret_key_base'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:423:in `secret_key_base'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:253:in `env_config'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/engine.rb:719:in `build_request'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:610:in `build_request'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/engine.rb:526:in `call'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/rack/thread_handler_extension.rb:107:in `process_request'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:157:in `accept_and_process_next_request'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/request_handler.rb:415:in `block (3 levels) in start_threads'
+App 82535 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/utils.rb:113:in `block in create_thread_and_abort_on_exception'
+[ W 2020-09-17 11:17:31.7830 82485/T8 age/Cor/Con/InternalUtils.cpp:96 ]: [Client 1-1] Sending 502 response: application did not send a complete response
+
+[ N 2020-09-17 11:52:33.5064 82485/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-09-17 11:52:33.5065 82485/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-09-17 11:52:33.5065 82485/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 82535, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (production)
+[ N 2020-09-17 11:52:33.5068 82485/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-09-17 11:52:33.5068 82485/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-09-17 11:52:33.5068 82485/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-09-17 11:52:33.5068 82485/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-09-17 11:52:33.5070 82485/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-09-17 11:52:33.5068 82485/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-09-17 11:52:33.5069 82485/Tp Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-09-17 11:52:33.5071 82485/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-09-17 11:52:33.5071 82485/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-09-17 11:52:33.5071 82485/Tp Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-09-17 11:52:33.5068 82485/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-09-17 11:52:33.5070 82485/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-09-17 11:52:33.5072 82485/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-09-17 11:52:33.5068 82485/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-09-17 11:52:33.5068 82485/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-09-17 11:52:33.5072 82485/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-09-17 11:52:33.5068 82485/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-09-17 11:52:33.5072 82485/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-09-17 11:52:33.5073 82485/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 82535, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (production)
+[ N 2020-09-17 11:52:34.4062 82485/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-09-17 11:57:33.7807 83890/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-09-17 11:57:33.8147 83892/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-09-17 11:57:33.8152 83892/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-09-17 11:57:33.8430 83892/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 83892
+[ N 2020-09-17 11:57:36.5179 83892/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-09-17 11:57:36.5287 83892/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 83935 output: [ 2020-09-17 11:57:48.4776 83935/0x00007f87a3ad49b8(Worker 1) utils.rb ]: *** Exception ArgumentError in Rack application object (Missing `secret_key_base` for 'production' environment, set this string with `rails credentials:edit`) (process 83935, thread 0x00007f87a3ad49b8(Worker 1)):
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:588:in `validate_secret_key_base'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:423:in `secret_key_base'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:253:in `env_config'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/engine.rb:719:in `build_request'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:610:in `build_request'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/engine.rb:526:in `call'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/rack/thread_handler_extension.rb:107:in `process_request'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:157:in `accept_and_process_next_request'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/request_handler.rb:415:in `block (3 levels) in start_threads'
+App 83935 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/utils.rb:113:in `block in create_thread_and_abort_on_exception'
+[ W 2020-09-17 11:57:48.4781 83892/T9 age/Cor/Con/InternalUtils.cpp:96 ]: [Client 1-1] Sending 502 response: application did not send a complete response
+
+[ N 2020-09-17 11:58:03.5211 83892/T9 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-09-17 11:58:03.5212 83892/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-09-17 11:58:03.5212 83892/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 83935, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (production)
+[ N 2020-09-17 11:58:03.5214 83892/T9 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-09-17 11:58:03.5214 83892/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-09-17 11:58:03.5214 83892/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-09-17 11:58:03.5214 83892/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-09-17 11:58:03.5214 83892/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-09-17 11:58:03.5216 83892/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-09-17 11:58:03.5214 83892/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-09-17 11:58:03.5215 83892/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-09-17 11:58:03.5214 83892/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-09-17 11:58:03.5218 83892/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-09-17 11:58:03.5215 83892/T9 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-09-17 11:58:03.5215 83892/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-09-17 11:58:03.5216 83892/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-09-17 11:58:03.5216 83892/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-09-17 11:58:03.5216 83892/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-09-17 11:58:03.5220 83892/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-09-17 11:58:03.5218 83892/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-09-17 11:58:03.5217 83892/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-09-17 11:58:03.5222 83892/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 83935, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (production)
+[ N 2020-09-17 11:58:04.3699 83892/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-09-17 12:00:54.4982 84089/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-09-17 12:00:54.5379 84091/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-09-17 12:00:54.5386 84091/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-09-17 12:00:54.5780 84091/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 84091
+[ N 2020-09-17 12:00:57.2487 84091/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-09-17 12:00:57.2566 84091/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 84134 output: [ 2020-09-17 12:01:05.5365 84134/0x00007fafce8d0df8(Worker 1) utils.rb ]: *** Exception ArgumentError in Rack application object (Missing `secret_key_base` for 'production' environment, set this string with `rails credentials:edit`) (process 84134, thread 0x00007fafce8d0df8(Worker 1)):
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:588:in `validate_secret_key_base'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:423:in `secret_key_base'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:253:in `env_config'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/engine.rb:719:in `build_request'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/application.rb:610:in `build_request'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/railties-6.0.3.2/lib/rails/engine.rb:526:in `call'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/rack/thread_handler_extension.rb:107:in `process_request'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:157:in `accept_and_process_next_request'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/request_handler/thread_handler.rb:110:in `main_loop'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/request_handler.rb:415:in `block (3 levels) in start_threads'
+App 84134 output: 	from /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/utils.rb:113:in `block in create_thread_and_abort_on_exception'
+[ W 2020-09-17 12:01:05.5371 84091/T8 age/Cor/Con/InternalUtils.cpp:96 ]: [Client 1-1] Sending 502 response: application did not send a complete response
+
+[ N 2020-09-17 12:02:34.4405 84091/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-09-17 12:02:34.4405 84091/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-09-17 12:02:34.4407 84091/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 84134, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (production)
+[ N 2020-09-17 12:02:34.4412 84091/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-09-17 12:02:34.4412 84091/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-09-17 12:02:34.4413 84091/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-09-17 12:02:34.4413 84091/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-09-17 12:02:34.4412 84091/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-09-17 12:02:34.4412 84091/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-09-17 12:02:34.4413 84091/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-09-17 12:02:34.4414 84091/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-09-17 12:02:34.4413 84091/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-09-17 12:02:34.4414 84091/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-09-17 12:02:34.4413 84091/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-09-17 12:02:34.4413 84091/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-09-17 12:02:34.4414 84091/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-09-17 12:02:34.4413 84091/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-09-17 12:02:34.4415 84091/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-09-17 12:02:34.4416 84091/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-09-17 12:02:34.4417 84091/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-09-17 12:02:34.4417 84091/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-09-17 12:02:34.4432 84091/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 84134, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (production)
+[ N 2020-09-17 12:02:35.3012 84091/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-09-17 12:02:41.2864 84225/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-09-17 12:02:41.3196 84227/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-09-17 12:02:41.3200 84227/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-09-17 12:02:41.3490 84227/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 84227
+[ N 2020-09-17 12:02:43.9716 84227/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-09-17 12:02:43.9800 84227/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-09-18 11:24:47.2045 84227/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-09-18 11:24:47.2046 84227/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-09-18 11:24:47.2047 84227/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 84275, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-09-18 11:24:47.2048 84227/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-09-18 11:24:47.2048 84227/Tf Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-09-18 11:24:47.2048 84227/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-09-18 11:24:47.2048 84227/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-09-18 11:24:47.2048 84227/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-09-18 11:24:47.2049 84227/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-09-18 11:24:47.2049 84227/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-09-18 11:24:47.2048 84227/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-09-18 11:24:47.2049 84227/Tf Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-09-18 11:24:47.2050 84227/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-09-18 11:24:47.2049 84227/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-09-18 11:24:47.2050 84227/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-09-18 11:24:47.2049 84227/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-09-18 11:24:47.2050 84227/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-09-18 11:24:47.2050 84227/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-09-18 11:24:47.2051 84227/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-09-18 11:24:47.2052 84227/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-09-18 11:24:47.2051 84227/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-09-18 11:24:47.2053 84227/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 84275, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-09-18 11:24:48.1090 84227/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished

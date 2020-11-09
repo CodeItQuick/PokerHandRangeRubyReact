@@ -8,35 +8,6 @@ export default class CardHandSuit {
 		this.equity = 'n/a'; //FIXME: REMOVE
 	}
 
-	//TODO: getCards and displayCardSuit should be an orderedCard object/class
-	_getCards(cardOne, cardTwo) {
-		let card1 = '',
-			card2 = '';
-		if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
-			card1 = cardOne;
-			card2 = cardTwo;
-		} else if (cardOne === cardTwo) {
-			card1 = cardOne;
-			card2 = cardTwo;
-		} else {
-			card1 = cardTwo;
-			card2 = cardOne;
-		}
-		return [ card1, card2 ];
-	}
-
-	_displayCardSuit(cardOne, cardTwo) {
-		let displaySuit = '';
-		if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
-			displaySuit = 's';
-		} else if (orderedCard.indexOf(cardOne) === orderedCard.indexOf(cardTwo)) {
-			displaySuit = '';
-		} else {
-			displaySuit = 'o';
-		}
-		return displaySuit;
-	}
-
 	getHand() {
 		if (this.suit.length > 1) return this.cardOne + this.suit.substr(0, 1) + this.cardTwo + this.suit.substr(1, 1);
 		else return this.cardOne + this.cardTwo + this.suit;

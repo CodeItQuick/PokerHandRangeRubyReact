@@ -9,8 +9,11 @@ import {
 	RESET_STATE,
   INIT_SAVE_SCENARIO,
   MAIN_SET_IS_IP,
+  INIT_GET_ALL_SCENARIO,
+  GET_ALL_SCENARIO_SUCCESS,
+  INIT_GET_SCENARIO,
+  GET_SCENARIO_SUCCESS,
 } from './constants';
-import { mapNewHandRange } from './stateRangeFunctions';
 
 export function initMainSetIsIP(data) {
   return {
@@ -48,7 +51,7 @@ export function setHandRangeSelect({ name, value }, state) {
 	};
 }
 
-export function initSetHandRange(data) {
+export function initSetHandRange(data, state) {
   return {
     type: SET_HAND_RANGE,
     data
@@ -71,24 +74,24 @@ export function initSetDeadCards(data) {
 export function setDeadCards(data, state) {
 	if (data.length > 4) {
 		return {
-      ...state,
-      deadcards: data,
+			...state,
+			deadcards: data,
 			mode: {
-        isIP: state?.mode?.isIP || true,
-        suitSelection: state?.mode?.suitSelection || [],
-        useTwoFlopSizes: state?.mode?.useTwoFlopSizes || false,
+				isIP: state?.mode?.isIP,
+				suitSelection: state?.mode?.suitSelection,
+				useTwoFlopSizes: state?.mode?.useTwoFlopSizes,
 				street: 'River',
 				streetAction: 'Valuebet'
 			}
 		};
 	} else if (data.length > 3) {
 		return {
-      ...state,
-      deadcards: data,
+			...state,
+			deadcards: data,
 			mode: {
-        isIP: state?.mode?.isIP || true,
-        suitSelection: state?.mode?.suitSelection || [],
-        useTwoFlopSizes: state?.mode?.useTwoFlopSizes || false,
+				isIP: state?.mode?.isIP,
+				suitSelection: state?.mode?.suitSelection,
+				useTwoFlopSizes: state?.mode?.useTwoFlopSizes,
 				street: 'Turn',
 				streetAction: 'Valuebet'
 			}
@@ -98,9 +101,9 @@ export function setDeadCards(data, state) {
       ...state,
       deadcards: data,
 			mode: {
-        isIP: state?.mode?.isIP || true,
-        suitSelection: state?.mode?.suitSelection || [],
-        useTwoFlopSizes: state?.mode?.useTwoFlopSizes || false,
+        isIP: state?.mode?.isIP,
+        suitSelection: state?.mode?.suitSelection,
+        useTwoFlopSizes: state?.mode?.useTwoFlopSizes,
 				street: 'Flop',
 				streetAction: 'Valuebet'
 			}
@@ -110,9 +113,9 @@ export function setDeadCards(data, state) {
       ...state,
       deadcards: data,
 			mode: {
-        isIP: state?.mode?.isIP || true,
-        suitSelection: state?.mode?.suitSelection || [],
-        useTwoFlopSizes: state?.mode?.useTwoFlopSizes || false,
+        isIP: state?.mode?.isIP,
+        suitSelection: state?.mode?.suitSelection,
+        useTwoFlopSizes: state?.mode?.useTwoFlopSizes,
 				street: 'Preflop',
 				streetAction: 'Raise4BetCall'
 			}
@@ -120,16 +123,31 @@ export function setDeadCards(data, state) {
 	}
 }
 
-export function getScenarioSuccess(data, state) {
+export function getScenarioSuccess(data) {
 	return {
-    ...state,
-		rangeRepoIP: data.results[0].t.rangeRepo[0],
-		rangeRepoOOP: data.results[0].t.rangeRepo[1],
-		deadcards: data.results[0].t.board.split(','),
+		type: GET_SCENARIO_SUCCESS,
+		data
+	};
+}
+
+export const transformHandRange = (data, repoType) => data
+			.filter(({HandName}) => HandName === repoType)
+			.map(({BetType, Street, PokerHands }) => 
+			({Street, BetType, hands: (PokerHands.length === 0) ? [] : PokerHands.split(", ")}))
+
+export function getScenarioSuccessProcess(data, state) {
+	return {
+    	...state,
+		rangeRepoIP: transformHandRange(data, "rangeRepoIP"),
+		rangeRepoOOP: transformHandRange(data, "rangeRepoOOP"),
+		deadcards: [...data[0]?.Board.split(',')],
 		mode: {
+			...state.mode,
+    		street: "Flop",
+    		streetAction: "Valuebet",
 			isIP: true
 		},
-		ranges: data.results[0].t.rangeRepo[0]
+		ranges: transformHandRange(data, "rangeRepoIP")
 	};
 }
 
@@ -139,11 +157,16 @@ export function getScenarioFail(data, state) {
 		data
 	};
 }
-
-export function getAllScenarioSuccess(action, state) {
+export function getAllScenarioSuccess(data) {
+	return {
+		type: GET_ALL_SCENARIO_SUCCESS,
+		data
+	};
+}
+export function getAllScenarioSuccessProcess(action, state) {
 	return {
     ...state,
-		scenarioBoards: action.data.map(({ t: { board } }) => board)
+		scenarioBoards: action
 	};
 }
 
@@ -160,16 +183,16 @@ export function saveScenarioSuccess(data, state) {
 		data
 	};
 }
-export function initGetScenario(data, state) {
+export function initGetScenario(data) {
 	return {
-    ...state,
+		type: INIT_GET_SCENARIO,
 		data
 	};
 }
 
 export function initGetAllScenario(data, state) {
 	return {
-    ...state,
+    	type: INIT_GET_ALL_SCENARIO,
 		data
 	};
 }

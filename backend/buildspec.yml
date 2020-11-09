@@ -11,8 +11,6 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building Docker test image...
-      # - docker build -t $IMAGE_REPO_NAME:$TEST_IMAGE_TAG -f Dockerfile .
-      # - docker run -e CI=true $IMAGE_REPO_NAME:$TEST_IMAGE_TAG npm run test
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t $IMAGE_REPO_NAME:app .

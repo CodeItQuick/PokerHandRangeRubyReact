@@ -1,7 +1,3 @@
-import React from 'react';
-import Enzyme, { shallow, mount, render } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
 import { initialState } from '../../src/containers/MainPage/reducer.js';
 
 import {

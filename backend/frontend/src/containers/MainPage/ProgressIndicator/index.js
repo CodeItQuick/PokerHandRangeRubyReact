@@ -14,17 +14,19 @@ import { compose } from 'redux';
 import reducer from './reducer';
 import useInjectReducer from '../../../HOC/useInjectReducer';
 
+const key = 'global';
+
 //TODO: Note testin code for this code is elsewhere
 export const assignPositions = (rangeRepoIP, rangeRepoOOP, selectedRanges, isIP) => {
 	let newRanges, newRangeIP, newRangeOOP;
-	if (isIP) {
-		newRanges = copyRangesFrom(rangeRepoIP);
-		newRangeIP = copyRangesFrom(rangeRepoIP);
-		newRangeOOP = copyRangesFrom(selectedRanges);
-	} else {
+	if (!isIP) {
 		newRanges = copyRangesFrom(rangeRepoOOP);
 		newRangeIP = copyRangesFrom(selectedRanges);
 		newRangeOOP = copyRangesFrom(rangeRepoOOP);
+	} else {
+		newRanges = copyRangesFrom(rangeRepoIP);
+		newRangeIP = copyRangesFrom(rangeRepoIP);
+		newRangeOOP = copyRangesFrom(selectedRanges);
 	}
 	return [ newRangeIP, newRangeOOP, newRanges ];
 };
@@ -40,6 +42,7 @@ export const handsInRange = (inpRange, street) => {
 };
 
 const ProgressIndicator = ({ street, isIP, rangeRepoIP, rangeRepoOOP, selectedRanges }) => {
+	useInjectReducer({key, reducer});
 	const dispatch = useDispatch();
 	const [ handsIPUsed, setHandsIPUsed ] = useState(handsInRange(rangeRepoIP, street));
 	const [ handsOOPUsed, setHandsOOPUsed ] = useState(handsInRange(rangeRepoOOP, street));

@@ -11,15 +11,6 @@ import RangeObject from "./EngineClasses/RangeObject";
 import { CardHandSuitBuilder } from "./EngineClasses/CardHandSuitBuilder";
 import { RangeObjectCollection } from "./EngineClasses/RangeObjectCollection";
 
-const copyHands = hands =>
-  hands.map(hand =>
-    new CardHandSuitBuilder().build(
-      hand.length <= 3 ? hand.substr(0, 1) : hand.substr(0, 2),
-      hand.length <= 3 ? hand.substr(1, 1) : hand.substr(2, 2),
-      hand.length <= 3 ? hand.substr(2, hand.length - 1) : ""
-    )
-  );
-
 const selectGlobal = state => state.global || initialState; //??
 const selectRouter = state => state.router;
 

@@ -16,7 +16,9 @@ import {
 	changeModeSuitSelection,
 	changeUseOneFlopBetsize,
 	setDeadCards,
-	mainSetIsIP
+	mainSetIsIP,
+	getAllScenarioSuccessProcess,
+	getScenarioSuccessProcess
 } from './actions.js';
 
 import { currentRangesReducer } from './CurrentRanges/reducer';
@@ -39,17 +41,16 @@ const initialState = {
 export const mainPageReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case SET_HAND_RANGE: //?
-			console.log(action);
 			return setHandRange(action.data, state);
 
 		case SET_DEAD_CARDS:
 			return setDeadCards(action.data, state);
 
 		case GET_SCENARIO_SUCCESS:
-			return getScenarioSuccess(action.data);
+			return getScenarioSuccessProcess(action.data, state);
 
 		case GET_ALL_SCENARIO_SUCCESS:
-			return getAllScenarioSuccess(action);
+			return getAllScenarioSuccessProcess(action.data, state);
 
 		case CHANGE_MODE_SUIT_SELECTED:
 			return changeModeSuitSelection(state.mode, action);
