@@ -54,9 +54,9 @@ gem 'jwt'
 # gem 'aws-sdk', '~> 3'
 # gem 'aws-sdk-rails'
 
-group :development do
-  gem 'ruby-debug-ide', '0.6.0'
-end
+# group :development do
+#   gem 'ruby-debug-ide', '0.6.0'
+# end
 gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
   
 # gem "couchbase", "3.0.0.alpha.5"
