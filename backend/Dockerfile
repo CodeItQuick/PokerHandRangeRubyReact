@@ -1,5 +1,5 @@
 # pull official base image
-FROM tiangolo/node-frontend:10 as build-stage
+FROM centos/nodejs-12-centos7 as build-stage
 
 # set working directory
 WORKDIR /frontend
