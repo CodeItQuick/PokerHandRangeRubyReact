@@ -15,12 +15,14 @@ class PrivateController < ActionController::API
       responses, header = JsonWebToken.verify(@auth_payload) 
       user = responses['sub'].split('|')[1]
       
-      qry = "UPSERT INTO `PokerRangeAppalyzer` (KEY,VALUE) VALUES (  \"" + user + board + "\",{ \"user\":\"" + 
-            user + "\", \"board\":\"" + board + "\", \"rangeRepo\": [" + rangeRepoIP.to_json + ", " + 
-            rangeRepoOOP.to_json + "]} )"
+
       
-      response = RestClient::Request.execute(method: :post, url: 'http://15.223.60.46:8093/query/service',
-        payload: {statement: qry}, user: ENV['MAIN_USER_USERNAME'], password: ENV['MAIN_USER_PASSWORD'])
+      # qry = "UPSERT INTO `PokerRangeAppalyzer` (KEY,VALUE) VALUES (  \"" + user + board + "\",{ \"user\":\"" + 
+      #       user + "\", \"board\":\"" + board + "\", \"rangeRepo\": [" + rangeRepoIP.to_json + ", " + 
+      #       rangeRepoOOP.to_json + "]} )"
+      
+      # response = RestClient::Request.execute(method: :post, url: 'http://15.223.60.46:8093/query/service',
+      #   payload: {statement: qry}, user: ENV['MAIN_USER_USERNAME'], password: ENV['MAIN_USER_PASSWORD'])
 
       
       render json: JSON.parse(response)

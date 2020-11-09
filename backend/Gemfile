@@ -40,7 +40,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data' #, platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# gem 'mysql2'
+gem 'mysql2'
 
 gem 'stripe'
 
@@ -54,9 +54,9 @@ gem 'jwt'
 # gem 'aws-sdk', '~> 3'
 # gem 'aws-sdk-rails'
 
-# group :development do
-#   # gem 'ruby-debug-ide', '0.6.0'
-# end
+group :development do
+  gem 'ruby-debug-ide', '0.6.0'
+end
 gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
   
 # gem "couchbase", "3.0.0.alpha.5"
@@ -66,6 +66,7 @@ gem 'rest-client'
 gem 'omniauth-auth0', '~> 2.2'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
+gem 'sqlite3'
 # group :development do
 #   gem 'web-console', '~> 2.0', group: :development
 # end

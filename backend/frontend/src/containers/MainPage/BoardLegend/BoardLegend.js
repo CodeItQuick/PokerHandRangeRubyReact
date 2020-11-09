@@ -150,11 +150,6 @@ const BoardLegend = ({ wholeRange, onHandleStreetHandlerButtons, mode: { street,
 		[ wholeRange, street, deadcards ]
 	);
 
-	const nameOfAction = (comboNumber) => {
-		if (street && wholeRange[street] !== undefined) return Object.keys(wholeRange[street])[comboNumber];
-		else return '';
-	};
-
 	return <StyledContainer>{legendTable(numberOfCombos, indexOfActions, streetActions[street])}</StyledContainer>;
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledCol, ColorCard, StyledRow } from '../Board/Styles.js';
 
 import { CardHandSuitBuilder } from './CardHandSuitBuilder';
-import TableGridColumn from './TableGridColumn';
+import TableGridColumn from '../Board/TableGridColumn';
 import RangeObject from './RangeObject';
 
 import { initialState } from '../reducer.js';

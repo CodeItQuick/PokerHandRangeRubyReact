@@ -57,6 +57,7 @@ const Board = ({ onMouseOverHandler, SelectedRanges, preflopRanges }) => {
 
 	useEffect(
 		() => {
+			console.log(SelectedRanges);
 			if (instanceOfBoardHands) {
 				instanceOfBoardHands.updateCardGrid(preflopRanges, SelectedRanges);
 
