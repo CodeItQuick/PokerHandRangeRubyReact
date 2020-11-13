@@ -2,7 +2,7 @@
 
 # frozen_string_literal: true
 class PrivateController < ActionController::API
-    # include Secured
+    include Secured
 
     def couchbase_insert()
       board = params[:deadcards]
@@ -14,11 +14,11 @@ class PrivateController < ActionController::API
       filename = params[:Filename]
         
       # Enable below in server
-      # @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
+      @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
       
-      # responses, header = JsonWebToken.verify(@auth_payload) 
-      # user = responses['sub'].split('|')[1]
-      user = 'default'
+      responses, header = JsonWebToken.verify(@auth_payload) 
+      user = responses['sub'].split('|')[1]
+      # user = 'default'
 
       @newRangeObjectCollection = RangeObjectCollection.new(ScenarioName: filename, Board: board, HandName: :rangeRepoIP, PokerUser: user, positionOpener: positionOpener, positionDefender: positionDefender)
       @newRangeObjectCollection.save
@@ -46,12 +46,12 @@ class PrivateController < ActionController::API
 
     def get_scenarios()
 
-      # @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
+      @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
       
-      # responses, header = JsonWebToken.verify(@auth_payload) 
-      # user = responses['sub'].split('|')[1]
+      responses, header = JsonWebToken.verify(@auth_payload) 
+      user = responses['sub'].split('|')[1]
        
-      user = 'default'
+      # user = 'default'
 
       @boardCards = RangeCollectionMetum.joins(:range_object_collection, :range_object ).select("*").where("Board = '" + params[:boardcards] + "' AND PokerUser = '" + user + "'")
       render json: @boardCards
@@ -63,12 +63,12 @@ class PrivateController < ActionController::API
       bucket_name = "PokerRangeAppalyzer"
       scope_name = "myapp"
       
-      # @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
+      @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
       
-      # responses, header = JsonWebToken.verify(@auth_payload) 
-      # user = responses['sub'].split('|')[1]
+      responses, header = JsonWebToken.verify(@auth_payload) 
+      user = responses['sub'].split('|')[1]
       
-      user = 'default'
+      # user = 'default'
 
       @userRangeCollection = RangeObjectCollection.where( "PokerUser = '" + user + "'").distinct.pluck(:Board, :ScenarioName, :positionDefender, :positionOpener)
       render json: @userRangeCollection

@@ -27,7 +27,7 @@ export function* saveScenario({
     token,
   },
 }) {
-  const requestUrl = `http://localhost:3000/api/private/insert`;
+  const requestUrl = `http://www.poker-range-appalyzer.com/api/private/insert`;
 
   // if (!token) return;
 
@@ -73,7 +73,7 @@ export function* saveScenario({
  * Get All Hand Ranges request/response handler
  */
 export function* getScenario({ data: { scenario, token } }) {
-  const requestUrl = `http://localhost:3000/api/private/get-scenario`;
+  const requestUrl = `http://www.poker-range-appalyzer.com/api/private/get-scenario`;
 
   // if (!token) return;
 
@@ -110,7 +110,7 @@ export function* getScenario({ data: { scenario, token } }) {
  * Get All Hand Ranges request/response handler
  */
 export function* getAllScenario() {
-  const requestUrl = `http://localhost:3000/api/private/get-all-scenario`;
+  const requestUrl = `http://www.poker-range-appalyzer.com/api/private/get-all-scenario`;
 
   // if (!data) return;
 
