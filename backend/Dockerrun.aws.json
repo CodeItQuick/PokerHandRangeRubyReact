@@ -12,34 +12,6 @@
           "containerPort": 3000
         }
       ]
-    },
-    {
-      "name": "couchbase",
-      "image": "couchbase",
-      "essential": false,
-      "memory": 2048,
-      "portMappings": [
-        {
-          "hostPort": 8091,
-          "containerPort": 8091
-        },
-        {
-          "hostPort": 8092,
-          "containerPort": 8092
-        },
-        {
-          "hostPort": 8093,
-          "containerPort": 8093
-        },
-        {
-          "hostPort": 8094,
-          "containerPort": 8094
-        },
-        {
-          "hostPort": 11210,
-          "containerPort": 11210
-        }
-      ]
     }
   ]
 }

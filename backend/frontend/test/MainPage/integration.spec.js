@@ -16,7 +16,11 @@ describe("Integration tests: ", () => {
 		.reply(200, {
 			...httpResponseGetScenario
 			})
-		
+		nock('http://www.poker-range-appalyzer.com')
+		.post('/api/private/get-scenario')
+		.reply(200, {
+			...httpResponseGetScenario
+			})
 		let sagaTester = null
 
 		sagaTester = new SagaTester({initialState, reducers: reducer});
@@ -45,7 +49,11 @@ describe("Integration tests: ", () => {
 		.reply(200, {
             ...httpResponseGetAllScenario
 			})
-		
+		nock('http://www.poker-range-appalyzer.com')
+		.post('/api/private/get-all-scenario')
+		.reply(200, {
+            ...httpResponseGetAllScenario
+			})
 		let sagaTester = null
 
 		sagaTester = new SagaTester({initialState, reducers: reducer});

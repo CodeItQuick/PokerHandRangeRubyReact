@@ -89,5 +89,6 @@ test:
 production:
   <<: *default
   database: RangeSharingReactRubyAPI_production
-  username: RangeSharingReactRubyAPI
-  password: <%= ENV['RANGESHARINGREACTRUBYAPI_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  
