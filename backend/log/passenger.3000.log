@@ -8660,3 +8660,708 @@ App 30371 output: #<RangeObject:0x00007fbb47c8aca8>
 [ E 2020-11-06 02:23:52.3434 97092/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
 [ N 2020-11-07 21:30:04.3246 97092/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
 [ E 2020-11-07 21:30:04.3456 97092/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+[ N 2020-11-10 16:16:40.5330 78099/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:16:40.5828 78101/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:16:40.5834 78101/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:16:40.6194 78101/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 78101
+[ N 2020-11-10 16:16:43.3255 78101/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:16:43.3392 78101/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-10 16:20:51.4497 78101/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 16:20:51.4498 78101/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 16:20:51.4499 78101/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78153, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:20:51.4503 78101/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78160, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:20:51.4503 78101/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78168, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:20:51.4504 78101/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 16:20:51.4504 78101/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 16:20:51.4505 78101/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 16:20:51.4504 78101/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 16:20:51.4506 78101/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 16:20:51.4506 78101/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 16:20:51.4505 78101/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 16:20:51.4506 78101/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 16:20:51.4506 78101/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 16:20:51.4505 78101/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 16:20:51.4507 78101/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 16:20:51.4505 78101/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 16:20:51.4507 78101/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 16:20:51.4504 78101/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 16:20:51.4506 78101/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 16:20:51.4509 78101/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 16:20:51.4508 78101/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 16:20:51.4509 78101/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 16:20:51.4510 78101/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78153, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:20:51.4513 78101/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78160, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:20:51.4514 78101/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78168, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:20:52.3039 78101/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 16:20:53.4013 78476/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:20:53.4454 78478/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:20:53.4458 78478/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:20:53.4781 78478/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 78478
+[ N 2020-11-10 16:20:56.2044 78478/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:20:56.2136 78478/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-10 16:23:00.9665 78478/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 16:23:00.9666 78478/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 16:23:00.9667 78478/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78605, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:23:00.9669 78478/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 16:23:00.9670 78478/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 16:23:00.9670 78478/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 16:23:00.9670 78478/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 16:23:00.9671 78478/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 16:23:00.9672 78478/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 16:23:00.9669 78478/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 16:23:00.9669 78478/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 16:23:00.9670 78478/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 16:23:00.9670 78478/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 16:23:00.9672 78478/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 16:23:00.9673 78478/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 16:23:00.9670 78478/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 16:23:00.9675 78478/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 16:23:00.9673 78478/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 16:23:00.9675 78478/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 16:23:00.9677 78478/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 16:23:00.9677 78478/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 16:23:00.9679 78478/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78605, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:23:01.8215 78478/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 16:23:03.1898 78676/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:23:03.2516 78678/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:23:03.2521 78678/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:23:03.3067 78678/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 78678
+[ N 2020-11-10 16:23:06.0285 78678/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:23:06.0563 78678/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-10 16:30:13.1923 78678/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 16:30:13.1924 78678/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 16:30:13.1925 78678/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78726, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:30:13.1926 78678/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 16:30:13.1926 78678/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 16:30:13.1927 78678/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 16:30:13.1927 78678/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 16:30:13.1926 78678/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 16:30:13.1927 78678/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 16:30:13.1927 78678/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 16:30:13.1928 78678/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 16:30:13.1927 78678/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 16:30:13.1926 78678/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 16:30:13.1927 78678/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 16:30:13.1929 78678/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 16:30:13.1928 78678/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 16:30:13.1926 78678/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 16:30:13.1928 78678/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 16:30:13.1929 78678/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 16:30:13.1930 78678/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 16:30:13.1930 78678/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 16:30:13.1932 78678/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 78726, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:30:14.0471 78678/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 16:30:15.8799 79363/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:30:15.9358 79365/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:30:15.9365 79365/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:30:15.9894 79365/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 79365
+[ N 2020-11-10 16:30:18.7836 79365/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:30:18.9031 79365/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-10 16:36:31.9705 79365/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 16:36:31.9706 79365/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 16:36:31.9707 79365/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 79422, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:36:31.9708 79365/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 16:36:31.9708 79365/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 16:36:31.9708 79365/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 16:36:31.9708 79365/Tf Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 16:36:31.9708 79365/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 16:36:31.9709 79365/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 16:36:31.9708 79365/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 16:36:31.9708 79365/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 16:36:31.9709 79365/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 16:36:31.9709 79365/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 16:36:31.9709 79365/Tf Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 16:36:31.9710 79365/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 16:36:31.9708 79365/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 16:36:31.9711 79365/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 16:36:31.9709 79365/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 16:36:31.9714 79365/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 16:36:31.9712 79365/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 16:36:31.9713 79365/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 16:36:31.9719 79365/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 79422, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:36:32.8459 79365/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 16:36:34.0903 79719/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:36:34.1568 79721/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:36:34.1578 79721/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:36:34.1957 79721/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 79721
+[ N 2020-11-10 16:36:36.8873 79721/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:36:36.9075 79721/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-10 16:37:11.3012 79721/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 16:37:11.3013 79721/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 16:37:11.3014 79721/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 79771, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:37:11.3018 79721/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 16:37:11.3018 79721/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 16:37:11.3018 79721/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 16:37:11.3019 79721/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 16:37:11.3019 79721/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 16:37:11.3019 79721/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 16:37:11.3019 79721/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 16:37:11.3020 79721/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 16:37:11.3018 79721/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 16:37:11.3020 79721/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 16:37:11.3018 79721/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 16:37:11.3020 79721/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 16:37:11.3020 79721/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 16:37:11.3021 79721/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 16:37:11.3021 79721/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 16:37:11.3020 79721/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 16:37:11.3023 79721/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 16:37:11.3024 79721/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 16:37:11.3028 79721/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 79771, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:37:12.1397 79721/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 16:37:13.1458 79833/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:37:13.2360 79835/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:37:13.2364 79835/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:37:13.2820 79835/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 79835
+[ N 2020-11-10 16:37:16.0382 79835/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:37:16.0532 79835/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-10 16:40:37.7602 79835/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 16:40:37.7603 79835/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 16:40:37.7603 79835/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 79887, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:40:37.7605 79835/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 16:40:37.7605 79835/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 16:40:37.7607 79835/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 16:40:37.7608 79835/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 16:40:37.7608 79835/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 16:40:37.7608 79835/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 16:40:37.7608 79835/Th Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 16:40:37.7608 79835/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 16:40:37.7608 79835/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 16:40:37.7609 79835/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 16:40:37.7609 79835/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 16:40:37.7609 79835/Th Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 16:40:37.7608 79835/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 16:40:37.7611 79835/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 16:40:37.7609 79835/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 16:40:37.7611 79835/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 16:40:37.7614 79835/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 16:40:37.7615 79835/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 16:40:37.7621 79835/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 79887, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:40:38.6682 79835/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 16:40:57.0135 80073/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:40:57.0720 80075/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:40:57.0729 80075/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:40:57.1243 80075/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 80075
+[ N 2020-11-10 16:40:59.8205 80075/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:40:59.8305 80075/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+[ N 2020-11-10 16:46:21.8989 80075/T4 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 80130, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+
+[ N 2020-11-10 16:48:13.5413 80075/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 16:48:13.5413 80075/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 16:48:13.5413 80075/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 80137, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:48:13.5416 80075/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 16:48:13.5416 80075/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 16:48:13.5416 80075/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 16:48:13.5416 80075/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 16:48:13.5416 80075/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 16:48:13.5417 80075/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 16:48:13.5417 80075/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 16:48:13.5417 80075/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 16:48:13.5416 80075/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 16:48:13.5418 80075/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 16:48:13.5418 80075/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 16:48:13.5416 80075/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 16:48:13.5417 80075/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 16:48:13.5419 80075/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 16:48:13.5416 80075/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 16:48:13.5419 80075/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 16:48:13.5419 80075/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 16:48:13.5420 80075/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 16:48:13.5421 80075/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 80137, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:48:14.3853 80075/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 16:48:15.8053 80479/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:48:15.9213 80481/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:48:15.9218 80481/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:48:15.9803 80481/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 80481
+[ N 2020-11-10 16:48:18.7807 80481/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:48:18.7947 80481/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-10 16:48:54.4188 80481/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 16:48:54.4190 80481/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 16:48:54.4190 80481/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 80531, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:48:54.4194 80481/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 16:48:54.4194 80481/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 16:48:54.4195 80481/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 16:48:54.4195 80481/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 16:48:54.4196 80481/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 16:48:54.4196 80481/Th Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 16:48:54.4196 80481/Th Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 16:48:54.4196 80481/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 16:48:54.4197 80481/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 16:48:54.4197 80481/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 16:48:54.4197 80481/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 16:48:54.4195 80481/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 16:48:54.4200 80481/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 16:48:54.4196 80481/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 16:48:54.4197 80481/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 16:48:54.4201 80481/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 16:48:54.4215 80481/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 16:48:54.4215 80481/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 16:48:54.4216 80481/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 80531, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:48:55.2688 80481/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 16:51:17.2423 80631/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:51:17.3051 80633/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:51:17.3055 80633/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:51:17.3402 80633/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 80633
+[ N 2020-11-10 16:51:20.4360 80633/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:51:20.4487 80633/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-10 16:56:02.5179 80633/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 16:56:02.5180 80633/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 16:56:02.5180 80633/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 80684, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:56:02.5185 80633/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 16:56:02.5185 80633/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 16:56:02.5185 80633/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 16:56:02.5186 80633/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 16:56:02.5186 80633/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 16:56:02.5186 80633/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 16:56:02.5186 80633/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 16:56:02.5187 80633/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 16:56:02.5187 80633/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 16:56:02.5187 80633/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 16:56:02.5188 80633/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 16:56:02.5188 80633/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 16:56:02.5189 80633/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 16:56:02.5188 80633/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 16:56:02.5189 80633/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 16:56:02.5187 80633/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 16:56:02.5190 80633/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 16:56:02.5193 80633/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 16:56:02.5194 80633/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 80684, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 16:56:03.4389 80633/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 16:56:05.0045 80911/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 16:56:05.0786 80913/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 16:56:05.0790 80913/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 16:56:05.1330 80913/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 80913
+[ N 2020-11-10 16:56:07.9137 80913/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 16:56:07.9320 80913/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 80963 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:32: warning: key :PokerUser is duplicated and overwritten on line 32
+
+[ N 2020-11-10 20:39:20.1826 80913/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 20:39:20.1827 80913/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 20:39:20.1827 80913/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 80963, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 20:39:20.1829 80913/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 20:39:20.1829 80913/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 20:39:20.1829 80913/Tb Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 20:39:20.1829 80913/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 20:39:20.1829 80913/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 20:39:20.1829 80913/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 20:39:20.1830 80913/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 20:39:20.1830 80913/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 20:39:20.1830 80913/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 20:39:20.1831 80913/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 20:39:20.1831 80913/Tb Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 20:39:20.1831 80913/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 20:39:20.1832 80913/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 20:39:20.1832 80913/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 20:39:20.1835 80913/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 20:39:20.1836 80913/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 20:39:20.1835 80913/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 20:39:20.1836 80913/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 20:39:20.1837 80913/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 80963, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 20:39:21.1319 80913/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 20:44:21.8158 85697/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 20:44:21.9139 85699/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 20:44:21.9148 85699/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 20:44:22.0188 85699/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 85699
+[ N 2020-11-10 20:44:25.4607 85699/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 20:44:25.4789 85699/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 85751 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+App 85751 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+App 85751 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+
+[ N 2020-11-10 21:23:21.8767 85699/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 21:23:21.8775 85699/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 21:23:21.8777 85699/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 85751, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:23:21.8784 85699/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 21:23:21.8784 85699/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 21:23:21.8786 85699/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 21:23:21.8787 85699/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 21:23:21.8785 85699/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 21:23:21.8788 85699/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 21:23:21.8788 85699/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 21:23:21.8788 85699/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 21:23:21.8785 85699/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 21:23:21.8787 85699/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 21:23:21.8787 85699/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 21:23:21.8789 85699/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 21:23:21.8789 85699/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 21:23:21.8790 85699/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 21:23:21.8790 85699/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 21:23:21.8791 85699/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 21:23:21.8814 85699/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 21:23:21.8815 85699/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 21:23:21.8854 85699/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 85751, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:23:22.9432 85699/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 21:23:23.9377 89154/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 21:23:23.9967 89156/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 21:23:23.9972 89156/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 21:23:24.0363 89156/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 89156
+[ N 2020-11-10 21:23:26.8421 89156/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 21:23:26.8565 89156/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 89205 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+
+[ N 2020-11-10 21:25:54.7966 89156/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 21:25:54.7968 89156/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 21:25:54.7968 89156/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89205, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:25:54.7969 89156/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89212, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:25:54.7969 89156/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 21:25:54.7970 89156/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 21:25:54.7970 89156/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 21:25:54.7970 89156/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 21:25:54.7970 89156/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 21:25:54.7970 89156/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 21:25:54.7970 89156/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 21:25:54.7970 89156/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 21:25:54.7970 89156/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 21:25:54.7971 89156/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 21:25:54.7972 89156/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 21:25:54.7970 89156/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 21:25:54.7972 89156/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 21:25:54.7971 89156/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 21:25:54.7973 89156/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 21:25:54.7971 89156/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 21:25:54.7973 89156/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 21:25:54.7972 89156/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 21:25:54.7975 89156/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89205, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:25:54.7976 89156/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89212, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:25:55.6551 89156/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 21:25:56.7552 89436/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 21:25:56.8150 89438/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 21:25:56.8178 89438/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 21:25:56.8628 89438/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 89438
+
+[ pid=89450, timestamp=1605057958 ] Process aborted! signo=SIGILL(4), reason=#1, si_addr=0x7fff71f916b9, randomSeed=1605057956
+[ pid=89450 ] Crash log files will be dumped to /var/tmp/passenger-crash-log.1605057958.ZL4AKO <--- ******* LOOK HERE FOR DETAILS!!! *******
+[ pid=89450 ] Date and uname:
+Tue 10 Nov 2020 21:25:59 AST
+Darwin 19.6.0 Darwin Kernel Version 19.6.0: Thu Jun 18 20:49:00 PDT 2020; root:xnu-6153.141.1~1/RELEASE_X86_64 x86_64 i386
+[ pid=89450 ] Phusion Passenger version: 6.0.5
+[ pid=89450 ] libc backtrace available!
+--------------------------------------
+[ pid=89450 ] Backtrace with 20 frames:
+0   PassengerAgent                      0x0000000108d0b186 PassengerAgent + 455046
+1   PassengerAgent                      0x0000000108d0af43 PassengerAgent + 454467
+2   PassengerAgent                      0x0000000108d0775f PassengerAgent + 440159
+3   PassengerAgent                      0x0000000108cfdec6 PassengerAgent + 401094
+4   libsystem_platform.dylib            0x00007fff71f8e5fd _sigtramp + 29
+5   ???                                 0x0000000000000000 0x0 + 0
+6   libsystem_platform.dylib            0x00007fff71f8bf89 _os_alloc_once + 42
+7   libsystem_coreservices.dylib        0x00007fff71e73c75 _libcoreservices_fork_child + 78
+8   libSystem.B.dylib                   0x00007fff6ed7baa9 libSystem_atfork_child + 44
+9   libsystem_c.dylib                   0x00007fff71df58ad fork + 40
+10  PassengerAgent                      0x0000000108f40f95 boost::asio::execution_context::service* boost::asio::detail::service_registry::create<boost::asio::detail::deadline_timer_service<boost::asio::time_traits<boost::posix_time::ptime> >, boost::asio::io_context>(void*) + 604405
+11  PassengerAgent                      0x0000000108cc55e9 PassengerAgent + 169449
+12  PassengerAgent                      0x0000000108cd36e6 PassengerAgent + 227046
+13  PassengerAgent                      0x0000000108cd3897 PassengerAgent + 227479
+14  PassengerAgent                      0x0000000108f42da1 boost::asio::execution_context::service* boost::asio::detail::service_registry::create<boost::asio::detail::deadline_timer_service<boost::asio::time_traits<boost::posix_time::ptime> >, boost::asio::io_context>(void*) + 612097
+15  PassengerAgent                      0x0000000108cb6d37 PassengerAgent + 109879
+16  PassengerAgent                      0x0000000108cb6b84 PassengerAgent + 109444
+17  PassengerAgent                      0x0000000108f3b358 boost::asio::execution_context::service* boost::asio::detail::service_registry::create<boost::asio::detail::deadline_timer_service<boost::asio::time_traits<boost::posix_time::ptime> >, boost::asio::io_context>(void*) + 580792
+18  libsystem_pthread.dylib             0x00007fff71f9a109 _pthread_start + 148
+19  libsystem_pthread.dylib             0x00007fff71f95b8b thread_start + 15
+--------------------------------------
+[ pid=89450 ] Dumping ulimits...
+Dumping to /var/tmp/passenger-crash-log.1605057958.ZL4AKO/ulimits.log
+--------------------------------------
+[ pid=89450 ] Dumping OXT backtraces...
+Dumping to /var/tmp/passenger-crash-log.1605057958.ZL4AKO/backtrace_oxt.log
+--------------------------------------
+[ pid=89450 ] Dumping controller states...
+Dumping to /var/tmp/passenger-crash-log.1605057958.ZL4AKO/controller_states.log
+--------------------------------------
+[ pid=89450 ] Dumping controller configs...
+Dumping to /var/tmp/passenger-crash-log.1605057958.ZL4AKO/controller_configs.log
+--------------------------------------
+[ pid=89450 ] Dumping pool state...
+Dumping to /var/tmp/passenger-crash-log.1605057958.ZL4AKO/pool.log
+--------------------------------------
+[ pid=89450 ] Dumping mbuf statistics...
+Dumping to /var/tmp/passenger-crash-log.1605057958.ZL4AKO/mbufs.log
+--------------------------------------
+[ pid=89450 ] Open files and file descriptors:
+Dumping to /var/tmp/passenger-crash-log.1605057958.ZL4AKO/fds.log
+--------------------------------------
+[ pid=89450 ] Dumping a more detailed backtrace with crash-watch...
+Dumping to /var/tmp/passenger-crash-log.1605057958.ZL4AKO/backtrace.log
+[ N 2020-11-10 21:25:59.7875 89438/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 21:25:59.7993 89438/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 89514 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+
+[ N 2020-11-10 21:27:35.2868 89438/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 21:27:35.2869 89438/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 21:27:35.2870 89438/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89514, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:27:35.2872 89438/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 21:27:35.2873 89438/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 21:27:35.2873 89438/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 21:27:35.2873 89438/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 21:27:35.2874 89438/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 21:27:35.2874 89438/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 21:27:35.2872 89438/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 21:27:35.2872 89438/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 21:27:35.2873 89438/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 21:27:35.2875 89438/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 21:27:35.2872 89438/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 21:27:35.2880 89438/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 21:27:35.2875 89438/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 21:27:35.2875 89438/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 21:27:35.2883 89438/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 21:27:35.2884 89438/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 21:27:35.2873 89438/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 21:27:35.2892 89438/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 21:27:35.2900 89438/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89514, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:28:46.6104 89714/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 21:28:46.6773 89716/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 21:28:46.6782 89716/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 21:28:46.7264 89716/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 89716
+[ N 2020-11-10 21:28:49.5014 89716/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 21:28:49.5106 89716/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 89766 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+
+[ N 2020-11-10 21:29:49.6242 89716/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 21:29:49.6242 89716/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 21:29:49.6243 89716/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89766, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:29:49.6245 89716/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 21:29:49.6245 89716/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 21:29:49.6245 89716/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 21:29:49.6245 89716/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 21:29:49.6245 89716/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 21:29:49.6245 89716/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 21:29:49.6245 89716/Tb Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 21:29:49.6245 89716/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 21:29:49.6247 89716/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 21:29:49.6247 89716/Tb Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 21:29:49.6246 89716/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 21:29:49.6245 89716/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 21:29:49.6247 89716/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 21:29:49.6245 89716/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 21:29:49.6246 89716/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 21:29:49.6248 89716/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 21:29:49.6247 89716/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 21:29:49.6249 89716/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 21:29:49.6253 89716/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89766, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:29:50.4701 89716/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 21:29:51.6309 89841/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 21:29:51.6890 89843/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 21:29:51.6896 89843/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 21:29:51.7348 89843/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 89843
+[ N 2020-11-10 21:29:54.6126 89843/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 21:29:54.6267 89843/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 89893 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+App 89893 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+
+[ N 2020-11-10 21:41:15.0857 89843/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 21:41:15.0857 89843/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 21:41:15.0858 89843/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89893, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:41:15.0859 89843/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 21:41:15.0859 89843/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 21:41:15.0860 89843/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 21:41:15.0860 89843/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 21:41:15.0860 89843/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 21:41:15.0860 89843/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 21:41:15.0861 89843/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 21:41:15.0861 89843/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 21:41:15.0861 89843/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 21:41:15.0861 89843/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 21:41:15.0860 89843/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 21:41:15.0860 89843/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 21:41:15.0862 89843/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 21:41:15.0863 89843/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 21:41:15.0862 89843/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 21:41:15.0864 89843/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 21:41:15.0864 89843/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 21:41:15.0864 89843/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 21:41:15.0869 89843/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89893, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:41:15.9592 89843/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 21:41:29.1982 90742/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 21:41:29.2550 90744/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 21:41:29.2555 90744/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 21:41:29.2972 90744/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 90744
+[ N 2020-11-10 21:41:32.0440 90744/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 21:41:32.0572 90744/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-10 21:43:32.6338 90744/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 21:43:32.6338 90744/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 21:43:32.6339 90744/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 90796, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:43:32.6340 90744/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 21:43:32.6341 90744/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 21:43:32.6341 90744/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 21:43:32.6342 90744/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 21:43:32.6342 90744/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 21:43:32.6342 90744/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 21:43:32.6343 90744/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 21:43:32.6341 90744/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 21:43:32.6343 90744/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 21:43:32.6343 90744/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 21:43:32.6341 90744/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 21:43:32.6342 90744/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 21:43:32.6345 90744/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 21:43:32.6344 90744/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 21:43:32.6342 90744/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 21:43:32.6345 90744/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 21:43:32.6343 90744/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 21:43:32.6346 90744/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 21:43:32.6352 90744/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 90796, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:43:33.4880 90744/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 21:43:36.8492 90909/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 21:43:36.8938 90911/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 21:43:36.8943 90911/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 21:43:36.9323 90911/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 90911
+[ N 2020-11-10 21:43:39.6918 90911/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 21:43:39.7037 90911/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 90960 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+
+[ N 2020-11-10 21:44:01.7476 90911/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-10 21:44:01.7483 90911/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-10 21:44:01.7485 90911/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 90960, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:44:01.7487 90911/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-10 21:44:01.7488 90911/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-10 21:44:01.7489 90911/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-10 21:44:01.7489 90911/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-10 21:44:01.7490 90911/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-10 21:44:01.7491 90911/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-10 21:44:01.7491 90911/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-10 21:44:01.7492 90911/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-10 21:44:01.7492 90911/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-10 21:44:01.7492 90911/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-10 21:44:01.7492 90911/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-10 21:44:01.7493 90911/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-10 21:44:01.7493 90911/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-10 21:44:01.7494 90911/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-10 21:44:01.7500 90911/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-10 21:44:01.7502 90911/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-10 21:44:01.7504 90911/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-10 21:44:01.7504 90911/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-10 21:44:01.7508 90911/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 90960, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-10 21:44:02.5977 90911/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-10 21:44:03.5683 91015/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-10 21:44:03.6416 91017/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-10 21:44:03.6425 91017/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-10 21:44:03.6830 91017/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 91017
+[ N 2020-11-10 21:44:06.4632 91017/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-10 21:44:06.4759 91017/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 91065 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+App 91065 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+
+[ N 2020-11-12 11:53:16.4620 91017/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-12 11:53:16.4644 91017/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-12 11:53:16.4651 91017/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 91065, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-12 11:53:16.4659 91017/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-12 11:53:16.4660 91017/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-12 11:53:16.4660 91017/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-12 11:53:16.4666 91017/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-12 11:53:16.4667 91017/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-12 11:53:16.4668 91017/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-12 11:53:16.4669 91017/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-12 11:53:16.4669 91017/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-12 11:53:16.4670 91017/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-12 11:53:16.4672 91017/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-12 11:53:16.4674 91017/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-12 11:53:16.4669 91017/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-12 11:53:16.4671 91017/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-12 11:53:16.4689 91017/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-12 11:53:16.4690 91017/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-12 11:53:16.4691 91017/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-12 11:53:16.4698 91017/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-12 11:53:16.4698 91017/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-12 11:53:16.4779 91017/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 91065, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-12 11:53:18.4600 91017/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-12 13:30:07.8119 86485/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-12 13:30:07.8715 86487/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-12 13:30:07.8720 86487/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-12 13:30:07.9181 86487/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 86487
+[ N 2020-11-12 13:30:10.6286 86487/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-12 13:30:10.6394 86487/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 86852 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend/app/controllers/private_controller.rb:33: warning: key :PokerUser is duplicated and overwritten on line 33
+[ N 2020-11-13 17:48:54.2184 86487/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-13 17:48:54.2279 86487/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-13 19:25:03.0458 86487/T9 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-13 19:25:03.0477 86487/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-13 19:25:03.0487 86487/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 86852, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-13 19:25:03.0508 86487/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-13 19:25:03.0509 86487/T9 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-13 19:25:03.0508 86487/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-13 19:25:03.0510 86487/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-13 19:25:03.0511 86487/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-13 19:25:03.0511 86487/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-13 19:25:03.0511 86487/T9 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-13 19:25:03.0512 86487/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-13 19:25:03.0511 86487/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-13 19:25:03.0515 86487/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-13 19:25:03.0521 86487/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-13 19:25:03.0509 86487/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-13 19:25:03.0537 86487/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-13 19:25:03.0538 86487/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-13 19:25:03.0545 86487/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-13 19:25:03.0546 86487/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-13 19:25:03.0554 86487/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-13 19:25:03.0554 86487/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-13 19:25:03.0566 86487/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 86852, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-13 19:25:04.9249 86487/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-13 19:25:10.5357 37894/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-13 19:25:10.5985 37896/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-13 19:25:10.5992 37896/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-13 19:25:10.6381 37896/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 37896
+[ N 2020-11-13 19:25:13.5515 37896/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-13 19:25:13.5644 37896/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-13 19:27:58.5305 37896/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-13 19:27:58.5307 37896/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-13 19:27:58.5308 37896/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 38059, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-13 19:27:58.5309 37896/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 38066, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-13 19:27:58.5310 37896/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-13 19:27:58.5311 37896/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-13 19:27:58.5310 37896/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-13 19:27:58.5311 37896/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-13 19:27:58.5310 37896/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-13 19:27:58.5311 37896/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-13 19:27:58.5311 37896/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-13 19:27:58.5312 37896/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-13 19:27:58.5312 37896/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-13 19:27:58.5312 37896/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-13 19:27:58.5313 37896/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-13 19:27:58.5312 37896/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-13 19:27:58.5315 37896/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-13 19:27:58.5312 37896/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-13 19:27:58.5314 37896/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-13 19:27:58.5316 37896/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-13 19:27:58.5312 37896/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-13 19:27:58.5317 37896/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-13 19:27:58.5318 37896/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 38059, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-13 19:27:58.5319 37896/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 38066, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-13 19:27:59.3802 37896/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-13 19:28:03.4930 38149/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-13 19:28:03.6093 38151/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-13 19:28:03.6100 38151/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-13 19:28:03.6645 38151/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 38151
+[ N 2020-11-13 19:28:06.3347 38151/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-13 19:28:06.3483 38151/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-13 19:28:09.4382 38151/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-13 19:28:09.4383 38151/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-13 19:28:09.4384 38151/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-13 19:28:09.4384 38151/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-13 19:28:09.4384 38151/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-13 19:28:09.4384 38151/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-13 19:28:09.4384 38151/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-13 19:28:09.4384 38151/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-13 19:28:09.4385 38151/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-13 19:28:09.4385 38151/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-13 19:28:09.4384 38151/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-13 19:28:09.4385 38151/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-13 19:28:09.4384 38151/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-13 19:28:09.4386 38151/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-13 19:28:09.4385 38151/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-13 19:28:09.4384 38151/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-13 19:28:09.4384 38151/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-13 19:28:09.4385 38151/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-13 19:28:09.4387 38151/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-13 19:28:09.4386 38151/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-13 19:28:10.0683 38151/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished

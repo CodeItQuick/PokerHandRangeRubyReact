@@ -8,10 +8,15 @@ import { Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { changeModeSuitSelection } from "../actions";
 import { makeSelectMode } from "../selectors";
+import reducer from "../reducer";
+import useInjectReducer from "../../../HOC/useInjectReducer";
+
+const key = "global";
 
 const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
   const dispatch = useDispatch();
   const [opens, setOpens] = useState(open);
+  useInjectReducer({ key, reducer });
 
   useEffect(() => {
     setOpens(open);
@@ -227,9 +232,9 @@ const SuitSelection = ({ mode: { suitSelection }, open, onCloseHandler }) => {
 const mapStateToProps = () => {
   const getMode = makeSelectMode();
 
-  const mapState = state => {
+  const mapState = (state) => {
     return {
-      mode: getMode(state)
+      mode: getMode(state),
     };
   };
   return mapState;

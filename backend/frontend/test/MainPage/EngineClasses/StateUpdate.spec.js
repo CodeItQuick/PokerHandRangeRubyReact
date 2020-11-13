@@ -266,7 +266,7 @@ describe('State Update Functions', () => {
 	})
 	test(' can be updated to generate a new board', () => {
 		let newBoardOfHands = new BoardOfHands();
-		const PreflopRanges = new RangeObjectCollection(JSON.parse(JSON.stringify(initialState.ranges)));
+		const PreflopRanges = new RangeObjectCollection(initialState.ranges);
 		const SelectedRanges = PreflopRanges.displayRangeByStreet({ Street: "Flop", useTwoFlopSizes: false})
 		Object.assign(SelectedRanges[0], { cardSuitHandArray: [new CardHandSuitBuilder().build("A", "A")] })
 		const AAHandObj = new CardHandSuitBuilder().build('A', 'A');

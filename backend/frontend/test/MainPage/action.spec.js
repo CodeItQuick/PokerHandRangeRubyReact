@@ -1,4 +1,4 @@
-import { transformHandRange } from '../../src/containers/MainPage/actions';
+import { transformHandRange, assignDeadcards } from '../../src/containers/MainPage/actions';
 
 describe('the transformHandRange function ', () => {
 	test('should be able to transform the sample data', () => {
@@ -42,5 +42,37 @@ describe('the transformHandRange function ', () => {
 		expect(transformHandRange(data, 'rangeRepoIP')).toStrictEqual([
 			{ BetType: 'Raise4BetCall', Street: 'Preflop', hands: [ 'AA' ] }
 		]);
+	});
+
+	test("should be able to assignDeadcards to an array of one deadcards when given a single deadcards", () => {
+		const deadcards = "Ac";
+		const result = assignDeadcards(deadcards);
+
+		expect(result).toStrictEqual(["Ac"]);
+	});
+
+	test("should be able to assignDeadcards to an array of two deadcards when given two deadcards", () => {
+		const deadcards = "TcAc";
+		const result = assignDeadcards(deadcards);
+
+		expect(result).toStrictEqual(["Tc", "Ac"]);
+	});
+	test("should be able to assignDeadcards to an array of three deadcards when given three deadcards", () => {
+		const deadcards = "7cQs5d";
+		const result = assignDeadcards(deadcards);
+
+		expect(result).toStrictEqual(["7c", "Qs", "5d"]);
+	});
+	test("should be able to assignDeadcards to an array of four deadcards when given four deadcards", () => {
+		const deadcards = "6c9c2d4c";
+		const result = assignDeadcards(deadcards);
+
+		expect(result).toStrictEqual(["6c", "9c" , "2d", "4c"]);
+	});
+	test("should be able to assignDeadcards to an array of five deadcards when given five deadcards", () => {
+		const deadcards = "AcAdAhAs5d";
+		const result = assignDeadcards(deadcards);
+
+		expect(result).toStrictEqual(["Ac", "Ad", "Ah", "As", "5d"]);
 	});
 });

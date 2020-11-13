@@ -1,12 +1,12 @@
 import React, { Fragment, useState, useEffect, memo } from "react";
 
-import { Menu, Item, Button, Dropdown, Icon } from "semantic-ui-react";
+import { Menu, Item, Button, Dropdown, Icon, Modal } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, connect } from "react-redux";
 import {
   initGetAllScenario,
   initSaveScenario,
-  changeUseOneFlopBetsize
+  changeUseOneFlopBetsize,
 } from "../../containers/MainPage/actions";
 import ScenarioLoader from "../../containers/MainPage/ScenarioLoader";
 import {
@@ -16,7 +16,11 @@ import {
   makeSelectRange,
 } from "../../containers/MainPage/selectors";
 import { compose } from "redux";
-import { makeSelectRangeRepoIP, makeSelectRangeRepoOOP } from "../../containers/MainPage/ProgressIndicator/selector";
+import {
+  makeSelectRangeRepoIP,
+  makeSelectRangeRepoOOP,
+} from "../../containers/MainPage/ProgressIndicator/selector";
+import SaveModal from "./SaveModal";
 
 const Navbar = ({
   isAuthenticated,
@@ -29,16 +33,44 @@ const Navbar = ({
   rangeRepoIP,
   rangeRepoOOP,
   mode: { isIP, useTwoFlopSizes },
-  updateTourOpen
+  updateTourOpen,
 }) => {
   const dispatch = useDispatch();
   const [state, setState] = useState({ active: false });
+  const [isOpen, setIsOpen] = useState(false);
+
+  const isOpenHandler = () => setIsOpen(!isOpen);
 
   const onCloseModal = () => {
     setState({
-      active: false
+      active: false,
     });
   };
+
+  const onSave = ({
+    positionOpener,
+    positionDefender,
+    inputBoard,
+    Filename,
+  }) => {
+    dispatch(
+      initSaveScenario({
+        token,
+        deadcards: inputBoard.reduce((acc, curr) => acc + curr, ""),
+        OpenerPosition: positionOpener,
+        Filename,
+        DefenderPosition: positionDefender,
+        user: user || "default", //FIXME: shouldn't be here at all, not sure what it will break
+        rangeRepoIP: isIP
+          ? selectedRanges.map((range) => range.getRangesObject())
+          : rangeRepoIP.map((range) => range.getRangesObject()),
+        rangeRepoOOP: !isIP
+          ? selectedRanges.map((range) => range.getRangesObject())
+          : rangeRepoOOP.map((range) => range.getRangesObject()),
+      })
+    );
+  };
+
   return (
     <Menu inverted>
       <Menu.Item>
@@ -51,27 +83,11 @@ const Navbar = ({
                 setState({ active: true });
               }}
             />
-            <Dropdown.Item
-              text="Save Scenario"
-              onClick={() => {
-                dispatch(
-                  initSaveScenario({
-                    token,
-                    deadcards: deadcards.toString(),
-                    user: "evan", //FIXME: shouldn't be here at all, not sure what it will break
-                    rangeRepoIP: isIP
-                      ? selectedRanges.map(range => range.getRangesObject())
-                      : rangeRepoIP.map(range => range.getRangesObject()),
-                    rangeRepoOOP: !isIP
-                      ? selectedRanges.map(range => range.getRangesObject())
-                      : rangeRepoOOP.map(range => range.getRangesObject())
-                  })
-                );
-              }}
-            />
+            <Dropdown.Item text="Save Scenario" onClick={isOpenHandler} />
           </Dropdown.Menu>
         </Dropdown>
       </Menu.Item>
+      <SaveModal isOpen={isOpen} setIsOpen={isOpenHandler} onSave={onSave} />
       <Menu.Item>
         <Dropdown text="Edit">
           <Dropdown.Menu>
@@ -135,14 +151,14 @@ const mapStateToProps = () => {
   const getRangeRepoIP = makeSelectRangeRepoIP();
   const getRangeRepoOOP = makeSelectRangeRepoOOP();
 
-  const mapState = state => {
+  const mapState = (state) => {
     return {
       selectedRanges: getRange(state),
       rangeRepoIP: getRangeRepoIP(state),
       rangeRepoOOP: getRangeRepoOOP(state),
       mode: getMode(state),
       selectedStreet: getSelectedStreet(state),
-      deadcards: getDeadcards(state)
+      deadcards: getDeadcards(state),
     };
   };
   return mapState;

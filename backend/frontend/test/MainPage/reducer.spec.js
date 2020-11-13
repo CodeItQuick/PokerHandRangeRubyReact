@@ -1,6 +1,6 @@
 import reducer, { initialState } from '../../src/containers/MainPage/reducer';
 import * as types from '../../src/containers/MainPage/constants';
-import { setHandRangeSelect, setHandRange, initSetHandRange, initSetDeadCards } from '../../src/containers/MainPage/actions';
+import { setHandRangeSelect, initSetHandRange, initSetDeadCards } from '../../src/containers/MainPage/actions';
 
 const data = [
 	{ name: 'Preflop', value: 'Raise4BetCall' },
@@ -32,16 +32,6 @@ describe('MainPage reducer', () => {
 			const action = setHandRangeSelect(data);
 
 			let newState = JSON.parse(JSON.stringify(initialState));
-			const result = {
-				...newState,
-				mode: {
-					street: data.name,
-					streetAction: data.value,
-					isIP: initialState.mode.isIP,
-					suitSelection: [],
-					useTwoFlopSizes: false
-				}
-			};
 
 			expect(reducer(undefined, action)).toEqual(newState);
 		}
@@ -90,4 +80,5 @@ describe('MainPage reducer', () => {
 
 		expect(reducer(undefined, action)).toEqual(newState);
 	});
+
 });

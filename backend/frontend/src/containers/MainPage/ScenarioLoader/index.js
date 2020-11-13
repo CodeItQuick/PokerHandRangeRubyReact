@@ -1,10 +1,9 @@
-import React, { useState, memo } from "react";
+import React, { memo } from "react";
 import { Modal } from "react-bootstrap";
-import { Icon, Button } from "semantic-ui-react";
-import ScenarioComponent from "./scenarioComponent";
+import { Button } from "semantic-ui-react";
 import { initialState } from "../reducer";
 import { compose } from "redux";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { makeSelectScenariosClass } from "../selectors";
 import Scenario from "./Scenario";
 import Scenarios from "./Scenarios";
@@ -14,15 +13,19 @@ const ScenarioLoader = ({
   token,
   onCloseModal,
   scenarios = new Scenarios([
-    new Scenario(
-      "Ac, Th, 4s",
-      initialState.rangeRepoIP,
-      initialState.rangeRepoOOP
-    )
-  ])
+    new Scenario({
+      board: "Ac, Th, 4s",
+      rangeRepoIP: initialState.rangeRepoIP,
+      rangeRepoOOP: initialState.rangeRepoOOP,
+      OpenerPosition: "UTG",
+      DefenderPosition: "MP",
+      Scenarioname: "default",
+      Filename: "default_scenario_name",
+    }),
+  ]),
 }) => {
   return (
-    <Modal onHide={onCloseModal} show={active} size="medium">
+    <Modal onHide={onCloseModal} show={active} size="large">
       <Modal.Header>
         <Modal.Title>Select a Scenario</Modal.Title>
       </Modal.Header>
@@ -38,9 +41,9 @@ const ScenarioLoader = ({
 const mapStateToProps = () => {
   const getScenarios = makeSelectScenariosClass();
 
-  const mapState = state => {
+  const mapState = (state) => {
     return {
-      scenarios: getScenarios(state)
+      scenarios: getScenarios(state),
     };
   };
   return mapState;

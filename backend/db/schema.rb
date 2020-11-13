@@ -37,15 +37,20 @@ ActiveRecord::Schema.define(version: 2020_09_18_152840) do
   end
 
   create_table "range_object_collections", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "ScenarioName", null: false
     t.string "Board", null: false
     t.string "HandName", null: false
     t.string "PokerUser", null: false
+    t.string "positionOpener", null: false
+    t.string "positionDefender", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["Board", "HandName", "PokerUser"], name: "UniqueSaveKey", unique: true
     t.index ["Board"], name: "index_range_object_collections_on_Board"
     t.index ["HandName"], name: "index_range_object_collections_on_HandName"
     t.index ["PokerUser"], name: "index_range_object_collections_on_PokerUser"
+    t.index ["ScenarioName", "HandName", "PokerUser"], name: "Filename", unique: true
+    t.index ["positionDefender"], name: "index_range_object_collections_on_positionDefender"
+    t.index ["positionOpener"], name: "index_range_object_collections_on_positionOpener"
   end
 
   create_table "range_objects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|

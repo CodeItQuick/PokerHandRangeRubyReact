@@ -1,24 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import { Button } from "semantic-ui-react";
+import { Button, Table } from "semantic-ui-react";
 
 import { useDispatch } from "react-redux";
 import { initGetScenario } from "../actions";
-import { useAuth0 } from "@auth0/auth0-react";
-import reducer from '../reducer';
+import reducer from "../reducer";
 import { useInjectReducer } from "../../../HOC/useInjectReducer";
 
-const key = 'global';
+const key = "global";
 const ScenarioComponent = ({ scenario, token }) => {
-	useInjectReducer({ key, reducer });
+  useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
 
   const onClickHandler = () => dispatch(initGetScenario({ scenario, token }));
 
   return (
-    <Button onClick={onClickHandler}>
-      {scenario ? scenario.displayScenario() : ""}
-    </Button>
+    <Table.Row>
+      <Table.Cell>{scenario ? scenario?.displayScenarioName() : ""}</Table.Cell>
+      <Table.Cell>
+        {scenario ? scenario?.displayOpenerPosition() : ""}
+      </Table.Cell>
+      <Table.Cell>
+        {scenario ? scenario?.displayDefenderPosition() : ""}
+      </Table.Cell>
+      <Table.Cell>{scenario ? scenario?.displayDeadcards() : ""}</Table.Cell>
+      <Table.Cell>
+        <Button color="green" onClick={onClickHandler}>
+          Load
+        </Button>
+      </Table.Cell>
+    </Table.Row>
   );
 };
 

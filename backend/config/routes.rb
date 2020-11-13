@@ -10,10 +10,10 @@ Rails.application.routes.draw do
    get "/auto_login", to: "auth#auto_login"
    get "/persist", to: "auth#persist"
    post "/api/public", to: "public#public"
-   post "/api/public/insert", to: "public#couchbase_insert"
-   post "/api/public/get-scenario", to: "public#get_scenario"
-   post "/api/public/get-all-scenario", to: "public#get_all_scenario"
+   post "/api/public/get-scenario", to: "private#get_scenario"
+   post "/api/public/get-all-scenario", to: "private#get_all_scenario"
    post "/api/private", to: "private#private"
+   post "/api/private/insert", to: "private#couchbase_insert"
    post "/api/private/get-scenario", to: "private#get_scenario"
    post "/api/private/get-all-scenario", to: "private#get_all_scenario"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
