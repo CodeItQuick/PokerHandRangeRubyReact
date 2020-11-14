@@ -88,7 +88,9 @@ test:
 #
 production:
   <<: *default
-  database: RangeSharingReactRubyAPI_production
+  database: <%= ENV['RDS_DB_NAME'] %>
   username: <%= ENV['DB_USERNAME'] %>
   password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
   
