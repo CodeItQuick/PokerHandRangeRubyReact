@@ -109,15 +109,15 @@ export function* getScenario({ data: { scenario, token } }) {
 /**
  * Get All Hand Ranges request/response handler
  */
-export function* getAllScenario(data) {
+export function* getAllScenario({ token }) {
   const requestUrl = `https://www.poker-range-appalyzer.com/api/private/get-all-scenario`;
 
-  if (!data) return;
+  if (!token) return;
 
   try {
     const headers = {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${data}`,
+      Authorization: `Bearer ${token}`,
     };
 
     const requestParams = {
