@@ -30,7 +30,7 @@ class PrivateController < ActionController::API
         @newRangeObjectMeta.save
       end
       
-      @newRangeObjectCollection2 = RangeObjectCollection.new(ScenarioName: filename, Board: board, HandName: :rangeRepoOOP, PokerUser: user, PokerUser: user, positionOpener: positionOpener, positionDefender: positionDefender)
+      @newRangeObjectCollection2 = RangeObjectCollection.new(ScenarioName: filename, Board: board, HandName: :rangeRepoOOP, PokerUser: user, positionOpener: positionOpener, positionDefender: positionDefender)
       @newRangeObjectCollection2.save
 
       for index in 0..rangeRepoOOP.length() - 1 do
