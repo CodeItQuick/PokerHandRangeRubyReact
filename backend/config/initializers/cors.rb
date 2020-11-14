@@ -24,7 +24,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
 
 
     allow do
-      origins 'www.poker-range-appalyzer.com'
+      origins 'https://www.poker-range-appalyzer.com'
       resource '*',
         headers: :any,
         methods: %i(get post put patch delete options head)
