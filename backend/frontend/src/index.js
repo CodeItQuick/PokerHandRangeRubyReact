@@ -38,11 +38,11 @@ store.subscribe(
   }, 1000)
 );
 
-const siteUrl = `${process.env.REACT_APP_PRODUCTION_API_URL}`;
+const siteUrl = `https://www.poker-range-appalyzer.com`;
 
 // A function that routes the user to the right place
 // after login
-const onRedirectCallback = appState => {
+const onRedirectCallback = (appState) => {
   history.push(appState && siteUrl ? siteUrl : window.location.pathname);
 };
 

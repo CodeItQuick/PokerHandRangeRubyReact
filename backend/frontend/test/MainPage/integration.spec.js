@@ -16,7 +16,7 @@ describe("Integration tests: ", () => {
 		.reply(200, {
 			...httpResponseGetScenario
 			})
-		nock('http://www.poker-range-appalyzer.com')
+		nock('https://www.poker-range-appalyzer.com')
 		.post('/api/private/get-scenario')
 		.reply(200, {
 			...httpResponseGetScenario
@@ -49,7 +49,7 @@ describe("Integration tests: ", () => {
 		.reply(200, {
             ...httpResponseGetAllScenario
 			})
-		nock('http://www.poker-range-appalyzer.com')
+		nock('https://www.poker-range-appalyzer.com')
 		.post('/api/private/get-all-scenario')
 		.reply(200, {
             ...httpResponseGetAllScenario
