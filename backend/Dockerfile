@@ -48,7 +48,5 @@ COPY --chown=app --from=build-stage /frontend/build/ /home/app/webapp/public/
 # RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 WORKDIR /home/app/webapp/
 RUN bundle install
-RUN rake db:create
-RUN rake db:migrate
 
 CMD ["passenger", "start", "-e production"]
