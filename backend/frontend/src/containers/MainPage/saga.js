@@ -109,7 +109,7 @@ export function* getScenario({ data: { scenario, token } }) {
 /**
  * Get All Hand Ranges request/response handler
  */
-export function* getAllScenario() {
+export function* getAllScenario(data) {
   const requestUrl = `https://www.poker-range-appalyzer.com/api/private/get-all-scenario`;
 
   if (!data) return;
