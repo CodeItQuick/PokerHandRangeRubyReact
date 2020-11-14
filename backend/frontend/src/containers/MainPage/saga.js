@@ -29,7 +29,7 @@ export function* saveScenario({
 }) {
   const requestUrl = `https://www.poker-range-appalyzer.com/api/private/insert`;
 
-  // if (!token) return;
+  if (!token) return;
 
   console.log({
     deadcards,
@@ -44,7 +44,7 @@ export function* saveScenario({
 
   const headers = {
     "Content-Type": "application/json",
-    // Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${token}`,
   };
   const body = {
     deadcards,
@@ -75,12 +75,12 @@ export function* saveScenario({
 export function* getScenario({ data: { scenario, token } }) {
   const requestUrl = `https://www.poker-range-appalyzer.com/api/private/get-scenario`;
 
-  // if (!token) return;
+  if (!token) return;
 
   try {
     const headers = {
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
     };
     const body = {
       boardcards: scenario.displayDeadcards(),
@@ -112,12 +112,12 @@ export function* getScenario({ data: { scenario, token } }) {
 export function* getAllScenario() {
   const requestUrl = `https://www.poker-range-appalyzer.com/api/private/get-all-scenario`;
 
-  // if (!data) return;
+  if (!data) return;
 
   try {
     const headers = {
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${data}`
+      Authorization: `Bearer ${data}`,
     };
 
     const requestParams = {
