@@ -31,17 +31,6 @@ export function* saveScenario({
 
   if (!token) return;
 
-  console.log({
-    deadcards,
-    rangeRepoIP,
-    rangeRepoOOP,
-    user,
-    OpenerPosition,
-    DefenderPosition,
-    Filename,
-    token,
-  });
-
   const headers = {
     "Content-Type": "application/json",
     Authorization: `Bearer ${token}`,
@@ -94,7 +83,7 @@ export function* getScenario({ data: { scenario, token } }) {
 
     //yield call/put/cancelled APICALL
     const response = yield call(request, requestUrl, requestParams);
-    console.log(response); //?
+
     yield put(getScenarioSuccess(response));
     // yield put(allUserHandRangesSuccess(allRanges));
   } catch (err) {

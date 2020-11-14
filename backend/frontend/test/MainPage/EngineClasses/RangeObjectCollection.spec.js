@@ -51,13 +51,11 @@ describe('A RangeObject Collection ', () => {
 		expect(rangeObjectCollection.displayRange()).toEqual(result);
 	});
 	test('given a RangeObject can provide filtered range for the Flop', (Street = 'Flop') => {
-		console.log(Street);
 		const rangeObjectCollection = new RangeObjectCollection(data);
 		expect(rangeObjectCollection.displayPreviousRange({ Street, isIP: true }).length).toBe(4);
 		expect(rangeObjectCollection.displayPreviousRange({ Street, isIP: false }).length).toBe(4);
 	});
 	test('given a RangeObject can provide filtered range for the Turn', (Street = 'Turn') => {
-		console.log(Street);
 		const rangeObjectCollection = new RangeObjectCollection(data);
 		expect(rangeObjectCollection.displayPreviousRange({ Street: 'Turn', isIP: true }).length).toBe(2);
 		expect(rangeObjectCollection.displayPreviousRange({ Street, isIP: false }).length).toBe(1);
