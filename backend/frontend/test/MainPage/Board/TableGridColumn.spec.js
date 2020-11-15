@@ -31,15 +31,6 @@ describe('Table Grid Column', () => {
 		expect(result).toStrictEqual([ '#DDD' ]);
 	});
 
-	test(' the function colorCell returns the given colorCard suit for a specific suited hand', () => {
-		const cards = { '7s6s': { colorCards: '#198f35', equity: 'n/a' } };
-		const cardHandSuit = new CardHandSuitBuilder().build('7s', '6s', '');
-
-		const result = colorCell(cards, cardHandSuit);
-
-		expect(result).toStrictEqual([ '#198f35' ]);
-	});
-
 	test(' the function colorCell returns the given colorCard suit for a offsuit hand', () => {
 		const cards = { '76o': { colorCards: '#198f35', equity: 'n/a' } };
 		const cardHandSuit = new CardHandSuitBuilder().build('7', '6', 'o');
@@ -55,7 +46,7 @@ describe('Table Grid Column', () => {
 
 		const result = colorCell(cards, cardHandSuit);
 
-		expect(result).toStrictEqual([ '#198f35' ]);
+		expect(result).toStrictEqual([ '#198f35', '#DDD', '#DDD', '#DDD', '#DDD', '#DDD', '#DDD', '#DDD', '#DDD', '#DDD', '#DDD', '#DDD' ]);
 	});
 
 	test(' the function colorCell returns the given colorCard suit for a specific suited hand', () => {
@@ -64,7 +55,7 @@ describe('Table Grid Column', () => {
 
 		const result = colorCell(cards, cardHandSuit);
 
-		expect(result).toStrictEqual([ '#198f35' ]);
+		expect(result).toStrictEqual([ '#198f35', '#DDD', '#DDD', '#DDD' ]);
 	});
 
 	test(' the function colorCell returns the given colorCard suit for two specific suited hand', () => {
@@ -76,6 +67,6 @@ describe('Table Grid Column', () => {
 
 		const result = colorCell(cards, cardHandSuit);
 
-		expect(result).toStrictEqual([ '#198f35', '#198f35' ]);
+		expect(result).toStrictEqual([ '#198f35', '#198f35', '#DDD', '#DDD' ]);
 	});
 });
