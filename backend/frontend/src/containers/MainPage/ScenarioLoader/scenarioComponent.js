@@ -5,11 +5,14 @@ import { Button, Table } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
 import { initGetScenario } from "../actions";
 import reducer from "../reducer";
-import { useInjectReducer } from "../../../HOC/useInjectReducer";
+import saga from "../saga";
+import { useInjectReducer, useInjectSaga } from "../../../HOC/useInjectReducer";
 
 const key = "global";
 const ScenarioComponent = ({ scenario, token }) => {
   useInjectReducer({ key, reducer });
+  useInjectSaga({ key, saga });
+
   const dispatch = useDispatch();
 
   const onClickHandler = () => dispatch(initGetScenario({ scenario, token }));
