@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_09_18_152840) do
 
   create_table "hands", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "hand"
+    t.text "hand"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2020_09_18_152840) do
   create_table "range_objects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "Street"
     t.string "BetType"
-    t.string "PokerHands"
+    t.text "PokerHands"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

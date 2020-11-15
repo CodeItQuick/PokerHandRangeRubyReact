@@ -1,7 +1,7 @@
 class CreateHands < ActiveRecord::Migration[6.0]
   def change
     create_table :hands do |t|
-      t.string :hand
+      t.text :hand
 
       t.timestamps
     end

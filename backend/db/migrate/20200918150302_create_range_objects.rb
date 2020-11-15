@@ -3,7 +3,7 @@ class CreateRangeObjects < ActiveRecord::Migration[6.0]
     create_table :range_objects do |t|
       t.string :Street
       t.string :BetType
-      t.string :PokerHands
+      t.text :PokerHands
 
       t.timestamps
     end
