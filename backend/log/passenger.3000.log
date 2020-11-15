@@ -9397,3 +9397,156 @@ App 86852 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/Poker
 [ N 2020-11-14 21:23:02.9323 55333/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
 [ N 2020-11-14 21:23:02.9325 55333/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 55406, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
 [ N 2020-11-14 21:23:03.9138 55333/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-14 22:41:30.0932 59150/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-14 22:41:30.1381 59152/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-14 22:41:30.1387 59152/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-14 22:41:30.1812 59152/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 59152
+[ N 2020-11-14 22:41:32.9482 59152/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-14 22:41:32.9572 59152/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 59170 output: Error: The application encountered the following error: Could not find multi_json-1.15.0 in any of the sources (Bundler::GemNotFound)
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/spec_set.rb:86:in `block in materialize'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/spec_set.rb:80:in `map!'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/spec_set.rb:80:in `materialize'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/definition.rb:170:in `specs'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/definition.rb:237:in `specs_for'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/definition.rb:226:in `requested_specs'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/runtime.rb:101:in `block in definition_method'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/runtime.rb:20:in `setup'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler.rb:149:in `setup'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/setup.rb:20:in `block in <top (required)>'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/ui/shell.rb:136:in `with_level'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/ui/shell.rb:88:in `silence'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/setup.rb:20:in `<top (required)>'
+App 59170 output:     /Users/admin/.rvm/rubies/ruby-2.6.6/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+App 59170 output:     /Users/admin/.rvm/rubies/ruby-2.6.6/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:361:in `activate_gem'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:221:in `block in run_load_path_setup_code'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:525:in `running_bundler'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:220:in `run_load_path_setup_code'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:91:in `preload_app'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:189:in `block in <module:App>'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:378:in `run_block_and_record_step_progress'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:188:in `<module:App>'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+App 59170 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+[ E 2020-11-14 22:41:38.1813 59152/Tr age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend: The application encountered the following error: Could not find multi_json-1.15.0 in any of the sources (Bundler::GemNotFound)
+  Error ID: 7053f55a
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-PHW1GZ.html
+
+[ E 2020-11-14 22:41:38.1946 59152/T8 age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 7053f55a. Please see earlier logs for details about the error.
+
+[ N 2020-11-14 22:42:01.3121 59152/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-14 22:42:01.3122 59152/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-14 22:42:01.3122 59152/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-14 22:42:01.3122 59152/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-14 22:42:01.3122 59152/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-14 22:42:01.3123 59152/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-14 22:42:01.3122 59152/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-14 22:42:01.3123 59152/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-14 22:42:01.3123 59152/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-14 22:42:01.3123 59152/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-14 22:42:01.3123 59152/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-14 22:42:01.3124 59152/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-14 22:42:01.3124 59152/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-14 22:42:01.3123 59152/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-14 22:42:01.3122 59152/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-14 22:42:01.3125 59152/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-14 22:42:01.3123 59152/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-14 22:42:01.3126 59152/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-14 22:42:01.3124 59152/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-14 22:42:01.3125 59152/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-14 22:42:01.9550 59152/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-14 22:42:07.1268 59216/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-14 22:42:07.1703 59218/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-14 22:42:07.1707 59218/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-14 22:42:07.2016 59218/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 59218
+[ N 2020-11-14 22:42:09.8635 59218/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-14 22:42:09.8774 59218/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 59234 output: Error: The application encountered the following error: Could not find multi_json-1.15.0 in any of the sources (Bundler::GemNotFound)
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/spec_set.rb:86:in `block in materialize'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/spec_set.rb:80:in `map!'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/spec_set.rb:80:in `materialize'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/definition.rb:170:in `specs'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/definition.rb:237:in `specs_for'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/definition.rb:226:in `requested_specs'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/runtime.rb:101:in `block in definition_method'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/runtime.rb:20:in `setup'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler.rb:149:in `setup'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/setup.rb:20:in `block in <top (required)>'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/ui/shell.rb:136:in `with_level'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/ui/shell.rb:88:in `silence'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/bundler-2.1.4/lib/bundler/setup.rb:20:in `<top (required)>'
+App 59234 output:     /Users/admin/.rvm/rubies/ruby-2.6.6/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+App 59234 output:     /Users/admin/.rvm/rubies/ruby-2.6.6/lib/ruby/site_ruby/2.6.0/rubygems/core_ext/kernel_require.rb:54:in `require'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:361:in `activate_gem'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:221:in `block in run_load_path_setup_code'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:525:in `running_bundler'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:220:in `run_load_path_setup_code'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:91:in `preload_app'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:189:in `block in <module:App>'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:378:in `run_block_and_record_step_progress'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:188:in `<module:App>'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+App 59234 output:     /Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+[ E 2020-11-14 22:42:12.9717 59218/Tr age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend: The application encountered the following error: Could not find multi_json-1.15.0 in any of the sources (Bundler::GemNotFound)
+  Error ID: 21b47836
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-w7s529.html
+
+[ E 2020-11-14 22:42:12.9841 59218/T8 age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 21b47836. Please see earlier logs for details about the error.
+[ N 2020-11-14 22:47:55.6352 59218/T4 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 59327, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+
+[ N 2020-11-14 22:54:46.0355 59218/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-14 22:54:46.0357 59218/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-14 22:54:46.0357 59218/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 59319, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-14 22:54:46.0360 59218/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-14 22:54:46.0361 59218/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-14 22:54:46.0362 59218/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-14 22:54:46.0362 59218/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-14 22:54:46.0363 59218/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-14 22:54:46.0363 59218/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-14 22:54:46.0362 59218/Tf Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-14 22:54:46.0362 59218/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-14 22:54:46.0362 59218/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-14 22:54:46.0360 59218/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-14 22:54:46.0360 59218/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-14 22:54:46.0365 59218/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-14 22:54:46.0365 59218/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-14 22:54:46.0364 59218/Tf Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-14 22:54:46.0365 59218/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-14 22:54:46.0366 59218/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-14 22:54:46.0366 59218/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-14 22:54:46.0366 59218/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-14 22:54:46.0368 59218/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 59319, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-14 22:54:46.8933 59218/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-14 22:54:47.9412 60188/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-14 22:54:47.9819 60190/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-14 22:54:47.9822 60190/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-14 22:54:48.0107 60190/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 60190
+[ N 2020-11-14 22:54:50.7048 60190/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-14 22:54:50.8517 60190/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-15 12:03:46.4128 60190/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-15 12:03:46.4135 60190/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-15 12:03:46.4135 60190/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 60240, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-15 12:03:46.4136 60190/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89134, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-15 12:03:46.4137 60190/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-15 12:03:46.4137 60190/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-15 12:03:46.4137 60190/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-15 12:03:46.4137 60190/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-15 12:03:46.4137 60190/Tb Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-15 12:03:46.4137 60190/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-15 12:03:46.4138 60190/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-15 12:03:46.4139 60190/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-15 12:03:46.4138 60190/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-15 12:03:46.4139 60190/Tb Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-15 12:03:46.4139 60190/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-15 12:03:46.4137 60190/Tj Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-15 12:03:46.4144 60190/Tj Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-15 12:03:46.4137 60190/Tn Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-15 12:03:46.4146 60190/Tp Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-15 12:03:46.4146 60190/Tp Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-15 12:03:46.4146 60190/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-15 12:03:46.4147 60190/Tn Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-15 12:03:46.4165 60190/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 60240, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-15 12:03:46.4165 60190/T1 age/Cor/CoreMain.cpp:1147 ]: Checking whether to disconnect long-running connections for process 89134, application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/backend (development)
+[ N 2020-11-15 12:03:47.4666 60190/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
