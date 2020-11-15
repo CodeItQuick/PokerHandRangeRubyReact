@@ -51,6 +51,10 @@ const ScenarioLoader = ({
     1 + Math.floor(scenarios.filteredScenariosPosition() / 10)
   );
 
+  useEffect(() => {
+    scenarios.injectToken(token);
+  }, []);
+
   return (
     <Modal onHide={onCloseModal} show={active} size="large">
       <Modal.Header>

@@ -8,6 +8,10 @@ class Scenarios {
     this.position = "UTG";
   }
 
+  injectToken(token) {
+    this.token = token;
+  }
+
   displayOpenerPosition() {
     return this.position;
   }
