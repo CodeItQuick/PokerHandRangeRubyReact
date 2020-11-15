@@ -53,7 +53,7 @@ const ScenarioLoader = ({
 
   useEffect(() => {
     scenarios.injectToken(token);
-  }, []);
+  }, [token]);
 
   return (
     <Modal onHide={onCloseModal} show={active} size="large">
