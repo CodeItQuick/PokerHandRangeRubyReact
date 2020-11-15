@@ -13,7 +13,6 @@ class Scenarios {
   }
 
   displayScenarioArrayLength(position) {
-    console.log(position);
     return (
       Math.floor(
         this.scenarios.filter(
