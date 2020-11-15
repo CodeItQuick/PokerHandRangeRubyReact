@@ -6,7 +6,8 @@ import { useDispatch } from "react-redux";
 import { initGetScenario } from "../actions";
 import reducer from "../reducer";
 import saga from "../saga";
-import { useInjectReducer, useInjectSaga } from "../../../HOC/useInjectReducer";
+import { useInjectReducer } from "../../../HOC/useInjectReducer";
+import { useInjectSaga } from "../../../HOC/injectSaga";
 
 const key = "global";
 const ScenarioComponent = ({ scenario, token }) => {

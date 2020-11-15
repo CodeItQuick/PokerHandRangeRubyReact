@@ -9,14 +9,17 @@
  * export const YOUR_ACTION_CONSTANT = 'yourproject/YourContainer/YOUR_ACTION_CONSTANT';
  */
 
-export const LOAD_MENU = "airsells/App/LOAD_MENU";
-export const LOAD_MENU_SUCCESS = "airsells/App/LOAD_MENU_SUCCESS";
-export const LOAD_MENU_ERROR = "airsells/App/LOAD_MENU_ERROR";
+export const LOAD_MENU = "pokerRangeAppalyzer/App/LOAD_MENU";
+export const LOAD_MENU_SUCCESS = "pokerRangeAppalyzer/App/LOAD_MENU_SUCCESS";
+export const LOAD_MENU_ERROR = "pokerRangeAppalyzer/App/LOAD_MENU_ERROR";
 
-export const LOAD_CATEGORIES = "airsells/App/LOAD_CATEGORIES";
-export const LOAD_CATEGORIES_SUCCESS = "airsells/App/LOAD_CATEGORIES_SUCCESS";
-export const LOAD_CATEGORIES_ERROR = "airsells/App/LOAD_CATEGORIES_ERROR";
+export const LOAD_CATEGORIES = "pokerRangeAppalyzer/App/LOAD_CATEGORIES";
+export const LOAD_CATEGORIES_SUCCESS =
+  "pokerRangeAppalyzer/App/LOAD_CATEGORIES_SUCCESS";
+export const LOAD_CATEGORIES_ERROR =
+  "pokerRangeAppalyzer/App/LOAD_CATEGORIES_ERROR";
 
-export const LOAD_REGIONS = "airsells/App/LOAD_REGIONS";
-export const LOAD_REGIONS_SUCCESS = "airsells/App/LOAD_REGIONS_SUCCESS";
-export const LOAD_REGIONS_ERROR = "airsells/App/LOAD_REGIONS_ERROR";
+export const LOAD_REGIONS = "pokerRangeAppalyzer/App/LOAD_REGIONS";
+export const LOAD_REGIONS_SUCCESS =
+  "pokerRangeAppalyzer/App/LOAD_REGIONS_SUCCESS";
+export const LOAD_REGIONS_ERROR = "pokerRangeAppalyzer/App/LOAD_REGIONS_ERROR";

@@ -9,14 +9,14 @@ import {
   categoriesLoaded,
   categoriesLoadingError,
   regionsLoaded,
-  regionsLoadingError
+  regionsLoadingError,
 } from "./actions";
 
 /**
  * Menu request/response handler
  */
 export function* getMenu({ slug }) {
-  const requestURL = `${process.env.REACT_APP_AIRSELLS_URL}/wp-json/menus/v1/menus/${slug}`;
+  const requestURL = `${process.env.REACT_APP_MENU_URL}/wp-json/menus/v1/menus/${slug}`;
 
   try {
     // Call our request helper (see 'utils/request')
@@ -31,7 +31,7 @@ export function* getMenu({ slug }) {
  * Listing Categories request/response handler
  */
 export function* getCategories() {
-  const requestURL = `${process.env.REACT_APP_AIRSELLS_URL}/wp-json/wp/v2/listing_category?per_page=50`;
+  const requestURL = `${process.env.REACT_APP_MENU_URL}/wp-json/wp/v2/listing_category?per_page=50`;
 
   try {
     // Call our request helper (see 'utils/request')
@@ -46,7 +46,7 @@ export function* getCategories() {
  * Regions request/response handler
  */
 export function* getRegions() {
-  const requestURL = `${process.env.REACT_APP_AIRSELLS_URL}/wp-json/wp/v2/region`;
+  const requestURL = `${process.env.REACT_APP_MENU_URL}/wp-json/wp/v2/region`;
 
   try {
     // Call our request helper (see 'utils/request')
@@ -69,6 +69,6 @@ export default function* appData() {
     takeLatest(LOAD_MENU, getMenu),
     takeLatest(LOAD_CATEGORIES, getCategories),
     takeLatest(LOAD_REGIONS, getRegions),
-    takeLatest(SEARCH_REQUEST, getListingsSaga)
+    takeLatest(SEARCH_REQUEST, getListingsSaga),
   ]);
 }

@@ -119,7 +119,7 @@ describe("ScenarioLoader", () => {
 
     const scenarios = new Scenarios([scenario1, scenario2]);
 
-    expect(scenarios.displayScenarios()).toEqual(
+    expect(scenarios.renderScenario({position: 'UTG'})).toEqual(
       <Table as="table">
         <Table.Header as="thead">
           <Table.Row as="tr" cellAs="td">
