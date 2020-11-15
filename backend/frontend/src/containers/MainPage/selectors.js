@@ -113,8 +113,8 @@ const makeSelectScenariosClass = () =>
               board: Board,
               rangeRepoIP,
               rangeRepoOOP,
-              OpenerPosition: positionDefender,
-              DefenderPosition: positionOpener,
+              OpenerPosition: positionOpener,
+              DefenderPosition: positionDefender,
               ScenarioName: Filename,
             })
         )

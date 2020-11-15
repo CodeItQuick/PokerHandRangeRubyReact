@@ -16,7 +16,6 @@ export const colorCell = (cards, cardHand) => {
     const isSpecificHandSuited = isCardInArrayOfCardsToColor.filter((card) =>
       equalSuitedHands(card, cardHand)
     );
-    console.log(isSpecificHandSuited); //?
     const isSpecificHandOffsuit = isCardInArrayOfCardsToColor.filter((card) =>
       equalOffsuitedHands(card, cardHand)
     );
@@ -24,11 +23,6 @@ export const colorCell = (cards, cardHand) => {
       equalPairsSpecificCombos(card, cardHand)
     );
 
-    console.log(
-      isCardInArrayOfCardsToColor.filter((card) =>
-        equalSuitedHands(card, cardHand)
-      )
-    ); //?
     if (isCardInArrayOfCardsToColor[0]?.length <= 3)
       return (
         isCardInArrayOfCardsToColor.map((copy) => cards[copy].colorCards) || [

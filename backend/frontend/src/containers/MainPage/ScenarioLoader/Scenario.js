@@ -3,10 +3,10 @@ class Scenario {
     board,
     rangeRepoIP,
     rangeRepoOOP,
-    user = "evan",
+    user = "default",
     ScenarioName,
-    OpenerPosition,
     DefenderPosition,
+    OpenerPosition,
   }) {
     this.deadcards = board;
     this.rangeRepoIP = rangeRepoIP;

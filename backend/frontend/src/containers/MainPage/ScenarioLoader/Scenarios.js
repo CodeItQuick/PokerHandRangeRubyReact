@@ -1,13 +1,51 @@
 import React from "react";
-import { Table } from "semantic-ui-react";
+import { Tab, Table } from "semantic-ui-react";
 import ScenarioComponent from "./scenarioComponent";
 
 class Scenarios {
   constructor(scenarioArray) {
     this.scenarios = scenarioArray;
+    this.position = "UTG";
   }
 
-  displayScenarios(token) {
+  displayOpenerPosition() {
+    return this.position;
+  }
+
+  displayScenarioArrayLength(position) {
+    console.log(position);
+    return (
+      Math.floor(
+        this.scenarios.filter(
+          (scenario, idx) => scenario.displayOpenerPosition() === position
+        ).length / 10
+      ) + 1
+    );
+  }
+
+  filteredScenarios({ activePage }) {
+    return this.scenarios
+      .filter(
+        (scenario, idx) => scenario.displayOpenerPosition() === this.position
+      )
+      .filter((_, idx) => idx < activePage * 10 && idx >= activePage * 10 - 10);
+  }
+  filteredScenariosArray() {
+    return ["UTG", "MP", "CO", "BU", "SB"].map(
+      (position) =>
+        this.scenarios.filter(
+          (scenario) => scenario.displayOpenerPosition() === position
+        ).length
+    );
+  }
+
+  filteredScenariosPosition() {
+    return this.scenarios.filter(
+      (scenario) => scenario.displayOpenerPosition() === this.position
+    ).length;
+  }
+  renderScenario({ position, activePage }) {
+    this.position = position;
     return (
       <Table>
         <Table.Header>
@@ -20,13 +58,9 @@ class Scenarios {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {this.scenarios.length === 1 ? (
-            <ScenarioComponent scenario={this.scenarios[0]} token={token} />
-          ) : (
-            this.scenarios.map((scenario) => (
-              <ScenarioComponent scenario={scenario} token={token} />
-            ))
-          )}
+          {this.filteredScenarios({ activePage }).map((scenario) => (
+            <ScenarioComponent scenario={scenario} token={this.token} />
+          ))}
         </Table.Body>
       </Table>
     );

@@ -46,3 +46,309 @@ App 57279 output:     at Object.Module._extensions..js (internal/modules/cjs/loa
 
 [ E 2020-11-14 22:02:58.7732 56266/Tb age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 2-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 3d522a78. Please see earlier logs for details about the error.
 [ W 2020-11-14 22:02:58.7757 56266/Tb Ser/Server.h:1079 ]: [Client 2-1] Disconnecting client with error: client socket write error: Socket is not connected (errno=57)
+App 58463 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 58463 output: <html>
+App 58463 output: ^
+App 58463 output: 
+App 58463 output: SyntaxError: Unexpected token '<'
+App 58463 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 58463 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 58463 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 58463 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 58463 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 58463 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 58463 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 58463 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 58463 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 58463 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:31:03.1983 56266/T11 age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: 74c9d078
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-IUwA0R.html
+
+[ E 2020-11-14 22:31:03.2286 56266/Tc age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 3-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 74c9d078. Please see earlier logs for details about the error.
+App 58545 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 58545 output: <html>
+App 58545 output: ^
+App 58545 output: 
+App 58545 output: SyntaxError: Unexpected token '<'
+App 58545 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 58545 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 58545 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 58545 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 58545 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 58545 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 58545 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 58545 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 58545 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 58545 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:32:07.7020 56266/T16 age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: dbe47da4
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-wCbwpZ.html
+
+[ E 2020-11-14 22:32:07.7156 56266/Te age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 4-1] Cannot checkout session because a spawning error occurred. The identifier of the error is dbe47da4. Please see earlier logs for details about the error.
+App 58589 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 58589 output: <html>
+App 58589 output: ^
+App 58589 output: 
+App 58589 output: SyntaxError: Unexpected token '<'
+App 58589 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 58589 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 58589 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 58589 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 58589 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 58589 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 58589 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 58589 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 58589 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 58589 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:32:23.4411 56266/T1b age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: 5c0f25f1
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-xFIXM2.html
+
+[ E 2020-11-14 22:32:23.4536 56266/Tg age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 5-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 5c0f25f1. Please see earlier logs for details about the error.
+
+[ N 2020-11-14 22:32:43.8092 56266/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-14 22:32:43.8093 56266/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-14 22:32:43.8097 56266/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-14 22:32:43.8097 56266/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-14 22:32:43.8097 56266/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-14 22:32:43.8097 56266/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-14 22:32:43.8097 56266/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-14 22:32:43.8097 56266/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-14 22:32:43.8098 56266/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-14 22:32:43.8098 56266/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-14 22:32:43.8097 56266/Tb Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-14 22:32:43.8097 56266/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-14 22:32:43.8097 56266/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-14 22:32:43.8099 56266/Tb Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-14 22:32:43.8100 56266/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-14 22:32:43.8100 56266/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-14 22:32:43.8100 56266/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-14 22:32:43.8101 56266/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-14 22:32:43.8100 56266/Tn Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-14 22:32:43.8101 56266/Tn Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-14 22:32:44.5432 56266/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-14 22:32:46.5059 58640/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-14 22:32:46.5461 58642/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-14 22:32:46.5465 58642/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-14 22:32:46.5757 58642/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 58642
+App 58656 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 58656 output: <html>
+App 58656 output: ^
+App 58656 output: 
+App 58656 output: SyntaxError: Unexpected token '<'
+App 58656 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 58656 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 58656 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 58656 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 58656 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 58656 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 58656 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 58656 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 58656 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 58656 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:32:49.2050 58642/Tr age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: 70448ff9
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-FWLRal.html
+
+[ E 2020-11-14 22:32:49.2161 58642/T8 age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 70448ff9. Please see earlier logs for details about the error.
+[ N 2020-11-14 22:32:49.2846 58642/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-14 22:32:49.2956 58642/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 58686 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 58686 output: <html>
+App 58686 output: ^
+App 58686 output: 
+App 58686 output: SyntaxError: Unexpected token '<'
+App 58686 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 58686 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 58686 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 58686 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 58686 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 58686 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 58686 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 58686 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 58686 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 58686 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:32:51.2520 58642/Tw age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: 68b2f923
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-CsYuvv.html
+
+[ E 2020-11-14 22:32:51.2635 58642/Ta age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 2-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 68b2f923. Please see earlier logs for details about the error.
+
+[ N 2020-11-14 22:33:36.2762 58642/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-14 22:33:36.2763 58642/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-14 22:33:36.2764 58642/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-14 22:33:36.2764 58642/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-14 22:33:36.2764 58642/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-14 22:33:36.2764 58642/Tf Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-14 22:33:36.2764 58642/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-14 22:33:36.2764 58642/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-14 22:33:36.2765 58642/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-14 22:33:36.2765 58642/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-14 22:33:36.2764 58642/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-14 22:33:36.2766 58642/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-14 22:33:36.2766 58642/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-14 22:33:36.2765 58642/Tf Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-14 22:33:36.2765 58642/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-14 22:33:36.2764 58642/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-14 22:33:36.2766 58642/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-14 22:33:36.2768 58642/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-14 22:33:36.2767 58642/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-14 22:33:36.2766 58642/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-14 22:33:36.9083 58642/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-14 22:33:37.7867 58759/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-14 22:33:37.8210 58761/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-14 22:33:37.8214 58761/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-14 22:33:37.8523 58761/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 58761
+App 58774 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 58774 output: <html>
+App 58774 output: ^
+App 58774 output: 
+App 58774 output: SyntaxError: Unexpected token '<'
+App 58774 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 58774 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 58774 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 58774 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 58774 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 58774 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 58774 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 58774 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 58774 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 58774 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:33:40.3428 58761/Tr age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: 5230b437
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-ssfmWK.html
+
+[ E 2020-11-14 22:33:40.3532 58761/T8 age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 5230b437. Please see earlier logs for details about the error.
+[ N 2020-11-14 22:33:40.4975 58761/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-14 22:33:40.5056 58761/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+
+[ N 2020-11-14 22:34:23.6865 58761/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-14 22:34:23.6865 58761/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-14 22:34:23.6866 58761/Tb Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-14 22:34:23.6866 58761/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-14 22:34:23.6867 58761/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-14 22:34:23.6867 58761/Tb Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-14 22:34:23.6866 58761/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-14 22:34:23.6866 58761/Tj Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-14 22:34:23.6868 58761/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-14 22:34:23.6866 58761/Te Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-14 22:34:23.6869 58761/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-14 22:34:23.6867 58761/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-14 22:34:23.6869 58761/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-14 22:34:23.6867 58761/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-14 22:34:23.6867 58761/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-14 22:34:23.6866 58761/Tl Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-14 22:34:23.6869 58761/Te Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-14 22:34:23.6868 58761/Tj Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-14 22:34:23.6870 58761/Tl Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-14 22:34:23.6870 58761/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-14 22:34:24.3347 58761/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
+[ N 2020-11-14 22:34:35.5107 58866/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-14 22:34:35.5590 58868/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-14 22:34:35.5596 58868/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-14 22:34:35.6044 58868/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 58868
+App 58882 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 58882 output: <html>
+App 58882 output: ^
+App 58882 output: 
+App 58882 output: SyntaxError: Unexpected token '<'
+App 58882 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 58882 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 58882 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 58882 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 58882 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 58882 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 58882 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 58882 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 58882 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 58882 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:34:38.1276 58868/Tr age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: c5feb02f
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-0klyR2.html
+
+[ E 2020-11-14 22:34:38.1394 58868/T8 age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is c5feb02f. Please see earlier logs for details about the error.
+[ N 2020-11-14 22:34:38.2581 58868/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-14 22:34:38.2678 58868/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+App 58914 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 58914 output: <html>
+App 58914 output: ^
+App 58914 output: 
+App 58914 output: SyntaxError: Unexpected token '<'
+App 58914 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 58914 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 58914 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 58914 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 58914 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 58914 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 58914 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 58914 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 58914 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 58914 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:34:46.0531 58868/Tw age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: 1fbf861e
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-DbMgPq.html
+
+[ E 2020-11-14 22:34:46.0649 58868/Ta age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 2-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 1fbf861e. Please see earlier logs for details about the error.
+App 58947 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 58947 output: <html>
+App 58947 output: ^
+App 58947 output: 
+App 58947 output: SyntaxError: Unexpected token '<'
+App 58947 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 58947 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 58947 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 58947 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 58947 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 58947 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 58947 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 58947 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 58947 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 58947 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:34:54.3232 58868/T11 age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: 262fc24c
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-7xekiL.html
+
+[ E 2020-11-14 22:34:54.3328 58868/Tc age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 3-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 262fc24c. Please see earlier logs for details about the error.
+App 59006 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 59006 output: <html>
+App 59006 output: ^
+App 59006 output: 
+App 59006 output: SyntaxError: Unexpected token '<'
+App 59006 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 59006 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 59006 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 59006 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 59006 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 59006 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 59006 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 59006 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 59006 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 59006 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:35:40.2807 58868/T16 age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: e6ffc006
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-np8rZq.html
+
+[ E 2020-11-14 22:35:40.2907 58868/Tf age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 4-1] Cannot checkout session because a spawning error occurred. The identifier of the error is e6ffc006. Please see earlier logs for details about the error.
+
+[ N 2020-11-14 22:40:54.5460 58868/T8 age/Cor/CoreMain.cpp:671 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2020-11-14 22:40:54.5461 58868/T1 age/Cor/CoreMain.cpp:1246 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2020-11-14 22:40:54.5464 58868/T8 Ser/Server.h:901 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2020-11-14 22:40:54.5464 58868/Tg Ser/Server.h:901 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2020-11-14 22:40:54.5465 58868/T8 Ser/Server.h:558 ]: [ServerThr.1] Shutdown finished
+[ N 2020-11-14 22:40:54.5465 58868/Tg Ser/Server.h:558 ]: [ServerThr.5] Shutdown finished
+[ N 2020-11-14 22:40:54.5464 58868/Tf Ser/Server.h:901 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2020-11-14 22:40:54.5464 58868/Tm Ser/Server.h:901 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2020-11-14 22:40:54.5465 58868/Tc Ser/Server.h:901 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2020-11-14 22:40:54.5464 58868/Ti Ser/Server.h:901 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2020-11-14 22:40:54.5465 58868/Tk Ser/Server.h:901 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2020-11-14 22:40:54.5465 58868/Ta Ser/Server.h:901 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2020-11-14 22:40:54.5466 58868/Tf Ser/Server.h:558 ]: [ServerThr.4] Shutdown finished
+[ N 2020-11-14 22:40:54.5466 58868/Tm Ser/Server.h:558 ]: [ServerThr.8] Shutdown finished
+[ N 2020-11-14 22:40:54.5467 58868/Ta Ser/Server.h:558 ]: [ServerThr.2] Shutdown finished
+[ N 2020-11-14 22:40:54.5466 58868/Tk Ser/Server.h:558 ]: [ServerThr.7] Shutdown finished
+[ N 2020-11-14 22:40:54.5466 58868/Ti Ser/Server.h:558 ]: [ServerThr.6] Shutdown finished
+[ N 2020-11-14 22:40:54.5466 58868/Tc Ser/Server.h:558 ]: [ServerThr.3] Shutdown finished
+[ N 2020-11-14 22:40:54.5471 58868/To Ser/Server.h:901 ]: [ApiServer] Freed 0 spare client objects
+[ N 2020-11-14 22:40:54.5471 58868/To Ser/Server.h:558 ]: [ApiServer] Shutdown finished
+[ N 2020-11-14 22:40:55.1949 58868/T1 age/Cor/CoreMain.cpp:1325 ]: Passenger core shutdown finished
