@@ -27,13 +27,13 @@ export function* saveScenario({
     token,
   },
 }) {
-  const requestUrl = `http://localhost:3000/api/private/insert`;
+  const requestUrl = `https://www.poker-range-appalyzer.com/api/private/insert`;
 
-  // if (!token) return;
+  if (!token) return;
 
   const headers = {
     "Content-Type": "application/json",
-    // Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
   };
   const body = {
     deadcards,
@@ -62,14 +62,14 @@ export function* saveScenario({
  * Get All Hand Ranges request/response handler
  */
 export function* getScenario({ data: { scenario, token } }) {
-  const requestUrl = `http://localhost:3000/api/private/get-scenario`;
+  const requestUrl = `https://www.poker-range-appalyzer.com/api/private/get-scenario`;
 
-  // if (!token) return;
+  if (!token) return;
 
   try {
     const headers = {
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     };
     const body = {
       boardcards: scenario.displayDeadcards(),
@@ -99,14 +99,14 @@ export function* getScenario({ data: { scenario, token } }) {
  * Get All Hand Ranges request/response handler
  */
 export function* getAllScenario({ data: token }) {
-  const requestUrl = `http://localhost:3000/api/private/get-all-scenario`;
+  const requestUrl = `https://www.poker-range-appalyzer.com/api/private/get-all-scenario`;
 
-  // if (!token) return;
+  if (!token) return;
 
   try {
     const headers = {
       "Content-Type": "application/json",
-      // Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     };
 
     const requestParams = {

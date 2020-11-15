@@ -1,0 +1,48 @@
+2020/11/14 21:36:37 [emerg] 56262#0: bind() to 0.0.0.0:3000 failed (48: Address already in use)
+[ N 2020-11-14 21:36:37.9755 56264/T1 age/Wat/WatchdogMain.cpp:1373 ]: Starting Passenger watchdog...
+[ N 2020-11-14 21:36:38.0212 56266/T1 age/Cor/CoreMain.cpp:1340 ]: Starting Passenger core...
+[ N 2020-11-14 21:36:38.0219 56266/T1 age/Cor/CoreMain.cpp:256 ]: Passenger core running in multi-application mode.
+[ N 2020-11-14 21:36:38.0592 56266/T1 age/Cor/CoreMain.cpp:1015 ]: Passenger core online, PID 56266
+App 56283 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 56283 output: <html>
+App 56283 output: ^
+App 56283 output: 
+App 56283 output: SyntaxError: Unexpected token '<'
+App 56283 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 56283 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 56283 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 56283 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 56283 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 56283 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 56283 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 56283 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 56283 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 56283 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ N 2020-11-14 21:36:40.7325 56266/T5 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+[ E 2020-11-14 21:36:40.7418 56266/T5 Sec/Crypto.cpp:990 ]: Removing Passenger private key from keychain failed: Write permissions error.. Please remove the private key from the certificate labeled Phusion Passenger Open Source in your keychain.
+[ E 2020-11-14 21:36:40.9415 56266/Tr age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: d3fd89d3
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-kmayvQ.html
+
+[ E 2020-11-14 21:36:40.9525 56266/T8 age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is d3fd89d3. Please see earlier logs for details about the error.
+App 57279 output: /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/index.html:1
+App 57279 output: <html>
+App 57279 output: ^
+App 57279 output: 
+App 57279 output: SyntaxError: Unexpected token '<'
+App 57279 output:     at Module._compile (internal/modules/cjs/loader.js:895:18)
+App 57279 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+App 57279 output:     at Module.load (internal/modules/cjs/loader.js:815:32)
+App 57279 output:     at Function.Module._load (internal/modules/cjs/loader.js:727:14)
+App 57279 output:     at Module.require (internal/modules/cjs/loader.js:852:19)
+App 57279 output:     at Module.require (/Users/admin/.rvm/gems/ruby-2.6.6/gems/passenger-6.0.5/src/helper-scripts/node-loader.js:80:25)
+App 57279 output:     at require (internal/modules/cjs/helpers.js:74:18)
+App 57279 output:     at Object.<anonymous> (/Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact/app.js:3:19)
+App 57279 output:     at Module._compile (internal/modules/cjs/loader.js:959:30)
+App 57279 output:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:995:10)
+[ E 2020-11-14 22:02:58.7514 56266/Tw age/Cor/App/Implementation.cpp:221 ]: Could not spawn process for application /Users/admin/Documents/PersonalProjects/PokerRangeREMADE/PokerHandRangeRubyReact: The application process exited prematurely.
+  Error ID: 3d522a78
+  Error details saved to: /var/folders/pr/t9901z0n4z7dbkstysncwp0m0000gn/T//passenger-error-mUIu5P.html
+
+[ E 2020-11-14 22:02:58.7732 56266/Tb age/Cor/Con/CheckoutSession.cpp:276 ]: [Client 2-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 3d522a78. Please see earlier logs for details about the error.
+[ W 2020-11-14 22:02:58.7757 56266/Tb Ser/Server.h:1079 ]: [Client 2-1] Disconnecting client with error: client socket write error: Socket is not connected (errno=57)
