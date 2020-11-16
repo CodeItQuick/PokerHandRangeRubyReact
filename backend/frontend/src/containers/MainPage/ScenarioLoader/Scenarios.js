@@ -49,6 +49,7 @@ class Scenarios {
   }
   renderScenario({ position, activePage }) {
     this.position = position;
+    console.log(this.token); //?
     return (
       <Table>
         <Table.Header>
@@ -62,7 +63,11 @@ class Scenarios {
         </Table.Header>
         <Table.Body>
           {this.filteredScenarios({ activePage }).map((scenario) => (
-            <ScenarioComponent scenario={scenario} token={this.token} />
+            <ScenarioComponent
+              scenario={scenario}
+              token={this.token}
+              className="scenario-component-rendered"
+            />
           ))}
         </Table.Body>
       </Table>

@@ -8,8 +8,12 @@ import history from "../../../src/utils/history";
 import configureStore from "../../../src/configureStore.js";
 import Scenario from "../../../src/containers/MainPage/ScenarioLoader/Scenario";
 import Scenarios from "../../../src/containers/MainPage/ScenarioLoader/Scenarios";
+import ScenariosIndex from "../../../src/containers/MainPage/ScenarioLoader";
 import ScenarioComponent from "../../../src/containers/MainPage/ScenarioLoader/scenarioComponent";
 import { Table } from "semantic-ui-react";
+import ReactSixteenAdapter from "enzyme-adapter-react-16";
+
+Enzyme.configure({ adapter: new ReactSixteenAdapter() })
 
 describe("ScenarioLoader", () => {
   test("the scenario object can be instantiated", () => {
@@ -80,61 +84,22 @@ describe("ScenarioLoader", () => {
     expect(scenarios).toBeDefined();
   });
 
-  test("the scenarios object can display a scenario component", () => {
+  test("the scenarios object can render when given a scenario component", () => {
     const rangeRepoOOP = initialState.rangeRepoOOP;
     const rangeRepoIP = initialState.rangeRepoIP;
     const scenario = new Scenario("AcTd5s3s2s", rangeRepoIP, rangeRepoOOP);
 
     const scenarios = new Scenarios([scenario]);
 
-    expect(scenarios.displayScenarios()).toEqual(
-      <Table as="table">
-        <Table.Header as="thead">
-          <Table.Row as="tr" cellAs="td">
-            <Table.HeaderCell as="th">Scenario Name</Table.HeaderCell>
-            <Table.HeaderCell as="th">Opener Position</Table.HeaderCell>
-            <Table.HeaderCell as="th">Defending Position</Table.HeaderCell>
-            <Table.HeaderCell as="th">Board</Table.HeaderCell>
-            <Table.HeaderCell as="th" />
-          </Table.Row>
-        </Table.Header>
-        <Table.Body as="tbody">
-          <ScenarioComponent 
-            scenario={
-              {"DefenderPosition": undefined, "OpenerPosition": undefined, 
-              "ScenarioName": undefined, "deadcards": undefined, "rangeRepoIP": undefined, 
-              "rangeRepoOOP": undefined, "user": "evan"}} 
-              token={undefined} 
-          />
-        </Table.Body>
-      </Table>
-    );
+    expect(shallow(scenarios.renderScenario({position: 'UTG'})).length).toBe(1);
   });
 
-  test("the scenarios object can display multiple scenario component", () => {
-    const rangeRepoOOP = initialState.rangeRepoOOP;
-    const rangeRepoIP = initialState.rangeRepoIP;
-    const scenario1 = new Scenario("AcTd5s3s2s", rangeRepoIP, rangeRepoOOP);
-    const scenario2 = new Scenario("AcTd5s3s2s", rangeRepoIP, rangeRepoOOP);
+  test("the scenarios object can render when given multiple scenario component", () => {
+    const scenario1 = new Scenario("AcTd5s3s2s", "Scenario 1", "UTG", "SB");
+    const scenario2 = new Scenario("AcTd5s3s2s", "Scenario 2", "UTG", "MP");
 
     const scenarios = new Scenarios([scenario1, scenario2]);
 
-    expect(scenarios.renderScenario({position: 'UTG'})).toEqual(
-      <Table as="table">
-        <Table.Header as="thead">
-          <Table.Row as="tr" cellAs="td">
-            <Table.HeaderCell as="th">Scenario Name</Table.HeaderCell>
-            <Table.HeaderCell as="th">Opener Position</Table.HeaderCell>
-            <Table.HeaderCell as="th">Defending Position</Table.HeaderCell>
-            <Table.HeaderCell as="th">Board</Table.HeaderCell>
-            <Table.HeaderCell as="th" />
-          </Table.Row>
-        </Table.Header>
-        <Table.Body as="tbody">
-          <ScenarioComponent scenario={{"DefenderPosition": undefined, "OpenerPosition": undefined, "ScenarioName": undefined, "deadcards": undefined, "rangeRepoIP": undefined, "rangeRepoOOP": undefined, "user": "evan"}} token={undefined} />
-          <ScenarioComponent scenario={{"DefenderPosition": undefined, "OpenerPosition": undefined, "ScenarioName": undefined, "deadcards": undefined, "rangeRepoIP": undefined, "rangeRepoOOP": undefined, "user": "evan"}} token={undefined} />
-        </Table.Body>
-      </Table>,
-    );
+    expect(shallow(scenarios.renderScenario({position: 'UTG'})).length).toBe(1);
   });
 });

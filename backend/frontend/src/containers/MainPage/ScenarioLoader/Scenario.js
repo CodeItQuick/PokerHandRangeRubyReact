@@ -1,17 +1,6 @@
 class Scenario {
-  constructor({
-    board,
-    rangeRepoIP,
-    rangeRepoOOP,
-    user = "default",
-    ScenarioName,
-    DefenderPosition,
-    OpenerPosition,
-  }) {
+  constructor({ board, ScenarioName, DefenderPosition, OpenerPosition }) {
     this.deadcards = board;
-    this.rangeRepoIP = rangeRepoIP;
-    this.rangeRepoOOP = rangeRepoOOP;
-    this.user = user;
     this.ScenarioName = ScenarioName;
     this.OpenerPosition = OpenerPosition;
     this.DefenderPosition = DefenderPosition;

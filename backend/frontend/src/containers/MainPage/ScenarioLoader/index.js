@@ -30,30 +30,18 @@ const panes = (Scenarios, activePage, numScenarioArray) => [
     render: () => Scenarios.renderScenario({ position: "SB", activePage }),
   },
 ];
-const ScenarioLoader = ({
-  active,
-  token,
-  onCloseModal,
-  scenarios = new Scenarios([
-    new Scenario({
-      board: "Ac, Th, 4s",
-      rangeRepoIP: initialState.rangeRepoIP,
-      rangeRepoOOP: initialState.rangeRepoOOP,
-      OpenerPosition: "UTG",
-      DefenderPosition: "MP",
-      Scenarioname: "default",
-      Filename: "default_scenario_name",
-    }),
-  ]),
-}) => {
+const ScenarioLoader = ({ active, token, onCloseModal, scenarios }) => {
   const [activePage, updateActivePage] = useState(1);
   const [totalPages, updateTotalPages] = useState(
     1 + Math.floor(scenarios.filteredScenariosPosition() / 10)
   );
+  const [injectedScenarios, setInjectedScenarios] = useState(scenarios);
+
+  console.log(token); //?
 
   useEffect(() => {
-    scenarios.injectToken(token);
-  }, [token]);
+    setInjectedScenarios(scenarios.injectToken(token));
+  }, [scenarios, token]);
 
   return (
     <Modal onHide={onCloseModal} show={active} size="large">

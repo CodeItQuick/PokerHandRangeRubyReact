@@ -101,21 +101,12 @@ const makeSelectScenariosClass = () =>
     (globalState) =>
       new Scenarios(
         globalState.scenarioBoards.map(
-          ([
-            Board,
-            Filename,
-            positionDefender,
-            positionOpener,
-            rangeRepoIP,
-            rangeRepoOOP,
-          ]) =>
+          ([board, ScenarioName, OpenerPosition, DefenderPosition]) =>
             new Scenario({
-              board: Board,
-              rangeRepoIP,
-              rangeRepoOOP,
-              OpenerPosition: positionOpener,
-              DefenderPosition: positionDefender,
-              ScenarioName: Filename,
+              board,
+              OpenerPosition,
+              DefenderPosition,
+              ScenarioName,
             })
         )
       )

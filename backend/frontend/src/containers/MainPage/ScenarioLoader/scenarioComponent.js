@@ -29,7 +29,7 @@ const ScenarioComponent = ({ scenario, token }) => {
       </Table.Cell>
       <Table.Cell>{scenario ? scenario?.displayDeadcards() : ""}</Table.Cell>
       <Table.Cell>
-        <Button color="green" onClick={onClickHandler}>
+        <Button color="green" onClick={onClickHandler} className="load-button">
           Load
         </Button>
       </Table.Cell>
