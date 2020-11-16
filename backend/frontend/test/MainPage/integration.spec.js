@@ -11,7 +11,6 @@ import SagaTester from 'redux-saga-tester';
 import saga from '../../src/containers/MainPage/saga'
 import Enzyme, { mount } from 'enzyme';
 import ReactSixteenAdapter from 'enzyme-adapter-react-16';
-import SaveModal from '../../src/components/NavBar/SaveModal';
 import ScenarioLoader from '../../src/containers/MainPage/ScenarioLoader';
 import { Provider } from 'react-redux';
 import configureStore from '../../src/configureStore';

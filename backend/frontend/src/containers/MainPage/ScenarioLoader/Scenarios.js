@@ -1,5 +1,6 @@
 import React from "react";
 import { Tab, Table } from "semantic-ui-react";
+import Scenario from "./Scenario";
 import ScenarioComponent from "./scenarioComponent";
 
 class Scenarios {
@@ -27,11 +28,33 @@ class Scenarios {
   }
 
   filteredScenarios({ activePage }) {
-    return this.scenarios
+    const availableScenarios = this.scenarios
       .filter(
         (scenario, idx) => scenario.displayOpenerPosition() === this.position
       )
       .filter((_, idx) => idx < activePage * 10 && idx >= activePage * 10 - 10);
+    const fill10ElementArray = [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+    ].map(
+      (_, idx) =>
+        availableScenarios[idx] ||
+        new Scenario({
+          board: "",
+          DefenderPosition: "",
+          OpenerPosition: "",
+          ScenarioName: "",
+        })
+    );
+    return fill10ElementArray;
   }
   filteredScenariosArray() {
     return ["UTG", "MP", "CO", "BU", "SB"].map(
@@ -48,10 +71,9 @@ class Scenarios {
     ).length;
   }
   renderScenario({ position, activePage }) {
-    this.position = position;
-    console.log(this.token); //?
+    this.position = position; //?
     return (
-      <Table>
+      <Table height="502px" unstackable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Scenario Name</Table.HeaderCell>
