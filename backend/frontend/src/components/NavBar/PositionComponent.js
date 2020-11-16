@@ -11,7 +11,7 @@ const PositionComponent = ({ position, setPosition, componentLabel }) => {
   return (
     <PositionField>
       <Label>{componentLabel}</Label>
-      {componentLabel === "Opener Position" ? (
+      {componentLabel === "Open" ? (
         <Radio
           label="UTG"
           name={"position" && componentLabel}
@@ -48,7 +48,7 @@ const PositionComponent = ({ position, setPosition, componentLabel }) => {
         checked={position === "SB"}
         onChange={() => setPosition("SB")}
       />
-      {componentLabel === "Defending Position" ? (
+      {componentLabel === "Defend" ? (
         <Radio
           label="BB"
           name={"position" && componentLabel}

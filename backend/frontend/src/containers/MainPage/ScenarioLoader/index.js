@@ -47,7 +47,6 @@ const ScenarioLoader = ({ active, token, onCloseModal, scenarios }) => {
   );
   const [injectedScenarios, setInjectedScenarios] = useState(scenarios);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  console.log(token); //?
 
   useEffect(() => {
     setInjectedScenarios(scenarios.injectToken(token));

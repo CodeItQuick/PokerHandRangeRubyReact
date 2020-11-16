@@ -69,13 +69,13 @@ const SaveModal = ({ isOpen, setIsOpen, onSave }) => {
             name="OpenerPostion"
             position={positionOpener}
             setPosition={setPositionOpener}
-            componentLabel="Opener Position"
+            componentLabel="Open"
           />
           <PositionComponent
             name="DefendingPosition"
             position={positionDefender}
             setPosition={setPositionDefender}
-            componentLabel="Defending Position"
+            componentLabel="Defend"
           />
         </Modal.Body>
         <Modal.Footer>
