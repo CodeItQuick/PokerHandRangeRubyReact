@@ -70,7 +70,7 @@ class PrivateController < ActionController::API
       
       # user = 'default'
 
-      @userRangeCollection = RangeObjectCollection.where( "PokerUser = '" + user + "'").distinct.pluck(:Board, :ScenarioName, :positionDefender, :positionOpener)
+      @userRangeCollection = RangeObjectCollection.where( "PokerUser = '" + user + "'").distinct.pluck(:Board, :ScenarioName, :positionOpener, :positionDefender)
       render json: @userRangeCollection
       
     end
