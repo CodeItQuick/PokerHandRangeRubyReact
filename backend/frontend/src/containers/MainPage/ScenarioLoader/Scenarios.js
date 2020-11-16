@@ -77,8 +77,8 @@ class Scenarios {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Scenario Name</Table.HeaderCell>
-            <Table.HeaderCell>Opener Position</Table.HeaderCell>
-            <Table.HeaderCell>Defending Position</Table.HeaderCell>
+            <Table.HeaderCell>Open</Table.HeaderCell>
+            <Table.HeaderCell>Defend</Table.HeaderCell>
             <Table.HeaderCell>Board</Table.HeaderCell>
             <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>

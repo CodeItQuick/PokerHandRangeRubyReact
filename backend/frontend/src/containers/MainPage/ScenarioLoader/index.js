@@ -8,53 +8,71 @@ import { makeSelectScenariosClass } from "../selectors";
 import Scenario from "./Scenario";
 import Scenarios from "./Scenarios";
 import { useEffect } from "react";
-const panes = (Scenarios, activePage, numScenarioArray) => [
+import styled from "styled-components";
+const panes = (Scenarios, activePage, numScenarioArray, windowWidth) => [
   {
-    menuItem: `UTG (${numScenarioArray[0]})`,
+    menuItem: `UTG${windowWidth > 500 ? "(" + numScenarioArray[0] + ")" : ""}`,
     render: () => Scenarios.renderScenario({ position: "UTG", activePage }),
   },
   {
-    menuItem: `MP (${numScenarioArray[1]})`,
+    menuItem: `MP${windowWidth > 500 ? "(" + numScenarioArray[1] + ")" : ""}`,
     render: () => Scenarios.renderScenario({ position: "MP", activePage }),
   },
   {
-    menuItem: `CO (${numScenarioArray[2]})`,
+    menuItem: `CO${windowWidth > 500 ? "(" + numScenarioArray[2] + ")" : ""}`,
     render: () => Scenarios.renderScenario({ position: "CO", activePage }),
   },
   {
-    menuItem: `BU (${numScenarioArray[3]})`,
+    menuItem: `BU${windowWidth > 500 ? "(" + numScenarioArray[3] + ")" : ""}`,
     render: () => Scenarios.renderScenario({ position: "BU", activePage }),
   },
   {
-    menuItem: `SB (${numScenarioArray[4]})`,
+    menuItem: `SB${windowWidth > 500 ? "(" + numScenarioArray[4] + ")" : ""}`,
     render: () => Scenarios.renderScenario({ position: "SB", activePage }),
   },
 ];
+
+const StyledTab = styled(Tab)`
+  font-size: 10px !important;
+  padding: 0px;
+  @media (min-width: 500px) {
+    font-size: 14px;
+  }
+`;
+
 const ScenarioLoader = ({ active, token, onCloseModal, scenarios }) => {
   const [activePage, updateActivePage] = useState(1);
   const [totalPages, updateTotalPages] = useState(
     1 + Math.floor(scenarios.filteredScenariosPosition() / 10)
   );
   const [injectedScenarios, setInjectedScenarios] = useState(scenarios);
-
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   console.log(token); //?
 
   useEffect(() => {
     setInjectedScenarios(scenarios.injectToken(token));
   }, [scenarios, token]);
 
+  useEffect(() => {
+    window.addEventListener("resize", () => setWindowWidth(window.innerWidth));
+    return () =>
+      window.removeEventListener("resize", () =>
+        setWindowWidth(window.innerWidth)
+      );
+  }, []);
+
   return (
     <Modal onHide={onCloseModal} show={active} size="large">
       <Modal.Header>
         <Modal.Title>Select a Scenario</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
-        <Tab
-          menu={{ attached: "top" }}
+      <Modal.Body style={{ padding: "0px" }}>
+        <StyledTab
           panes={panes(
             scenarios,
             activePage,
-            scenarios.filteredScenariosArray()
+            scenarios.filteredScenariosArray(),
+            windowWidth
           )}
           onTabChange={(e, { activeIndex, panes }) =>
             updateTotalPages(
