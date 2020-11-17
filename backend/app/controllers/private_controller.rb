@@ -3,8 +3,35 @@
 # frozen_string_literal: true
 class PrivateController < ActionController::API
     include Secured
+    
+    def get_session_dev()
 
-    def couchbase_insert()
+      if session[:current_user_id] 
+        return session[:current_user_id]
+      else
+        session[:current_user_id] = 'default'
+        return session[:current_user_id]
+      end
+
+    end
+    
+    def get_session_prod()
+
+      if session[:current_user_id] 
+        return session[:current_user_id]
+      else
+        @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
+      
+        responses, header = JsonWebToken.verify(@auth_payload) 
+        user = responses['sub'].split('|')[1]
+
+        session[:current_user_id] = :user
+        return session[:current_user_id]
+      end
+
+    end
+
+    def insert_scenario()
       board = params[:deadcards]
       # user = params[:user]
       rangeRepoIP = params[:rangeRepoIP]
@@ -13,13 +40,8 @@ class PrivateController < ActionController::API
       positionDefender = params[:positionDefender]
       filename = params[:Filename]
         
-      # Enable below in server
-      @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
+      user = get_session_prod()
       
-      responses, header = JsonWebToken.verify(@auth_payload) 
-      user = responses['sub'].split('|')[1]
-      # user = 'default'
-
       @newRangeObjectCollection = RangeObjectCollection.new(ScenarioName: filename, Board: board, HandName: :rangeRepoIP, PokerUser: user, positionOpener: positionOpener, positionDefender: positionDefender)
       @newRangeObjectCollection.save
 
@@ -46,10 +68,7 @@ class PrivateController < ActionController::API
 
     def get_scenarios()
 
-      @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
-      
-      responses, header = JsonWebToken.verify(@auth_payload) 
-      user = responses['sub'].split('|')[1]
+      user = get_session_prod()
        
       # user = 'default'
 
@@ -60,16 +79,8 @@ class PrivateController < ActionController::API
 
     def get_all_scenarios()
     
-      bucket_name = "PokerRangeAppalyzer"
-      scope_name = "myapp"
+      user = get_session_prod()
       
-      @auth_payload, @auth_header = request.headers['Authorization'].split(' ').last
-      
-      responses, header = JsonWebToken.verify(@auth_payload) 
-      user = responses['sub'].split('|')[1]
-      
-      # user = 'default'
-
       @userRangeCollection = RangeObjectCollection.where( "PokerUser = '" + user + "'").distinct.pluck(:Board, :ScenarioName, :positionOpener, :positionDefender)
       render json: @userRangeCollection
       
@@ -85,7 +96,7 @@ class PrivateController < ActionController::API
   
     
     def private
-      couchbase_insert
+      insert_scenario
     end
     def private_scoped
       render json: { message: 'Hello from a private endpoint! You need to be authenticated and have a scope of read:messages to see this.' }

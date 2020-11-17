@@ -12,6 +12,8 @@ import {
 } from "./actions";
 import request from "../../utils/request";
 
+const baseURL = "https://www.poker-range-appalyzer.com";
+
 /**
  * Get All Hand Ranges request/response handler
  */
@@ -27,13 +29,13 @@ export function* saveScenario({
     token,
   },
 }) {
-  const requestUrl = `https://www.poker-range-appalyzer.com/api/private/insert`;
+  const requestUrl = `${baseURL}/api/private/insert`;
 
-  if (!token) return;
+  //   if (!token) return;
 
   const headers = {
     "Content-Type": "application/json",
-    Authorization: `Bearer ${token}`,
+    // Authorization: `Bearer ${token}`,
   };
   const body = {
     deadcards,
@@ -49,6 +51,7 @@ export function* saveScenario({
     body: JSON.stringify(body),
     headers,
     method: "POST",
+    credentials: "include",
   };
 
   try {
@@ -62,14 +65,14 @@ export function* saveScenario({
  * Get All Hand Ranges request/response handler
  */
 export function* getScenario({ data: { scenario, token } }) {
-  const requestUrl = `https://www.poker-range-appalyzer.com/api/private/get-scenario`;
+  const requestUrl = `${baseURL}/api/private/get-scenario`;
 
-  if (!token) return;
+  //   if (!token) return;
 
   try {
     const headers = {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      //   Authorization: `Bearer ${token}`,
     };
     const body = {
       boardcards: scenario.displayDeadcards(),
@@ -79,6 +82,7 @@ export function* getScenario({ data: { scenario, token } }) {
       body: JSON.stringify(body),
       headers,
       method: "POST",
+      credentials: "include",
     };
 
     //yield call/put/cancelled APICALL
@@ -99,19 +103,20 @@ export function* getScenario({ data: { scenario, token } }) {
  * Get All Hand Ranges request/response handler
  */
 export function* getAllScenario({ data: token }) {
-  const requestUrl = `https://www.poker-range-appalyzer.com/api/private/get-all-scenario`;
+  const requestUrl = `${baseURL}/api/private/get-all-scenario`;
 
-  if (!token) return;
+  //   if (!token) return;
 
   try {
     const headers = {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      //   Authorization: `Bearer ${token}`,
     };
 
     const requestParams = {
       headers,
       method: "POST",
+      credentials: "include",
     };
 
     //yield call/put/cancelled APICALL

@@ -5,15 +5,8 @@ Rails.application.routes.draw do
   # resources :hand_range_groups
   # resource :users, only: [:create]
    resources :application
-   get "/hand_ranges/show_user_id/:user_id", to: "hand_ranges#show_user_id"
-   post "/login", to: "auth#login"
-   get "/auto_login", to: "auth#auto_login"
-   get "/persist", to: "auth#persist"
-   post "/api/public", to: "public#public"
-   post "/api/public/get-scenario", to: "private#get_scenario"
-   post "/api/public/get-all-scenario", to: "private#get_all_scenario"
    post "/api/private", to: "private#private"
-   post "/api/private/insert", to: "private#couchbase_insert"
+   post "/api/private/insert", to: "private#insert_scenario"
    post "/api/private/get-scenario", to: "private#get_scenario"
    post "/api/private/get-all-scenario", to: "private#get_all_scenario"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
