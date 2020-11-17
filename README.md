@@ -49,7 +49,7 @@ Snapshots:   0 total
 Time:        8.245s, estimated 20s
 ```
 
-Note: all of these tests run in under 100ms, and generally are under 10ms. Due to file I/O speeds for the 18 testing files, it takes ~13s to run, but using Wallaby.js I basically get instant feedback.
+Note: all of these tests run in under 100ms, and generally are under 10ms. Due to file I/O speeds for the 18 testing files, it takes ~8s to run, but using Wallaby.js I basically get instant feedback.
 
 # Contributions into Other Open Source Repositories
 
