@@ -42,10 +42,12 @@ https://github.com/CodeItQuick/PokerHandRangeRubyReact/tree/master/backend/front
 
 # Test Speed running 'jest test"
 
+```
 Test Suites: 18 passed, 18 total
 Tests:       108 passed, 108 total
 Snapshots:   0 total
 Time:        12.889s, estimated 13s
+```
 
 Note: all of these tests run in under 100ms, and generally are under 10ms. Due to file I/O speeds for the 18 testing files, it takes ~13s to run, but using Wallaby.js I basically get instant feedback.
 
