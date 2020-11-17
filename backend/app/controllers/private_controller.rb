@@ -25,7 +25,7 @@ class PrivateController < ActionController::API
         responses, header = JsonWebToken.verify(@auth_payload) 
         user = responses['sub'].split('|')[1]
 
-        session[:current_user_id] = :user
+        session[:current_user_id] = user
         return session[:current_user_id]
       end
 
