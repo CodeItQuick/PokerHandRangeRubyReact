@@ -35,7 +35,7 @@ export function* saveScenario({
 
   const headers = {
     "Content-Type": "application/json",
-    // Authorization: `Bearer ${token}`,
+    Authorization: `Bearer ${token}`,
   };
   const body = {
     deadcards,
@@ -72,7 +72,7 @@ export function* getScenario({ data: { scenario, token } }) {
   try {
     const headers = {
       "Content-Type": "application/json",
-      //   Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     };
     const body = {
       boardcards: scenario.displayDeadcards(),
@@ -110,7 +110,7 @@ export function* getAllScenario({ data: token }) {
   try {
     const headers = {
       "Content-Type": "application/json",
-      //   Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     };
 
     const requestParams = {
