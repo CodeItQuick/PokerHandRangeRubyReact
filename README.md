@@ -26,6 +26,28 @@ The following technologies were used in creating this application:
 (5) Javascript/Ruby
 (6) Wallaby/Jest/Enzyme testing service and VS Code plugin
 ```
+# Specific Code Examples
+
+Example of a React Component:
+https://github.com/CodeItQuick/PokerHandRangeRubyReact/blob/master/backend/frontend/src/containers/MainPage/InputForm/index.js
+
+Example of a Test:
+https://github.com/CodeItQuick/PokerHandRangeRubyReact/blob/master/backend/frontend/test/MainPage/EngineClasses/RangeObject.spec.js
+
+Internal Engine Classes Folder (Detailed):
+https://github.com/CodeItQuick/PokerHandRangeRubyReact/tree/master/backend/frontend/src/containers/MainPage/EngineClasses
+
+Internal Main React Frontend Address (Very Detailed):
+https://github.com/CodeItQuick/PokerHandRangeRubyReact/tree/master/backend/frontend/src/containers/MainPage
+
+# Test Speed running 'jest test"
+
+Test Suites: 18 passed, 18 total
+Tests:       108 passed, 108 total
+Snapshots:   0 total
+Time:        12.889s, estimated 13s
+
+Note: all of these tests run in under 100ms, and generally are under 10ms. Due to file I/O speeds for the 18 testing files, it takes ~13s to run, but using Wallaby.js I basically get instant feedback.
 
 # Running the Application
 
