@@ -31,7 +31,7 @@ export function* saveScenario({
 }) {
   const requestUrl = `${baseURL}/api/private/insert`;
 
-  //   if (!token) return;
+  if (!token) return;
 
   const headers = {
     "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export function* saveScenario({
 export function* getScenario({ data: { scenario, token } }) {
   const requestUrl = `${baseURL}/api/private/get-scenario`;
 
-  //   if (!token) return;
+  if (!token) return;
 
   try {
     const headers = {
@@ -105,7 +105,7 @@ export function* getScenario({ data: { scenario, token } }) {
 export function* getAllScenario({ data: token }) {
   const requestUrl = `${baseURL}/api/private/get-all-scenario`;
 
-  //   if (!token) return;
+  if (!token) return;
 
   try {
     const headers = {

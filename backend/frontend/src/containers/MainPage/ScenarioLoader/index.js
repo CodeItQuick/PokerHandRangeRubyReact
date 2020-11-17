@@ -70,7 +70,7 @@ const ScenarioLoader = ({ active, token, onCloseModal, scenarios }) => {
           panes={panes(
             scenarios,
             activePage,
-            scenarios.filteredScenariosArray(),
+            injectedScenarios.filteredScenariosArray(),
             windowWidth
           )}
           onTabChange={(e, { activeIndex, panes }) =>

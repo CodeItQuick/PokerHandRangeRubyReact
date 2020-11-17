@@ -11,6 +11,7 @@ class Scenarios {
 
   injectToken(token) {
     this.token = token;
+    return this;
   }
 
   displayOpenerPosition() {
