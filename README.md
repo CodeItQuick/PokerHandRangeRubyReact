@@ -36,9 +36,6 @@ Finally the website can be found live at the following AWS address: http://www.p
 There is an interview on the process of creating the site available on twitch video at: https://www.twitch.tv/videos/707482634
 The video was a project feature done by streamer "tbdgamer" on my react project.
 
-Note: PR's are deployed to AWS for previews. The PR-style is out of sync with my typical workflow, and I plan to revamp
-the project management style in this project (mostly to simplify it). As always this is a bit of a work in progress.
-
 # Contributions into Other Open Source Repositories
 
 For reference on experience with working in other open source projects, see these two PR's into open-sauced:
