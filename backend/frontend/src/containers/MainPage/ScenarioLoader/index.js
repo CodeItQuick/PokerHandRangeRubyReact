@@ -68,9 +68,9 @@ const ScenarioLoader = ({ active, token, onCloseModal, scenarios }) => {
       <Modal.Body style={{ padding: "0px" }}>
         <StyledTab
           panes={panes(
-            scenarios,
+            scenarios.injectToken(token),
             activePage,
-            injectedScenarios.filteredScenariosArray(),
+            scenarios.injectToken(token).filteredScenariosArray(),
             windowWidth
           )}
           onTabChange={(e, { activeIndex, panes }) =>
