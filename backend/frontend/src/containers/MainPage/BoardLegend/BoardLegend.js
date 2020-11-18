@@ -48,7 +48,9 @@ const generatedLegendTable = (streetActions, numberOfCombos, index) => {
             ).toFixed(2)
           : "0"}
       </Table.Cell>
-      <Table.Cell>{((numberOfCombos[0] / 1326) * 100).toFixed(2)}</Table.Cell>
+      <Table.Cell>
+        {((numberOfCombos[index] / 1326) * 100).toFixed(2)}
+      </Table.Cell>
     </Table.Row>
   );
 };
@@ -167,7 +169,12 @@ const BoardLegend = ({
   deadcards,
 }) => {
   const streetActions = {
-    Preflop: ["Raise4BetCall", "Raise4BetFold", "RaiseCall", "RaiseFold"],
+    Preflop: [
+      "Raise 4 Bet Call",
+      "Raise 4 Bet Fold",
+      "Raise Call",
+      "Raise Fold",
+    ],
     Flop: [
       "Valuebet",
       "Bluff",
@@ -188,7 +195,6 @@ const BoardLegend = ({
     else updateIndexOfActions([0, 1, 2, 3]);
   }, [useTwoFlopSizes, street]);
 
-  //TODO: potential bug? method outside useEffect
   useEffect(() => {
     updateNumberOfCombos(countHandCombo(wholeRange, street, deadcards));
   }, [wholeRange, street, deadcards]);
