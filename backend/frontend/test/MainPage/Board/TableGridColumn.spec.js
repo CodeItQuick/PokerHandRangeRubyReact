@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { CardHandSuitBuilder } from '../../../src/containers/MainPage/EngineClasses/CardHandSuitBuilder';
-import { colorCell } from '../../../src/containers/MainPage/Board/TableGridColumn';
+import { colorCell } from '../../../src/containers/MainPage/EngineClasses/colorCellFn';
 
 describe('Table Grid Column', () => {
 	test(' the function colorCell returns the given colorCard suit for a pair', () => {

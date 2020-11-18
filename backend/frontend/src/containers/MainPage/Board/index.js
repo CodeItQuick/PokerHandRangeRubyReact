@@ -1,8 +1,8 @@
 import React, { useState, useEffect, memo, Fragment } from "react";
 import { useDispatch } from "react-redux";
 
-import { Grid, Button, Table } from "semantic-ui-react";
-import { useDrag, useGesture, useMove } from "react-use-gesture";
+import { Table } from "semantic-ui-react";
+import { useGesture } from "react-use-gesture";
 
 import { connect } from "react-redux";
 import { compose } from "redux";
@@ -18,12 +18,14 @@ import {
 } from "../selectors";
 
 import BoardOfHands from "../EngineClasses/StateUpdate";
-//TODO: implement interact.js or draggable instead of this react library
+
+const isOnMouseDownEventPushed = ({ props }) =>
+  (props.memo !== props.args[props.args.length - 1] && props.down) ||
+  (props.first && props.down);
 
 const Board = ({ onMouseOverHandler, SelectedRanges, preflopRanges }) => {
   const [manyHands, setManyHands] = useState();
   const [instanceOfBoardHands, updateInstanceOfBoardHands] = useState(false);
-  const dispatch = useDispatch();
 
   // Set the drag hook and define component movement based on gesture data
   const bind = useGesture({
@@ -31,9 +33,7 @@ const Board = ({ onMouseOverHandler, SelectedRanges, preflopRanges }) => {
       onMouseOverHandler(
         {
           cards: props.args[props.args.length - 1],
-          onMouseDownEvent:
-            (props.memo !== props.args[props.args.length - 1] && props.down) ||
-            (props.first && props.down),
+          onMouseDownEvent: isOnMouseDownEventPushed({ props }),
         },
         { threshold: 40, filterTaps: false }
       ),

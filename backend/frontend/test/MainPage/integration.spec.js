@@ -20,14 +20,10 @@ describe("Integration tests: ", () => {
     test('The reducer when action GET_SCENARIO_SUCCESS should return the new state for the reducer', async () => {
 		// nock('http://localhost:3000')
 		// .post('/api/private/get-scenario')
-		// .reply(200, {
-		// 	...httpResponseGetScenario
-		// 	})
+		// .reply(200, httpResponseGetScenario)
 		nock('https://www.poker-range-appalyzer.com')
 		.post('/api/private/get-scenario')
-		.reply(200, {
-			...httpResponseGetScenario,
-			})
+		.reply(200, httpResponseGetScenario);
 		let sagaTester = null
 
 		sagaTester = new SagaTester({initialState, reducers: reducer});
@@ -54,14 +50,10 @@ describe("Integration tests: ", () => {
     test('The reducer when action GET_ALL_SCENARIO_SUCCESS should return the new state for the reducer', async () => {
 		nock('http://localhost:3000')
 		.post('/api/private/get-all-scenario')
-		.reply(200, {
-            ...httpResponseGetAllScenario
-			})
+		.reply(200, httpResponseGetAllScenario)
 		nock('https://www.poker-range-appalyzer.com')
 		.post('/api/private/get-all-scenario')
-		.reply(200, {
-            ...httpResponseGetAllScenario
-			})
+		.reply(200, httpResponseGetAllScenario);
 		let sagaTester = null
 
 		sagaTester = new SagaTester({initialState, reducers: reducer});
@@ -81,19 +73,17 @@ describe("Integration tests: ", () => {
 		const finalReducerValue = sagaTester.getState();
 
         expect(finalReducerValue.scenarioBoards).toStrictEqual(
-            {"0": ["AcAsAh", "fdsaasdfasdfasdfasdf", "BU", "MP"], 
-            "1": ["Jh4h2s", "875fancyflop", "BU", "MP"], 
-            "2": ["AcTs", "asdf1234", "SB", "MP"], 
-            "3": ["Ac", "asfdsdfasdfasdf", "SB", "UTG"]
-        });
+            [["AcAsAh", "fdsaasdfasdfasdfasdf", "BU", "MP"], 
+            ["Jh4h2s", "875fancyflop", "BU", "MP"], 
+            ["AcTs", "asdf1234", "SB", "MP"], 
+            ["Ac", "asfdsdfasdfasdf", "SB", "UTG"]
+		]);
     });
 
     test("a token gets passed to the saga correctly", () => {
         nock('https://www.poker-range-appalyzer.com')
 		.post('/api/private/get-scenario')
-		.reply(200, {
-            noResponseNeeded: "fake"
-        });
+		.reply(200, httpResponseGetScenario);
         const newInitialState = initialState;
         
         //Setup the state to have a number of Boards to load
