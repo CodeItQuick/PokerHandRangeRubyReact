@@ -1,66 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { StyledCol, ColorCard } from "./Styles.js";
-import {
-  equalSuitedHands,
-  equalOffsuitedHands,
-  equalPairsSpecificCombos,
-  findInArray,
-} from "../EngineClasses/findInArray";
-
-export const colorCell = (cards, cardHand) => {
-  if (Object.keys(cards).length > 0) {
-    const arrayOfCardsToColor = findInArray(cards, cardHand);
-    const isCardInArrayOfCardsToColor = arrayOfCardsToColor.filter((find) =>
-      Object.keys(cards).includes(find)
-    );
-    const isSpecificHandSuited = isCardInArrayOfCardsToColor.filter((card) =>
-      equalSuitedHands(card, cardHand)
-    );
-    const isSpecificHandOffsuit = isCardInArrayOfCardsToColor.filter((card) =>
-      equalOffsuitedHands(card, cardHand)
-    );
-    const isSpecificHandPair = isCardInArrayOfCardsToColor.filter((card) =>
-      equalPairsSpecificCombos(card, cardHand)
-    );
-
-    if (isCardInArrayOfCardsToColor[0]?.length <= 3)
-      return (
-        isCardInArrayOfCardsToColor.map((copy) => cards[copy].colorCards) || [
-          "#DDD",
-        ]
-      );
-    else if (isSpecificHandSuited.length) {
-      const fourElementArray = ["ss", "dd", "hh", "cc"].map(
-        (_, idx) => isSpecificHandSuited[idx] || ""
-      );
-      return fourElementArray.map((copy) => cards[copy]?.colorCards || "#DDD");
-    } else if (isSpecificHandOffsuit.length) {
-      const sixteenElementArray = [
-        "sd",
-        "sh",
-        "sc",
-        "cs",
-        "cd",
-        "ch",
-        "hs",
-        "hd",
-        "hc",
-        "ds",
-        "dh",
-        "dc",
-      ].map((_, idx) => isSpecificHandOffsuit[idx] || "");
-      return sixteenElementArray.map(
-        (copy) => cards[copy]?.colorCards || "#DDD"
-      );
-    } else if (isSpecificHandPair.length) {
-      const sixElementArray = ["sd", "sh", "sc", "cs", "cd", "dh"].map(
-        (_, idx) => isSpecificHandPair[idx] || ""
-      );
-      return sixElementArray.map((copy) => cards[copy]?.colorCards || "#DDD");
-    }
-  }
-  return ["#DDD"];
-};
+import { findInArray } from "../EngineClasses/findInArray";
+import { colorCell } from "../EngineClasses/colorCellFn";
 
 const TableGridColumn = ({ cardHand, bind, allPreflopHands, cards }) => {
   const [suitString, updateSuitString] = useState();

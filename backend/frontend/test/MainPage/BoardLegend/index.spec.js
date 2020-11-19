@@ -5,10 +5,9 @@ import CardHandSuit, {
 	CardHandSuitClosure,
 	CardHandSuitBuilder
 } from '../../../src/containers/MainPage/EngineClasses/CardHandSuitBuilder';
-import { countHandCombo } from '../../../src/containers/MainPage/BoardLegend/BoardLegend.js';
+import { countHandCombo } from '../../../src/containers/MainPage/EngineClasses/countHandCombo';
 import RangeObject from '../../../src/containers/MainPage/EngineClasses/RangeObject';
 
-//TODO: Should this be a JSON object? Unsure
 describe('Board Legend', () => {
 	test('The board legend counts the correct number of combinations for a suited hand', () => {
 		// Given: what's the input state? Board (3 cards) and a hand of two cards

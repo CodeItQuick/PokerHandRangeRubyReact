@@ -5,30 +5,59 @@ import { initialState } from "../reducer";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { makeSelectScenariosClass } from "../selectors";
-import Scenario from "./Scenario";
-import Scenarios from "./Scenarios";
 import { useEffect } from "react";
 import styled from "styled-components";
+import ScenariosComponent from "./ScenariosComponent";
 const panes = (Scenarios, activePage, numScenarioArray, windowWidth) => [
   {
     menuItem: `UTG${windowWidth > 500 ? "(" + numScenarioArray[0] + ")" : ""}`,
-    render: () => Scenarios.renderScenario({ position: "UTG", activePage }),
+    render: () => (
+      <ScenariosComponent
+        position={"UTG"}
+        activePage={activePage}
+        scenarios={Scenarios}
+      />
+    ),
   },
   {
     menuItem: `MP${windowWidth > 500 ? "(" + numScenarioArray[1] + ")" : ""}`,
-    render: () => Scenarios.renderScenario({ position: "MP", activePage }),
+    render: () => (
+      <ScenariosComponent
+        position={"MP"}
+        activePage={activePage}
+        scenarios={Scenarios}
+      />
+    ),
   },
   {
     menuItem: `CO${windowWidth > 500 ? "(" + numScenarioArray[2] + ")" : ""}`,
-    render: () => Scenarios.renderScenario({ position: "CO", activePage }),
+    render: () => (
+      <ScenariosComponent
+        position={"CO"}
+        activePage={activePage}
+        scenarios={Scenarios}
+      />
+    ),
   },
   {
     menuItem: `BU${windowWidth > 500 ? "(" + numScenarioArray[3] + ")" : ""}`,
-    render: () => Scenarios.renderScenario({ position: "BU", activePage }),
+    render: () => (
+      <ScenariosComponent
+        position={"BU"}
+        activePage={activePage}
+        scenarios={Scenarios}
+      />
+    ),
   },
   {
     menuItem: `SB${windowWidth > 500 ? "(" + numScenarioArray[4] + ")" : ""}`,
-    render: () => Scenarios.renderScenario({ position: "SB", activePage }),
+    render: () => (
+      <ScenariosComponent
+        position={"SB"}
+        activePage={activePage}
+        scenarios={Scenarios}
+      />
+    ),
   },
 ];
 

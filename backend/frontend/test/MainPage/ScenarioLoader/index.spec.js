@@ -6,12 +6,13 @@ import { Provider } from "react-redux";
 import { initialState } from "../../../src/containers/MainPage/reducer";
 import history from "../../../src/utils/history";
 import configureStore from "../../../src/configureStore.js";
-import Scenario from "../../../src/containers/MainPage/ScenarioLoader/Scenario";
-import Scenarios from "../../../src/containers/MainPage/ScenarioLoader/Scenarios";
+import Scenario from "../../../src/containers/MainPage/EngineClasses/Scenario";
+import { Scenarios } from "../../../src/containers/MainPage/EngineClasses/Scenarios";
 import ScenariosIndex from "../../../src/containers/MainPage/ScenarioLoader";
 import ScenarioComponent from "../../../src/containers/MainPage/ScenarioLoader/scenarioComponent";
 import { Table } from "semantic-ui-react";
 import ReactSixteenAdapter from "enzyme-adapter-react-16";
+import ScenariosComponent from "../../../src/containers/MainPage/ScenarioLoader/ScenariosComponent";
 
 Enzyme.configure({ adapter: new ReactSixteenAdapter() })
 
@@ -91,7 +92,7 @@ describe("ScenarioLoader", () => {
 
     const scenarios = new Scenarios([scenario]);
 
-    expect(shallow(scenarios.renderScenario({position: 'UTG'})).length).toBe(1);
+    expect(shallow(<ScenariosComponent position={"UTG"} scenarios={scenarios} />).length).toBe(1);
   });
 
   test("the scenarios object can render when given multiple scenario component", () => {
@@ -100,6 +101,6 @@ describe("ScenarioLoader", () => {
 
     const scenarios = new Scenarios([scenario1, scenario2]);
 
-    expect(shallow(scenarios.renderScenario({position: 'UTG'})).length).toBe(1);
+    expect(shallow(<ScenariosComponent position={"UTG"} scenarios={scenarios} />).length).toBe(1);
   });
 });
