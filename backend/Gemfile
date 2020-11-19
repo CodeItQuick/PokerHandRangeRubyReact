@@ -66,6 +66,8 @@ gem 'rest-client'
 gem 'omniauth-auth0', '~> 2.4'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
+gem 'newrelic_rpm'
+
 # gem 'sqlite3'
 # group :development do
 #   gem 'web-console', '~> 2.0', group: :development
