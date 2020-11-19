@@ -5,8 +5,8 @@
 import { createSelector } from "reselect";
 
 import { initialState } from "./reducer";
-import Scenario from "./ScenarioLoader/Scenario";
-import Scenarios from "./ScenarioLoader/Scenarios";
+import Scenario from "./EngineClasses/Scenario";
+import { Scenarios } from "./EngineClasses/Scenarios";
 import RangeObject from "./EngineClasses/RangeObject";
 import { CardHandSuitBuilder } from "./EngineClasses/CardHandSuitBuilder";
 import { RangeObjectCollection } from "./EngineClasses/RangeObjectCollection";

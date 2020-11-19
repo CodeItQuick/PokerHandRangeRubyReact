@@ -1,9 +1,9 @@
 import React from "react";
 import { Tab, Table } from "semantic-ui-react";
 import Scenario from "./Scenario";
-import ScenarioComponent from "./scenarioComponent";
+import ScenarioComponent from "../ScenarioLoader/scenarioComponent";
 
-class Scenarios {
+export class Scenarios {
   constructor(scenarioArray) {
     this.scenarios = scenarioArray;
     this.position = "UTG";
@@ -71,31 +71,4 @@ class Scenarios {
       (scenario) => scenario.displayOpenerPosition() === this.position
     ).length;
   }
-  renderScenario({ position, activePage }) {
-    this.position = position; //?
-    return (
-      <Table height="502px" unstackable>
-        <Table.Header>
-          <Table.Row>
-            <Table.HeaderCell>Scenario Name</Table.HeaderCell>
-            <Table.HeaderCell>Open</Table.HeaderCell>
-            <Table.HeaderCell>Defend</Table.HeaderCell>
-            <Table.HeaderCell>Board</Table.HeaderCell>
-            <Table.HeaderCell></Table.HeaderCell>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          {this.filteredScenarios({ activePage }).map((scenario) => (
-            <ScenarioComponent
-              scenario={scenario}
-              token={this.token}
-              className="scenario-component-rendered"
-            />
-          ))}
-        </Table.Body>
-      </Table>
-    );
-  }
 }
-
-export default Scenarios;

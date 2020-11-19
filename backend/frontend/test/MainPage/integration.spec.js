@@ -6,7 +6,7 @@ import { initGetScenario, initGetAllScenario } from '../../src/containers/MainPa
 import nock from 'nock';
 import httpResponseGetScenario from './httpResponseGetScenario.json';
 import httpResponseGetAllScenario from './httpResponseGetAllScenario.json';
-import Scenario from "../../src/containers/MainPage/ScenarioLoader/Scenario";
+import Scenario from "../../src/containers/MainPage/EngineClasses/Scenario";
 import SagaTester from 'redux-saga-tester';
 import saga from '../../src/containers/MainPage/saga'
 import Enzyme, { mount } from 'enzyme';
