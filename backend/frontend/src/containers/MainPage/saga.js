@@ -10,7 +10,6 @@ import {
   getScenarioFail,
   getAllScenarioSuccess,
 } from "./actions";
-import request from "../../utils/request";
 
 const baseURL = "https://www.poker-range-appalyzer.com";
 

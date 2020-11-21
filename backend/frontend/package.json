@@ -8,6 +8,7 @@
 		"@babel/plugin-proposal-optional-chaining": "^7.11.0",
 		"@babel/polyfill": "^7.7.0",
 		"@babel/register": "^7.9.0",
+		"@babel/runtime": "^7.12.5",
 		"@fortawesome/fontawesome-svg-core": "^1.2.30",
 		"@fortawesome/free-solid-svg-icons": "^5.14.0",
 		"@fortawesome/react-fontawesome": "^0.1.11",
@@ -19,6 +20,7 @@
 		"axios": "^0.19.2",
 		"bootstrap": "^4.4.1",
 		"bootstrap-daterangepicker": "^3.0.5",
+		"chai": "^4.2.0",
 		"clsx": "^1.0.4",
 		"connected-react-router": "^6.6.1",
 		"fontfaceobserver": "^2.1.0",
@@ -28,10 +30,12 @@
 		"immer": "^5.0.2",
 		"invariant": "^2.2.4",
 		"jquery": "^3.4.1",
+		"jsdom-global": "^3.0.2",
 		"less": "^3.10.3",
 		"less-loader": "^5.0.0",
 		"lint-staged": "^9.5.0",
 		"lodash": "^4.17.19",
+		"mocha": "^8.2.1",
 		"moment": "^2.24.0",
 		"node-fetch": "^2.6.1",
 		"nyc": "^15.1.0",
@@ -90,8 +94,8 @@
 	},
 	"scripts": {
 		"start": "craco start",
-		"build": "craco build",
-		"test": "nyc -x \"**/tests/**\" --reporter=cobertura --reporter=text-summary jest",
+		"build": "babel --presets=@babel/preset-env script.js",
+		"test": "NODE_ENV=test mocha --config .mocharc.json --experimental-modules -r @babel/register -r ignore-styles -r jsdom-global/register \"./src/test/**/*.spec.js\" --recursive src/test/MainPage",
 		"eject": "craco eject"
 	},
 	"eslintConfig": {
@@ -115,10 +119,16 @@
 		]
 	},
 	"devDependencies": {
+		"@babel/cli": "^7.12.7",
 		"@babel/core": "^7.9.0",
+		"@babel/plugin-transform-modules-commonjs": "^7.12.1",
+		"@babel/plugin-transform-runtime": "^7.12.1",
 		"@babel/preset-env": "^7.9.0",
 		"@craco/craco": "^5.6.4",
 		"@semantic-ui-react/craco-less": "^1.2.1",
+		"babel-plugin-inline-react-svg": "^1.1.2",
+		"babel-preset-react-app-babel-7": "^4.0.2-0",
+		"babel-root-slash-import": "^1.1.0",
 		"enzyme": "^3.11.0",
 		"enzyme-adapter-react-16": "^1.15.2",
 		"eslint": "^6.7.2",
@@ -128,9 +138,13 @@
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-prettier": "^3.1.2",
 		"eslint-plugin-react": "^7.17.0",
+		"ignore-styles": "^5.0.1",
+		"jasmine-core": "^3.6.0",
 		"jest": "^24.9.0",
 		"jest-enzyme": "^7.1.2",
 		"jsdom-quokka-plugin": "^1.0.15",
+		"karma-chrome-launcher": "^3.1.0",
+		"karma-jasmine": "^4.0.1",
 		"nock": "^13.0.5",
 		"redux-saga-tester": "^1.0.874",
 		"semantic-ui-less": "^2.4.1",
@@ -138,5 +152,8 @@
 	},
 	"jest": {
 		"setupTestFrameworkScriptFile": "src/setupTests.js"
+	},
+	"mocha": {
+		"recursive": "true"
 	}
 }

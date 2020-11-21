@@ -1,0 +1,13 @@
+{
+  "diff": true,
+  "extension": ["js"],
+  "package": "./package.json",
+  "reporter": "spec",
+  "slow": 75,
+  "timeout": 2000,
+  "ui": "tdd",
+  "spec": ["src/test/MainPage/**/*"],
+  "include": ["src/**/*.js"],
+  "watch-files": ["src/test/MainPage/**/*.js"],
+  "require": ["@babel/register" ]
+}

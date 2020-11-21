@@ -1,6 +1,6 @@
-import { conformsTo, isFunction, isObject } from "lodash";
 import invariant from "invariant";
-
+import pkg from "lodash";
+const { conformsTo, isFunction, isObject } = pkg;
 /**
  * Validate the shape of redux store
  */
@@ -12,7 +12,7 @@ export default function checkStore(store) {
     replaceReducer: isFunction,
     runSaga: isFunction,
     injectedReducers: isObject,
-    injectedSagas: isObject
+    injectedSagas: isObject,
   };
   invariant(
     conformsTo(store, shape),
