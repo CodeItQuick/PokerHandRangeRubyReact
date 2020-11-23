@@ -9,7 +9,7 @@ module.exports = function(wallaby) {
       "!node_modules/**/*",
     ],
 
-    tests: ["test/**/*.js"],
+    tests: ["src/test/MainPage/**/*.js"],
 
     compilers: {
       "**/*.js*": wallaby.compilers.babel(),

@@ -203,124 +203,124 @@ const CardTable = [
     new CardHandSuitBuilder().build("2", "2", ""),
   ],
 ];
-// describe('State Update Functions', () => {
-test(" generate CardGrid generates an empty object when given an empty range", () => {
-  const PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges));
-  const Position = initialState.mode.isIP;
-  const newCardGrid = generateCardGrid(PreflopRanges, Position);
+suite("State Update Functions", () => {
+  test(" generate CardGrid generates an empty object when given an empty range", () => {
+    const PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges));
+    const Position = initialState.mode.isIP;
+    const newCardGrid = generateCardGrid(PreflopRanges, Position);
 
-  expect(newCardGrid).to.deep.equal({});
-});
-
-test(" generate CardGrid generates an AA object when given an AA range", () => {
-  let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
-    ({ Street }) => Street == "Preflop"
-  );
-  let AAHandObj = new CardHandSuitBuilder().build("A", "A");
-  PreflopRanges[0].hands = [AAHandObj];
-  const Position = initialState.mode.isIP;
-  const newCardGrid = generateCardGrid(PreflopRanges, Position);
-
-  expect(newCardGrid).to.deep.equal({
-    AA: {
-      colorCards: [
-        "#0F6125",
-        "#ed87a7",
-        "#3ac0ff",
-        "#dc73ff",
-        "#003d3e",
-        "#8A4000",
-      ][0],
-      equity: "n/a",
-    },
-  });
-});
-
-test(" generate CardGrid generates an AA object when given an AA range", () => {
-  let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
-    ({ Street }) => Street == "Preflop"
-  );
-  let AAHandObj = new CardHandSuitBuilder().build("A", "A");
-  PreflopRanges[1].hands = [AAHandObj];
-  const Position = initialState.mode.isIP;
-  const newCardGrid = generateCardGrid(PreflopRanges, Position);
-
-  expect(newCardGrid).to.deep.equal({
-    AA: {
-      colorCards: ["#0F6125", "#ed87a7", "#6b6c7c", "#d3d3d3"][1],
-      equity: "n/a",
-    },
-  });
-});
-
-test(" generate CardGrid generates an AA object when given an AA range", () => {
-  let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
-    ({ Street }) => Street == "Preflop"
-  );
-  let AAHandObj = new CardHandSuitBuilder().build("A", "A");
-  PreflopRanges[2].hands = [AAHandObj];
-  const Position = initialState.mode.isIP;
-  const newCardGrid = generateCardGrid(PreflopRanges, Position);
-
-  expect(newCardGrid).to.deep.equal({
-    AA: {
-      colorCards: [
-        "#0F6125",
-        "#ed87a7",
-        "#3ac0ff",
-        "#dc73ff",
-        "#003d3e",
-        "#8A4000",
-      ][2],
-      equity: "n/a",
-    },
-  });
-});
-
-test(" generate CardGrid generates an AA object when given an AA range", () => {
-  let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
-    ({ Street }) => Street === "Preflop"
-  );
-  let AAHandObj = new CardHandSuitBuilder().build("A", "A");
-  PreflopRanges[3].hands = [AAHandObj];
-  const Position = initialState.mode.isIP;
-  const newCardGrid = generateCardGrid(PreflopRanges, Position);
-
-  expect(newCardGrid).to.deep.equal({
-    AA: {
-      colorCards: [
-        "#0F6125",
-        "#ed87a7",
-        "#3ac0ff",
-        "#dc73ff",
-        "#003d3e",
-        "#8A4000",
-      ][3],
-      equity: "n/a",
-    },
-  });
-});
-
-test(" generates a BoardOfHands when instantiated and called", () => {
-  const newBoardOfHands = new BoardOfHands();
-  const newCardGrid = newBoardOfHands.generateCardGrid();
-
-  expect(newCardGrid).to.deep.equal(CardTable);
-});
-test(" can be updated to generate a new board", () => {
-  let newBoardOfHands = new BoardOfHands();
-  const PreflopRanges = new RangeObjectCollection(initialState.ranges);
-  const SelectedRanges = PreflopRanges.displayRangeByStreet({
-    Street: "Flop",
-    useTwoFlopSizes: false,
-  });
-  Object.assign(SelectedRanges[0], {
-    cardSuitHandArray: [new CardHandSuitBuilder().build("A", "A")],
+    expect(newCardGrid).to.deep.equal({});
   });
 
-  newBoardOfHands.updateCardGrid(PreflopRanges, SelectedRanges);
-  const newCardGrid = newBoardOfHands.generateCardGrid();
+  test(" generate CardGrid generates an AA object when given an AA range", () => {
+    let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
+      ({ Street }) => Street == "Preflop"
+    );
+    let AAHandObj = new CardHandSuitBuilder().build("A", "A");
+    PreflopRanges[0].hands = [AAHandObj];
+    const Position = initialState.mode.isIP;
+    const newCardGrid = generateCardGrid(PreflopRanges, Position);
 
-  expect(newCardGrid).to.deep.equal(CardTable);
+    expect(newCardGrid).to.deep.equal({
+      AA: {
+        colorCards: [
+          "#0F6125",
+          "#ed87a7",
+          "#3ac0ff",
+          "#dc73ff",
+          "#003d3e",
+          "#8A4000",
+        ][0],
+        equity: "n/a",
+      },
+    });
+  });
+
+  test(" generate CardGrid generates an AA object when given an AA range", () => {
+    let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
+      ({ Street }) => Street == "Preflop"
+    );
+    let AAHandObj = new CardHandSuitBuilder().build("A", "A");
+    PreflopRanges[1].hands = [AAHandObj];
+    const Position = initialState.mode.isIP;
+    const newCardGrid = generateCardGrid(PreflopRanges, Position);
+
+    expect(newCardGrid).to.deep.equal({
+      AA: {
+        colorCards: ["#0F6125", "#ed87a7", "#6b6c7c", "#d3d3d3"][1],
+        equity: "n/a",
+      },
+    });
+  });
+
+  test(" generate CardGrid generates an AA object when given an AA range", () => {
+    let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
+      ({ Street }) => Street == "Preflop"
+    );
+    let AAHandObj = new CardHandSuitBuilder().build("A", "A");
+    PreflopRanges[2].hands = [AAHandObj];
+    const Position = initialState.mode.isIP;
+    const newCardGrid = generateCardGrid(PreflopRanges, Position);
+
+    expect(newCardGrid).to.deep.equal({
+      AA: {
+        colorCards: [
+          "#0F6125",
+          "#ed87a7",
+          "#3ac0ff",
+          "#dc73ff",
+          "#003d3e",
+          "#8A4000",
+        ][2],
+        equity: "n/a",
+      },
+    });
+  });
+
+  test(" generate CardGrid generates an AA object when given an AA range", () => {
+    let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
+      ({ Street }) => Street === "Preflop"
+    );
+    let AAHandObj = new CardHandSuitBuilder().build("A", "A");
+    PreflopRanges[3].hands = [AAHandObj];
+    const Position = initialState.mode.isIP;
+    const newCardGrid = generateCardGrid(PreflopRanges, Position);
+
+    expect(newCardGrid).to.deep.equal({
+      AA: {
+        colorCards: [
+          "#0F6125",
+          "#ed87a7",
+          "#3ac0ff",
+          "#dc73ff",
+          "#003d3e",
+          "#8A4000",
+        ][3],
+        equity: "n/a",
+      },
+    });
+  });
+
+  test(" generates a BoardOfHands when instantiated and called", () => {
+    const newBoardOfHands = new BoardOfHands();
+    const newCardGrid = newBoardOfHands.generateCardGrid();
+
+    expect(newCardGrid).to.deep.equal(CardTable);
+  });
+  test(" can be updated to generate a new board", () => {
+    let newBoardOfHands = new BoardOfHands();
+    const PreflopRanges = new RangeObjectCollection(initialState.ranges);
+    const SelectedRanges = PreflopRanges.displayRangeByStreet({
+      Street: "Flop",
+      useTwoFlopSizes: false,
+    });
+    Object.assign(SelectedRanges[0], {
+      cardSuitHandArray: [new CardHandSuitBuilder().build("A", "A")],
+    });
+
+    newBoardOfHands.updateCardGrid(PreflopRanges, SelectedRanges);
+    const newCardGrid = newBoardOfHands.generateCardGrid();
+
+    expect(newCardGrid).to.deep.equal(CardTable);
+  });
 });
-// });

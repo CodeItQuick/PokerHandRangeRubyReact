@@ -26,66 +26,65 @@ const data = [
   { name: "River", value: "CheckFold" },
 ];
 
-// describe('MainPage reducer', () => {
-test("should return the initial state", function () {
-  expect(reducer(undefined, {})).to.deep.equal(initialState);
-});
+suite("MainPage reducer", () => {
+  test("should return the initial state", function () {
+    expect(reducer(undefined, {})).to.deep.equal(initialState);
+  });
 
-test.skip(
-  "The reducer with action " +
-    types.SET_HAND_RANGE_SELECT +
-    " should return the new mode",
-  (data) => {
-    const action = setHandRangeSelect(data);
+  test.skip(
+    "The reducer with action " +
+      types.SET_HAND_RANGE_SELECT +
+      " should return the new mode",
+    (data) => {
+      const action = setHandRangeSelect(data);
 
+      let newState = JSON.parse(JSON.stringify(initialState));
+
+      expect(reducer(undefined, action)).to.deep.equal(newState);
+    }
+  );
+
+  test("The reducer when action SET_HAND_RANGE should return the new state for hand range", () => {
+    //Given
+    let ranges = JSON.parse(JSON.stringify(initialState.ranges));
+    ranges[0] = { ...ranges, hands: ["AA"] };
+
+    //When
+    const action = initSetHandRange(ranges);
+
+    //Then
     let newState = JSON.parse(JSON.stringify(initialState));
 
+    newState = {
+      ...initialState,
+      ranges,
+    };
+
     expect(reducer(undefined, action)).to.deep.equal(newState);
-  }
-);
+  });
 
-test("The reducer when action SET_HAND_RANGE should return the new state for hand range", () => {
-  //Given
-  let ranges = JSON.parse(JSON.stringify(initialState.ranges));
-  ranges[0] = { ...ranges, hands: ["AA"] };
+  test("The reducer when action SET_DEADCARDS should return the new state for deadcards", () => {
+    //Given
+    const deadcards = ["Ac", "Td", "5h"];
 
-  //When
-  const action = initSetHandRange(ranges);
+    //When
+    const action = initSetDeadCards(deadcards);
 
-  //Then
-  let newState = JSON.parse(JSON.stringify(initialState));
+    //Then
+    let newState = JSON.parse(JSON.stringify(initialState));
 
-  newState = {
-    ...initialState,
-    ranges,
-  };
+    newState = {
+      ...initialState,
+      deadcards,
+      mode: {
+        street: "Flop",
+        streetAction: "Valuebet",
+        isIP: true,
+        suitSelection: [],
+        useTwoFlopSizes: false,
+      },
+    };
 
-  expect(reducer(undefined, action)).to.deep.equal(newState);
+    expect(reducer(undefined, action)).to.deep.equal(newState);
+  });
 });
-
-test("The reducer when action SET_DEADCARDS should return the new state for deadcards", () => {
-  //Given
-  const deadcards = ["Ac", "Td", "5h"];
-
-  //When
-  const action = initSetDeadCards(deadcards);
-
-  //Then
-  let newState = JSON.parse(JSON.stringify(initialState));
-
-  newState = {
-    ...initialState,
-    deadcards,
-    mode: {
-      street: "Flop",
-      streetAction: "Valuebet",
-      isIP: true,
-      suitSelection: [],
-      useTwoFlopSizes: false,
-    },
-  };
-
-  expect(reducer(undefined, action)).to.deep.equal(newState);
-});
-
-// });

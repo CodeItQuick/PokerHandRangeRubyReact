@@ -18,120 +18,131 @@ import ScenarioLoader from "./../../containers/MainPage/ScenarioLoader";
 import { Provider } from "react-redux";
 import configureStore from "./../../configureStore";
 
+import { expect } from "chai";
+
 Enzyme.configure({ adapter: new ReactSixteenAdapter() });
-// describe("Integration its: ", () => {
-test.skip("The reducer when action GET_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
-  // nock('http://localhost:3000')
-  // .post('/api/private/get-scenario')
-  // .reply(200, httpResponseGetScenario)
-  nock("https://www.poker-range-appalyzer.com")
-    .post("/api/private/get-scenario")
-    .reply(200, httpResponseGetScenario);
-  let sagaiter = null;
+suite("Integration its: ", () => {
+  test("The reducer when action GET_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
+    // nock('http://localhost:3000')
+    // .post('/api/private/get-scenario')
+    // .reply(200, httpResponseGetScenario)
+    nock("https://www.poker-range-appalyzer.com")
+      .post("/api/private/get-scenario")
+      .reply(200, httpResponseGetScenario);
+    let sagaTester = null;
 
-  sagaiter = new SagaTester({ initialState, reducers: reducer });
+    sagaTester = new SagaTester({ initialState, reducers: reducer });
 
-  sagaiter.start(saga);
+    sagaTester.start(saga);
 
-  const scenario = new Scenario({
-    board: "AcTh4s",
-    rangeRepoIP: initialState.rangeRepoIP,
-    rangeRepoOOP: initialState.rangeRepoOOP,
-    user: "Evan",
-    ScenarioName: "it Scenario",
-    OpenerPosition: "CO",
-    DefenderPosition: "BU",
+    const scenario = new Scenario({
+      board: "AcTh4s",
+      rangeRepoIP: initialState.rangeRepoIP,
+      rangeRepoOOP: initialState.rangeRepoOOP,
+      user: "Evan",
+      ScenarioName: "it Scenario",
+      OpenerPosition: "CO",
+      DefenderPosition: "BU",
+    });
+
+    sagaTester.dispatch(initGetScenario({ scenario, token: "dummy" }));
+
+    await sagaTester.waitFor(types.GET_SCENARIO_SUCCESS);
+
+    const finalReducerValue = sagaTester.getState();
+
+    // await sagaTester.waitFor(getScenarioSuccess());
+    expect(finalReducerValue.rangeRepoIP[0].hands).to.deep.equal([
+      "A7s",
+      "A6s",
+      "A5s",
+      "A4s",
+      "A3s",
+      "A2s",
+    ]);
+    expect(finalReducerValue.ranges.length).to.equal(18);
   });
 
-  sagaiter.dispatch(initGetScenario({ scenario, token: "dummy" }));
+  test("The reducer when action GET_ALL_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
+    nock("http://localhost:3000")
+      .post("/api/private/get-all-scenario")
+      .reply(200, httpResponseGetAllScenario);
+    nock("https://www.poker-range-appalyzer.com")
+      .post("/api/private/get-all-scenario")
+      .reply(200, httpResponseGetAllScenario);
+    let sagaTester = null;
 
-  await sagaiter.waitFor(types.GET_SCENARIO_SUCCESS);
+    sagaTester = new SagaTester({ initialState, reducers: reducer });
 
-  const finalReducerValue = sagaiter.getState();
+    sagaTester.start(saga);
 
-  // await sagaiter.waitFor(getScenarioSuccess());
-  expect(finalReducerValue.rangeRepoIP[0].hands).to.deep.equal([
-    "A7s",
-    "A6s",
-    "A5s",
-    "A4s",
-    "A3s",
-    "A2s",
-  ]);
-  expect(finalReducerValue.ranges.length).to.equal(18);
-});
+    const scenario = new Scenario({
+      board: "AcTh4s",
+      rangeRepoIP: initialState.rangeRepoIP,
+      rangeRepoOOP: initialState.rangeRepoOOP,
+      user: "Evan",
+      ScenarioName: "it Scenario",
+      OpenerPosition: "CO",
+      DefenderPosition: "BU",
+    });
 
-test.skip("The reducer when action GET_ALL_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
-  nock("http://localhost:3000")
-    .post("/api/private/get-all-scenario")
-    .reply(200, httpResponseGetAllScenario);
-  nock("https://www.poker-range-appalyzer.com")
-    .post("/api/private/get-all-scenario")
-    .reply(200, httpResponseGetAllScenario);
-  let sagaiter = null;
+    sagaTester.dispatch(initGetAllScenario({ scenario }));
 
-  sagaiter = new SagaTester({ initialState, reducers: reducer });
+    await sagaTester.waitFor(types.GET_ALL_SCENARIO_SUCCESS);
 
-  sagaiter.start(saga);
+    const finalReducerValue = sagaTester.getState();
 
-  const scenario = new Scenario({
-    board: "AcTh4s",
-    rangeRepoIP: initialState.rangeRepoIP,
-    rangeRepoOOP: initialState.rangeRepoOOP,
-    user: "Evan",
-    ScenarioName: "it Scenario",
-    OpenerPosition: "CO",
-    DefenderPosition: "BU",
+    expect(finalReducerValue.scenarioBoards).to.deep.equal([
+      ["AcAsAh", "fdsaasdfasdfasdfasdf", "BU", "MP"],
+      ["Jh4h2s", "875fancyflop", "BU", "MP"],
+      ["AcTs", "asdf1234", "SB", "MP"],
+      ["Ac", "asfdsdfasdfasdf", "SB", "UTG"],
+    ]);
   });
 
-  sagaiter.dispatch(initGetAllScenario({ scenario }));
+  test.skip("a token gets passed to the saga correctly", () => {
+    nock("https://www.poker-range-appalyzer.com")
+      .post("/api/private/get-scenario")
+      .reply(200, httpResponseGetScenario);
+    const newInitialState = initialState;
 
-  await sagaiter.waitFor(types.GET_ALL_SCENARIO_SUCCESS);
+    //Setup the state to have a number of Boards to load
+    newInitialState.scenarioBoards.push([
+      "Ac4c4h",
+      "875fancyflop",
+      "UTG",
+      "MP",
+    ]);
+    newInitialState.scenarioBoards.push([
+      "Ac4c4h",
+      "875fancyfUTGpped",
+      "UTG",
+      "MP",
+    ]);
+    newInitialState.scenarioBoards.push(["AcAsAh", "itFile", "UTG", "CO"]);
 
-  const finalReducerValue = sagaiter.getState();
+    //Create the ScenarioLoader with a state
+    const store = configureStore(newInitialState, null);
 
-  expect(finalReducerValue.scenarioBoards).toStrictEqual([
-    ["AcAsAh", "fdsaasdfasdfasdfasdf", "BU", "MP"],
-    ["Jh4h2s", "875fancyflop", "BU", "MP"],
-    ["AcTs", "asdf1234", "SB", "MP"],
-    ["Ac", "asfdsdfasdfasdf", "SB", "UTG"],
-  ]);
+    const navComponent = mount(
+      <Provider store={store}>
+        <ScenarioLoader
+          onHide={() => null}
+          active={true}
+          onCloseModal={false}
+          token="Bearer dummy"
+        />
+      </Provider>
+    );
+
+    //Click on the button to load a new scenario
+    const clickButtonReturnValues = navComponent
+      .find(".load-button")
+      .get(0)
+      .props.onClick();
+
+    //Token is expected to be called "dummy"
+    const tokenExpectedValue = clickButtonReturnValues.data.token;
+    expect(tokenExpectedValue).to.equal("Bearer dummy");
+  });
 });
-
-test.skip("a token gets passed to the saga correctly", () => {
-  nock("https://www.poker-range-appalyzer.com")
-    .post("/api/private/get-scenario")
-    .reply(200, httpResponseGetScenario);
-  const newInitialState = initialState;
-
-  //Setup the state to have a number of Boards to load
-  newInitialState.scenarioBoards.push(["Ac4c4h", "875fancyflop", "UTG", "MP"]);
-  newInitialState.scenarioBoards.push([
-    "Ac4c4h",
-    "875fancyfUTGpped",
-    "UTG",
-    "MP",
-  ]);
-  newInitialState.scenarioBoards.push(["AcAsAh", "itFile", "UTG", "CO"]);
-
-  //Create the ScenarioLoader with a state
-  const store = configureStore(newInitialState, null);
-
-  const navComponent = mount(
-    <Provider store={store}>
-      <ScenarioLoader active={true} onCloseModal={false} token="Bearer dummy" />
-    </Provider>
-  );
-
-  //Click on the button to load a new scenario
-  const clickButtonReturnValues = navComponent
-    .find(".load-button")
-    .get(0)
-    .props.onClick();
-
-  //Token is expected to be called "dummy"
-  const tokenExpectedValue = clickButtonReturnValues.data.token;
-  expect(tokenExpectedValue).to.equal("Bearer dummy");
-});
-
-// });

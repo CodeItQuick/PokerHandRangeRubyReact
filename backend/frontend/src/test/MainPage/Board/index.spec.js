@@ -22,14 +22,14 @@ function setup(onMouseOverHandler) {
 
   return enzymeWrapper;
 }
-// describe('MainPage Container', () => {
-test("board renders with a white card-button object", () => {
-  const enzymeWrapper = shallow(setup(() => null));
-  expect(enzymeWrapper.length).to.equal(1);
-});
+suite("MainPage Container", () => {
+  test("board renders with a white card-button object", () => {
+    const enzymeWrapper = shallow(setup(() => null));
+    expect(enzymeWrapper.length).to.equal(1);
+  });
 
-test("board fires onClick handler as clicked", () => {
-  const enzymeWrapper = shallow(setup(() => null));
-  expect(enzymeWrapper.length).to.equal(1);
+  test("board fires onClick handler as clicked", () => {
+    const enzymeWrapper = shallow(setup(() => null));
+    expect(enzymeWrapper.length).to.equal(1);
+  });
 });
-// });

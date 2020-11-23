@@ -29,32 +29,32 @@ function setup() {
     enzymeWrapper,
   };
 }
-// describe('MainPage Container', () => {
-test("renders an element on the page", () => {
-  const { enzymeWrapper } = setup();
+suite("MainPage Container", () => {
+  test("renders an element on the page", () => {
+    const { enzymeWrapper } = setup();
 
-  expect(enzymeWrapper.length).to.equal(1);
-});
-
-test("handsInRange should return false when given an empty range", () => {
-  const range = initialState.ranges.map(({ Street, BetType }) => {
-    return new RangeObject(Street, BetType, []);
+    expect(enzymeWrapper.length).to.equal(1);
   });
-  const street = "Preflop";
 
-  expect(handsInRange(range, street)).to.equal(false);
-});
+  test("handsInRange should return false when given an empty range", () => {
+    const range = initialState.ranges.map(({ Street, BetType }) => {
+      return new RangeObject(Street, BetType, []);
+    });
+    const street = "Preflop";
 
-test("handsInRange should return true when given a range with AA", () => {
-  const range = initialState.ranges.map((range) => {
-    if (range.Street == "Preflop")
-      return new RangeObject("Preflop", range.BetType, [
-        new CardHandSuitBuilder().build("A", "A"),
-      ]);
-    else return new RangeObject(range.Street, range.BetType, []);
+    expect(handsInRange(range, street)).to.equal(false);
   });
-  const street = "Preflop";
 
-  expect(handsInRange(range, street)).to.equal(true);
+  test("handsInRange should return true when given a range with AA", () => {
+    const range = initialState.ranges.map((range) => {
+      if (range.Street == "Preflop")
+        return new RangeObject("Preflop", range.BetType, [
+          new CardHandSuitBuilder().build("A", "A"),
+        ]);
+      else return new RangeObject(range.Street, range.BetType, []);
+    });
+    const street = "Preflop";
+
+    expect(handsInRange(range, street)).to.equal(true);
+  });
 });
-// });
