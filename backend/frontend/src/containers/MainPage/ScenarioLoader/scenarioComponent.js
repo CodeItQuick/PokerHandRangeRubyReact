@@ -19,7 +19,7 @@ const ScenarioComponent = ({ scenario, token }) => {
   const onClickHandler = () => dispatch(initGetScenario({ scenario, token }));
 
   return (
-    <Table.Row>
+    <Table.Row id={scenario?.displayScenarioName()}>
       <Table.Cell>{scenario ? scenario?.displayScenarioName() : ""}</Table.Cell>
       <Table.Cell>
         {scenario ? scenario?.displayOpenerPosition() : ""}
