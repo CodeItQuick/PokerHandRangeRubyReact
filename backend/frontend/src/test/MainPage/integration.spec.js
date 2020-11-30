@@ -4,11 +4,14 @@ import * as types from "./../../containers/MainPage/constants";
 import {
   initGetScenario,
   initGetAllScenario,
+  initStartConversation,
 } from "../../containers/MainPage/actions";
 
 import nock from "nock";
 import httpResponseGetScenario from "./httpResponseGetScenario.json";
 import httpResponseGetAllScenario from "./httpResponseGetAllScenario.json";
+import httpResponsePostNewChatbotMessage from "./httpResponsePostNewChatbotMessage.json";
+import httpResponsePostNewChatbotSelfService from "./httpResponsePostNewChatbotSelfService.json";
 import Scenario from "./../../containers/MainPage/EngineClasses/Scenario";
 import SagaTester from "redux-saga-tester";
 import saga from "./../../containers/MainPage/saga";
@@ -21,7 +24,7 @@ import configureStore from "./../../configureStore";
 import { expect } from "chai";
 
 Enzyme.configure({ adapter: new ReactSixteenAdapter() });
-suite("Integration its: ", () => {
+describe("Integration its: ", () => {
   test("The reducer when action GET_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
     // nock('http://localhost:3000')
     // .post('/api/private/get-scenario')
@@ -144,5 +147,152 @@ suite("Integration its: ", () => {
     //Token is expected to be called "dummy"
     const tokenExpectedValue = clickButtonReturnValues.data.token;
     expect(tokenExpectedValue).to.equal("Bearer dummy");
+  });
+
+  //New test for VoiceFoundry
+  test("When the saga is triggered with the first message 'help' for the chat bot, the reducer should store the correct state.", async () => {
+    nock("http://localhost:3000/")
+      .post("/prod/api")
+      .reply(200, httpResponsePostNewChatbotMessage);
+    nock("https://bod4vmmmog.execute-api.us-east-1.amazonaws.com/")
+      .post("/prod/api")
+      .reply(200, httpResponsePostNewChatbotMessage);
+    let sagaTester = null;
+
+    sagaTester = new SagaTester({ initialState, reducers: reducer });
+
+    sagaTester.start(saga);
+
+    const newMessage = "help";
+
+    let newChat = initialState.helpChat;
+    newChat.inputTranscript = newMessage;
+    sagaTester.dispatch(initStartConversation(newChat));
+
+    await sagaTester.waitFor(types.START_CONVERSATION_SUCCESS, true);
+
+    const finalReducerState = sagaTester.getState(); //?
+
+    // await sagaTester.waitFor(getScenarioSuccess());
+    expect(finalReducerState.helpChat).to.deep.equal({
+      bot: {
+        alias: "$LATEST",
+        name: "InteractiveMessageBot",
+        version: "$LATEST",
+      },
+      currentIntent: {
+        confirmationStatus: "None",
+        name: "InteractiveMessageIntent",
+        slots: {
+          action: "help",
+          department: null,
+          interactiveOption: null,
+        },
+      },
+      inputTranscript: "help",
+      invocationSource: "DialogCodeHook",
+      message: {
+        content: {
+          data: {
+            content: {
+              elements: [
+                {
+                  title: "Check self-service options",
+                },
+                { title: "Talk to an agent" },
+                { title: "End chat" },
+              ],
+              subtitle: "Tap to select option",
+              title: "How can I help you?",
+            },
+          },
+          templateType: "ListPicker",
+          version: "1.0",
+        },
+        contentType: "CustomPayload",
+      },
+      messageVersion: "1.0",
+      outputDialogMode: "Text",
+      recentIntentSummaryView: [
+        {
+          confirmationStatus: "None",
+          name: "InteractiveMessageIntent",
+          slots: {
+            action: "help",
+            department: null,
+            interactiveOption: null,
+          },
+        },
+      ],
+      sessionAttributes: {},
+      userId: "c6ff70c5-c315-4300-a817-5c0a17a01fa4",
+    });
+
+    //Check self-service options
+
+    nock("http://localhost:3000/")
+      .post("/prod/api")
+      .reply(200, httpResponsePostNewChatbotSelfService);
+
+    const newMessageTwo = "Check self-service options";
+    let newChatTwo = initialState.helpChat;
+    newChatTwo.inputTranscript = newMessageTwo;
+    sagaTester.dispatch(initStartConversation(newChatTwo));
+
+    await sagaTester.waitFor(types.START_CONVERSATION_SUCCESS, true);
+
+    const finalReducerStateTwo = sagaTester.getState(); //?
+
+    // await sagaTester.waitFor(getScenarioSuccess());
+    expect(finalReducerStateTwo.helpChat).to.deep.equal({
+      bot: {
+        alias: "$LATEST",
+        name: "InteractiveMessageBot",
+        version: "$LATEST",
+      },
+      currentIntent: {
+        confirmationStatus: "None",
+        name: "InteractiveMessageIntent",
+        slots: {
+          action: "help",
+          department: "help",
+          interactiveOption: "Check self-service options",
+        },
+      },
+      inputTranscript: "help",
+      invocationSource: "DialogCodeHook",
+      message: {
+        content: {
+          data: {
+            content: {
+              elements: [
+                { title: "Choose a department" },
+                { title: "Schedule a meeting with an agent" },
+              ],
+              subtitle: "Tap to select option",
+              title: "What would you like to do?",
+            },
+          },
+          templateType: "ListPicker",
+          version: "1.0",
+        },
+        contentType: "CustomPayload",
+      },
+      messageVersion: "1.0",
+      outputDialogMode: "Text",
+      recentIntentSummaryView: [
+        {
+          confirmationStatus: "None",
+          name: "InteractiveMessageIntent",
+          slots: {
+            action: null,
+            department: null,
+            interactiveOption: "Check self-service options",
+          },
+        },
+      ],
+      sessionAttributes: {},
+      userId: "c6ff70c5-c315-4300-a817-5c0a17a01fa4",
+    });
   });
 });

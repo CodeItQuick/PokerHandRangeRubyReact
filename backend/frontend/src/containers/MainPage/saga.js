@@ -4,11 +4,13 @@ import {
   INIT_SAVE_SCENARIO,
   INIT_GET_SCENARIO,
   INIT_GET_ALL_SCENARIO,
+  START_CONVERSATION,
 } from "./constants";
 import {
   getScenarioSuccess,
   getScenarioFail,
   getAllScenarioSuccess,
+  startConversationSuccess,
 } from "./actions";
 import request from "../../utils/request";
 
@@ -132,6 +134,44 @@ export function* getAllScenario({ data: token }) {
 }
 
 /**
+ * Get All Hand Ranges request/response handler
+ */
+export function* communicateMessage({ data }) {
+  const requestUrl = `https://3uj83kbjaf.execute-api.us-east-1.amazonaws.com/prod/api`;
+  console.log(data); //?
+  // if (!token) return;
+  try {
+    const headers = {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "*",
+      // Authorization: `Bearer ${token}`,
+    };
+
+    const requestParams = {
+      headers,
+      method: "POST",
+      body: JSON.stringify(data),
+    };
+
+    const response = yield call(request, requestUrl, requestParams); //?
+
+    yield put(
+      startConversationSuccess({
+        ...response,
+        recentIntent: data.currentIntent,
+        inputTranscript: data.inputTranscript,
+      })
+    );
+  } catch (err) {
+    console.log(err);
+    // yield put(getScenarioFail(err));
+
+    //yield errorHandling
+    // yield put(allUserHandRangesFail(err));
+  }
+}
+
+/**
  * Root saga manages watcher lifecycle
  */
 export default function* handData() {
@@ -139,5 +179,6 @@ export default function* handData() {
     takeLatest(INIT_SAVE_SCENARIO, saveScenario),
     takeLatest(INIT_GET_SCENARIO, getScenario),
     takeLatest(INIT_GET_ALL_SCENARIO, getAllScenario),
+    takeLatest(START_CONVERSATION, communicateMessage),
   ]);
 }

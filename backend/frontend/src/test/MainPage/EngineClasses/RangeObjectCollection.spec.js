@@ -21,7 +21,7 @@ const data = [
   { Street: "River", BetType: "CheckFold", hands: [] },
 ];
 
-suite("A RangeObject Collection ", () => {
+describe("A RangeObject Collection ", () => {
   test("given no constructor can display 16 RangeObjects", () => {
     const rangeObjectCollection = new RangeObjectCollection();
     const result = initialState.ranges.map(({ Street, BetType, hands }) => ({

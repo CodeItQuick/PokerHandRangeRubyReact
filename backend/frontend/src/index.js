@@ -58,7 +58,10 @@ ReactDOM.render(
       >
         <Provider store={store}>
           <Router history={history}>
-            <Route exact path="/" component={App} />
+            {/* Production */}
+            <Route exact path="/prod/prod" component={App} />
+            {/* Dev */}
+            {/* <Route exact path="/" component={App} />  */}
           </Router>
         </Provider>
       </Auth0Provider>

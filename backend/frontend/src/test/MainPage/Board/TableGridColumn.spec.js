@@ -4,7 +4,7 @@ import { CardHandSuitBuilder } from "./../../../containers/MainPage/EngineClasse
 import { colorCell } from "./../../../containers/MainPage/EngineClasses/colorCellFn";
 import { expect } from "chai";
 
-suite("Table Grid Column", () => {
+describe("Table Grid Column", () => {
   test(" the function colorCell returns the given colorCard suit for a pair", () => {
     const cards = { 77: { colorCards: "#198f35", equity: "n/a" } };
     const cardHandSuitBuilder = new CardHandSuitBuilder().build("7", "7", "");

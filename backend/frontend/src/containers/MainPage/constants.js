@@ -66,3 +66,7 @@ export const SET_HAND_RANGE_ARRAY =
 
 export const CHANGE_MODE_SUIT_SELECTION =
   "handrangeAPI/MainPage/CHANGE_MODE_SUIT_SELECTION";
+
+export const START_CONVERSATION = "handrangeAPI/MainPage/START_CONVERSATION";
+export const START_CONVERSATION_SUCCESS =
+  "handrangeAPI/MainPage/START_CONVERSATION_SUCCESS";

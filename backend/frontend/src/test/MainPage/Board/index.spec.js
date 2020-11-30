@@ -22,7 +22,7 @@ function setup(onMouseOverHandler) {
 
   return enzymeWrapper;
 }
-suite("MainPage Container", () => {
+describe("MainPage Container", () => {
   test("board renders with a white card-button object", () => {
     const enzymeWrapper = shallow(setup(() => null));
     expect(enzymeWrapper.length).to.equal(1);

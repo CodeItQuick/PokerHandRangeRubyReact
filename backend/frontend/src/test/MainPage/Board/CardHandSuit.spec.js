@@ -1,7 +1,7 @@
 import { CardHandSuitBuilder } from "./../../../containers/MainPage/EngineClasses/CardHandSuitBuilder";
 import { expect } from "chai";
 
-suite("CardHandSuitBuilder Class", () => {
+describe("CardHandSuitBuilder Class", () => {
   test("can be constructed when two cards, and no sutest entered", () => {
     //Given
     const cardOne = "A";

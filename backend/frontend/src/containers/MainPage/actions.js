@@ -8,6 +8,8 @@ import {
   INIT_GET_SCENARIO,
   GET_SCENARIO_SUCCESS,
   CHANGE_MODE_SUIT_SELECTION,
+  START_CONVERSATION,
+  START_CONVERSATION_SUCCESS,
 } from "./constants";
 
 export function initSetHandRangeSelect(data) {
@@ -242,4 +244,82 @@ export function changeUseOneFlopBetsize(data, state) {
       useTwoFlopSizes: data,
     },
   };
+}
+
+export function initStartConversation(data) {
+  console.log(data); //?
+  if (data.slotToElicit.length)
+    data.currentIntent.slots = {
+      ...data.currentIntent.slots,
+      interactiveOption: null,
+      [data.slotToElicit]: data.inputTranscript,
+    };
+  return {
+    type: START_CONVERSATION,
+    data,
+  };
+}
+
+export function startConversationSuccess(data) {
+  return {
+    type: START_CONVERSATION_SUCCESS,
+    data,
+  };
+}
+
+export function storeConversationSuccess(data, state) {
+  console.log(data); //?
+
+  //should be pulled out into its own function
+  state.helpChat.recentIntentSummaryView = [];
+  state.helpChat.recentIntentSummaryView[0] = data.recentIntent
+    ? {
+        name: "InteractiveMessageIntent",
+        slots: {
+          action: null,
+          department: null,
+          interactiveOption: null,
+        },
+        confirmationStatus: "None",
+      }
+    : null;
+  state.helpChat.recentIntentSummaryView[0].slots[data.slotToElicit] =
+    data.inputTranscript;
+
+  return {
+    ...state,
+    helpChat: {
+      ...state.helpChat,
+      messageVersion: "1.0",
+      invocationSource: "DialogCodeHook",
+      userId: "c6ff70c5-c315-4300-a817-5c0a17a01fa4",
+      sessionAttributes: {},
+      bot: {
+        name: "InteractiveMessageBot",
+        alias: "$LATEST",
+        version: "$LATEST",
+      },
+      outputDialogMode: "Text",
+      currentIntent: {
+        name: data.intentName || state.helpChat.currentIntent.name,
+        slots: {
+          action:
+            data.slotToElicit === "action"
+              ? data.inputTranscript
+              : state.helpChat.currentIntent.slots.action,
+          department:
+            data.slotToElicit === "department"
+              ? data.inputTranscript
+              : state.helpChat.currentIntent.slots.action,
+          interactiveOption:
+            data.slotToElicit === "interactiveOption"
+              ? data.inputTranscript
+              : state.helpChat.currentIntent.slots.interactiveOption,
+        },
+        confirmationStatus: "None",
+      },
+      slotToElicit: data.slotToElicit,
+      message: JSON.parse(data.message) || state.message,
+    },
+  }; //?
 }

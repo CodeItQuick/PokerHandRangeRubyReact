@@ -24,6 +24,11 @@ import { createWaiter } from "../../create-waiter";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
+import { Widget, addResponseMessage, addUserMessage } from "react-chat-widget";
+
+import "react-chat-widget/lib/styles.css";
+import { initStartConversation } from "../MainPage/actions";
+import { makeSelectHelpChat } from "../MainPage/selectors";
 const key = "global";
 
 const StyledFragment = styled.div`
@@ -79,7 +84,7 @@ const store = configureStore(initialState, history);
 
 const waitForData = createWaiter(store, (state) => state);
 
-const App = ({ global }) => {
+const App = ({ helpChat }) => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
@@ -88,6 +93,24 @@ const App = ({ global }) => {
   const [token, updateToken] = useState();
 
   const closeTour = () => updateTourOpen(false);
+
+  const handleNewUserMessage = (newMessage) => {
+    console.log(`New message incoming! ${newMessage}`);
+    let newChat = helpChat;
+    newChat.inputTranscript = newMessage;
+
+    dispatch(initStartConversation(newChat));
+    // Now send the message throught the backend API
+  };
+
+  useEffect(() => {
+    addResponseMessage("Welcome from support. Please type help to begin.");
+  }, []);
+
+  useEffect(() => {
+    if (Array.isArray(helpChat.message))
+      helpChat.message.forEach(({ title }) => addResponseMessage(title));
+  }, [helpChat.message]);
 
   useEffect(() => {
     (async () => {
@@ -126,10 +149,26 @@ const App = ({ global }) => {
           </Menu>
         </MainContainer>
       </main>
+      <Widget
+        handleNewUserMessage={handleNewUserMessage}
+        title="Poker Range Appalyzer"
+        subtitle="Welcome to Support"
+      />
     </>
   );
 };
 
-const withConnect = connect(null, null);
+const mapStateToProps = () => {
+  const getHelpChat = makeSelectHelpChat();
+
+  const mapState = (state) => {
+    return {
+      helpChat: getHelpChat(state),
+    };
+  };
+  return mapState;
+}; //?
+
+const withConnect = connect(mapStateToProps, null);
 
 export default compose(withConnect, memo)(App);
