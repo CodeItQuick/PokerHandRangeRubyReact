@@ -27,8 +27,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Widget, addResponseMessage, addUserMessage } from "react-chat-widget";
 
 import "react-chat-widget/lib/styles.css";
-import { initStartConversation } from "../MainPage/actions";
-import { makeSelectHelpChat } from "../MainPage/selectors";
+import { initStartConversation, startConnectChat } from "../MainPage/actions";
+import {
+  makeSelectHelpChat,
+  makeSelectChatSessionFn,
+} from "../MainPage/selectors";
 const key = "global";
 
 const StyledFragment = styled.div`
@@ -84,22 +87,38 @@ const store = configureStore(initialState, history);
 
 const waitForData = createWaiter(store, (state) => state);
 
-const App = ({ helpChat }) => {
+const App = ({ helpChat, chatSessionFn = false }) => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
   const [isTourOpen, updateTourOpen] = useState(false);
   const { getAccessTokenSilently } = useAuth0();
   const [token, updateToken] = useState();
+  const [ChatSession, updateChatSession] = useState(false);
+  const [onlyOnce, updateOnlyOnce] = useState(1);
+  const [getTranscript, createGetTranscript] = useState(false);
 
   const closeTour = () => updateTourOpen(false);
 
-  const handleNewUserMessage = (newMessage) => {
+  const handleNewUserMessage = async (newMessage) => {
     console.log(`New message incoming! ${newMessage}`);
     let newChat = helpChat;
     newChat.inputTranscript = newMessage;
 
-    dispatch(initStartConversation(newChat));
+    if (ChatSession !== false) {
+      ChatSession.sendMessage({
+        message: newMessage,
+        contentType: "text/plain",
+      });
+
+      return;
+    }
+
+    if (newMessage !== "Talk to an agent") {
+      if (ChatSession === false) dispatch(initStartConversation(newChat));
+    } else if (ChatSession === false) {
+      dispatch(startConnectChat());
+    }
     // Now send the message throught the backend API
   };
 
@@ -108,9 +127,44 @@ const App = ({ helpChat }) => {
   }, []);
 
   useEffect(() => {
-    if (Array.isArray(helpChat.message))
+    if (chatSessionFn) {
+      let ChatSessionCreate = window.connect.ChatSession.create(chatSessionFn);
+      ChatSessionCreate.connect()
+        .then((session) => {
+          console.log(session);
+        })
+        .catch((response) => console.log(response));
+      const { controller } = ChatSessionCreate;
+      const CHAT_EVENTS = {
+        INCOMING_MESSAGE: "INCOMING_MESSAGE",
+        INCOMING_TYPING: "INCOMING_TYPING",
+        CONNECTION_ESTABLISHED: "CONNECTION_ESTABLISHED",
+        CONNECTION_LOST: "CONNECTION_LOST",
+        CONNECTION_BROKEN: "CONNECTION_BROKEN",
+        CONNECTION_ACK: "CONNECTION_ACK",
+        CHAT_ENDED: "CHAT_ENDED",
+      };
+      controller.subscribe(
+        CHAT_EVENTS.INCOMING_MESSAGE,
+        ({ data: { Content, DisplayName } }) => {
+          console.log(Content);
+          if (Content && DisplayName !== "Superman")
+            addResponseMessage(Content);
+        }
+      );
+
+      updateChatSession(controller);
+      console.log(controller);
+      addResponseMessage("Connected to Live Chat with an Agent");
+    }
+
+    // if (chatSessionFn) {
+    //   addResponseMessage(JSON.stringify(chatSessionFn.getTranscript()))
+    // }
+
+    if (!chatSessionFn && Array.isArray(helpChat.message))
       helpChat.message.forEach(({ title }) => addResponseMessage(title));
-  }, [helpChat.message]);
+  }, [helpChat.message, chatSessionFn]);
 
   useEffect(() => {
     (async () => {
@@ -160,10 +214,12 @@ const App = ({ helpChat }) => {
 
 const mapStateToProps = () => {
   const getHelpChat = makeSelectHelpChat();
+  const getChatSessionFn = makeSelectChatSessionFn();
 
   const mapState = (state) => {
     return {
       helpChat: getHelpChat(state),
+      chatSessionFn: getChatSessionFn(state),
     };
   };
   return mapState;

@@ -10,6 +10,8 @@ import {
   CHANGE_MODE_SUIT_SELECTION,
   START_CONVERSATION,
   START_CONVERSATION_SUCCESS,
+  START_CONNECT_CHAT,
+  CHAT_SESSION_FN,
 } from "./constants";
 
 export function initSetHandRangeSelect(data) {
@@ -322,4 +324,29 @@ export function storeConversationSuccess(data, state) {
       message: JSON.parse(data.message) || state.message,
     },
   }; //?
+}
+
+export function startConnectChat() {
+  return {
+    type: START_CONNECT_CHAT,
+  };
+}
+
+export function newChatSessionObject(chatSessionFn) {
+  return {
+    type: START_CONNECT_CHAT,
+    chatSessionFn,
+  };
+}
+export function newChatSessionFn(chatSessionFn) {
+  return {
+    type: CHAT_SESSION_FN,
+    chatSessionFn,
+  };
+}
+export function storeChatSessionObject(chatSessionFn, state) {
+  return {
+    ...state,
+    chatSessionFn,
+  };
 }

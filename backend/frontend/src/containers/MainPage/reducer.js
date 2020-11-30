@@ -6,6 +6,7 @@ import {
   MAIN_SET_IS_IP,
   CHANGE_MODE_SUIT_SELECTION,
   START_CONVERSATION_SUCCESS,
+  CHAT_SESSION_FN,
 } from "./constants.js";
 
 import { sampleData, ranges } from "./sampleData.js";
@@ -17,6 +18,7 @@ import {
   getScenarioSuccessProcess,
   changeModeSuitSelectionSuccess,
   storeConversationSuccess,
+  storeChatSessionObject,
 } from "./actions.js";
 
 import { currentRangesReducer } from "./CurrentRanges/reducer";
@@ -34,6 +36,7 @@ const initialState = {
   handEquities: [{}, {}],
   scenarioBoards: [],
   helpChat: sampleData.helpChat,
+  chatSessionFn: false,
 };
 
 //TODO: Make ranges convert between easy to read ranges
@@ -57,6 +60,9 @@ export const mainPageReducer = (state = initialState, action) => {
 
     case START_CONVERSATION_SUCCESS:
       return storeConversationSuccess(action.data, state);
+    case CHAT_SESSION_FN:
+      console.log(action);
+      return storeChatSessionObject(action.chatSessionFn, state);
 
     default:
       return state;

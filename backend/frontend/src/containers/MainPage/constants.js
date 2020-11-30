@@ -70,3 +70,7 @@ export const CHANGE_MODE_SUIT_SELECTION =
 export const START_CONVERSATION = "handrangeAPI/MainPage/START_CONVERSATION";
 export const START_CONVERSATION_SUCCESS =
   "handrangeAPI/MainPage/START_CONVERSATION_SUCCESS";
+
+export const START_CONNECT_CHAT = "handrangeAPI/MainPage/START_CONNECT_CHAT";
+
+export const CHAT_SESSION_FN = "handrangeAPI/MainPage/CHAT_SESSION_FN";

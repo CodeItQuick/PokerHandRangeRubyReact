@@ -22,6 +22,12 @@ const makeSelectMode = () =>
 const makeSelectHelpChat = () =>
   createSelector(selectGlobal, (globalState) => globalState.helpChat);
 
+const makeSelectChatSessionFn = () =>
+  createSelector(
+    selectGlobal,
+    (globalState) => globalState.chatSessionFn || false
+  );
+
 const makeSelectRangeRepoIP = () =>
   createSelector(selectGlobal, (globalState) =>
     new RangeObjectCollection(globalState.rangeRepoIP).displayRange()
@@ -134,4 +140,5 @@ export {
   makeSelectHandEquities,
   makeSelectScenariosClass,
   makeSelectHelpChat,
+  makeSelectChatSessionFn,
 };

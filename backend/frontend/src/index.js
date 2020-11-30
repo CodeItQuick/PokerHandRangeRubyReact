@@ -61,7 +61,7 @@ ReactDOM.render(
             {/* Production */}
             <Route exact path="/prod/prod" component={App} />
             {/* Dev */}
-            {/* <Route exact path="/" component={App} />  */}
+            <Route exact path="/" component={App} />
           </Router>
         </Provider>
       </Auth0Provider>
