@@ -4,7 +4,7 @@ import {
 } from "./../../containers/MainPage/actions.js";
 import { expect } from "chai";
 
-suite("the transformHandRange function ", () => {
+describe("the transformHandRange function ", () => {
   test("should be able to transform the sample data", () => {
     const data = [
       {

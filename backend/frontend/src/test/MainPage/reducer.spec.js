@@ -26,7 +26,7 @@ const data = [
   { name: "River", value: "CheckFold" },
 ];
 
-suite("MainPage reducer", () => {
+describe("MainPage reducer", () => {
   test("should return the initial state", function () {
     expect(reducer(undefined, {})).to.deep.equal(initialState);
   });

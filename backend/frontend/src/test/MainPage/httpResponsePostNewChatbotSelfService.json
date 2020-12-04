@@ -1,0 +1,10 @@
+{
+  "type": "ElicitSlot",
+  "intentName": "InteractiveMessageIntent",
+  "slots": { "action": "help", "department": null, "interactiveOption": null },
+  "slotToElicit": "interactiveOption",
+  "message": {
+    "contentType": "CustomPayload",
+    "content": "{\"templateType\":\"ListPicker\",\"version\":\"1.0\",\"data\":{\"content\":{\"title\":\"What would you like to do?\",\"subtitle\":\"Tap to select option\",\"elements\":[{\"title\":\"Choose a department\"},{\"title\":\"Schedule a meeting with an agent\"}]}}}"
+  }
+}

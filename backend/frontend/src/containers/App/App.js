@@ -1,93 +1,152 @@
-import React, { useEffect, useState, useRef, Fragment, memo } from "react";
+import React, { useEffect, useState, memo } from "react";
 import "./App.css";
 import MainPage from "../MainPage/index";
 import { Menu } from "semantic-ui-react";
-import { useDispatch, useSelector, Provider } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useInjectReducer } from "../../HOC/useInjectReducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { createStructuredSelector } from "reselect";
 
-import styled from "styled-components";
-
+import { steps } from "./steps";
 import reducer from "../MainPage/reducer";
 import Navbar from "../../components/NavBar";
 import MainContainer from "../../components/MainContainer";
 
 import Tour from "reactour";
-import { ErrorBoundary } from "../../utils/ErrorBoundary";
-
-import { initialState } from "./reducer.js";
-import history from "../../utils/history";
-import configureStore from "../../configureStore";
-import { createWaiter } from "../../create-waiter";
 
 import { useAuth0 } from "@auth0/auth0-react";
 
+import { Widget, addResponseMessage } from "react-chat-widget";
+
+import "react-chat-widget/lib/styles.css";
+import {
+  initStartConversation,
+  startConnectChat,
+  emptyChatSessionFn,
+  resetError,
+} from "../MainPage/actions";
+import {
+  makeSelectHelpChat,
+  makeSelectChatSessionFn,
+  makeSelectChatSessionFnErr,
+} from "../MainPage/selectors";
+
+import onCall from "./ONCALL.png";
+import operator from "./OPERATOR.png";
+import "amazon-connect-chatjs";
+
 const key = "global";
 
-const StyledFragment = styled.div`
-  background-color: #e2e3e6;
-`;
-const steps = [
-  {
-    selector: "button#streetFirstChoice",
-    content:
-      "First pick your betting pattern, Raise/4Bet/Call, in this case you will select your strongest hands that you always raise with. Note: you may have to click back and forth to get the right button highlighted. ",
-  },
-  {
-    selector: "button#colorButtonAA",
-    content:
-      "AA is by far the strongest hand in holdem, select this hand by turning the table column green to go in your strongest hand range ",
-  },
-  {
-    selector: "button#streetSecondChoice",
-    content:
-      "Next we are going to take one of our strongest hands and turn it into a bluff when someone raises us. Select Raise4BetFold next. ",
-  },
-  {
-    selector: "button#colorButtonAQo",
-    content:
-      "AQo makes the perfect bluffing hand. Its strong enough to raise first in, and has cards that block the strongest hands in the game. Go ahead and select AQo.",
-  },
-  {
-    selector: "#Raise4BetValueTutorial",
-    content:
-      "How often are we bluffing raising just AA and AQo? Looks like we valuebet with aces 33% of the time!",
-  },
-  {
-    selector: "#Raise4BetBluffTutorial",
-    content:
-      "How often are we bluffing raising just AA and AQo? Looks like we bluff twice as often at 67% as much as we valuebet. This ratio is much too high, we should now add kings and AKs to our range to balance our range.",
-  },
-  {
-    selector: "button#streetFirstChoice",
-    content:
-      "We better put more hands into our value range, so lets go ahead and select Raise4BetCall again. ",
-  },
-  {
-    selector: "button#colorButtonKK , button#colorButtonAKs",
-    content: "You can select AKs, to balance out your range.",
-  },
-  {
-    selector: "#Raise4BetBluffTutorial",
-    content:
-      "This is fantastic, now we are only bluffing approximately less than half the time! If someone tries to rebluff our raise back at them, they will be greeted with an allin against a very strong hand much too often for this to be a profitable move",
-  },
-];
-const store = configureStore(initialState, history);
-
-const waitForData = createWaiter(store, (state) => state);
-
-const App = ({ global }) => {
+const App = ({ helpChat, chatSessionFn = false, err = false }) => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
   const [isTourOpen, updateTourOpen] = useState(false);
   const { getAccessTokenSilently } = useAuth0();
   const [token, updateToken] = useState();
+  const [ChatSession, updateChatSession] = useState(false);
+  const [ContentType, updateContentType] = useState(
+    "application/vnd.amazonaws.connect.event.chat.ended"
+  );
 
   const closeTour = () => updateTourOpen(false);
+
+  useEffect(() => {
+    if (err === true) {
+      addResponseMessage(
+        "Resetting Chat. Either type 'Talk to an agent' to talk to an agent, or help to start an automated chat bot"
+      );
+      dispatch(resetError());
+    }
+  }, [err]);
+
+  const handleNewUserMessage = (newMessage) => {
+    if (ChatSession) {
+      try {
+        ChatSession.sendMessage({
+          message: newMessage,
+          contentType: "text/plain",
+        });
+      } catch (err) {
+        addResponseMessage(
+          "Could not understand your message. Either type 'Talk to an agent' to talk to an agent, or help to start an automated chat bot"
+        );
+      }
+
+      return;
+    }
+
+    if (newMessage !== "Talk to an agent" && ChatSession === false) {
+      let newChat = helpChat;
+      newChat.inputTranscript = newMessage;
+      if (ChatSession === false) dispatch(initStartConversation(newChat));
+    } else if (ChatSession === false) {
+      dispatch(startConnectChat());
+    } else {
+      addResponseMessage(
+        "Could not understand your message. Either type 'Talk to an agent' to talk to an agent, or help to start an automated chat bot"
+      );
+    }
+    // Now send the message throught the backend API
+  };
+
+  useEffect(() => {
+    addResponseMessage(
+      "Welcome from support. Please type help to begin. To talk to an agent at any time type 'Talk to an agent'"
+    );
+  }, []);
+
+  useEffect(() => {
+    if (
+      ContentType === "application/vnd.amazonaws.connect.event.participant.left"
+    )
+      addResponseMessage(
+        "You have been disconnect from chat. To restart chat type 'Talk to an agent'"
+      );
+    if (ContentType === "application/vnd.amazonaws.connect.event.chat.ended") {
+      updateChatSession(false);
+      dispatch(emptyChatSessionFn());
+    }
+  }, [ContentType]);
+
+  useEffect(() => {
+    if (chatSessionFn) {
+      let ChatSessionCreate = window.connect.ChatSession.create(chatSessionFn);
+      ChatSessionCreate.connect()
+        .then((session) => {
+          // console.log(session);
+        })
+        .catch((err) => console.log(err));
+      const { controller } = ChatSessionCreate;
+      const CHAT_EVENTS = {
+        INCOMING_MESSAGE: "INCOMING_MESSAGE",
+        INCOMING_TYPING: "INCOMING_TYPING",
+        CONNECTION_ESTABLISHED: "CONNECTION_ESTABLISHED",
+        CONNECTION_LOST: "CONNECTION_LOST",
+        CONNECTION_BROKEN: "CONNECTION_BROKEN",
+        CONNECTION_ACK: "CONNECTION_ACK",
+        CHAT_ENDED: "CHAT_ENDED",
+      };
+      controller.subscribe(CHAT_EVENTS.INCOMING_MESSAGE, ({ data }) => {
+        updateContentType(data.ContentType);
+        if (data.Content && data.DisplayName !== "Anonymous User")
+          addResponseMessage(data.Content);
+      });
+
+      updateChatSession(controller);
+    }
+  }, [chatSessionFn]);
+
+  useEffect(() => {
+    if (!chatSessionFn && helpChat?.fulfillmentState?.Fulfilled) {
+      handleNewUserMessage("Talk to an agent");
+    }
+
+    if (!chatSessionFn && Array.isArray(helpChat.message))
+      helpChat.message
+        .filter(({ title }) => title)
+        .forEach(({ title }) => addResponseMessage(title));
+  }, [helpChat.message]);
 
   useEffect(() => {
     (async () => {
@@ -126,10 +185,32 @@ const App = ({ global }) => {
           </Menu>
         </MainContainer>
       </main>
+      <Widget
+        handleNewUserMessage={handleNewUserMessage}
+        title="Poker Range Appalyzer"
+        subtitle="Welcome to Support"
+        profileAvatar={operator}
+        titleAvatar={onCall}
+      />
     </>
   );
 };
 
-const withConnect = connect(null, null);
+const mapStateToProps = () => {
+  const getHelpChat = makeSelectHelpChat();
+  const getChatSessionFn = makeSelectChatSessionFn();
+  const getChatSessionFnErr = makeSelectChatSessionFnErr();
+
+  const mapState = (state) => {
+    return {
+      helpChat: getHelpChat(state),
+      chatSessionFn: getChatSessionFn(state),
+      err: getChatSessionFnErr(state),
+    };
+  };
+  return mapState;
+}; //?
+
+const withConnect = connect(mapStateToProps, null);
 
 export default compose(withConnect, memo)(App);

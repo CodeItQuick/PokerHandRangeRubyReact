@@ -1,0 +1,14 @@
+{
+  "type": "ElicitSlot",
+  "intentName": "InteractiveMessageIntent",
+  "slots": {
+    "action": null,
+    "departmentnull": null,
+    "interactiveOption": null
+  },
+  "slotToElicit": "action",
+  "message": {
+    "contentType": "CustomPayload",
+    "content": "{\"templateType\":\"ListPicker\",\"version\":\"1.0\",\"data\":{\"content\":{\"title\":\"How can I help you?\",\"subtitle\":\"Tap to select option\",\"elements\":[{\"title\":\"Check self-service options\"},{\"title\":\"Talk to an agent\"},{\"title\":\"End chat\"}]}}}"
+  }
+}

@@ -66,3 +66,17 @@ export const SET_HAND_RANGE_ARRAY =
 
 export const CHANGE_MODE_SUIT_SELECTION =
   "handrangeAPI/MainPage/CHANGE_MODE_SUIT_SELECTION";
+
+export const START_CONVERSATION = "handrangeAPI/MainPage/START_CONVERSATION";
+export const START_CONVERSATION_SUCCESS =
+  "handrangeAPI/MainPage/START_CONVERSATION_SUCCESS";
+export const START_CONVERSATION_FAIL =
+  "handrangeAPI/MainPage/START_CONVERSATION_FAIL";
+export const RESET_ERROR = "handrangeAPI/MainPage/RESET_ERROR";
+
+export const START_CONNECT_CHAT = "handrangeAPI/MainPage/START_CONNECT_CHAT";
+
+export const CHAT_SESSION_FN = "handrangeAPI/MainPage/CHAT_SESSION_FN";
+
+export const EMPTY_CHAT_SESSION_FN =
+  "handrangeAPI/MainPage/EMPTY_CHAT_SESSION_FN";

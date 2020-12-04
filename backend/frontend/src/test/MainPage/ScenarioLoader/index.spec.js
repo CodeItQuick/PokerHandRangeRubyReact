@@ -10,7 +10,7 @@ import { expect } from "chai";
 
 Enzyme.configure({ adapter: new ReactSixteenAdapter() });
 
-suite("ScenarioLoader", () => {
+describe("ScenarioLoader", () => {
   test("the scenario object can be instantiated", () => {
     let scenario = new Scenario("AcTd5s3s2s");
 

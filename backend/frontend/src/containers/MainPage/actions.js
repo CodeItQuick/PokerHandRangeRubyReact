@@ -8,6 +8,13 @@ import {
   INIT_GET_SCENARIO,
   GET_SCENARIO_SUCCESS,
   CHANGE_MODE_SUIT_SELECTION,
+  START_CONVERSATION,
+  START_CONVERSATION_SUCCESS,
+  START_CONNECT_CHAT,
+  CHAT_SESSION_FN,
+  EMPTY_CHAT_SESSION_FN,
+  START_CONVERSATION_FAIL,
+  RESET_ERROR,
 } from "./constants";
 
 export function initSetHandRangeSelect(data) {
@@ -241,5 +248,137 @@ export function changeUseOneFlopBetsize(data, state) {
     mode: {
       useTwoFlopSizes: data,
     },
+  };
+}
+
+export function initStartConversation(data) {
+  if (data.slotToElicit.length)
+    data.currentIntent.slots = {
+      ...data.currentIntent.slots,
+      interactiveOption: null,
+      [data.slotToElicit]: data.inputTranscript,
+    };
+  return {
+    type: START_CONVERSATION,
+    data,
+  };
+}
+
+export function startConversationSuccess(data) {
+  return {
+    type: START_CONVERSATION_SUCCESS,
+    data,
+  };
+}
+
+export function startConversationFail(data) {
+  return {
+    type: START_CONVERSATION_FAIL,
+    data,
+  };
+}
+export function storeConversationFail(state) {
+  return {
+    ...state,
+    chatSessionFn: false,
+    err: true,
+  };
+}
+export function resetError() {
+  return {
+    type: RESET_ERROR,
+  };
+}
+export function storeConversationSuccess(data, state) {
+  //should be pulled out into its own function
+  state.helpChat.recentIntentSummaryView = [];
+  state.helpChat.recentIntentSummaryView[0] = data?.recentIntent
+    ? {
+        name: "InteractiveMessageIntent",
+        slots: {
+          action: null,
+          department: null,
+          interactiveOption: null,
+        },
+        confirmationStatus: "None",
+      }
+    : null;
+  state.helpChat.recentIntentSummaryView[0].slots[data.slotToElicit] =
+    data.inputTranscript;
+
+  return {
+    ...state,
+    err: false,
+    helpChat: {
+      ...state.helpChat,
+      messageVersion: "1.0",
+      invocationSource: "DialogCodeHook",
+      userId: "c6ff70c5-c315-4300-a817-5c0a17a01fa4",
+      sessionAttributes: {},
+      bot: {
+        name: "InteractiveMessageBot",
+        alias: "$LATEST",
+        version: "$LATEST",
+      },
+      outputDialogMode: "Text",
+      currentIntent: {
+        name: data.intentName || state.helpChat.currentIntent.name,
+        slots: {
+          action:
+            data.slotToElicit === "action"
+              ? data.inputTranscript
+              : state.helpChat.currentIntent.slots.action,
+          department:
+            data.slotToElicit === "department"
+              ? data.inputTranscript
+              : state.helpChat.currentIntent.slots.action,
+          interactiveOption:
+            data.slotToElicit === "interactiveOption"
+              ? data.inputTranscript
+              : state.helpChat.currentIntent.slots.interactiveOption,
+        },
+        confirmationStatus: "None",
+      },
+      slotToElicit: data.slotToElicit,
+      message: JSON.parse(data.message) || state.message,
+    },
+  }; //?
+}
+
+export function startConnectChat() {
+  return {
+    type: START_CONNECT_CHAT,
+  };
+}
+
+export function newChatSessionObject(chatSessionFn) {
+  return {
+    type: START_CONNECT_CHAT,
+    chatSessionFn,
+  };
+}
+export function newChatSessionFn(chatSessionFn) {
+  return {
+    type: CHAT_SESSION_FN,
+    chatSessionFn,
+  };
+}
+export function storeChatSessionObject(chatSessionFn, state) {
+  return {
+    ...state,
+    chatSessionFn,
+  };
+}
+export function emptyChatSessionFn() {
+  return {
+    type: EMPTY_CHAT_SESSION_FN,
+  };
+}
+
+export function emptyChatSession(state) {
+  return {
+    ...state,
+    err: false,
+    chatSessionFn: false,
   };
 }

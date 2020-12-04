@@ -19,6 +19,18 @@ const selectUser = (state) => state.user;
 const makeSelectMode = () =>
   createSelector(selectGlobal, (globalState) => globalState.mode);
 
+const makeSelectHelpChat = () =>
+  createSelector(selectGlobal, (globalState) => globalState.helpChat);
+
+const makeSelectChatSessionFn = () =>
+  createSelector(
+    selectGlobal,
+    (globalState) => globalState.chatSessionFn || false
+  );
+
+const makeSelectChatSessionFnErr = () =>
+  createSelector(selectGlobal, (globalState) => globalState.err || false);
+
 const makeSelectRangeRepoIP = () =>
   createSelector(selectGlobal, (globalState) =>
     new RangeObjectCollection(globalState.rangeRepoIP).displayRange()
@@ -130,4 +142,7 @@ export {
   makeSelectOtherRange,
   makeSelectHandEquities,
   makeSelectScenariosClass,
+  makeSelectHelpChat,
+  makeSelectChatSessionFn,
+  makeSelectChatSessionFnErr,
 };

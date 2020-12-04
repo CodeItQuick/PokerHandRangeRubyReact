@@ -2,7 +2,7 @@ import progressIndicatorReducer from "./../../../containers/MainPage/ProgressInd
 import { initialState } from "./../../../containers/MainPage/reducer";
 import { expect } from "chai";
 
-suite("MainPage reducer", () => {
+describe("MainPage reducer", () => {
   test("should return the initial state", function () {
     expect(progressIndicatorReducer(undefined, { type: {} })).to.equal(
       initialState

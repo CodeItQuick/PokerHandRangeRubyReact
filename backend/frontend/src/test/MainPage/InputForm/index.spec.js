@@ -3,7 +3,7 @@ import { assignPositions } from "./../../../containers/MainPage/InputForm";
 import RangeObject from "./../../../containers/MainPage/EngineClasses/RangeObject";
 import { expect } from "chai";
 
-suite("InputStreet Container", () => {
+describe("InputStreet Container", () => {
   test("The assignPositions function returns the correct values for the flop", () => {
     const rangeRepoIP = JSON.parse(JSON.stringify(initialState.rangeRepoIP))
       .filter(({ Street }) => Street == "Flop")
