@@ -163,8 +163,10 @@ describe("Integration its: ", () => {
 
     sagaTester.start(saga);
 
+    //Given message
     const newMessage = "help";
 
+    //when it goes through the reducer
     let newChat = initialState.helpChat;
     newChat.inputTranscript = newMessage;
     sagaTester.dispatch(initStartConversation(newChat));
@@ -173,60 +175,13 @@ describe("Integration its: ", () => {
 
     const finalReducerState = sagaTester.getState(); //?
 
-    // await sagaTester.waitFor(getScenarioSuccess());
-    expect(finalReducerState.helpChat).to.deep.equal({
-      bot: {
-        alias: "$LATEST",
-        name: "InteractiveMessageBot",
-        version: "$LATEST",
-      },
-      currentIntent: {
-        confirmationStatus: "None",
-        name: "InteractiveMessageIntent",
-        slots: {
-          action: "help",
-          department: null,
-          interactiveOption: null,
-        },
-      },
-      inputTranscript: "help",
-      invocationSource: "DialogCodeHook",
-      message: {
-        content: {
-          data: {
-            content: {
-              elements: [
-                {
-                  title: "Check self-service options",
-                },
-                { title: "Talk to an agent" },
-                { title: "End chat" },
-              ],
-              subtitle: "Tap to select option",
-              title: "How can I help you?",
-            },
-          },
-          templateType: "ListPicker",
-          version: "1.0",
-        },
-        contentType: "CustomPayload",
-      },
-      messageVersion: "1.0",
-      outputDialogMode: "Text",
-      recentIntentSummaryView: [
-        {
-          confirmationStatus: "None",
-          name: "InteractiveMessageIntent",
-          slots: {
-            action: "help",
-            department: null,
-            interactiveOption: null,
-          },
-        },
-      ],
-      sessionAttributes: {},
-      userId: "c6ff70c5-c315-4300-a817-5c0a17a01fa4",
-    });
+    // the help is stored in the transcript afterwards and the new message is as expected
+    expect(finalReducerState.helpChat.inputTranscript).to.equal("help");
+    expect(finalReducerState.helpChat.message).to.deep.equal([
+      { title: "Check self-service options" },
+      { title: "Talk to an agent" },
+      { title: "End chat" },
+    ]);
 
     //Check self-service options
 
@@ -244,55 +199,9 @@ describe("Integration its: ", () => {
     const finalReducerStateTwo = sagaTester.getState(); //?
 
     // await sagaTester.waitFor(getScenarioSuccess());
-    expect(finalReducerStateTwo.helpChat).to.deep.equal({
-      bot: {
-        alias: "$LATEST",
-        name: "InteractiveMessageBot",
-        version: "$LATEST",
-      },
-      currentIntent: {
-        confirmationStatus: "None",
-        name: "InteractiveMessageIntent",
-        slots: {
-          action: "help",
-          department: "help",
-          interactiveOption: "Check self-service options",
-        },
-      },
-      inputTranscript: "help",
-      invocationSource: "DialogCodeHook",
-      message: {
-        content: {
-          data: {
-            content: {
-              elements: [
-                { title: "Choose a department" },
-                { title: "Schedule a meeting with an agent" },
-              ],
-              subtitle: "Tap to select option",
-              title: "What would you like to do?",
-            },
-          },
-          templateType: "ListPicker",
-          version: "1.0",
-        },
-        contentType: "CustomPayload",
-      },
-      messageVersion: "1.0",
-      outputDialogMode: "Text",
-      recentIntentSummaryView: [
-        {
-          confirmationStatus: "None",
-          name: "InteractiveMessageIntent",
-          slots: {
-            action: null,
-            department: null,
-            interactiveOption: "Check self-service options",
-          },
-        },
-      ],
-      sessionAttributes: {},
-      userId: "c6ff70c5-c315-4300-a817-5c0a17a01fa4",
-    });
+    expect(finalReducerStateTwo.helpChat.inputTranscript).to.equal("help");
+    expect(finalReducerStateTwo.helpChat.message).to.deep.equal([
+      { title: "Choose a department" },
+    ]);
   });
 });
