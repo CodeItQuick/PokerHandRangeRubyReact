@@ -28,6 +28,9 @@ const makeSelectChatSessionFn = () =>
     (globalState) => globalState.chatSessionFn || false
   );
 
+const makeSelectChatSessionFnErr = () =>
+  createSelector(selectGlobal, (globalState) => globalState.err || false);
+
 const makeSelectRangeRepoIP = () =>
   createSelector(selectGlobal, (globalState) =>
     new RangeObjectCollection(globalState.rangeRepoIP).displayRange()
@@ -141,4 +144,5 @@ export {
   makeSelectScenariosClass,
   makeSelectHelpChat,
   makeSelectChatSessionFn,
+  makeSelectChatSessionFnErr,
 };

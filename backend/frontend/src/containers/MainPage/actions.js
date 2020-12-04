@@ -12,6 +12,9 @@ import {
   START_CONVERSATION_SUCCESS,
   START_CONNECT_CHAT,
   CHAT_SESSION_FN,
+  EMPTY_CHAT_SESSION_FN,
+  START_CONVERSATION_FAIL,
+  RESET_ERROR,
 } from "./constants";
 
 export function initSetHandRangeSelect(data) {
@@ -249,7 +252,6 @@ export function changeUseOneFlopBetsize(data, state) {
 }
 
 export function initStartConversation(data) {
-  console.log(data); //?
   if (data.slotToElicit.length)
     data.currentIntent.slots = {
       ...data.currentIntent.slots,
@@ -269,12 +271,28 @@ export function startConversationSuccess(data) {
   };
 }
 
+export function startConversationFail(data) {
+  return {
+    type: START_CONVERSATION_FAIL,
+    data,
+  };
+}
+export function storeConversationFail(state) {
+  return {
+    ...state,
+    chatSessionFn: false,
+    err: true,
+  };
+}
+export function resetError() {
+  return {
+    type: RESET_ERROR,
+  };
+}
 export function storeConversationSuccess(data, state) {
-  console.log(data); //?
-
   //should be pulled out into its own function
   state.helpChat.recentIntentSummaryView = [];
-  state.helpChat.recentIntentSummaryView[0] = data.recentIntent
+  state.helpChat.recentIntentSummaryView[0] = data?.recentIntent
     ? {
         name: "InteractiveMessageIntent",
         slots: {
@@ -290,6 +308,7 @@ export function storeConversationSuccess(data, state) {
 
   return {
     ...state,
+    err: false,
     helpChat: {
       ...state.helpChat,
       messageVersion: "1.0",
@@ -348,5 +367,18 @@ export function storeChatSessionObject(chatSessionFn, state) {
   return {
     ...state,
     chatSessionFn,
+  };
+}
+export function emptyChatSessionFn() {
+  return {
+    type: EMPTY_CHAT_SESSION_FN,
+  };
+}
+
+export function emptyChatSession(state) {
+  return {
+    ...state,
+    err: false,
+    chatSessionFn: false,
   };
 }

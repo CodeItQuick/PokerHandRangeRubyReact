@@ -3,22 +3,25 @@ import {
   SET_DEAD_CARDS,
   GET_SCENARIO_SUCCESS,
   GET_ALL_SCENARIO_SUCCESS,
-  MAIN_SET_IS_IP,
   CHANGE_MODE_SUIT_SELECTION,
   START_CONVERSATION_SUCCESS,
   CHAT_SESSION_FN,
+  EMPTY_CHAT_SESSION_FN,
+  START_CONVERSATION_FAIL,
+  RESET_ERROR,
 } from "./constants.js";
 
 import { sampleData, ranges } from "./sampleData.js";
 import {
   setHandRange,
   setDeadCards,
-  mainSetIsIP,
   getAllScenarioSuccessProcess,
   getScenarioSuccessProcess,
   changeModeSuitSelectionSuccess,
   storeConversationSuccess,
+  storeConversationFail,
   storeChatSessionObject,
+  emptyChatSession,
 } from "./actions.js";
 
 import { currentRangesReducer } from "./CurrentRanges/reducer";
@@ -37,11 +40,11 @@ const initialState = {
   scenarioBoards: [],
   helpChat: sampleData.helpChat,
   chatSessionFn: false,
+  err: false,
 };
 
 //TODO: Make ranges convert between easy to read ranges
 export const mainPageReducer = (state = initialState, action) => {
-  console.log(action); //?
   switch (action.type) {
     case SET_HAND_RANGE: //?
       return setHandRange(action.data, state);
@@ -60,9 +63,18 @@ export const mainPageReducer = (state = initialState, action) => {
 
     case START_CONVERSATION_SUCCESS:
       return storeConversationSuccess(action.data, state);
+
+    case START_CONVERSATION_FAIL:
+      return storeConversationFail(state);
+
+    case RESET_ERROR:
+      return { ...state, err: false };
+
     case CHAT_SESSION_FN:
-      console.log(action);
       return storeChatSessionObject(action.chatSessionFn, state);
+
+    case EMPTY_CHAT_SESSION_FN:
+      return emptyChatSession(state);
 
     default:
       return state;
