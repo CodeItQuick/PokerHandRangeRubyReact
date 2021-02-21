@@ -14,7 +14,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build --build-arg build_without="development test" --build-arg rails_env="production" -t $REPOSITORY_URI:latest backend
+      - docker build --build-arg build_without="development test" --build-arg rails_env="production" -t $REPOSITORY_URI:latest backend/Dockerfile
       - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
   post_build:
     commands:
