@@ -1,22 +1,22 @@
-# pull official base image
-FROM node:12.19.0 as build-stage
+# # pull official base image
+# FROM node:12.19.0 as build-stage
 
-# set working directory
-WORKDIR /frontend
+# # set working directory
+# WORKDIR /frontend
 
-# add `/app/node_modules/.bin` to $PATH
-# ENV PATH /frontend/node_modules/.bin:$PATH
+# # add `/app/node_modules/.bin` to $PATH
+# # ENV PATH /frontend/node_modules/.bin:$PATH
 
-# install app dependencies
-COPY frontend/package.json ./
-COPY frontend/package-lock.json ./
-RUN npm install
+# # install app dependencies
+# COPY frontend/package.json ./
+# COPY frontend/package-lock.json ./
+# RUN npm install
 
-# add app
-COPY frontend ./
+# # add app
+# COPY frontend ./
 
-# start app
-RUN npm run-script build
+# # start app
+# RUN npm run-script build
 
 # RUN STAGE
 FROM bitnami/ruby:2.6-prod-debian-10
@@ -39,7 +39,7 @@ RUN sudo mkdir -m 777 ./webapp
 
 COPY --chown=app ./ /home/app/webapp/
 
-COPY --chown=app --from=build-stage /frontend/build/ /home/app/webapp/public/
+# COPY --chown=app --from=build-stage /frontend/build/ /home/app/webapp/public/
 
 # RUN mkdir -p /etc/my_init.d
 # ADD start-passenger.sh /etc/my_init.d/20_start-passenger.sh
