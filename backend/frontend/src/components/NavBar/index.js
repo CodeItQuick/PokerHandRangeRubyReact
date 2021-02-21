@@ -132,11 +132,11 @@ const Navbar = ({
       {isAuthenticated ? (
         <Fragment>
           <Menu.Item>{user.name || ""}</Menu.Item>
-          <Menu.Item onClick={() => logout()}>Logout</Menu.Item>
+          {/* <Menu.Item onClick={() => logout()}>Logout</Menu.Item> */}
         </Fragment>
       ) : (
         <Fragment>
-          <Menu.Item onClick={() => loginWithRedirect()}>Login</Menu.Item>
+          {/* <Menu.Item onClick={() => loginWithRedirect()}>Login</Menu.Item> */}
         </Fragment>
       )}
     </Menu>

@@ -16,7 +16,7 @@ import { initialState } from "./containers/MainPage/reducer.js";
 import history from "./utils/history";
 import { ConnectedRouter } from "connected-react-router";
 
-import { Auth0Provider } from "@auth0/auth0-react";
+// import { Auth0Provider } from "@auth0/auth0-react";
 import config from "./auth_config";
 import { ErrorBoundary } from "./utils/ErrorBoundary";
 
@@ -49,19 +49,19 @@ const onRedirectCallback = (appState) => {
 ReactDOM.render(
   <ErrorBoundary>
     {/* <HttpsRedirect> */}
-    <Auth0Provider
+    {/* <Auth0Provider
       domain="dev-824eb3ar.us.auth0.com"
       clientId="NTS7ZtvzLweGZjLhYDlhj9PsN44FDFel"
       redirectUri="https://www.poker-range-appalyzer.com"
       audience="https://dev-824eb3ar.us.auth0.com/api/v2/"
       scope="read:current_user update:current_user_metadata"
-    >
-      <Provider store={store}>
-        <Router history={history}>
-          <Route exact path="/" component={App} />
-        </Router>
-      </Provider>
-    </Auth0Provider>
+    > */}
+    <Provider store={store}>
+      <Router history={history}>
+        <Route exact path="/" component={App} />
+      </Router>
+    </Provider>
+    {/* </Auth0Provider> */}
     {/* </HttpsRedirect> */}
   </ErrorBoundary>, //{" "},
   document.getElementById("root")

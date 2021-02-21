@@ -12,7 +12,7 @@ import {
 } from "./actions";
 import request from "../../utils/request";
 
-const baseURL = "https://www.poker-range-appalyzer.com";
+const baseURL = "http://www.poker-range-appalyzer.com";
 
 /**
  * Get All Hand Ranges request/response handler

@@ -22,7 +22,7 @@ import history from "../../utils/history";
 import configureStore from "../../configureStore";
 import { createWaiter } from "../../create-waiter";
 
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 const key = "global";
 
@@ -80,39 +80,39 @@ const store = configureStore(initialState, history);
 const waitForData = createWaiter(store, (state) => state);
 
 const App = ({ global }) => {
-  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  // const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   useInjectReducer({ key, reducer });
   const dispatch = useDispatch();
   const [isTourOpen, updateTourOpen] = useState(false);
-  const { getAccessTokenSilently } = useAuth0();
+  // const { getAccessTokenSilently } = useAuth0();
   const [token, updateToken] = useState();
 
   const closeTour = () => updateTourOpen(false);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const accessToken = await getAccessTokenSilently({
-          audience: `https://dev-824eb3ar.us.auth0.com/api/v2/`,
-          scope: "read:current_user update:current_user_metadata",
-        });
-        updateToken(accessToken);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [getAccessTokenSilently]);
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const accessToken = await getAccessTokenSilently({
+  //         audience: `https://dev-824eb3ar.us.auth0.com/api/v2/`,
+  //         scope: "read:current_user update:current_user_metadata",
+  //       });
+  //       updateToken(accessToken);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   })();
+  // }, [getAccessTokenSilently]);
 
   return (
     <>
       <nav>
         <MainContainer>
           <Navbar
-            isAuthenticated={isAuthenticated}
-            loginWithRedirect={loginWithRedirect}
-            logout={logout}
-            user={user}
-            token={token}
+            isAuthenticated={false}
+            loginWithRedirect={false}
+            logout={false}
+            user={false}
+            token={false}
             updateTourOpen={updateTourOpen}
           />
         </MainContainer>
