@@ -4,8 +4,8 @@
     "image": "${image}",
     "portMappings": [
       {
-        "containerPort": 80,
-        "hostPort": 80
+        "containerPort": 3000,
+        "hostPort": 3000
       }
     ],
     "memory": 300,
@@ -14,7 +14,7 @@
       "logDriver": "awslogs",
       "options": {
         "awslogs-group": "${log_group}",
-        "awslogs-region": "us-east-1",
+        "awslogs-region": "ca-central-1",
         "awslogs-stream-prefix": "web"
       }
     },
@@ -33,7 +33,7 @@
       },
       {
         "name": "PORT",
-        "value": "80"
+        "value": "3000"
       },
       {
         "name": "RAILS_LOG_TO_STDOUT",
