@@ -37,7 +37,8 @@ USER app
 WORKDIR /home/app/
 RUN sudo mkdir -m 777 ./webapp
 
-COPY --chown=app ./ /home/app/webapp/
+# COPY --chown=app ./ /home/app/webapp/
+COPY ./ /home/app/webapp/
 
 # COPY --chown=app --from=build-stage /frontend/build/ /home/app/webapp/public/
 
