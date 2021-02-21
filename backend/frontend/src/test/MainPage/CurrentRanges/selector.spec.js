@@ -2,7 +2,7 @@ import { SelectedStreet } from "./../../../containers/MainPage/CurrentRanges/sel
 import { initialState } from "./../../../containers/MainPage/reducer";
 import { expect } from "chai";
 
-suite("SelectedStreet ", () => {
+describe("SelectedStreet ", () => {
   test("can be constructed", () => {
     const selectedStreet = new SelectedStreet(initialState.ranges);
     expect(selectedStreet.ranges).to.equal(initialState.ranges);

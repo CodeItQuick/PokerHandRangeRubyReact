@@ -14,30 +14,8 @@ export const countHandCombo = (wholeRange, chosenStreet, board) => {
 const comboCounter = (hands, chosenStreet, board) => {
   if (!hands) return 0;
 
-  let hand;
-
-  if (hands.length === 2)
-    hand = new CardHandSuitBuilder().build(
-      hands.substr(0, 1),
-      hands.substr(1, 1)
-    );
-  if (hands.length === 3)
-    hand = new CardHandSuitBuilder().build(
-      hands.substr(0, 1),
-      hands.substr(1, 1),
-      hands ? hands.substr(2, 1) : ""
-    );
-  else if (hands.length === 4)
-    hand = new CardHandSuitBuilder().build(
-      hands.substr(0, 2),
-      hands.substr(2, 2),
-      ""
-    ); //FIXME: UGLY
   if (hands.length > 3) {
-    let transformedCardHand = [
-      hand.getHand().substr(0, 2),
-      hand.getHand().substr(2, 2),
-    ];
+    let transformedCardHand = [hands.substr(0, 2), hands.substr(2, 2)];
     if (
       board.includes(transformedCardHand[0]) ||
       board.includes(transformedCardHand[1])
@@ -45,6 +23,14 @@ const comboCounter = (hands, chosenStreet, board) => {
       return 0;
     return 1;
   }
+  let hand;
+
+  hand = new CardHandSuitBuilder().build(
+    hands.substr(0, 1),
+    hands.substr(1, 1),
+    hands.substr(2, 1)
+  );
+
   //Suited Combos
 
   if (hands.includes("s")) return suitedComboCounter(hand, board, "s");

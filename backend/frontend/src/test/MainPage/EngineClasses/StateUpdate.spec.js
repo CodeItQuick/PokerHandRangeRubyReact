@@ -203,7 +203,7 @@ const CardTable = [
     new CardHandSuitBuilder().build("2", "2", ""),
   ],
 ];
-suite("State Update Functions", () => {
+describe("State Update Functions", () => {
   test(" generate CardGrid generates an empty object when given an empty range", () => {
     const PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges));
     const Position = initialState.mode.isIP;

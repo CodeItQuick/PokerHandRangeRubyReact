@@ -1,7 +1,7 @@
 import { CardHandSuitBuilder } from "./../../../containers/MainPage/EngineClasses/CardHandSuitBuilder";
 import { expect } from "chai";
 
-suite("CardHandSuitBuilder can ", () => {
+describe("CardHandSuitBuilder can ", () => {
   test("can return tests own value", () => {
     const newCardHand = new CardHandSuitBuilder().build("A", "A", "");
     expect(newCardHand.getHand()).to.equal("AA");

@@ -49,4 +49,5 @@ COPY --chown=app --from=build-stage /frontend/build/ /home/app/webapp/public/
 WORKDIR /home/app/webapp/
 RUN bundle install
 
+EXPOSE 3000
 CMD ["passenger", "start", "-e production"]
