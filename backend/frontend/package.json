@@ -2,7 +2,7 @@
 	"name": "poker-range-app",
 	"version": "0.1.0",
 	"private": false,
-	"proxy": "https://www.poker-range-appalyzer.com",
+	"proxy": "http://www.poker-range-appalyzer.com",
 	"dependencies": {
 		"@auth0/auth0-react": "^1.0.0",
 		"@babel/plugin-proposal-optional-chaining": "^7.11.0",
@@ -94,7 +94,7 @@
 	},
 	"scripts": {
 		"start": "craco start",
-		"build": "babel --presets=@babel/preset-env script.js",
+		"build": "craco build",
 		"test": "NODE_ENV=test mocha --config .mocharc.json --experimental-modules -r @babel/register -r ignore-styles -r jsdom-global/register \"./src/test/**/*.spec.js\" --recursive src/test/MainPage",
 		"eject": "craco eject"
 	},
