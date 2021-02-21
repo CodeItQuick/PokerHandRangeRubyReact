@@ -15,7 +15,7 @@ import {
 import RangeObject from "./../../containers/MainPage/EngineClasses/RangeObject";
 import { expect } from "chai";
 
-suite("MainPage Login Selectors", () => {
+describe("MainPage Login Selectors", () => {
   test("mode should return the current mode ", () => {
     const mockParameters = {
       global: {

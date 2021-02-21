@@ -3,7 +3,7 @@ import { countHandCombo } from "./../../../containers/MainPage/EngineClasses/cou
 import RangeObject from "./../../../containers/MainPage/EngineClasses/RangeObject";
 import { expect } from "chai";
 
-suite("Board Legend", () => {
+describe("Board Legend", () => {
   test("The board legend counts the correct number of combinations for a sutested hand", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["Ac", "Ts", "4s"];

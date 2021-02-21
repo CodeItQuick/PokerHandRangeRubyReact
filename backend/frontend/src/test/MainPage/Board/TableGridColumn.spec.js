@@ -4,13 +4,19 @@ import { CardHandSuitBuilder } from "./../../../containers/MainPage/EngineClasse
 import { colorCell } from "./../../../containers/MainPage/EngineClasses/colorCellFn";
 import { expect } from "chai";
 
-suite("Table Grid Column", () => {
+describe("Table Grid Column", () => {
   test(" the function colorCell returns the given colorCard suit for a pair", () => {
+    //Given
     const cards = { 77: { colorCards: "#198f35", equity: "n/a" } };
-    const cardHandSuitBuilder = new CardHandSuitBuilder().build("7", "7", "");
+    const cardHandSuit = new CardHandSuitBuilder().build("7", "7", "");
 
-    const result = colorCell(cards, cardHandSuitBuilder);
+    //When
 
+    // Write some code : It fails : Make it pass : Refactor -> Write Some Code
+    // Red : Green : Refactor
+    const result = colorCell(cards, cardHandSuit);
+
+    //Then
     expect(result).to.deep.equal(["#198f35"]);
   });
 

@@ -29,7 +29,7 @@ function setup() {
     enzymeWrapper,
   };
 }
-suite("MainPage Container", () => {
+describe("MainPage Container", () => {
   test("renders an element on the page", () => {
     const { enzymeWrapper } = setup();
 

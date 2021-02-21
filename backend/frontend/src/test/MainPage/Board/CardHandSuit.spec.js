@@ -1,8 +1,8 @@
 import { CardHandSuitBuilder } from "./../../../containers/MainPage/EngineClasses/CardHandSuitBuilder";
 import { expect } from "chai";
 
-suite("CardHandSuitBuilder Class", () => {
-  test("can be constructed when two cards, and no sutest entered", () => {
+describe("CardHandSuitBuilder Class", () => {
+  test("can be constructed when two cards, and no suit entered", () => {
     //Given
     const cardOne = "A";
     const cardTwo = "K";
@@ -16,15 +16,15 @@ suite("CardHandSuitBuilder Class", () => {
     expect(result).to.equal("AKs");
   });
 
-  test("can be constructed when two cards, and a sutest entered", () => {
+  test("can be constructed when two cards, and a suit entered", () => {
     const cardOne = "A";
     const cardTwo = "K";
-    const sutest = "s";
+    const suit = "s";
 
     const cardHandSuit = new CardHandSuitBuilder().build(
       cardOne,
       cardTwo,
-      sutest
+      suit
     );
 
     const result = cardHandSuit.getHand();
@@ -32,33 +32,33 @@ suite("CardHandSuitBuilder Class", () => {
     expect(result).to.equal("AKs");
   });
 
-  test("can be constructed when two cards (reverse order), and a sutest entered returns a CardHandSuitBuilder Object in normalized order", () => {
+  test("can be constructed when two cards (reverse order), and a suit entered returns a CardHandSuitBuilder Object in normalized order", () => {
     const cardOne = "K";
     const cardTwo = "A";
-    const sutest = "o";
+    const suit = "o";
 
-    const cardSutestHand = new CardHandSuitBuilder().build(
+    const cardsuitHand = new CardHandSuitBuilder().build(
       cardOne,
       cardTwo,
-      sutest
+      suit
     );
 
-    const result = cardSutestHand.getHand();
+    const result = cardsuitHand.getHand();
 
     expect(result).to.equal("AKo");
   });
-  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and sutested", () => {
+  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suited", () => {
     //Given
     const cardOne = "Q";
     const cardTwo = "J";
-    const sutest = "s";
+    const suit = "s";
 
     //When
     const resultBuilder = new CardHandSuitBuilder();
     const resultCardHandSuitBuilder = resultBuilder.build(
       cardOne,
       cardTwo,
-      sutest
+      suit
     );
     const result = resultCardHandSuitBuilder.getHand();
 
@@ -66,7 +66,7 @@ suite("CardHandSuitBuilder Class", () => {
     expect(result).to.equal("QJs");
   });
 
-  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and sutested", () => {
+  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suited", () => {
     //Given
     const cardOne = "A";
     const cardTwo = "T";
@@ -79,36 +79,36 @@ suite("CardHandSuitBuilder Class", () => {
     //Then
     expect(result).to.equal("ATs");
   });
-  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and sutest of cs", () => {
+  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suit of cs", () => {
     //Given
     const cardOne = "A";
     const cardTwo = "T";
-    const sutest = "cs";
+    const suit = "cs";
 
     //When
     const resultBuilder = new CardHandSuitBuilder();
     const resultCardHandSuitBuilder = resultBuilder.build(
       cardOne,
       cardTwo,
-      sutest
+      suit
     );
     const result = resultCardHandSuitBuilder.getHand();
 
     //Then
     expect(result).to.equal("AcTs");
   });
-  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Th, cardTwo of 8s, and sutest of cs", () => {
+  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Th, cardTwo of 8s, and suit of cs", () => {
     //Given
     const cardOne = "Th";
     const cardTwo = "8s";
-    const sutest = "";
+    const suit = "";
 
     //When
     const resultBuilder = new CardHandSuitBuilder();
     const resultCardHandSuitBuilder = resultBuilder.build(
       cardOne,
       cardTwo,
-      sutest
+      suit
     );
     const result = resultCardHandSuitBuilder.getHand();
 

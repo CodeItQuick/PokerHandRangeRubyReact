@@ -21,7 +21,7 @@ import configureStore from "./../../configureStore";
 import { expect } from "chai";
 
 Enzyme.configure({ adapter: new ReactSixteenAdapter() });
-suite("Integration its: ", () => {
+describe("Integration its: ", () => {
   test("The reducer when action GET_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
     // nock('http://localhost:3000')
     // .post('/api/private/get-scenario')
@@ -62,7 +62,7 @@ suite("Integration its: ", () => {
     ]);
     expect(finalReducerValue.ranges.length).to.equal(18);
   });
-
+  // RED GREEN REFACTOR
   test("The reducer when action GET_ALL_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
     nock("http://localhost:3000")
       .post("/api/private/get-all-scenario")

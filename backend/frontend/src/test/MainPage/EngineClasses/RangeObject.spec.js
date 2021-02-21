@@ -2,7 +2,7 @@ import RangeObject from "./../../../containers/MainPage/EngineClasses/RangeObjec
 import { CardHandSuitBuilder } from "./../../../containers/MainPage/EngineClasses/CardHandSuitBuilder";
 import { expect } from "chai";
 
-suite("RangeObject Class", () => {
+describe("RangeObject Class", () => {
   test("can be constructed with a street, streetAction, and array of hands", () => {
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", []);
 
