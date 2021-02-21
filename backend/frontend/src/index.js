@@ -20,7 +20,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import config from "./auth_config";
 import { ErrorBoundary } from "./utils/ErrorBoundary";
 
-import HttpsRedirect from "react-https-redirect";
+// import HttpsRedirect from "react-https-redirect";
 
 //const store = createStore(combineReducers({rootReducer, handRangesAvailable}), applyMiddleware(thunk));
 // Create redux store with history
@@ -38,7 +38,7 @@ store.subscribe(
   }, 1000)
 );
 
-const siteUrl = `https://www.poker-range-appalyzer.com`;
+const siteUrl = `http://www.poker-range-appalyzer.com`;
 
 // A function that routes the user to the right place
 // after login
@@ -48,21 +48,21 @@ const onRedirectCallback = (appState) => {
 
 ReactDOM.render(
   <ErrorBoundary>
-    <HttpsRedirect>
-      <Auth0Provider
-        domain="dev-824eb3ar.us.auth0.com"
-        clientId="NTS7ZtvzLweGZjLhYDlhj9PsN44FDFel"
-        redirectUri="https://www.poker-range-appalyzer.com"
-        audience="https://dev-824eb3ar.us.auth0.com/api/v2/"
-        scope="read:current_user update:current_user_metadata"
-      >
-        <Provider store={store}>
-          <Router history={history}>
-            <Route exact path="/" component={App} />
-          </Router>
-        </Provider>
-      </Auth0Provider>
-    </HttpsRedirect>
+    {/* <HttpsRedirect> */}
+    <Auth0Provider
+      domain="dev-824eb3ar.us.auth0.com"
+      clientId="NTS7ZtvzLweGZjLhYDlhj9PsN44FDFel"
+      redirectUri="https://www.poker-range-appalyzer.com"
+      audience="https://dev-824eb3ar.us.auth0.com/api/v2/"
+      scope="read:current_user update:current_user_metadata"
+    >
+      <Provider store={store}>
+        <Router history={history}>
+          <Route exact path="/" component={App} />
+        </Router>
+      </Provider>
+    </Auth0Provider>
+    {/* </HttpsRedirect> */}
   </ErrorBoundary>, //{" "},
   document.getElementById("root")
 );
