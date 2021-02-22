@@ -88,6 +88,11 @@ resource "aws_alb_target_group" "alb_target_group" {
   protocol = "HTTP"
   vpc_id   = "${var.vpc_id}"
   target_type = "ip"
+ 
+  stickiness {
+    enabled = true
+    type    = "lb_cookie"
+  }
 
   lifecycle {
     create_before_destroy = true
@@ -107,6 +112,20 @@ resource "aws_security_group" "web_inbound_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+    
+  ingress {
+    from_port   = 443
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  
   ingress {
     from_port   = 8
     to_port     = 0

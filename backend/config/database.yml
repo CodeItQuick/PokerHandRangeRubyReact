@@ -83,14 +83,14 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
-#
 production:
-  <<: *default
-  database: <%= ENV['RDS_DB_NAME'] %>
-  username: <%= ENV['DB_USERNAME'] %>
-  password: <%= ENV['DB_PASSWORD'] %>
-  host: <%= ENV['RDS_HOSTNAME'] %>
-  port: <%= ENV['RDS_PORT'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+#
+# production:
+#   <<: *default
+#   database: <%= ENV['RDS_DB_NAME'] %>
+#   username: <%= ENV['DB_USERNAME'] %>
+#   password: <%= ENV['DB_PASSWORD'] %>
+#   host: <%= ENV['RDS_HOSTNAME'] %>
+#   port: <%= ENV['RDS_PORT'] %>
   
