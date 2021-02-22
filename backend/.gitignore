@@ -39,9 +39,6 @@ frontend/build/*
 /.ebextensions/config.yml
 
 #terraform files
-deploy.tf
 production.tfvars
-*.tf
-*.tfstate*
 .terraform/
 terraform_rsa.pub
