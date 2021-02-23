@@ -2,6 +2,10 @@ variable "repository_url" {
   description = "The url of the ECR repository"
 }
 
+variable "oauthtoken" {
+  description = "The OAuth token from github to push the repository"
+}
+
 variable "region" {
   description = "The region to use"
 }

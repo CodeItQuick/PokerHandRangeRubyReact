@@ -109,7 +109,7 @@ resource "aws_codepipeline" "pipeline" {
         Owner      = "CodeItQuick"
         Repo       = "PokerHandRangeRubyReact"
         Branch     = "master"
-        OAuthToken = "280185dc0f0e99ab6a95bae1f68feafbc234290b"
+        OAuthToken = "${var.oauthtoken}"
       }
     }
   }

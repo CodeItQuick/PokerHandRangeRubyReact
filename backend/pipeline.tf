@@ -2,6 +2,7 @@ module "code_pipeline" {
   source                      = "./modules/code_pipeline"
   repository_url              = module.ecs.repository_url
   region                      = var.region
+  oauthtoken                  = var.oauthtoken
   ecs_service_name            = module.ecs.service_name
   ecs_cluster_name            = module.ecs.cluster_name
   run_task_subnet_id          = element(module.networking.private_subnets_id, 0)

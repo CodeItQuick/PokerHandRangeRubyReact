@@ -2,6 +2,10 @@ variable "region" {
   description = "Region that the instances will be created"
 }
 
+variable "oauthtoken" {
+  description = "The OAuth token from github to push the repository"
+}
+
 /*====
 environment specific variables
 ======*/
