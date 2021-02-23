@@ -42,3 +42,4 @@ frontend/build/*
 production.tfvars
 .terraform/
 terraform_rsa.pub
+terraform.tfstate.backup
