@@ -32,7 +32,7 @@ Example of a React Component:
 https://github.com/CodeItQuick/PokerHandRangeRubyReact/blob/master/backend/frontend/src/containers/MainPage/InputForm/index.js
 
 Example of a Test:
-https://github.com/CodeItQuick/PokerHandRangeRubyReact/blob/master/backend/frontend/test/MainPage/EngineClasses/RangeObject.spec.js
+https://github.com/CodeItQuick/PokerHandRangeRubyReact/blob/master/backend/frontend/src/test/MainPage/EngineClasses/RangeObject.spec.js
 
 Internal Engine Classes Folder (Detailed):
 https://github.com/CodeItQuick/PokerHandRangeRubyReact/tree/master/backend/frontend/src/containers/MainPage/EngineClasses
@@ -62,7 +62,7 @@ For reference on experience with working in other open source projects, see thes
 
 After forking and downloading the repo, go into the "backend/frontend" folder and you should be able to run the front end through npm install and then npm run.
 
-Finally the website can be found live at the following AWS address: http://www.poker-range-appalyzer.com
+Finally the website can be found live at the following AWS address: https://www.poker-range-appalyzer.com
 
 There is an interview on the process of creating the site available on twitch video at: https://www.twitch.tv/videos/707482634
 The video was a project feature done by streamer "tbdgamer" on my react project.
