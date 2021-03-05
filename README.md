@@ -24,7 +24,7 @@ The following technologies were used in creating this application:
 (3) Sagas
 (4) React Hooks
 (5) Javascript/Ruby
-(6) Wallaby/Jest/Enzyme testing service and VS Code plugin
+(6) Wallaby/Mocha/Chai testing service and VS Code plugin
 ```
 # Specific Code Examples
 
