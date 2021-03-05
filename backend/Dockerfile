@@ -51,4 +51,4 @@ WORKDIR /home/app/webapp/
 RUN bundle install
 
 EXPOSE 80
-CMD ["passenger", "start", "-e production", "-p 80"]
+CMD ["passenger", "start", "-p 80"]
