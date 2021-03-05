@@ -51,4 +51,4 @@ WORKDIR /home/app/webapp/
 RUN bundle install
 
 EXPOSE 80
-ENTRYPOINT ["./entrypoint.sh"]
+CMD ["passenger", "start", "-e production", "-p 80"]

@@ -84,8 +84,8 @@ resource "random_id" "target_group_sufix" {
 
 resource "aws_alb_target_group" "alb_target_group" {
   name     = "${var.environment}-alb-target-group-${random_id.target_group_sufix.hex}"
-  port     = 80
-  protocol = "HTTP"
+  port     = 443
+  protocol = "HTTPS"
   vpc_id   = "${var.vpc_id}"
   target_type = "ip"
  
