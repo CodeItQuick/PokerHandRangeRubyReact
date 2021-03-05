@@ -66,7 +66,9 @@ After forking and downloading the repo, go into the "backend/frontend" folder an
 
 The site in the future will be listed online. However, currently my terraform uses fargate containers, which are expensive to run (approx. $15 USD per day). When I get time in a week or two I'll host the site using EC2 instead of containers and it should be available (it'll still be expensive but $15 USD is prohibitively so for me.).
 
-There is an interview on the process of creating the site available on twitch video at: https://www.twitch.tv/videos/707482634
+# Interview
+
+There is an interview on the process of creating the site available on twitch video at: https://www.youtube.com/watch?v=J_HB1XG8dwE
 The video was a project feature done by streamer "tbdgamer" on my react project.
 
 # Thanks
