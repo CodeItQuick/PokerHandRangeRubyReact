@@ -34,3 +34,7 @@ frontend/build/*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+terraform_rsa.pub
+.terraform/
+production.tfvars

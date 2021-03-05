@@ -7,7 +7,6 @@ locals {
 
 provider "aws" {
   region = var.region
-  profile = "pokerhandrange"
 }
 
 resource "aws_key_pair" "key" {
