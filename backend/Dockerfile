@@ -50,5 +50,5 @@ COPY ./ /home/app/webapp/
 WORKDIR /home/app/webapp/
 RUN bundle install
 
-EXPOSE 80
+EXPOSE 3000
 CMD ["passenger", "start"]
