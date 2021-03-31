@@ -17,7 +17,7 @@
 		"@testing-library/user-event": "^7.1.2",
 		"@types/node-fetch": "^2.5.7",
 		"add": "^2.0.6",
-		"axios": "^0.19.2",
+		"axios": "^0.21.1",
 		"bootstrap": "^4.4.1",
 		"bootstrap-daterangepicker": "^3.0.5",
 		"chai": "^4.2.0",
