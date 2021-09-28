@@ -53,13 +53,6 @@ Time:        8.245s, estimated 20s
 
 Note: all of these tests run in under 100ms, and generally are under 10ms. Due to file I/O speeds for the 18 testing files, it takes ~8s to run, but using Wallaby.js I basically get instant feedback.
 
-# Contributions into Other Open Source Repositories
-
-For reference on experience with working in other open source projects, see these two PR's into open-sauced:
-
-1. First low-friction PR: https://github.com/open-sauced/open-sauced/pull/847
-1. Second PR with feedback: https://github.com/open-sauced/open-sauced/pull/850
-
 # Running the Application
 
 After forking and downloading the repo, go into the "backend/frontend" folder and you should be able to run the front end through npm install and then npm run.
