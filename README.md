@@ -1,6 +1,8 @@
+Note: use Node v12.16.2. I ran into some issues going back to this codebase on Sept 27th, 2021 with the node version.
+
 # Poker Range Application
 
-Available at: https://www.poker-range-appalyzer.com
+Not currently hosted.
 
 # Introduction
 
