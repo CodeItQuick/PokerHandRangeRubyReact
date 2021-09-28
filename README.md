@@ -45,10 +45,8 @@ https://github.com/CodeItQuick/PokerHandRangeRubyReact/tree/master/backend/front
 # Test Speed running 'jest test --maxWorkers=4"
 
 ```
-Test Suites: 18 passed, 18 total
-Tests:       108 passed, 108 total
-Snapshots:   0 total
-Time:        8.245s, estimated 20s
+  90 passing (165ms)
+  5 pending
 ```
 
 Note: all of these tests run in under 100ms, and generally are under 10ms. Due to file I/O speeds for the 18 testing files, it takes ~8s to run, but using Wallaby.js I basically get instant feedback.
@@ -68,3 +66,145 @@ The video was a project feature done by streamer "tbdgamer" on my react project.
 
 # Thanks
 Thanks to mahonz for the help in developing the application from the client-perspective.
+
+# Sample Test Printout
+```
+the transformHandRange function 
+    ✓ should be able to transform the sample data
+    ✓ should be able to transform the sample data
+    ✓ should be able to assignDeadcards to an array of one deadcards when given a single deadcards
+    ✓ should be able to assignDeadcards to an array of two deadcards when given two deadcards
+    ✓ should be able to assignDeadcards to an array of three deadcards when given three deadcards
+    ✓ should be able to assignDeadcards to an array of four deadcards when given four deadcards
+    ✓ should be able to assignDeadcards to an array of five deadcards when given five deadcards
+
+  CardHandSuitBuilder Class
+    ✓ can be constructed when two cards, and no suit entered
+    ✓ can be constructed when two cards, and a suit entered
+    ✓ can be constructed when two cards (reverse order), and a suit entered returns a CardHandSuitBuilder Object in normalized order
+    ✓ CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suited
+    ✓ CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suited
+    ✓ CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suit of cs
+    ✓ CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Th, cardTwo of 8s, and suit of cs
+
+  MainPage Container
+    ✓ board renders with a white card-button object
+    ✓ board fires onClick handler as clicked
+
+  Table Grid Column
+    ✓  the function colorCell returns the given colorCard suit for a pair
+    ✓  the function colorCell returns the given colorCard suit for a suited hand
+    ✓  the function colorCell returns blank when given a suited cards hand and an offsuit CardHandSuitBuilder().build
+    ✓  the function colorCell returns the given colorCard suit for a offsuit hand
+    ✓  the function colorCell returns the given colorCard suit for a specific offsuit hand
+    ✓  the function colorCell returns the given colorCard suit for a specific suited hand
+    ✓  the function colorCell returns the given colorCard suit for two specific suited hand
+
+  Board Legend
+    ✓ The board legend counts the correct number of combinations for a sutested hand
+    ✓ The board legend counts the correct number of combinations for a sutested hand when the sutests match
+    - The board legend counts the correct number of combinations for a offsutest hand
+    ✓ The board legend counts the correct number of combtestions for a paired hand
+    ✓ The board legend counts the correct number of combinations for a specific spades combo hand
+    ✓ The board legend counts 1 combination for a specific hand no matching cards on board
+    ✓ The board legend counts 0 combinations for a specific hand wtesth matching cards on board
+
+  SelectedStreet 
+    ✓ can be constructed
+    ✓ can be filtered
+    ✓ can be displayed
+
+  CardHandSuitBuilder can 
+    ✓ can return tests own value
+    ✓ can return tests own value
+    ✓ can return tests own value
+
+  RangeObject Class
+    ✓ can be constructed with a street, streetAction, and array of hands
+    ✓ can be transformed into a data value object to be stored
+    ✓ can be transformed into a data value object to be stored
+    ✓ can be transformed into a data value object to be stored
+    ✓ can be transformed into a data value object to be stored
+    ✓ displayFriendlyRangeSuit displays a valid range for AA, AKs, AQo
+    ✓ displayFriendlyRangeSuit displays a condensed valid range for AA, AKs, AKo
+    ✓ displayFriendlyRangeSuit displays a condensed valid range for AA, As9s, Tc8d
+    ✓ displayInfo displays a condensed valid range for AA, As9s, AK
+    ✓ displayInfo displays a condensed valid range for AA, As9s, AK
+    ✓ displayInfo displays a condensed valid range for AA, As9s, AK
+    ✓ displayInfo displays a condensed valid range for AA, As9s, AK
+    ✓ displayInfo displays a condensed valid range for AA, As9s, AK
+    ✓ displayInfo displays a condensed valid range for AA, As9s, AK
+
+  A RangeObject Collection 
+    ✓ given no constructor can display 16 RangeObjects
+    ✓ given a constructor can displayed for 16 RangeObjects
+    ✓ given a constructor can displayed for 16 RangeObjects with hands
+    ✓ given a RangeObject can provide filtered range for the Flop
+    ✓ given a RangeObject can provide filtered range for the Turn
+    ✓ given a RangeObject can provide filtered range for the River
+
+  State Update Functions
+    ✓  generate CardGrid generates an empty object when given an empty range
+    ✓  generate CardGrid generates an AA object when given an AA range
+    ✓  generate CardGrid generates an AA object when given an AA range
+    ✓  generate CardGrid generates an AA object when given an AA range
+    ✓  generate CardGrid generates an AA object when given an AA range
+    ✓  generates a BoardOfHands when instantiated and called
+    ✓  can be updated to generate a new board
+
+  MainPage Container
+    ✓ renders an element on the page
+    ✓ handsInRange should return false when given an empty range
+    ✓ handsInRange should return true when given a range with AA
+
+  InputStreet Container
+    ✓ The assignPositions function returns the correct values for the flop
+
+  Integration its: 
+    - The reducer when action GET_SCENARIO_SUCCESS should return the new state for the reducer
+    - The reducer when action GET_ALL_SCENARIO_SUCCESS should return the new state for the reducer
+    - a token gets passed to the saga correctly
+
+  MainPage reducer
+    ✓ should return the initial state
+    ✓ When it is given the change IP action it changes state
+
+  MainPage reducer
+    ✓ should return the initial state
+    - The reducer with action handrangeAPI/MainPage/SET_HAND_RANGE_SELECT should return the new mode
+    ✓ The reducer when action SET_HAND_RANGE should return the new state for hand range
+    ✓ The reducer when action SET_DEADCARDS should return the new state for deadcards
+
+  ScenarioLoader
+    ✓ the scenario object can be instantiated
+    ✓ the scenario object returns valid objects
+    ✓ the scenario object returns valid defender positions
+    ✓ the scenario object returns valid opener positions
+    ✓ the scenario object returns valid scenario name
+    ✓ the scenarios object can be instantiated
+Warning: Each child in a list should have a unique "key" prop.
+
+Check the top-level render call using <TableBody>. See https://fb.me/react-warning-keys for more information.
+    in ScenarioComponent (at ScenariosComponent.js:21)
+    ✓ the scenarios object can render when given a scenario component
+    ✓ the scenarios object can render when given multiple scenario component
+
+  MainPage Login Selectors
+    ✓ mode should return the current mode 
+    ✓ select range repo should return in position 
+    ✓ range repo OOP should return the empty ranges 
+    ✓ select preflop ranges should return just the preflop ranges 
+    ✓ make select range should return an empty range
+    ✓ deadcards should return an empty array when empty 
+    ✓ select position should return true as default 
+    ✓ selectLoadEquities should return false for default value 
+    ✓ selectOtherRange should return a full range 
+    ✓ selectHandEquities should return two empty strings in an array as default.
+
+  MainPage reducer
+    ✓ should return the initial state
+
+
+  90 passing (165ms)
+  5 pending
+```

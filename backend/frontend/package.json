@@ -95,7 +95,7 @@
 	"scripts": {
 		"start": "craco start",
 		"build": "craco build",
-		"test": "NODE_ENV=test mocha --config .mocharc.json --experimental-modules -r @babel/register -r ignore-styles -r jsdom-global/register \"./src/test/**/*.spec.js\" --recursive src/test/MainPage",
+		"test": "NODE_ENV=test mocha -u bdd --config .mocharc.json --experimental-modules -r @babel/register -r ignore-styles -r jsdom-global/register \"./src/test/**/*.spec.js\" --recursive src/test/MainPage",
 		"eject": "craco eject"
 	},
 	"eslintConfig": {

@@ -3,11 +3,11 @@ import { initialState } from "./../../../containers/MainPage/reducer";
 import { expect } from "chai";
 
 describe("SelectedStreet ", () => {
-  test("can be constructed", () => {
+  it("can be constructed", () => {
     const selectedStreet = new SelectedStreet(initialState.ranges);
     expect(selectedStreet.ranges).to.equal(initialState.ranges);
   });
-  test("can be filtered", () => {
+  it("can be filtered", () => {
     const selectedStreet = new SelectedStreet(
       initialState.ranges,
       initialState.mode
@@ -19,7 +19,7 @@ describe("SelectedStreet ", () => {
     );
     expect(filteredStreet.ranges).to.deep.equal(result);
   });
-  test("can be displayed", () => {
+  it("can be displayed", () => {
     const selectedStreet = new SelectedStreet(
       initialState.ranges,
       initialState.mode

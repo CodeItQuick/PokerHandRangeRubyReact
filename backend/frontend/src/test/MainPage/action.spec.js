@@ -5,7 +5,7 @@ import {
 import { expect } from "chai";
 
 describe("the transformHandRange function ", () => {
-  test("should be able to transform the sample data", () => {
+  it("should be able to transform the sample data", () => {
     const data = [
       {
         BetType: "Raise4BetCall",
@@ -26,7 +26,7 @@ describe("the transformHandRange function ", () => {
       { BetType: "Raise4BetCall", Street: "Preflop", hands: [] },
     ]);
   });
-  test("should be able to transform the sample data", () => {
+  it("should be able to transform the sample data", () => {
     const data = [
       {
         BetType: "Raise4BetCall",
@@ -48,32 +48,32 @@ describe("the transformHandRange function ", () => {
     ]);
   });
 
-  test("should be able to assignDeadcards to an array of one deadcards when given a single deadcards", () => {
+  it("should be able to assignDeadcards to an array of one deadcards when given a single deadcards", () => {
     const deadcards = "Ac";
     const result = assignDeadcards(deadcards);
 
     expect(result).to.deep.equal(["Ac"]);
   });
 
-  test("should be able to assignDeadcards to an array of two deadcards when given two deadcards", () => {
+  it("should be able to assignDeadcards to an array of two deadcards when given two deadcards", () => {
     const deadcards = "TcAc";
     const result = assignDeadcards(deadcards);
 
     expect(result).to.deep.equal(["Tc", "Ac"]);
   });
-  test("should be able to assignDeadcards to an array of three deadcards when given three deadcards", () => {
+  it("should be able to assignDeadcards to an array of three deadcards when given three deadcards", () => {
     const deadcards = "7cQs5d";
     const result = assignDeadcards(deadcards);
 
     expect(result).to.deep.equal(["7c", "Qs", "5d"]);
   });
-  test("should be able to assignDeadcards to an array of four deadcards when given four deadcards", () => {
+  it("should be able to assignDeadcards to an array of four deadcards when given four deadcards", () => {
     const deadcards = "6c9c2d4c";
     const result = assignDeadcards(deadcards);
 
     expect(result).to.deep.equal(["6c", "9c", "2d", "4c"]);
   });
-  test("should be able to assignDeadcards to an array of five deadcards when given five deadcards", () => {
+  it("should be able to assignDeadcards to an array of five deadcards when given five deadcards", () => {
     const deadcards = "AcAdAhAs5d";
     const result = assignDeadcards(deadcards);
 

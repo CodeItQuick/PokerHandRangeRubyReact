@@ -11,13 +11,13 @@ import { expect } from "chai";
 Enzyme.configure({ adapter: new ReactSixteenAdapter() });
 
 describe("ScenarioLoader", () => {
-  test("the scenario object can be instantiated", () => {
+  it("the scenario object can be instantiated", () => {
     let scenario = new Scenario("AcTd5s3s2s");
 
     expect(scenario).to.be.instanceOf(Scenario);
   });
 
-  test("the scenario object returns valid objects", () => {
+  it("the scenario object returns valid objects", () => {
     const rangeRepoOOP = initialState.rangeRepoOOP;
     const rangeRepoIP = initialState.rangeRepoIP;
     const scenario = new Scenario({
@@ -29,7 +29,7 @@ describe("ScenarioLoader", () => {
     expect(scenario.displayDeadcards()).to.deep.equal("AcTd5s3s2s");
   });
 
-  test("the scenario object returns valid defender positions", () => {
+  it("the scenario object returns valid defender positions", () => {
     const rangeRepoOOP = initialState.rangeRepoOOP;
     const rangeRepoIP = initialState.rangeRepoIP;
     const scenario = new Scenario({
@@ -45,7 +45,7 @@ describe("ScenarioLoader", () => {
     expect(scenario.displayDefenderPosition()).to.deep.equal("SB");
   });
 
-  test("the scenario object returns valid opener positions", () => {
+  it("the scenario object returns valid opener positions", () => {
     const rangeRepoOOP = initialState.rangeRepoOOP;
     const rangeRepoIP = initialState.rangeRepoIP;
     const scenario = new Scenario({
@@ -59,7 +59,7 @@ describe("ScenarioLoader", () => {
     });
     expect(scenario.displayOpenerPosition()).to.deep.equal("MP");
   });
-  test("the scenario object returns valid scenario name", () => {
+  it("the scenario object returns valid scenario name", () => {
     const rangeRepoOOP = initialState.rangeRepoOOP;
     const rangeRepoIP = initialState.rangeRepoIP;
     const scenario = new Scenario({
@@ -73,7 +73,7 @@ describe("ScenarioLoader", () => {
     });
     expect(scenario.displayScenarioName()).to.deep.equal("First Scenario");
   });
-  test("the scenarios object can be instantiated", () => {
+  it("the scenarios object can be instantiated", () => {
     const rangeRepoOOP = initialState.rangeRepoOOP;
     const rangeRepoIP = initialState.rangeRepoIP;
 
@@ -82,7 +82,7 @@ describe("ScenarioLoader", () => {
     expect(scenarios).to.be.instanceOf(Scenarios);
   });
 
-  test("the scenarios object can render when given a scenario component", () => {
+  it("the scenarios object can render when given a scenario component", () => {
     const rangeRepoOOP = initialState.rangeRepoOOP;
     const rangeRepoIP = initialState.rangeRepoIP;
     const scenario = new Scenario("AcTd5s3s2s", rangeRepoIP, rangeRepoOOP);
@@ -95,7 +95,7 @@ describe("ScenarioLoader", () => {
     ).to.equal(1);
   });
 
-  test("the scenarios object can render when given multiple scenario component", () => {
+  it("the scenarios object can render when given multiple scenario component", () => {
     const scenario1 = new Scenario("AcTd5s3s2s", "Scenario 1", "UTG", "SB");
     const scenario2 = new Scenario("AcTd5s3s2s", "Scenario 2", "UTG", "MP");
 

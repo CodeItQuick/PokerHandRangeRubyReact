@@ -1,0 +1,6 @@
+[submodule "cockpit-container"]
+	path = cockpit-container
+	url = https://github.com/cockpit-project/cockpit-container.git
+[submodule "starter-kit"]
+	path = starter-kit
+	url = https://github.com/cockpit-project/starter-kit.git

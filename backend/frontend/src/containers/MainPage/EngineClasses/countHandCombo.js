@@ -43,8 +43,8 @@ const comboCounter = (hands, chosenStreet, board) => {
 const offsuitComboCounter = (hand, board) => {
   const numOccurances = _.countBy(_.split(board, ""));
   const subtractFirstCard = numOccurances[hand.getHand().charAt(0)] || 0;
-  const subtractSecondCard = numOccurances[hand.getHand().charAt(1)] || 0;
-  const numCards = (4 - subtractFirstCard) * (4 - subtractSecondCard);
+  const subtractSecondCard = numOccurances[hand.getHand().charAt(0)] || 0;
+  const numCards = (4 - subtractFirstCard) * (4 - subtractSecondCard) - 4;
   return numCards;
 };
 

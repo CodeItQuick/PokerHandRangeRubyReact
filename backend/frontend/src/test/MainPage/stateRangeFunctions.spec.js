@@ -4,7 +4,7 @@ import RangeObject from "./../../containers/MainPage/EngineClasses/RangeObject";
 import { expect } from "chai";
 
 describe("MainPage reducer", () => {
-  test("should return the initial state", function () {
+  it("should return the initial state", function () {
     const oldHandRange = initialState.ranges.map(
       ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
     );

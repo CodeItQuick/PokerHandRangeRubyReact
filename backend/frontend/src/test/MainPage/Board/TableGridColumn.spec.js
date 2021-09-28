@@ -5,7 +5,7 @@ import { colorCell } from "./../../../containers/MainPage/EngineClasses/colorCel
 import { expect } from "chai";
 
 describe("Table Grid Column", () => {
-  test(" the function colorCell returns the given colorCard suit for a pair", () => {
+  it(" the function colorCell returns the given colorCard suit for a pair", () => {
     //Given
     const cards = { 77: { colorCards: "#198f35", equity: "n/a" } };
     const cardHandSuit = new CardHandSuitBuilder().build("7", "7", "");
@@ -20,7 +20,7 @@ describe("Table Grid Column", () => {
     expect(result).to.deep.equal(["#198f35"]);
   });
 
-  test(" the function colorCell returns the given colorCard suit for a suited hand", () => {
+  it(" the function colorCell returns the given colorCard suit for a suited hand", () => {
     const cards = { "76s": { colorCards: "#198f35", equity: "n/a" } };
     const cardHandSuitBuilder = new CardHandSuitBuilder().build("7", "6", "s");
 
@@ -29,7 +29,7 @@ describe("Table Grid Column", () => {
     expect(result).to.deep.equal(["#198f35"]);
   });
 
-  test(" the function colorCell returns blank when given a suited cards hand and an offsuit CardHandSuitBuilder().build", () => {
+  it(" the function colorCell returns blank when given a suited cards hand and an offsuit CardHandSuitBuilder().build", () => {
     const cards = { "76s": { colorCards: "#198f35", equity: "n/a" } };
     const cardHandSuitBuilder = new CardHandSuitBuilder().build("7", "6", "o");
 
@@ -38,7 +38,7 @@ describe("Table Grid Column", () => {
     expect(result).to.deep.equal(["#DDD"]);
   });
 
-  test(" the function colorCell returns the given colorCard suit for a offsuit hand", () => {
+  it(" the function colorCell returns the given colorCard suit for a offsuit hand", () => {
     const cards = { "76o": { colorCards: "#198f35", equity: "n/a" } };
     const cardHandSuitBuilder = new CardHandSuitBuilder().build("7", "6", "o");
 
@@ -47,7 +47,7 @@ describe("Table Grid Column", () => {
     expect(result).to.deep.equal(["#198f35"]);
   });
 
-  test(" the function colorCell returns the given colorCard suit for a specific offsuit hand", () => {
+  it(" the function colorCell returns the given colorCard suit for a specific offsuit hand", () => {
     const cards = { "7c6d": { colorCards: "#198f35", equity: "n/a" } };
     const cardHandSuitBuilder = new CardHandSuitBuilder().build("7", "6", "o");
 
@@ -69,7 +69,7 @@ describe("Table Grid Column", () => {
     ]);
   });
 
-  test(" the function colorCell returns the given colorCard suit for a specific suited hand", () => {
+  it(" the function colorCell returns the given colorCard suit for a specific suited hand", () => {
     const cards = { "7c6c": { colorCards: "#198f35", equity: "n/a" } };
     const cardHandSuitBuilder = new CardHandSuitBuilder().build("7", "6", "s");
 
@@ -78,7 +78,7 @@ describe("Table Grid Column", () => {
     expect(result).to.deep.equal(["#198f35", "#DDD", "#DDD", "#DDD"]);
   });
 
-  test(" the function colorCell returns the given colorCard suit for two specific suited hand", () => {
+  it(" the function colorCell returns the given colorCard suit for two specific suited hand", () => {
     const cards = {
       "7c6c": { colorCards: "#198f35", equity: "n/a" },
       "7s6s": { colorCards: "#198f35", equity: "n/a" },

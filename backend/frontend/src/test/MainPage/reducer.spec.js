@@ -27,11 +27,11 @@ const data = [
 ];
 
 describe("MainPage reducer", () => {
-  test("should return the initial state", function () {
+  it("should return the initial state", function () {
     expect(reducer(undefined, {})).to.deep.equal(initialState);
   });
 
-  test.skip(
+  it.skip(
     "The reducer with action " +
       types.SET_HAND_RANGE_SELECT +
       " should return the new mode",
@@ -44,7 +44,7 @@ describe("MainPage reducer", () => {
     }
   );
 
-  test("The reducer when action SET_HAND_RANGE should return the new state for hand range", () => {
+  it("The reducer when action SET_HAND_RANGE should return the new state for hand range", () => {
     //Given
     let ranges = JSON.parse(JSON.stringify(initialState.ranges));
     ranges[0] = { ...ranges, hands: ["AA"] };
@@ -63,7 +63,7 @@ describe("MainPage reducer", () => {
     expect(reducer(undefined, action)).to.deep.equal(newState);
   });
 
-  test("The reducer when action SET_DEADCARDS should return the new state for deadcards", () => {
+  it("The reducer when action SET_DEADCARDS should return the new state for deadcards", () => {
     //Given
     const deadcards = ["Ac", "Td", "5h"];
 

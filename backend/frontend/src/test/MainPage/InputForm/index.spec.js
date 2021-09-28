@@ -4,7 +4,7 @@ import RangeObject from "./../../../containers/MainPage/EngineClasses/RangeObjec
 import { expect } from "chai";
 
 describe("InputStreet Container", () => {
-  test("The assignPositions function returns the correct values for the flop", () => {
+  it("The assignPositions function returns the correct values for the flop", () => {
     const rangeRepoIP = JSON.parse(JSON.stringify(initialState.rangeRepoIP))
       .filter(({ Street }) => Street == "Flop")
       .map(

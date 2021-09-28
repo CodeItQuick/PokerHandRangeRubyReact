@@ -204,7 +204,7 @@ const CardTable = [
   ],
 ];
 describe("State Update Functions", () => {
-  test(" generate CardGrid generates an empty object when given an empty range", () => {
+  it(" generate CardGrid generates an empty object when given an empty range", () => {
     const PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges));
     const Position = initialState.mode.isIP;
     const newCardGrid = generateCardGrid(PreflopRanges, Position);
@@ -212,7 +212,7 @@ describe("State Update Functions", () => {
     expect(newCardGrid).to.deep.equal({});
   });
 
-  test(" generate CardGrid generates an AA object when given an AA range", () => {
+  it(" generate CardGrid generates an AA object when given an AA range", () => {
     let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
       ({ Street }) => Street == "Preflop"
     );
@@ -236,7 +236,7 @@ describe("State Update Functions", () => {
     });
   });
 
-  test(" generate CardGrid generates an AA object when given an AA range", () => {
+  it(" generate CardGrid generates an AA object when given an AA range", () => {
     let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
       ({ Street }) => Street == "Preflop"
     );
@@ -253,7 +253,7 @@ describe("State Update Functions", () => {
     });
   });
 
-  test(" generate CardGrid generates an AA object when given an AA range", () => {
+  it(" generate CardGrid generates an AA object when given an AA range", () => {
     let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
       ({ Street }) => Street == "Preflop"
     );
@@ -277,7 +277,7 @@ describe("State Update Functions", () => {
     });
   });
 
-  test(" generate CardGrid generates an AA object when given an AA range", () => {
+  it(" generate CardGrid generates an AA object when given an AA range", () => {
     let PreflopRanges = JSON.parse(JSON.stringify(initialState.ranges)).filter(
       ({ Street }) => Street === "Preflop"
     );
@@ -301,13 +301,13 @@ describe("State Update Functions", () => {
     });
   });
 
-  test(" generates a BoardOfHands when instantiated and called", () => {
+  it(" generates a BoardOfHands when instantiated and called", () => {
     const newBoardOfHands = new BoardOfHands();
     const newCardGrid = newBoardOfHands.generateCardGrid();
 
     expect(newCardGrid).to.deep.equal(CardTable);
   });
-  test(" can be updated to generate a new board", () => {
+  it(" can be updated to generate a new board", () => {
     let newBoardOfHands = new BoardOfHands();
     const PreflopRanges = new RangeObjectCollection(initialState.ranges);
     const SelectedRanges = PreflopRanges.displayRangeByStreet({

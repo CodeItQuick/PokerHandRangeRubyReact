@@ -21,8 +21,8 @@ import configureStore from "./../../configureStore";
 import { expect } from "chai";
 
 Enzyme.configure({ adapter: new ReactSixteenAdapter() });
-describe("Integration its: ", () => {
-  test("The reducer when action GET_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
+describe.skip("Integration its: ", () => {
+  it("The reducer when action GET_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
     // nock('http://localhost:3000')
     // .post('/api/private/get-scenario')
     // .reply(200, httpResponseGetScenario)
@@ -63,7 +63,7 @@ describe("Integration its: ", () => {
     expect(finalReducerValue.ranges.length).to.equal(18);
   });
   // RED GREEN REFACTOR
-  test("The reducer when action GET_ALL_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
+  it.skip("The reducer when action GET_ALL_SCENARIO_SUCCESS should return the new state for the reducer", async () => {
     nock("http://localhost:3000")
       .post("/api/private/get-all-scenario")
       .reply(200, httpResponseGetAllScenario);
@@ -100,7 +100,7 @@ describe("Integration its: ", () => {
     ]);
   });
 
-  test.skip("a token gets passed to the saga correctly", () => {
+  it.skip("a token gets passed to the saga correctly", () => {
     nock("https://www.poker-range-appalyzer.com")
       .post("/api/private/get-scenario")
       .reply(200, httpResponseGetScenario);

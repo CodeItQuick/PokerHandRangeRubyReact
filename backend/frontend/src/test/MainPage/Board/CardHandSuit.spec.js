@@ -2,7 +2,7 @@ import { CardHandSuitBuilder } from "./../../../containers/MainPage/EngineClasse
 import { expect } from "chai";
 
 describe("CardHandSuitBuilder Class", () => {
-  test("can be constructed when two cards, and no suit entered", () => {
+  it("can be constructed when two cards, and no suit entered", () => {
     //Given
     const cardOne = "A";
     const cardTwo = "K";
@@ -16,7 +16,7 @@ describe("CardHandSuitBuilder Class", () => {
     expect(result).to.equal("AKs");
   });
 
-  test("can be constructed when two cards, and a suit entered", () => {
+  it("can be constructed when two cards, and a suit entered", () => {
     const cardOne = "A";
     const cardTwo = "K";
     const suit = "s";
@@ -32,7 +32,7 @@ describe("CardHandSuitBuilder Class", () => {
     expect(result).to.equal("AKs");
   });
 
-  test("can be constructed when two cards (reverse order), and a suit entered returns a CardHandSuitBuilder Object in normalized order", () => {
+  it("can be constructed when two cards (reverse order), and a suit entered returns a CardHandSuitBuilder Object in normalized order", () => {
     const cardOne = "K";
     const cardTwo = "A";
     const suit = "o";
@@ -47,7 +47,7 @@ describe("CardHandSuitBuilder Class", () => {
 
     expect(result).to.equal("AKo");
   });
-  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suited", () => {
+  it("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suited", () => {
     //Given
     const cardOne = "Q";
     const cardTwo = "J";
@@ -66,7 +66,7 @@ describe("CardHandSuitBuilder Class", () => {
     expect(result).to.equal("QJs");
   });
 
-  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suited", () => {
+  it("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suited", () => {
     //Given
     const cardOne = "A";
     const cardTwo = "T";
@@ -79,7 +79,7 @@ describe("CardHandSuitBuilder Class", () => {
     //Then
     expect(result).to.equal("ATs");
   });
-  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suit of cs", () => {
+  it("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Q, cardTwo of J, and suit of cs", () => {
     //Given
     const cardOne = "A";
     const cardTwo = "T";
@@ -97,7 +97,7 @@ describe("CardHandSuitBuilder Class", () => {
     //Then
     expect(result).to.equal("AcTs");
   });
-  test("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Th, cardTwo of 8s, and suit of cs", () => {
+  it("CardHandSuitBuilder can build a CardHandSuitBuilder given a cardOne of Th, cardTwo of 8s, and suit of cs", () => {
     //Given
     const cardOne = "Th";
     const cardTwo = "8s";

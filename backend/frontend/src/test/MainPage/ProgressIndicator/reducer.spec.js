@@ -3,13 +3,13 @@ import { initialState } from "./../../../containers/MainPage/reducer";
 import { expect } from "chai";
 
 describe("MainPage reducer", () => {
-  test("should return the initial state", function () {
+  it("should return the initial state", function () {
     expect(progressIndicatorReducer(undefined, { type: {} })).to.equal(
       initialState
     );
   });
 
-  test("When it is given the change IP action it changes state", () => {
+  it("When it is given the change IP action it changes state", () => {
     //Given
 
     //When

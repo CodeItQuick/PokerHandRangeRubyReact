@@ -16,7 +16,7 @@ import RangeObject from "./../../containers/MainPage/EngineClasses/RangeObject";
 import { expect } from "chai";
 
 describe("MainPage Login Selectors", () => {
-  test("mode should return the current mode ", () => {
+  it("mode should return the current mode ", () => {
     const mockParameters = {
       global: {
         ...initialState,
@@ -41,7 +41,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectMode()(mockParameters)).to.deep.equal(results);
   });
 
-  test("select range repo should return in position ", () => {
+  it("select range repo should return in position ", () => {
     const mockParameters = {
       global: {
         ...initialState,
@@ -60,7 +60,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectRangeRepoIP()(mockParameters)).to.deep.equal(results);
   });
 
-  test("range repo OOP should return the empty ranges ", () => {
+  it("range repo OOP should return the empty ranges ", () => {
     const mockParameters = {
       global: {
         ...initialState,
@@ -79,7 +79,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectRangeRepoOOP()(mockParameters)).to.deep.equal(results);
   });
 
-  test("select preflop ranges should return just the preflop ranges ", () => {
+  it("select preflop ranges should return just the preflop ranges ", () => {
     const mockParameters = {
       global: {
         ...initialState,
@@ -101,7 +101,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectRangesPreflop()(mockParameters)).to.deep.equal(results);
   });
 
-  test("make select range should return an empty range", () => {
+  it("make select range should return an empty range", () => {
     const mockParameters = {
       global: {
         ...initialState,
@@ -120,7 +120,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectRange()(mockParameters)).to.deep.equal(results);
   });
 
-  test("deadcards should return an empty array when empty ", () => {
+  it("deadcards should return an empty array when empty ", () => {
     const mockParameters = {
       global: {
         ...initialState,
@@ -134,7 +134,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectDeadcards()(mockParameters)).to.deep.equal(results);
   });
 
-  test("select position should return true as default ", () => {
+  it("select position should return true as default ", () => {
     const mockParameters = {
       global: {
         ...initialState,
@@ -148,7 +148,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectPosition()(mockParameters)).to.deep.equal(results);
   });
 
-  test("selectLoadEquities should return false for default value ", () => {
+  it("selectLoadEquities should return false for default value ", () => {
     const mockParameters = {
       global: {
         ...initialState,
@@ -162,7 +162,7 @@ describe("MainPage Login Selectors", () => {
     expect(getMakeSelectLoadEquities()(mockParameters)).to.deep.equal(results);
   });
 
-  test("selectOtherRange should return a full range ", () => {
+  it("selectOtherRange should return a full range ", () => {
     const mockParameters = {
       global: initialState,
     };
@@ -178,7 +178,7 @@ describe("MainPage Login Selectors", () => {
     );
   });
 
-  test("selectHandEquities should return two empty strings in an array as default.", () => {
+  it("selectHandEquities should return two empty strings in an array as default.", () => {
     const mockParameters = {
       global: {
         ...initialState,
