@@ -49,8 +49,6 @@ https://github.com/CodeItQuick/PokerHandRangeRubyReact/tree/master/backend/front
   5 pending
 ```
 
-Note: all of these tests run in under 100ms, and generally are under 10ms. Due to file I/O speeds for the 18 testing files, it takes ~8s to run, but using Wallaby.js I basically get instant feedback.
-
 # Running the Application
 
 After forking and downloading the repo, go into the "backend/frontend" folder and you should be able to run the front end through npm install and then npm run.
