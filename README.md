@@ -2,7 +2,10 @@ Note: use Node v12.16.2. I ran into some issues going back to this codebase on S
 
 # Poker Range Application
 
-Not currently hosted.
+Not currently hosted. Note: There's a docker-compose in the root of this project. You can type 
+```docker-compose up``` 
+to run the application on port 3000. Word of warning: the application takes forever to build, and the dockerfile is 
+relatively messy.
 
 # Introduction
 
