@@ -114,7 +114,6 @@ GEM
     multipart-post (2.1.1)
     mysql2 (0.5.3)
     netrc (0.11.0)
-    newrelic_rpm (6.13.1)
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
@@ -197,7 +196,7 @@ GEM
     stripe (5.22.0)
     thor (1.0.1)
     thread_safe (0.3.6)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     tzinfo-data (1.2020.1)
       tzinfo (>= 1.0.0)
@@ -222,7 +221,6 @@ DEPENDENCIES
   jwt
   listen (>= 3.0.5, < 3.2)
   mysql2
-  newrelic_rpm
   omniauth-auth0 (~> 2.4)
   omniauth-rails_csrf_protection (~> 0.1)
   passenger (>= 5.0.25)
