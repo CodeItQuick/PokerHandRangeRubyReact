@@ -59,6 +59,7 @@ Produce a numbered list of tasks, one per file (or group of closely related file
 - What behaviors to characterize (list each function or branch)
 - Where to place the new spec file
 - Any setup required (mocks, fixtures, test doubles)
+- Use ZOMBIES when testing to make sure we get all the cases, carry this approach over to the implementation plan
 
 ### Step 7: Save the plan to a file
 

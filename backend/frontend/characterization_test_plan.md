@@ -30,6 +30,24 @@
 
 ---
 
+## Coverage Checklist — ZOMBIES
+
+For each function or class method characterized, verify a test exists for each applicable category:
+
+| Letter | Stands for | What to test |
+|---|---|---|
+| **Z** | Zero | Empty input, empty collection, zero count (e.g. no hands, empty `cards` object, empty board) |
+| **O** | One | A single element — one hand, one scenario, one card on the board |
+| **M** | Many | Multiple elements — several hands, a full range, multiple board cards |
+| **B** | Boundary | Edges of valid ranges — exactly 2-card vs 3-card hand strings, page boundary in pagination, max board size |
+| **I** | Interface | The public contract — correct return type/shape, correct exported names |
+| **E** | Exceptional | Invalid or unexpected input — null, undefined, wrong length, unrecognized suit, mismatched keys |
+| **S** | Simple scenarios | The obvious happy path covered first before adding complexity |
+
+Use this as a per-task checklist: after writing the happy-path (S) test, walk through Z → O → M → B → E and add a test for each that applies.
+
+---
+
 ## Prioritized Implementation Tasks
 
 **Task 1 — `findInArray.js`** *(pure functions, highest ROI)*
