@@ -60,6 +60,10 @@ Produce a numbered list of tasks, one per file (or group of closely related file
 - Where to place the new spec file
 - Any setup required (mocks, fixtures, test doubles)
 
+### Step 7: Save the plan to a file
+
+Write the full plan — the test framework summary, coverage gap table, and all numbered tasks — to a file named `characterization_test_plan.md` in the repository root.
+
 **Stop here. Present the plan to the user and wait for approval before writing any tests.**
 
 ---
