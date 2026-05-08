@@ -1,5 +1,5 @@
 import { initialState } from "../reducer";
-import { CardHandSuitBuilder } from "./CardHandSuitBuilder";
+import { StartingHandBuilder } from "./StartingHandBuilder";
 import RangeObject from "./RangeObject";
 
 export class RangeObjectCollection {
@@ -15,7 +15,7 @@ export class RangeObjectCollection {
   }
   _copyHands(hands) {
     return hands.map((hand) =>
-      new CardHandSuitBuilder().build(
+      new StartingHandBuilder().build(
         hand.length <= 3 ? hand.substr(0, 1) : hand.substr(0, 2),
         hand.length <= 3 ? hand.substr(1, 1) : hand.substr(2, 2),
         hand.length <= 3 ? hand.substr(2, hand.length - 1) : ""

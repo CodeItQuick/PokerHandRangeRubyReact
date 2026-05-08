@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { CardHandSuitBuilder } from "./CardHandSuitBuilder";
+import { StartingHandBuilder } from "./StartingHandBuilder";
 
 export const countHandCombo = (wholeRange, chosenStreet, board) => {
   let wholeRangeNum = wholeRange.map((rangeObject) =>
@@ -25,7 +25,7 @@ const comboCounter = (hands, chosenStreet, board) => {
   }
   let hand;
 
-  hand = new CardHandSuitBuilder().build(
+  hand = new StartingHandBuilder().build(
     hands.substr(0, 1),
     hands.substr(1, 1),
     hands.substr(2, 1)

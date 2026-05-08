@@ -1,5 +1,5 @@
 import RangeObject from "./../../../containers/MainPage/EngineClasses/RangeObject";
-import { CardHandSuitBuilder } from "./../../../containers/MainPage/EngineClasses/CardHandSuitBuilder";
+import { StartingHandBuilder } from "./../../../containers/MainPage/EngineClasses/StartingHandBuilder";
 import { expect } from "chai";
 
 describe("RangeObject Class", () => {
@@ -10,9 +10,9 @@ describe("RangeObject Class", () => {
   });
 
   it("can be transformed into a data value object to be stored", () => {
-    const AKsuited = new CardHandSuitBuilder().build("A", "K", "s");
-    const AA = new CardHandSuitBuilder().build("A", "A");
-    const AKoffsuit = new CardHandSuitBuilder().build("A", "K", "o");
+    const AKsuited = new StartingHandBuilder().build("A", "K", "s");
+    const AA = new StartingHandBuilder().build("A", "A");
+    const AKoffsuit = new StartingHandBuilder().build("A", "K", "o");
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
@@ -26,9 +26,9 @@ describe("RangeObject Class", () => {
     });
   });
   it("can be transformed into a data value object to be stored", () => {
-    const AKsuited = new CardHandSuitBuilder().build("A", "K", "s");
-    const AA = new CardHandSuitBuilder().build("A", "A");
-    const AKoffsuit = new CardHandSuitBuilder().build("A", "K", "o");
+    const AKsuited = new StartingHandBuilder().build("A", "K", "s");
+    const AA = new StartingHandBuilder().build("A", "A");
+    const AKoffsuit = new StartingHandBuilder().build("A", "K", "o");
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
@@ -51,9 +51,9 @@ describe("RangeObject Class", () => {
     });
   });
   it("can be transformed into a data value object to be stored", () => {
-    const AKsuited = new CardHandSuitBuilder().build("A", "K", "s");
-    const AA = new CardHandSuitBuilder().build("A", "A");
-    const AKoffsuit = new CardHandSuitBuilder().build("A", "K", "o");
+    const AKsuited = new StartingHandBuilder().build("A", "K", "s");
+    const AA = new StartingHandBuilder().build("A", "A");
+    const AKoffsuit = new StartingHandBuilder().build("A", "K", "o");
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
@@ -68,9 +68,9 @@ describe("RangeObject Class", () => {
   });
 
   it("can be transformed into a data value object to be stored", () => {
-    const AKsuited = new CardHandSuitBuilder().build("A", "K", "s");
-    const AA = new CardHandSuitBuilder().build("A", "A");
-    const AKoffsuit = new CardHandSuitBuilder().build("A", "K", "o");
+    const AKsuited = new StartingHandBuilder().build("A", "K", "s");
+    const AA = new StartingHandBuilder().build("A", "A");
+    const AKoffsuit = new StartingHandBuilder().build("A", "K", "o");
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
@@ -85,9 +85,9 @@ describe("RangeObject Class", () => {
   });
 
   it("displayFriendlyRangeSuit displays a valid range for AA, AKs, AQo", () => {
-    const AAhand = new CardHandSuitBuilder().build("A", "A");
-    const AKohand = new CardHandSuitBuilder().build("Q", "A");
-    const AKshand = new CardHandSuitBuilder().build("A", "K");
+    const AAhand = new StartingHandBuilder().build("A", "A");
+    const AKohand = new StartingHandBuilder().build("Q", "A");
+    const AKshand = new StartingHandBuilder().build("A", "K");
 
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AAhand,
@@ -99,9 +99,9 @@ describe("RangeObject Class", () => {
   });
 
   it("displayFriendlyRangeSuit displays a condensed valid range for AA, AKs, AKo", () => {
-    const AAhand = new CardHandSuitBuilder().build("A", "A");
-    const AKohand = new CardHandSuitBuilder().build("K", "A");
-    const AKshand = new CardHandSuitBuilder().build("A", "K");
+    const AAhand = new StartingHandBuilder().build("A", "A");
+    const AKohand = new StartingHandBuilder().build("K", "A");
+    const AKshand = new StartingHandBuilder().build("A", "K");
 
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AAhand,
@@ -113,9 +113,9 @@ describe("RangeObject Class", () => {
   });
 
   it("displayFriendlyRangeSuit displays a condensed valid range for AA, As9s, Tc8d", () => {
-    const AAhand = new CardHandSuitBuilder().build("A", "A");
-    const A9sshand = new CardHandSuitBuilder().build("A", "9", "ss");
-    const AKshand = new CardHandSuitBuilder().build("A", "K");
+    const AAhand = new StartingHandBuilder().build("A", "A");
+    const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
+    const AKshand = new StartingHandBuilder().build("A", "K");
 
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AAhand,
@@ -126,9 +126,9 @@ describe("RangeObject Class", () => {
     expect(rangeObject.getFriendlyRangeOutput()).to.equal("AA, AKs, As9s");
   });
   it("displayInfo displays a condensed valid range for AA, As9s, AK", () => {
-    const AAhand = new CardHandSuitBuilder().build("A", "A");
-    const A9sshand = new CardHandSuitBuilder().build("A", "9", "ss");
-    const AKshand = new CardHandSuitBuilder().build("A", "K");
+    const AAhand = new StartingHandBuilder().build("A", "A");
+    const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
+    const AKshand = new StartingHandBuilder().build("A", "K");
 
     const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
       AAhand,
@@ -143,9 +143,9 @@ describe("RangeObject Class", () => {
     });
   });
   it("displayInfo displays a condensed valid range for AA, As9s, AK", () => {
-    const AAhand = new CardHandSuitBuilder().build("A", "A");
-    const A9sshand = new CardHandSuitBuilder().build("A", "9", "ss");
-    const AKshand = new CardHandSuitBuilder().build("A", "K");
+    const AAhand = new StartingHandBuilder().build("A", "A");
+    const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
+    const AKshand = new StartingHandBuilder().build("A", "K");
 
     const rangeObject = new RangeObject("Flop", "Bluff", [
       AAhand,
@@ -160,9 +160,9 @@ describe("RangeObject Class", () => {
     });
   });
   it("displayInfo displays a condensed valid range for AA, As9s, AK", () => {
-    const AAhand = new CardHandSuitBuilder().build("A", "A");
-    const A9sshand = new CardHandSuitBuilder().build("A", "9", "ss");
-    const AKshand = new CardHandSuitBuilder().build("A", "K");
+    const AAhand = new StartingHandBuilder().build("A", "A");
+    const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
+    const AKshand = new StartingHandBuilder().build("A", "K");
 
     const rangeObject = new RangeObject("Flop", "CheckFold", [
       AAhand,
@@ -177,9 +177,9 @@ describe("RangeObject Class", () => {
     });
   });
   it("displayInfo displays a condensed valid range for AA, As9s, AK", () => {
-    const AAhand = new CardHandSuitBuilder().build("A", "A");
-    const A9sshand = new CardHandSuitBuilder().build("A", "9", "ss");
-    const AKshand = new CardHandSuitBuilder().build("A", "K");
+    const AAhand = new StartingHandBuilder().build("A", "A");
+    const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
+    const AKshand = new StartingHandBuilder().build("A", "K");
 
     const rangeObject = new RangeObject("Flop", "CheckCall", [
       AAhand,
@@ -194,9 +194,9 @@ describe("RangeObject Class", () => {
     });
   });
   it("displayInfo displays a condensed valid range for AA, As9s, AK", () => {
-    const AAhand = new CardHandSuitBuilder().build("A", "A");
-    const A9sshand = new CardHandSuitBuilder().build("A", "9", "ss");
-    const AKshand = new CardHandSuitBuilder().build("A", "K");
+    const AAhand = new StartingHandBuilder().build("A", "A");
+    const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
+    const AKshand = new StartingHandBuilder().build("A", "K");
 
     const rangeObject = new RangeObject("Flop", "SmallValuebet", [
       AAhand,
@@ -211,9 +211,9 @@ describe("RangeObject Class", () => {
     });
   });
   it("displayInfo displays a condensed valid range for AA, As9s, AK", () => {
-    const AAhand = new CardHandSuitBuilder().build("A", "A");
-    const A9sshand = new CardHandSuitBuilder().build("A", "9", "ss");
-    const AKshand = new CardHandSuitBuilder().build("A", "K");
+    const AAhand = new StartingHandBuilder().build("A", "A");
+    const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
+    const AKshand = new StartingHandBuilder().build("A", "K");
 
     const rangeObject = new RangeObject("Flop", "SmallBluff", [
       AAhand,

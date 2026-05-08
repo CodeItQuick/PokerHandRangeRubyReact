@@ -8,7 +8,7 @@ import { initialState } from "./reducer";
 import Scenario from "./EngineClasses/Scenario";
 import { Scenarios } from "./EngineClasses/Scenarios";
 import RangeObject from "./EngineClasses/RangeObject";
-import { CardHandSuitBuilder } from "./EngineClasses/CardHandSuitBuilder";
+import { StartingHandBuilder } from "./EngineClasses/StartingHandBuilder";
 import { RangeObjectCollection } from "./EngineClasses/RangeObjectCollection";
 
 const selectGlobal = (state) => state.global || initialState; //??
