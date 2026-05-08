@@ -5,7 +5,7 @@ import { connect, useDispatch } from "react-redux";
 import { makeSelectMode, makeSelectSelectedStreet } from "./selector";
 import { initSetHandRangeSelect } from "./actions";
 import useInjectReducer from "../../../HOC/useInjectReducer";
-import reducer from './reducer'
+import reducer from "./reducer";
 
 const buttonColors = {
   Valuebet: "green",
@@ -18,24 +18,24 @@ const buttonColors = {
   Raise4BetFold: "red",
   RaiseCall: "blue",
   RaiseFold: "violet",
-  CheckDown: "blue"
+  CheckDown: "blue",
 };
 
 const displayProperRange = (isIP, street, RangeObject) => {
   if (
     street === "Flop" &&
     isIP == false &&
-    RangeObject.getRangesObject().BetType === "Valuebet"
+    RangeObject.toRangeData().BetType === "Valuebet"
   )
     return "Value Check-Raise";
   if (
     street === "Flop" &&
     isIP == false &&
-    RangeObject.getRangesObject().BetType === "Bluff"
+    RangeObject.toRangeData().BetType === "Bluff"
   )
     return "Bluff Check-Raise";
 
-  return RangeObject.getRangesObject().BetType;
+  return RangeObject.toRangeData().BetType;
 };
 
 const rangeText = (rangeObject, betType, streetAction) => {
@@ -53,10 +53,10 @@ const rangeText = (rangeObject, betType, streetAction) => {
 };
 const CurrentRanges = ({
   mode: { streetAction, street, isIP },
-  selectedStreet
+  selectedStreet,
 }) => {
   const dispatch = useDispatch();
- const [changingStreet, updateChangingStreet] = useState(selectedStreet);
+  const [changingStreet, updateChangingStreet] = useState(selectedStreet);
 
   useEffect(() => {
     updateChangingStreet(selectedStreet);
@@ -66,7 +66,7 @@ const CurrentRanges = ({
     dispatch(
       initSetHandRangeSelect({
         name,
-        value
+        value,
       })
     );
   };
@@ -86,12 +86,10 @@ const CurrentRanges = ({
                     "Choice"
                   }
                   name={street}
-                  value={RangeObject.getRangesObject().BetType}
-                  active={
-                    RangeObject.getRangesObject().BetType === streetAction
-                  }
+                  value={RangeObject.toRangeData().BetType}
+                  active={RangeObject.toRangeData().BetType === streetAction}
                   inverted
-                  color={buttonColors[RangeObject.getRangesObject().BetType]}
+                  color={buttonColors[RangeObject.toRangeData().BetType]}
                 >
                   {displayProperRange(isIP, street, RangeObject)}
                 </Button>
@@ -99,7 +97,7 @@ const CurrentRanges = ({
               <Table.Cell>
                 {rangeText(
                   RangeObject,
-                  RangeObject.getRangesObject().BetType,
+                  RangeObject.toRangeData().BetType,
                   streetAction
                 )}
               </Table.Cell>
@@ -115,10 +113,10 @@ const mapStateToProps = () => {
   const getMode = makeSelectMode();
   const getSelectedStreet = makeSelectSelectedStreet();
 
-  const mapState = state => {
+  const mapState = (state) => {
     return {
       mode: getMode(state),
-      selectedStreet: getSelectedStreet(state)
+      selectedStreet: getSelectedStreet(state),
     };
   };
   return mapState;

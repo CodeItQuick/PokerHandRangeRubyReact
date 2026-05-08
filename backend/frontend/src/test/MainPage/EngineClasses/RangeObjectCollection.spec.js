@@ -27,7 +27,7 @@ describe("A RangeObject Collection ", () => {
     const result = initialState.ranges.map(({ Street, BetType, hands }) => ({
       street: Street,
       streetAction: BetType,
-      cardSuitHandArray: hands,
+      startingHands: hands,
     }));
     expect(rangeObjectCollection.displayRange()).to.deep.equal(result);
   });
@@ -38,7 +38,7 @@ describe("A RangeObject Collection ", () => {
     const result = initialState.ranges.map(({ Street, BetType, hands }) => ({
       street: Street,
       streetAction: BetType,
-      cardSuitHandArray: hands,
+      startingHands: hands,
     }));
     expect(rangeObjectCollection.displayRange()).to.deep.equal(result);
   });
@@ -49,9 +49,7 @@ describe("A RangeObject Collection ", () => {
     const result = initialState.ranges.map(({ Street, BetType, hands }) => ({
       street: Street,
       streetAction: BetType,
-      cardSuitHandArray: [
-        { cardOne: "A", cardTwo: "K", suit: "s", equity: "n/a" },
-      ],
+      startingHands: [{ cardOne: "A", cardTwo: "K", suit: "s", equity: "n/a" }],
     }));
     expect(rangeObjectCollection.displayRange()).to.deep.equal(result);
   });

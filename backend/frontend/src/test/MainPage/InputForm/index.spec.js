@@ -11,7 +11,7 @@ describe("InputStreet Container", () => {
         ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
       );
     const rangeRepoIPDataObject = rangeRepoIP.map((rangeObject) =>
-      rangeObject.getRangesObject()
+      rangeObject.toRangeData()
     );
 
     const rangeRepoOOP = JSON.parse(JSON.stringify(initialState.rangeRepoOOP))
@@ -26,7 +26,7 @@ describe("InputStreet Container", () => {
         ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
       );
     const selectedRangesDataObject = selectedRanges.map((rangeObject) =>
-      rangeObject.getRangesObject()
+      rangeObject.toRangeData()
     );
 
     const values = true;

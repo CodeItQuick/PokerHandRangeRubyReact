@@ -315,7 +315,7 @@ describe("State Update Functions", () => {
       useTwoFlopSizes: false,
     });
     Object.assign(SelectedRanges[0], {
-      cardSuitHandArray: [new StartingHandBuilder().build("A", "A")],
+      startingHands: [new StartingHandBuilder().build("A", "A")],
     });
 
     newBoardOfHands.updateCardGrid(PreflopRanges, SelectedRanges);

@@ -19,7 +19,7 @@ describe("RangeObject Class", () => {
       AKoffsuit,
     ]);
 
-    expect(rangeObject.getRangesObject()).to.deep.equal({
+    expect(rangeObject.toRangeData()).to.deep.equal({
       Street: "Preflop",
       BetType: "Raise4BetCall",
       hands: ["AKs", "AA", "AKo"],
@@ -60,7 +60,7 @@ describe("RangeObject Class", () => {
       AKoffsuit,
     ]);
 
-    expect(rangeObject.toCardHandRange()).to.deep.equal([
+    expect(rangeObject.toStartingHandsArray()).to.deep.equal([
       AKsuited,
       AA,
       AKoffsuit,
