@@ -29,7 +29,7 @@ describe("A RangeObject Collection ", () => {
       streetAction: BetType,
       startingHands: hands,
     }));
-    expect(rangeObjectCollection.displayRange()).to.deep.equal(result);
+    expect(rangeObjectCollection.getAllRanges()).to.deep.equal(result);
   });
   it("given a constructor can displayed for 16 RangeObjects", () => {
     const rangeObjectCollection = new RangeObjectCollection(
@@ -40,7 +40,7 @@ describe("A RangeObject Collection ", () => {
       streetAction: BetType,
       startingHands: hands,
     }));
-    expect(rangeObjectCollection.displayRange()).to.deep.equal(result);
+    expect(rangeObjectCollection.getAllRanges()).to.deep.equal(result);
   });
   it("given a constructor can displayed for 16 RangeObjects with hands", () => {
     const rangeObjectCollection = new RangeObjectCollection(
@@ -51,34 +51,41 @@ describe("A RangeObject Collection ", () => {
       streetAction: BetType,
       startingHands: [{ cardOne: "A", cardTwo: "K", suit: "s", equity: "n/a" }],
     }));
-    expect(rangeObjectCollection.displayRange()).to.deep.equal(result);
+    expect(rangeObjectCollection.getAllRanges()).to.deep.equal(result);
   });
   it("given a RangeObject can provide filtered range for the Flop", (Street = "Flop") => {
     const rangeObjectCollection = new RangeObjectCollection(data);
     expect(
-      rangeObjectCollection.displayPreviousRange({ Street, isIP: true }).length
+      rangeObjectCollection.getPreviousStreetRanges({ Street, isIP: true })
+        .length
     ).to.equal(4);
     expect(
-      rangeObjectCollection.displayPreviousRange({ Street, isIP: false }).length
+      rangeObjectCollection.getPreviousStreetRanges({ Street, isIP: false })
+        .length
     ).to.equal(4);
   });
   it("given a RangeObject can provide filtered range for the Turn", (Street = "Turn") => {
     const rangeObjectCollection = new RangeObjectCollection(data);
     expect(
-      rangeObjectCollection.displayPreviousRange({ Street: "Turn", isIP: true })
-        .length
+      rangeObjectCollection.getPreviousStreetRanges({
+        Street: "Turn",
+        isIP: true,
+      }).length
     ).to.equal(2);
     expect(
-      rangeObjectCollection.displayPreviousRange({ Street, isIP: false }).length
+      rangeObjectCollection.getPreviousStreetRanges({ Street, isIP: false })
+        .length
     ).to.equal(1);
   });
   it("given a RangeObject can provide filtered range for the River", (Street = "River") => {
     const rangeObjectCollection = new RangeObjectCollection(data);
     expect(
-      rangeObjectCollection.displayPreviousRange({ Street, isIP: true }).length
+      rangeObjectCollection.getPreviousStreetRanges({ Street, isIP: true })
+        .length
     ).to.equal(2);
     expect(
-      rangeObjectCollection.displayPreviousRange({ Street, isIP: false }).length
+      rangeObjectCollection.getPreviousStreetRanges({ Street, isIP: false })
+        .length
     ).to.equal(1);
   });
 });

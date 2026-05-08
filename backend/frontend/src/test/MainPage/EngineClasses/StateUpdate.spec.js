@@ -310,7 +310,7 @@ describe("State Update Functions", () => {
   it(" can be updated to generate a new board", () => {
     let newBoardOfHands = new BoardOfHands();
     const PreflopRanges = new RangeObjectCollection(initialState.ranges);
-    const SelectedRanges = PreflopRanges.displayRangeByStreet({
+    const SelectedRanges = PreflopRanges.getRangesForStreet({
       Street: "Flop",
       useTwoFlopSizes: false,
     });

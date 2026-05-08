@@ -48,7 +48,7 @@ const makeSelectMode = () =>
 
 const makeSelectSelectedStreet = () =>
   createSelector(selectGlobal, (global) =>
-    new RangeObjectCollection(global?.ranges).displayRangeByStreet({
+    new RangeObjectCollection(global?.ranges).getRangesForStreet({
       Street: global?.mode?.street,
       useTwoFlopSizes: global?.mode?.useTwoFlopSizes,
     })

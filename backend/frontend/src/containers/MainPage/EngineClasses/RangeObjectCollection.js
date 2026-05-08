@@ -3,17 +3,17 @@ import { StartingHandBuilder } from "./StartingHandBuilder";
 import RangeObject from "./RangeObject";
 
 export class RangeObjectCollection {
-  constructor(rangeArray) {
-    const newRange = rangeArray || initialState.ranges;
-    this.rangeObjectCollection = this._copyRangeObject(newRange);
+  constructor(rangeData) {
+    const rangeData_ = rangeData || initialState.ranges;
+    this.rangeObjects = this._toRangeObjects(rangeData_);
   }
-  _copyRangeObject(range) {
-    return range.map(
+  _toRangeObjects(rangeData) {
+    return rangeData.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(Street, BetType, this._copyHands(hands))
+        new RangeObject(Street, BetType, this._toStartingHands(hands))
     );
   }
-  _copyHands(hands) {
+  _toStartingHands(hands) {
     return hands.map((hand) =>
       new StartingHandBuilder().build(
         hand.length <= 3 ? hand.substr(0, 1) : hand.substr(0, 2),
@@ -23,21 +23,21 @@ export class RangeObjectCollection {
     );
   }
 
-  displayPreviousRange({ Street = "Flop", isIP = true }) {
-    return this.rangeObjectCollection.filter(({ street, streetAction }) =>
-      this.filterRange({ isIP, street, streetAction, Street })
+  getPreviousStreetRanges({ Street = "Flop", isIP = true }) {
+    return this.rangeObjects.filter(({ street, streetAction }) =>
+      this.isFromPreviousStreet({ isIP, street, streetAction, Street })
     );
   }
-  filterRange({ isIP, street, streetAction, Street }) {
+  isFromPreviousStreet({ isIP, street, streetAction, Street }) {
     const possiblePreviousStreet = ["Preflop", "Flop", "Turn", "River"];
     const previousStreetIdx = possiblePreviousStreet.reduce(
       (acc, currStreet, idx) => (currStreet === Street ? acc + idx - 1 : acc),
       0
     );
-    const allowedActionsWhitelist = isIP
+    const allowedActions = isIP
       ? ["Valuebet", "Bluff", "SmallValuebet", "SmallBluff"]
       : ["CheckCall"];
-    allowedActionsWhitelist.push(
+    allowedActions.push(
       "Raise4BetCall",
       "Raise4BetFold",
       "RaiseCall",
@@ -45,18 +45,20 @@ export class RangeObjectCollection {
     );
     return (
       street === possiblePreviousStreet[previousStreetIdx] &&
-      allowedActionsWhitelist.includes(streetAction)
+      allowedActions.includes(streetAction)
     );
   }
-  displayRangeByStreet({ Street = "Preflop", useTwoFlopSizes = false }) {
-    const blackList = useTwoFlopSizes ? [] : ["SmallValuebet", "SmallBluff"];
-    return this.rangeObjectCollection.filter(
+  getRangesForStreet({ Street = "Preflop", useTwoFlopSizes = false }) {
+    const excludedActions = useTwoFlopSizes
+      ? []
+      : ["SmallValuebet", "SmallBluff"];
+    return this.rangeObjects.filter(
       ({ street, streetAction }) =>
-        Street == street && !blackList.includes(streetAction)
+        Street == street && !excludedActions.includes(streetAction)
     );
   }
-  displayRange() {
-    return this.rangeObjectCollection;
+  getAllRanges() {
+    return this.rangeObjects;
   }
 
   countHandCombo() {
