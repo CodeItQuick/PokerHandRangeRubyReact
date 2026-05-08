@@ -1,14 +1,14 @@
 import {
-  equalSuitedHands,
-  equalOffsuitedHands,
-  equalPairsSpecificCombos,
-  findInArray,
-} from "./findInArray";
+  isSuitedHandMatch,
+  isOffsuitHandMatch,
+  isPairComboMatch,
+  findMatchingHandKeys,
+} from "./findMatchingHandKeys";
 
 export const colorCell = (cards, startingHand) => {
   if (!Object.keys(cards).length) return ["#DDD"];
 
-  const matchingHandKeys = findInArray(cards, startingHand);
+  const matchingHandKeys = findMatchingHandKeys(cards, startingHand);
 
   if (matchingHandKeys[0]?.length <= 3)
     return colorStandardHands({ matchingHandKeys, cards });
@@ -34,15 +34,15 @@ export const colorCell = (cards, startingHand) => {
     handKeys.filter((handKey) => equalHandFn(handKey, startingHand));
   const suitedHandKeys = filterMatchingHands(
     matchingHandKeys,
-    equalSuitedHands
+    isSuitedHandMatch
   );
   const offsuitHandKeys = filterMatchingHands(
     matchingHandKeys,
-    equalOffsuitedHands
+    isOffsuitHandMatch
   );
   const pairedHandKeys = filterMatchingHands(
     matchingHandKeys,
-    equalPairsSpecificCombos
+    isPairComboMatch
   );
 
   return (
