@@ -9,7 +9,7 @@ import { initialState } from "./../../containers/MainPage/reducer";
 import history from "./../../utils/history";
 import configureStore from "./../../configureStore";
 import RangeObject from "./../../containers/MainPage/EngineClasses/RangeObject";
-import { CardHandSuitBuilder } from "./../../containers/MainPage/EngineClasses/CardHandSuitBuilder";
+import { StartingHandBuilder } from "./../../containers/MainPage/EngineClasses/StartingHandBuilder";
 import { expect } from "chai";
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -49,7 +49,7 @@ describe("MainPage Container", () => {
     const range = initialState.ranges.map((range) => {
       if (range.Street == "Preflop")
         return new RangeObject("Preflop", range.BetType, [
-          new CardHandSuitBuilder().build("A", "A"),
+          new StartingHandBuilder().build("A", "A"),
         ]);
       else return new RangeObject(range.Street, range.BetType, []);
     });

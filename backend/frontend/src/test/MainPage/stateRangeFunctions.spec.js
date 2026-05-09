@@ -16,7 +16,7 @@ describe("MainPage reducer", () => {
       ({ Street, BetType }, idx) => {
         if (idx === 5)
           return { Street: draftModeStreet, BetType, hands: ["AA"] };
-        else return new RangeObject(Street, BetType, []).getRangesObject();
+        else return new RangeObject(Street, BetType, []).toRangeData();
       }
     );
 

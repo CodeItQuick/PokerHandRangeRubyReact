@@ -11,7 +11,7 @@ import {
 } from "../selectors";
 
 import LegendTable from "./LegendTable";
-import { CardHandSuitBuilder } from "../EngineClasses/CardHandSuitBuilder";
+import { StartingHandBuilder } from "../EngineClasses/StartingHandBuilder";
 import { countHandCombo } from "../EngineClasses/countHandCombo";
 
 const StyledContainer = styled(Container)`

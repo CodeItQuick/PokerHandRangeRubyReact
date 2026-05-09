@@ -72,13 +72,13 @@ export const assignPositions = (
 ) => {
   let newRanges, newRangeIP, newRangeOOP;
   if (isIP) {
-    newRanges = rangeRepoIP.map((RangeObj) => RangeObj.getRangesObject());
-    newRangeIP = rangeRepoIP.map((RangeObj) => RangeObj.getRangesObject());
-    newRangeOOP = selectedRanges.map((RangeObj) => RangeObj.getRangesObject());
+    newRanges = rangeRepoIP.map((RangeObj) => RangeObj.toRangeData());
+    newRangeIP = rangeRepoIP.map((RangeObj) => RangeObj.toRangeData());
+    newRangeOOP = selectedRanges.map((RangeObj) => RangeObj.toRangeData());
   } else {
-    newRanges = rangeRepoOOP.map((RangeObj) => RangeObj.getRangesObject());
-    newRangeIP = selectedRanges.map((RangeObj) => RangeObj.getRangesObject());
-    newRangeOOP = rangeRepoOOP.map((RangeObj) => RangeObj.getRangesObject());
+    newRanges = rangeRepoOOP.map((RangeObj) => RangeObj.toRangeData());
+    newRangeIP = selectedRanges.map((RangeObj) => RangeObj.toRangeData());
+    newRangeOOP = rangeRepoOOP.map((RangeObj) => RangeObj.toRangeData());
   }
   return [newRangeIP, newRangeOOP, newRanges];
 };

@@ -1,20 +1,20 @@
 import {
-  equalSuitedHands,
-  equalOffsuitedHands,
-  equalPairsSpecificCombos,
-  findInArray,
-} from "./findInArray";
+  isSuitedHandMatch,
+  isOffsuitHandMatch,
+  isPairComboMatch,
+  findMatchingHandKeys,
+} from "./findMatchingHandKeys";
 
-export const colorCell = (cards, cardHand) => {
+export const colorCell = (cards, startingHand) => {
   if (!Object.keys(cards).length) return ["#DDD"];
 
-  const selectedHandsArr = findInArray(cards, cardHand);
+  const matchingHandKeys = findMatchingHandKeys(cards, startingHand);
 
-  if (selectedHandsArr[0]?.length <= 3)
-    return colorLengthThreeHand({ selectedHandsArr, cards });
+  if (matchingHandKeys[0]?.length <= 3)
+    return colorStandardHands({ matchingHandKeys, cards });
 
-  const fourElementArray = ["ss", "dd", "hh", "cc"];
-  const sixteenElementArray = [
+  const suitedCombinations = ["ss", "dd", "hh", "cc"];
+  const offsuitCombinations = [
     "sd",
     "sh",
     "sc",
@@ -28,50 +28,46 @@ export const colorCell = (cards, cardHand) => {
     "dh",
     "dc",
   ];
-  const sixElementArray = ["sd", "sh", "sc", "cs", "cd", "dh"];
+  const pairCombinations = ["sd", "sh", "sc", "cs", "cd", "dh"];
 
-  const isCheckHandArr = (selectedHandsArr, equalHandFn) =>
-    selectedHandsArr.filter((card) => equalHandFn(card, cardHand));
-  const checkHandSuited = isCheckHandArr(selectedHandsArr, equalSuitedHands);
-  const checkHandOffsuited = isCheckHandArr(
-    selectedHandsArr,
-    equalOffsuitedHands
+  const filterMatchingHands = (handKeys, equalHandFn) =>
+    handKeys.filter((handKey) => equalHandFn(handKey, startingHand));
+  const suitedHandKeys = filterMatchingHands(
+    matchingHandKeys,
+    isSuitedHandMatch
   );
-  const checkHandPaired = isCheckHandArr(
-    selectedHandsArr,
-    equalPairsSpecificCombos
+  const offsuitHandKeys = filterMatchingHands(
+    matchingHandKeys,
+    isOffsuitHandMatch
+  );
+  const pairedHandKeys = filterMatchingHands(
+    matchingHandKeys,
+    isPairComboMatch
   );
 
   return (
-    checkAndReturnColorHandArray(fourElementArray, checkHandSuited, cards) ||
-    checkAndReturnColorHandArray(
-      sixteenElementArray,
-      checkHandOffsuited,
-      cards
-    ) ||
-    checkAndReturnColorHandArray(sixElementArray, checkHandPaired, cards) || [
-      "#DDD",
-    ]
+    colorMatchingHands(suitedCombinations, suitedHandKeys, cards) ||
+    colorMatchingHands(offsuitCombinations, offsuitHandKeys, cards) ||
+    colorMatchingHands(pairCombinations, pairedHandKeys, cards) || ["#DDD"]
   );
 };
 
-const colorLengthThreeHand = ({ selectedHandsArr, cards }) => {
-  return selectedHandsArr.map((copy) => cards[copy].colorCards) || ["#DDD"];
+const colorStandardHands = ({ matchingHandKeys, cards }) => {
+  return (
+    matchingHandKeys.map((handKey) => cards[handKey].colorCards) || ["#DDD"]
+  );
 };
 
-const checkAndReturnColorHandArray = (elementArray, isCheckHandArr, cards) => {
-  if (isCheckHandArr.length) {
-    const elementArraySpecific = specificHandArray(
-      elementArray,
-      isCheckHandArr
-    ); //?
-    return colorHandArray(elementArraySpecific, cards);
+const colorMatchingHands = (suitCombinations, matchingHandKeys, cards) => {
+  if (matchingHandKeys.length) {
+    const filledHandKeys = fillHandKeySlots(suitCombinations, matchingHandKeys); //?
+    return buildColorArray(filledHandKeys, cards);
   }
   return false;
 };
 
-const colorHandArray = (elementArray, cards) =>
-  elementArray.map((copy) => cards[copy]?.colorCards || "#DDD");
+const buildColorArray = (handKeySlots, cards) =>
+  handKeySlots.map((handKey) => cards[handKey]?.colorCards || "#DDD");
 
-const specificHandArray = (elementArray, isCheck) =>
-  elementArray.map((_, idx) => isCheck[idx] || "");
+const fillHandKeySlots = (suitCombinations, matchingKeys) =>
+  suitCombinations.map((_, idx) => matchingKeys[idx] || "");

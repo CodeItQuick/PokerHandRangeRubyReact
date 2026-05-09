@@ -62,11 +62,11 @@ const Navbar = ({
         DefenderPosition: positionDefender,
         user: user || "default", //FIXME: shouldn't be here at all, not sure what it will break
         rangeRepoIP: isIP
-          ? selectedRanges.map((range) => range.getRangesObject())
-          : rangeRepoIP.map((range) => range.getRangesObject()),
+          ? selectedRanges.map((range) => range.toRangeData())
+          : rangeRepoIP.map((range) => range.toRangeData()),
         rangeRepoOOP: !isIP
-          ? selectedRanges.map((range) => range.getRangesObject())
-          : rangeRepoOOP.map((range) => range.getRangesObject()),
+          ? selectedRanges.map((range) => range.toRangeData())
+          : rangeRepoOOP.map((range) => range.toRangeData()),
       })
     );
   };

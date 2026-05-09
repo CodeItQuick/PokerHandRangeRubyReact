@@ -29,22 +29,22 @@ describe("SelectedStreet ", () => {
 
     const result = [
       {
-        cardSuitHandArray: [],
+        startingHands: [],
         street: "Preflop",
         streetAction: "Raise4BetCall",
       },
       {
-        cardSuitHandArray: [],
+        startingHands: [],
         street: "Preflop",
         streetAction: "Raise4BetFold",
       },
       {
-        cardSuitHandArray: [],
+        startingHands: [],
         street: "Preflop",
         streetAction: "RaiseCall",
       },
       {
-        cardSuitHandArray: [],
+        startingHands: [],
         street: "Preflop",
         streetAction: "RaiseFold",
       },

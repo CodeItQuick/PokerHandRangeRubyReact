@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { StyledCol, ColorCard } from "./Styles.js";
-import { findInArray } from "../EngineClasses/findInArray";
+import { findMatchingHandKeys } from "../EngineClasses/findMatchingHandKeys";
 import { colorCell } from "../EngineClasses/colorCellFn";
 
 const TableGridColumn = ({ cardHand, bind, allPreflopHands, cards }) => {
   const [suitString, updateSuitString] = useState();
   useEffect(() => {
     const newColors = colorCell(cards, cardHand);
-    if (findInArray(cards, cardHand).length > 0) {
+    if (findMatchingHandKeys(cards, cardHand).length > 0) {
       let newCSSGradient = newColors.reduce(
         (acc, color) => acc + color + " , ",
         ""

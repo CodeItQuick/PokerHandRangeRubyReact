@@ -1,82 +1,129 @@
-import React from 'react';
-import { StyledCol, ColorCard, StyledRow } from '../Board/Styles.js';
+import React from "react";
+import { StyledCol, ColorCard, StyledRow } from "../Board/Styles.js";
 
-import { CardHandSuitBuilder } from './CardHandSuitBuilder';
-import TableGridColumn from '../Board/TableGridColumn';
-import RangeObject from './RangeObject';
+import { StartingHandBuilder } from "./StartingHandBuilder";
+import TableGridColumn from "../Board/TableGridColumn";
+import RangeObject from "./RangeObject";
 
-import { initialState } from '../reducer.js';
-import { Table } from 'semantic-ui-react';
+import { initialState } from "../reducer.js";
+import { Table } from "semantic-ui-react";
 
 export default class BoardOfHands {
-	constructor(bind) {
-		this.orderedCard = [ 'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2' ];
-		this.hands = this.generateCardGrid();
-		this.PreflopRangesOnly = initialState.ranges
-			.filter(({ Street, BetType }) => {
-				if (Street === 'Flop') return Street === 'Preflop';
-				if (Street === 'Turn') return Street === 'Flop' && (BetType === 'Valuebet' || BetType === 'Bluff');
-				if (Street === 'River') return Street === 'Turn' && (BetType === 'Valuebet' || BetType === 'Bluff');
-			})
-			.map(({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands));
-		this.bind = bind;
-	}
+  constructor(bind) {
+    this.rankOrder = [
+      "A",
+      "K",
+      "Q",
+      "J",
+      "T",
+      "9",
+      "8",
+      "7",
+      "6",
+      "5",
+      "4",
+      "3",
+      "2",
+    ];
+    this.handGrid = this.generateCardGrid();
+    this.preflopRanges = initialState.ranges
+      .filter(({ Street, BetType }) => {
+        if (Street === "Flop") return Street === "Preflop";
+        if (Street === "Turn")
+          return (
+            Street === "Flop" && (BetType === "Valuebet" || BetType === "Bluff")
+          );
+        if (Street === "River")
+          return (
+            Street === "Turn" && (BetType === "Valuebet" || BetType === "Bluff")
+          );
+      })
+      .map(
+        ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
+      );
+    this.bind = bind;
+  }
 
-	generateCardGrid() {
-		let cardGrid = this.orderedCard.map((cardOne) =>
-			this.orderedCard.map((cardTwo) => new CardHandSuitBuilder().build(cardOne, cardTwo))
-		);
-		return cardGrid;
-	}
+  generateCardGrid() {
+    let cardGrid = this.rankOrder.map((cardOne) =>
+      this.rankOrder.map((cardTwo) =>
+        new StartingHandBuilder().build(cardOne, cardTwo)
+      )
+    );
+    return cardGrid;
+  }
 
-	updateCardGrid(PreflopRanges, RangesSelected) {
-		let cardClone;
+  updateCardGrid(preflopRanges, selectedRanges) {
+    let handColorMap;
 
-		cardClone = RangesSelected.reduce((acc, RangeObject) => {
-			if (RangeObject.displayInfo() === {}) return acc;
-			else return { ...acc, ...RangeObject.displayInfo() };
-		}, {});
+    handColorMap = selectedRanges.reduce((acc, rangeObject) => {
+      if (rangeObject.displayInfo() === {}) return acc;
+      else return { ...acc, ...rangeObject.displayInfo() };
+    }, {});
 
-		this.PreflopRangesOnly = PreflopRanges;
-		this.cards = cardClone;
-	}
+    this.preflopRanges = preflopRanges;
+    this.handColorMap = handColorMap;
+  }
 
-	view() {
-		let allPreflopHands = this.PreflopRangesOnly.map((rangeObject) => rangeObject.allHandsOneArray());
+  view() {
+    let allPreflopHands = this.preflopRanges.map((rangeObject) =>
+      rangeObject.allHandsOneArray()
+    );
 
-		let setNewManyHands = this.hands.map((row, idx) => {
-			let columnJSX = row.map((cardHand) => {
-				return (
-					<TableGridColumn
-						cardHand={cardHand}
-						bind={this.bind}
-						allPreflopHands={allPreflopHands}
-						cards={this.cards}
-					/>
-				);
-			});
-			return <StyledRow>{columnJSX}</StyledRow>;
-		});
-		return <Table.Body id="cardgridtable">{setNewManyHands}</Table.Body>;
-	}
+    let gridRows = this.handGrid.map((row, idx) => {
+      let rowCells = row.map((startingHand) => {
+        return (
+          <TableGridColumn
+            cardHand={startingHand}
+            bind={this.bind}
+            allPreflopHands={allPreflopHands}
+            cards={this.handColorMap}
+          />
+        );
+      });
+      return <StyledRow>{rowCells}</StyledRow>;
+    });
+    return <Table.Body id="cardgridtable">{gridRows}</Table.Body>;
+  }
 }
 
-export const orderedCard = [ 'A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2' ];
+export const rankOrder = [
+  "A",
+  "K",
+  "Q",
+  "J",
+  "T",
+  "9",
+  "8",
+  "7",
+  "6",
+  "5",
+  "4",
+  "3",
+  "2",
+];
 
-export const generateCardGrid = (PreflopRanges, Position) => {
-	let cardClone = {};
+export const generateCardGrid = (preflopRanges, position) => {
+  let handColorMap = {};
 
-	PreflopRanges.forEach(({ hands }, idx) => {
-		hands.forEach((hand) => {
-			cardClone = {
-				...cardClone,
-				[hand.getHand()]: {
-					colorCards: [ '#0F6125', '#ed87a7', '#3ac0ff', '#dc73ff', '#003d3e', '#8A4000' ][idx],
-					equity: 'n/a'
-				}
-			};
-		});
-	});
+  preflopRanges.forEach(({ hands }, idx) => {
+    hands.forEach((hand) => {
+      handColorMap = {
+        ...handColorMap,
+        [hand.getHand()]: {
+          colorCards: [
+            "#0F6125",
+            "#ed87a7",
+            "#3ac0ff",
+            "#dc73ff",
+            "#003d3e",
+            "#8A4000",
+          ][idx],
+          equity: "n/a",
+        },
+      };
+    });
+  });
 
-	return cardClone;
+  return handColorMap;
 };

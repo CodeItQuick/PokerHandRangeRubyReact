@@ -1,4 +1,4 @@
-import { CardHandSuitBuilder } from "./../../../containers/MainPage/EngineClasses/CardHandSuitBuilder";
+import { StartingHandBuilder } from "./../../../containers/MainPage/EngineClasses/StartingHandBuilder";
 import { expect } from "chai";
 
 describe("CardHandSuitBuilder Class", () => {
@@ -8,7 +8,7 @@ describe("CardHandSuitBuilder Class", () => {
     const cardTwo = "K";
 
     //When
-    const cardHandSuit = new CardHandSuitBuilder().build(cardOne, cardTwo);
+    const cardHandSuit = new StartingHandBuilder().build(cardOne, cardTwo);
 
     const result = cardHandSuit.getHand();
 
@@ -21,7 +21,7 @@ describe("CardHandSuitBuilder Class", () => {
     const cardTwo = "K";
     const suit = "s";
 
-    const cardHandSuit = new CardHandSuitBuilder().build(
+    const cardHandSuit = new StartingHandBuilder().build(
       cardOne,
       cardTwo,
       suit
@@ -37,7 +37,7 @@ describe("CardHandSuitBuilder Class", () => {
     const cardTwo = "A";
     const suit = "o";
 
-    const cardsuitHand = new CardHandSuitBuilder().build(
+    const cardsuitHand = new StartingHandBuilder().build(
       cardOne,
       cardTwo,
       suit
@@ -54,13 +54,9 @@ describe("CardHandSuitBuilder Class", () => {
     const suit = "s";
 
     //When
-    const resultBuilder = new CardHandSuitBuilder();
-    const resultCardHandSuitBuilder = resultBuilder.build(
-      cardOne,
-      cardTwo,
-      suit
-    );
-    const result = resultCardHandSuitBuilder.getHand();
+    const resultBuilder = new StartingHandBuilder();
+    const startingHand = resultBuilder.build(cardOne, cardTwo, suit);
+    const result = startingHand.getHand();
 
     //Then
     expect(result).to.equal("QJs");
@@ -72,9 +68,9 @@ describe("CardHandSuitBuilder Class", () => {
     const cardTwo = "T";
 
     //When
-    const resultBuilder = new CardHandSuitBuilder();
-    const resultCardHandSuitBuilder = resultBuilder.build(cardOne, cardTwo);
-    const result = resultCardHandSuitBuilder.getHand();
+    const resultBuilder = new StartingHandBuilder();
+    const startingHand = resultBuilder.build(cardOne, cardTwo);
+    const result = startingHand.getHand();
 
     //Then
     expect(result).to.equal("ATs");
@@ -86,13 +82,9 @@ describe("CardHandSuitBuilder Class", () => {
     const suit = "cs";
 
     //When
-    const resultBuilder = new CardHandSuitBuilder();
-    const resultCardHandSuitBuilder = resultBuilder.build(
-      cardOne,
-      cardTwo,
-      suit
-    );
-    const result = resultCardHandSuitBuilder.getHand();
+    const resultBuilder = new StartingHandBuilder();
+    const startingHand = resultBuilder.build(cardOne, cardTwo, suit);
+    const result = startingHand.getHand();
 
     //Then
     expect(result).to.equal("AcTs");
@@ -104,13 +96,9 @@ describe("CardHandSuitBuilder Class", () => {
     const suit = "";
 
     //When
-    const resultBuilder = new CardHandSuitBuilder();
-    const resultCardHandSuitBuilder = resultBuilder.build(
-      cardOne,
-      cardTwo,
-      suit
-    );
-    const result = resultCardHandSuitBuilder.getHand();
+    const resultBuilder = new StartingHandBuilder();
+    const startingHand = resultBuilder.build(cardOne, cardTwo, suit);
+    const result = startingHand.getHand();
 
     //Then
     expect(result).to.equal("Th8s");
