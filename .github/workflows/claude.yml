@@ -59,17 +59,20 @@ jobs:
       - name: Print Claude response
         run: cat /tmp/claude_output.txt
 
+      - name: Clean Claude response
+        run: sed '/^```/d' /tmp/claude_output.txt > /tmp/claude_clean.txt
+
       - name: Post summary table comment
         # if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if ! jq -e 'has("summary_table")' /tmp/claude_output.txt > /dev/null 2>&1; then
+          if ! jq -e 'has("summary_table")' /tmp/claude_clean.txt > /dev/null 2>&1; then
             echo "No summary_table in response, skipping"
             exit 0
           fi
 
-          SUMMARY=$(jq -r '.summary_table' /tmp/claude_output.txt)
+          SUMMARY=$(jq -r '.summary_table' /tmp/claude_clean.txt)
           printf '## Identifier Quality Report\n\n%s' "$SUMMARY" > /tmp/summary_comment.txt
           gh pr comment ${{ github.event.pull_request.number }} \
             --repo ${{ github.repository }} \
@@ -79,12 +82,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if ! jq -e 'has("inline_comments")' /tmp/claude_output.txt > /dev/null 2>&1; then
+          if ! jq -e 'has("inline_comments")' /tmp/claude_clean.txt > /dev/null 2>&1; then
             echo "No inline_comments in response, skipping"
             exit 0
           fi
 
-          COMMENTS=$(jq '.inline_comments' /tmp/claude_output.txt)
+          COMMENTS=$(jq '.inline_comments' /tmp/claude_clean.txt)
 
           if [ "$(echo "$COMMENTS" | jq 'length')" -eq 0 ]; then
             echo "No CRITICAL inline comments to post"
