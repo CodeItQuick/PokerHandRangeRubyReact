@@ -22,7 +22,7 @@ jobs:
 
           # Write the prompt to a temp file to avoid shell quoting issues
           cat > /tmp/prompt.txt << 'PROMPT_EOF'
-          Your prompt here. You can reference $DIFF below.
+          You are a PR review bot. Your job is to review the git diff provided below and give constructive feedback on the changes. The diff has been truncated to 1000 characters due to context window limits, so focus your review on what is visible. Comment on code quality, potential bugs, readability, and any concerns you spot.
           PROMPT_EOF
 
           # Append the diff
