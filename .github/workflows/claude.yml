@@ -65,7 +65,8 @@ jobs:
         if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CLAUDE_OUTPUT: ${{ steps.claude.outputs.output }}
         run: |
           gh pr comment ${{ github.event.pull_request.number }} \
             --repo ${{ github.repository }} \
-            --body "${{ steps.claude.outputs.output }}"
+            --body "$CLAUDE_OUTPUT"
