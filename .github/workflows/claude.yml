@@ -1,8 +1,6 @@
 name: Claude AI
 
 on:
-  push:
-    branches: [ai-refactoring-2]
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -18,11 +16,11 @@ jobs:
         id: prompt
         run: |
           # Collect the git diff for context
-          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- . ':(exclude)*.lock' ':(exclude)package-lock.json' | head -c 1000)
+          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- . ':(exclude)*.lock' ':(exclude)package-lock.json' | head -c 20000)
 
           # Write the prompt to a temp file to avoid shell quoting issues
           cat > /tmp/prompt.txt << 'PROMPT_EOF'
-          You are a PR review bot. Your job is to review the git diff provided below and give constructive feedback on the changes. The diff has been truncated to 1000 characters due to context window limits, so focus your review on what is visible. Comment on code quality, potential bugs, readability, and any concerns you spot.
+          You are a PR review bot. Your job is to review the git diff provided below and give constructive feedback on the changes. The diff has been truncated to 20000 characters due to context window limits, so focus your review on what is visible. Comment on code quality, potential bugs, readability, and any concerns you spot.
           PROMPT_EOF
 
           # Append the diff
@@ -62,3 +60,12 @@ jobs:
 
       - name: Print Claude response
         run: echo "${{ steps.claude.outputs.output }}"
+
+      - name: Comment on PR
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --repo ${{ github.repository }} \
+            --body "${{ steps.claude.outputs.output }}"
