@@ -19,17 +19,10 @@ jobs:
           DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000)
 
           # Write the prompt to a temp file to avoid shell quoting issues
-          cat > /tmp/prompt.txt << 'PROMPT_EOF'
-          You are a PR review bot. Review the git diff below and return ONLY a valid JSON array of inline review comments — no other text, no markdown, no explanation. Each element must have exactly these fields:
-          - "path": file path relative to the repo root (e.g. "src/foo.js")
-          - "line": line number in the new version of the file that this comment applies to (must be a line present in the diff)
-          - "side": always "RIGHT" (commenting on the new version)
-          - "body": your review comment
+          cat > /tmp/prompt.txt << PROMPT_EOF
+          You are a PR review bot specialising in identifier quality. Follow the instructions below exactly and return ONLY valid JSON — no prose, no markdown fences, no explanation.
 
-          Focus on bugs, code quality, readability, and potential issues. Only comment on lines visible in the diff.
-
-          Example output:
-          [{"path":"src/foo.js","line":12,"side":"RIGHT","body":"This variable name is unclear, consider renaming to `userCount`."}]
+          $(cat .github/workflows/review_instructions.md)
           PROMPT_EOF
 
           # Append the diff
@@ -66,17 +59,36 @@ jobs:
       - name: Print Claude response
         run: cat /tmp/claude_output.txt
 
-      - name: Post inline review comments
+      - name: Post summary table comment
         if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          COMMENTS=$(cat /tmp/claude_output.txt)
+          if ! jq -e 'has("summary_table")' /tmp/claude_output.txt > /dev/null 2>&1; then
+            echo "No summary_table in response, skipping"
+            exit 0
+          fi
 
-          # Validate it's a JSON array before posting
-          if ! echo "$COMMENTS" | jq -e 'if type == "array" then . else error end' > /dev/null 2>&1; then
-            echo "Claude did not return a valid JSON array, skipping review post"
-            echo "Raw output: $COMMENTS"
+          SUMMARY=$(jq -r '.summary_table' /tmp/claude_output.txt)
+          printf '## Identifier Quality Report\n\n%s' "$SUMMARY" > /tmp/summary_comment.txt
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --repo ${{ github.repository }} \
+            --body "$(cat /tmp/summary_comment.txt)"
+
+      - name: Post inline CRITICAL comments
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if ! jq -e 'has("inline_comments")' /tmp/claude_output.txt > /dev/null 2>&1; then
+            echo "No inline_comments in response, skipping"
+            exit 0
+          fi
+
+          COMMENTS=$(jq '.inline_comments' /tmp/claude_output.txt)
+
+          if [ "$(echo "$COMMENTS" | jq 'length')" -eq 0 ]; then
+            echo "No CRITICAL inline comments to post"
             exit 0
           fi
 
