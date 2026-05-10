@@ -1,0 +1,62 @@
+name: Claude AI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  claude:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build prompt
+        id: prompt
+        run: |
+          # Collect the git diff for context
+          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- . ':(exclude)*.lock' ':(exclude)package-lock.json' | head -c 10000)
+
+          # Write the prompt to a temp file to avoid shell quoting issues
+          cat > /tmp/prompt.txt << 'PROMPT_EOF'
+          Your prompt here. You can reference $DIFF below.
+          PROMPT_EOF
+
+          # Append the diff
+          echo "" >> /tmp/prompt.txt
+          echo "Git diff:" >> /tmp/prompt.txt
+          echo "$DIFF" >> /tmp/prompt.txt
+
+      - name: Call Anthropic API
+        id: claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          PROMPT=$(cat /tmp/prompt.txt)
+
+          # Build the JSON payload using jq to safely handle escaping
+          PAYLOAD=$(jq -n \
+            --arg model "claude-sonnet-4-6" \
+            --arg content "$PROMPT" \
+            '{
+              model: $model,
+              max_tokens: 1024,
+              messages: [{ role: "user", content: $content }]
+            }')
+
+          RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "content-type: application/json" \
+            -d "$PAYLOAD")
+
+          # Extract the text content from the response
+          OUTPUT=$(echo "$RESPONSE" | jq -r '.content[0].text // "Error: \(.error.message // .)"')
+
+          echo "output<<EOF" >> "$GITHUB_OUTPUT"
+          echo "$OUTPUT" >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+      - name: Print Claude response
+        run: echo "${{ steps.claude.outputs.output }}"
