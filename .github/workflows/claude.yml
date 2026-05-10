@@ -16,7 +16,7 @@ jobs:
         id: prompt
         run: |
           # Collect the git diff for context
-          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- . ':(exclude)*.lock' ':(exclude)package-lock.json' | head -c 20000)
+          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- . ':(exclude)*.lock' ':(exclude)package-lock.json' ':(exclude)yarn.lock' | head -c 20000)
 
           # Write the prompt to a temp file to avoid shell quoting issues
           cat > /tmp/prompt.txt << 'PROMPT_EOF'
