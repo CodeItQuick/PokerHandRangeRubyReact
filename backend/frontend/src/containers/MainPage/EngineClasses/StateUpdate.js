@@ -74,10 +74,10 @@ export default class BoardOfHands {
       let rowCells = row.map((startingHand) => {
         return (
           <TableGridColumn
-            cardHand={startingHand}
+            startingHand={startingHand}
             bind={this.bind}
             allPreflopHands={allPreflopHands}
-            cards={this.handColorMap}
+            handColorMap={this.handColorMap}
           />
         );
       });
