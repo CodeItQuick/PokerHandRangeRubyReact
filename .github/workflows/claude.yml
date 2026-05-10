@@ -20,7 +20,16 @@ jobs:
 
           # Write the prompt to a temp file to avoid shell quoting issues
           cat > /tmp/prompt.txt << 'PROMPT_EOF'
-          You are a PR review bot. Your job is to review the git diff provided below and give constructive feedback on the changes. The diff has been truncated to 20000 characters due to context window limits, so focus your review on what is visible. Comment on code quality, potential bugs, readability, and any concerns you spot.
+          You are a PR review bot. Review the git diff below and return ONLY a valid JSON array of inline review comments — no other text, no markdown, no explanation. Each element must have exactly these fields:
+          - "path": file path relative to the repo root (e.g. "src/foo.js")
+          - "line": line number in the new version of the file that this comment applies to (must be a line present in the diff)
+          - "side": always "RIGHT" (commenting on the new version)
+          - "body": your review comment
+
+          Focus on bugs, code quality, readability, and potential issues. Only comment on lines visible in the diff.
+
+          Example output:
+          [{"path":"src/foo.js","line":12,"side":"RIGHT","body":"This variable name is unclear, consider renaming to `userCount`."}]
           PROMPT_EOF
 
           # Append the diff
@@ -57,11 +66,25 @@ jobs:
       - name: Print Claude response
         run: cat /tmp/claude_output.txt
 
-      - name: Comment on PR
+      - name: Post inline review comments
         if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr comment ${{ github.event.pull_request.number }} \
-            --repo ${{ github.repository }} \
-            --body "$(cat /tmp/claude_output.txt)"
+          COMMENTS=$(cat /tmp/claude_output.txt)
+
+          # Validate it's a JSON array before posting
+          if ! echo "$COMMENTS" | jq -e 'if type == "array" then . else error end' > /dev/null 2>&1; then
+            echo "Claude did not return a valid JSON array, skipping review post"
+            echo "Raw output: $COMMENTS"
+            exit 0
+          fi
+
+          PAYLOAD=$(jq -n \
+            --argjson comments "$COMMENTS" \
+            '{"event": "COMMENT", "comments": $comments}')
+
+          gh api \
+            --method POST \
+            /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
+            --input - <<< "$PAYLOAD"
