@@ -60,7 +60,7 @@ jobs:
         run: cat /tmp/claude_output.txt
 
       - name: Post summary table comment
-        if: github.event_name == 'pull_request'
+        # if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -76,7 +76,6 @@ jobs:
             --body "$(cat /tmp/summary_comment.txt)"
 
       - name: Post inline CRITICAL comments
-        if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
