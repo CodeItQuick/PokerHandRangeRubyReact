@@ -51,22 +51,17 @@ jobs:
             -H "content-type: application/json" \
             -d "$PAYLOAD")
 
-          # Extract the text content from the response
-          OUTPUT=$(echo "$RESPONSE" | jq -r '.content[0].text // "Error: \(.error.message // .)"')
-
-          echo "output<<EOF" >> "$GITHUB_OUTPUT"
-          echo "$OUTPUT" >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
+          # Extract the text content from the response and write to file
+          echo "$RESPONSE" | jq -r '.content[0].text // "Error: \(.error.message // .)"' > /tmp/claude_output.txt
 
       - name: Print Claude response
-        run: echo "${{ steps.claude.outputs.output }}"
+        run: cat /tmp/claude_output.txt
 
       - name: Comment on PR
         if: github.event_name == 'pull_request'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CLAUDE_OUTPUT: ${{ steps.claude.outputs.output }}
         run: |
           gh pr comment ${{ github.event.pull_request.number }} \
             --repo ${{ github.repository }} \
-            --body "$CLAUDE_OUTPUT"
+            --body "$(cat /tmp/claude_output.txt)"
