@@ -12,7 +12,7 @@ import {
 
 import LegendTable from "./LegendTable";
 import { StartingHandBuilder } from "../EngineClasses/StartingHandBuilder";
-import { countHandCombo } from "../EngineClasses/countHandCombo";
+import { countRangeCombos } from "../EngineClasses/countHandCombo";
 
 const StyledContainer = styled(Container)`
   font-size: 1rem;
@@ -53,7 +53,7 @@ const BoardLegend = ({
   }, [useTwoFlopSizes, street]);
 
   useEffect(() => {
-    updateNumberOfCombos(countHandCombo(wholeRange, street, deadcards));
+    updateNumberOfCombos(countRangeCombos(wholeRange, street, deadcards));
   }, [wholeRange, street, deadcards]);
 
   return (
