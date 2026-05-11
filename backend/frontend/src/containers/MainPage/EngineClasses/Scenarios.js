@@ -4,8 +4,8 @@ import Scenario from "./Scenario";
 import ScenarioComponent from "../ScenarioLoader/scenarioComponent";
 
 export class Scenarios {
-  constructor(scenarioArray) {
-    this.scenarios = scenarioArray;
+  constructor(scenarios) {
+    this.scenarios = scenarios;
     this.position = "UTG";
   }
 
@@ -14,11 +14,11 @@ export class Scenarios {
     return this;
   }
 
-  displayOpenerPosition() {
+  getOpenerPosition() {
     return this.position;
   }
 
-  displayScenarioArrayLength(position) {
+  getPageCountForPosition(position) {
     return (
       Math.floor(
         this.scenarios.filter(
@@ -28,11 +28,11 @@ export class Scenarios {
     );
   }
 
-  filteredScenarios({ activePage }) {
+  getScenariosForPage({ activePage }) {
     const availableScenarios = this.scenarios
       .filter((scenario, idx) => scenario.getOpenerPosition() === this.position)
       .filter((_, idx) => idx < activePage * 10 && idx >= activePage * 10 - 10);
-    const fill10ElementArray = [
+    const scenarioPage = [
       "1",
       "2",
       "3",
@@ -53,9 +53,9 @@ export class Scenarios {
           ScenarioName: "",
         })
     );
-    return fill10ElementArray;
+    return scenarioPage;
   }
-  filteredScenariosArray() {
+  scenarioCountsByPosition() {
     return ["UTG", "MP", "CO", "BU", "SB"].map(
       (position) =>
         this.scenarios.filter(
@@ -64,7 +64,7 @@ export class Scenarios {
     );
   }
 
-  filteredScenariosPosition() {
+  scenarioCountForPosition() {
     return this.scenarios.filter(
       (scenario) => scenario.getOpenerPosition() === this.position
     ).length;

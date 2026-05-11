@@ -17,7 +17,7 @@ const ScenariosComponent = ({ scenarios, position, activePage }) => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {scenarios.filteredScenarios({ activePage }).map((scenario) => (
+        {scenarios.getScenariosForPage({ activePage }).map((scenario) => (
           <ScenarioComponent
             scenario={scenario}
             token={scenarios.token}
