@@ -1,19 +1,19 @@
-import RangeObject from "./../../../containers/MainPage/EngineClasses/RangeObject";
+import HandRange from "../../../containers/MainPage/EngineClasses/HandRange";
 import { StartingHandBuilder } from "./../../../containers/MainPage/EngineClasses/StartingHandBuilder";
 import { expect } from "chai";
 
 describe("RangeObject Class", () => {
   it("can be constructed with a street, streetAction, and array of hands", () => {
-    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", []);
+    const rangeObject = new HandRange("Preflop", "Raise4BetCall", []);
 
-    expect(rangeObject).to.be.instanceOf(RangeObject);
+    expect(rangeObject).to.be.instanceOf(HandRange);
   });
 
   it("can be transformed into a data value object to be stored", () => {
     const AKsuited = new StartingHandBuilder().build("A", "K", "s");
     const AA = new StartingHandBuilder().build("A", "A");
     const AKoffsuit = new StartingHandBuilder().build("A", "K", "o");
-    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+    const rangeObject = new HandRange("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
       AKoffsuit,
@@ -29,13 +29,13 @@ describe("RangeObject Class", () => {
     const AKsuited = new StartingHandBuilder().build("A", "K", "s");
     const AA = new StartingHandBuilder().build("A", "A");
     const AKoffsuit = new StartingHandBuilder().build("A", "K", "o");
-    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+    const rangeObject = new HandRange("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
       AKoffsuit,
     ]);
 
-    expect(rangeObject.displayInfo()).to.deep.equal({
+    expect(rangeObject.toHandColorMap()).to.deep.equal({
       AA: {
         colorCards: "#0F6125",
         equity: "n/a",
@@ -54,7 +54,7 @@ describe("RangeObject Class", () => {
     const AKsuited = new StartingHandBuilder().build("A", "K", "s");
     const AA = new StartingHandBuilder().build("A", "A");
     const AKoffsuit = new StartingHandBuilder().build("A", "K", "o");
-    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+    const rangeObject = new HandRange("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
       AKoffsuit,
@@ -71,7 +71,7 @@ describe("RangeObject Class", () => {
     const AKsuited = new StartingHandBuilder().build("A", "K", "s");
     const AA = new StartingHandBuilder().build("A", "A");
     const AKoffsuit = new StartingHandBuilder().build("A", "K", "o");
-    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+    const rangeObject = new HandRange("Preflop", "Raise4BetCall", [
       AKsuited,
       AA,
       AKoffsuit,
@@ -89,7 +89,7 @@ describe("RangeObject Class", () => {
     const AKohand = new StartingHandBuilder().build("Q", "A");
     const AKshand = new StartingHandBuilder().build("A", "K");
 
-    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+    const rangeObject = new HandRange("Preflop", "Raise4BetCall", [
       AAhand,
       AKohand,
       AKshand,
@@ -103,7 +103,7 @@ describe("RangeObject Class", () => {
     const AKohand = new StartingHandBuilder().build("K", "A");
     const AKshand = new StartingHandBuilder().build("A", "K");
 
-    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+    const rangeObject = new HandRange("Preflop", "Raise4BetCall", [
       AAhand,
       AKohand,
       AKshand,
@@ -117,7 +117,7 @@ describe("RangeObject Class", () => {
     const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
     const AKshand = new StartingHandBuilder().build("A", "K");
 
-    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+    const rangeObject = new HandRange("Preflop", "Raise4BetCall", [
       AAhand,
       A9sshand,
       AKshand,
@@ -130,13 +130,13 @@ describe("RangeObject Class", () => {
     const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
     const AKshand = new StartingHandBuilder().build("A", "K");
 
-    const rangeObject = new RangeObject("Preflop", "Raise4BetCall", [
+    const rangeObject = new HandRange("Preflop", "Raise4BetCall", [
       AAhand,
       A9sshand,
       AKshand,
     ]);
 
-    expect(rangeObject.displayInfo()).to.deep.equal({
+    expect(rangeObject.toHandColorMap()).to.deep.equal({
       AA: { colorCards: "#0F6125", equity: "n/a" },
       AKs: { colorCards: "#0F6125", equity: "n/a" },
       As9s: { colorCards: "#0F6125", equity: "n/a" },
@@ -147,13 +147,13 @@ describe("RangeObject Class", () => {
     const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
     const AKshand = new StartingHandBuilder().build("A", "K");
 
-    const rangeObject = new RangeObject("Flop", "Bluff", [
+    const rangeObject = new HandRange("Flop", "Bluff", [
       AAhand,
       A9sshand,
       AKshand,
     ]);
 
-    expect(rangeObject.displayInfo()).to.deep.equal({
+    expect(rangeObject.toHandColorMap()).to.deep.equal({
       AA: { colorCards: "#ed87a7", equity: "n/a" },
       AKs: { colorCards: "#ed87a7", equity: "n/a" },
       As9s: { colorCards: "#ed87a7", equity: "n/a" },
@@ -164,13 +164,13 @@ describe("RangeObject Class", () => {
     const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
     const AKshand = new StartingHandBuilder().build("A", "K");
 
-    const rangeObject = new RangeObject("Flop", "CheckFold", [
+    const rangeObject = new HandRange("Flop", "CheckFold", [
       AAhand,
       A9sshand,
       AKshand,
     ]);
 
-    expect(rangeObject.displayInfo()).to.deep.equal({
+    expect(rangeObject.toHandColorMap()).to.deep.equal({
       AA: { colorCards: "#dc73ff", equity: "n/a" },
       AKs: { colorCards: "#dc73ff", equity: "n/a" },
       As9s: { colorCards: "#dc73ff", equity: "n/a" },
@@ -181,13 +181,13 @@ describe("RangeObject Class", () => {
     const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
     const AKshand = new StartingHandBuilder().build("A", "K");
 
-    const rangeObject = new RangeObject("Flop", "CheckCall", [
+    const rangeObject = new HandRange("Flop", "CheckCall", [
       AAhand,
       A9sshand,
       AKshand,
     ]);
 
-    expect(rangeObject.displayInfo()).to.deep.equal({
+    expect(rangeObject.toHandColorMap()).to.deep.equal({
       AA: { colorCards: "#3ac0ff", equity: "n/a" },
       AKs: { colorCards: "#3ac0ff", equity: "n/a" },
       As9s: { colorCards: "#3ac0ff", equity: "n/a" },
@@ -198,13 +198,13 @@ describe("RangeObject Class", () => {
     const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
     const AKshand = new StartingHandBuilder().build("A", "K");
 
-    const rangeObject = new RangeObject("Flop", "SmallValuebet", [
+    const rangeObject = new HandRange("Flop", "SmallValuebet", [
       AAhand,
       A9sshand,
       AKshand,
     ]);
 
-    expect(rangeObject.displayInfo()).to.deep.equal({
+    expect(rangeObject.toHandColorMap()).to.deep.equal({
       AA: { colorCards: "#003d3e", equity: "n/a" },
       AKs: { colorCards: "#003d3e", equity: "n/a" },
       As9s: { colorCards: "#003d3e", equity: "n/a" },
@@ -215,13 +215,13 @@ describe("RangeObject Class", () => {
     const A9sshand = new StartingHandBuilder().build("A", "9", "ss");
     const AKshand = new StartingHandBuilder().build("A", "K");
 
-    const rangeObject = new RangeObject("Flop", "SmallBluff", [
+    const rangeObject = new HandRange("Flop", "SmallBluff", [
       AAhand,
       A9sshand,
       AKshand,
     ]);
 
-    expect(rangeObject.displayInfo()).to.deep.equal({
+    expect(rangeObject.toHandColorMap()).to.deep.equal({
       AA: { colorCards: "#8A4000", equity: "n/a" },
       AKs: { colorCards: "#8A4000", equity: "n/a" },
       As9s: { colorCards: "#8A4000", equity: "n/a" },

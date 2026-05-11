@@ -1,5 +1,5 @@
 import prange from "prange";
-class RangeObject {
+class HandRange {
   constructor(street, streetAction, startingHands) {
     this.street = street;
     this.streetAction = streetAction;
@@ -42,32 +42,32 @@ class RangeObject {
     };
   }
 
-  displayInfo() {
+  toHandColorMap() {
     let handColorMap = {};
 
-    let idx;
+    let actionColorIndex;
     switch (this.streetAction) {
       case "Raise4BetCall":
       case "Valuebet":
-        idx = 0;
+        actionColorIndex = 0;
         break;
       case "Raise4BetFold":
       case "Bluff":
-        idx = 1;
+        actionColorIndex = 1;
         break;
       case "RaiseCall":
       case "CheckCall":
-        idx = 2;
+        actionColorIndex = 2;
         break;
       case "RaiseFold":
       case "CheckFold":
-        idx = 3;
+        actionColorIndex = 3;
         break;
       case "SmallValuebet":
-        idx = 4;
+        actionColorIndex = 4;
         break;
       case "SmallBluff":
-        idx = 5;
+        actionColorIndex = 5;
         break;
       default:
         break;
@@ -83,7 +83,7 @@ class RangeObject {
               "#dc73ff",
               "#003d3e",
               "#8A4000",
-            ][idx],
+            ][actionColorIndex],
             equity: "n/a",
           },
         });
@@ -92,7 +92,7 @@ class RangeObject {
     return handColorMap;
   }
 
-  allHandsOneArray() {
+  allStartingHands() {
     return this.startingHands.reduce((acc, startingHand) => {
       return [...acc, startingHand];
     }, []);
@@ -107,4 +107,4 @@ class RangeObject {
   }
 }
 
-export default RangeObject;
+export default HandRange;

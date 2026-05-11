@@ -3,7 +3,7 @@ import { StartingHandBuilder } from "./StartingHandBuilder";
 
 export const countRangeCombos = (rangeObjects, chosenStreet, board) => {
   let comboCounts = rangeObjects.map((rangeObject) =>
-    rangeObject.allHandsOneArray().reduce((acc, hand) => {
+    rangeObject.allStartingHands().reduce((acc, hand) => {
       return acc + countCombosForHand(hand.getHand(), chosenStreet, board);
     }, 0)
   );

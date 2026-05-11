@@ -1,6 +1,6 @@
 import { initialState } from "../reducer";
 import { StartingHandBuilder } from "./StartingHandBuilder";
-import RangeObject from "./RangeObject";
+import HandRange from "./HandRange";
 
 export class RangeObjectCollection {
   constructor(rangeData) {
@@ -10,7 +10,7 @@ export class RangeObjectCollection {
   _toRangeObjects(rangeData) {
     return rangeData.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(Street, BetType, this._toStartingHands(hands))
+        new HandRange(Street, BetType, this._toStartingHands(hands))
     );
   }
   _toStartingHands(hands) {

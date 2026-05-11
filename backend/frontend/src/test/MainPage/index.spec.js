@@ -8,7 +8,7 @@ import { Provider } from "react-redux";
 import { initialState } from "./../../containers/MainPage/reducer";
 import history from "./../../utils/history";
 import configureStore from "./../../configureStore";
-import RangeObject from "./../../containers/MainPage/EngineClasses/RangeObject";
+import HandRange from "./../../containers/MainPage/EngineClasses/HandRange";
 import { StartingHandBuilder } from "./../../containers/MainPage/EngineClasses/StartingHandBuilder";
 import { expect } from "chai";
 Enzyme.configure({ adapter: new Adapter() });
@@ -38,7 +38,7 @@ describe("MainPage Container", () => {
 
   it("handsInRange should return false when given an empty range", () => {
     const range = initialState.ranges.map(({ Street, BetType }) => {
-      return new RangeObject(Street, BetType, []);
+      return new HandRange(Street, BetType, []);
     });
     const street = "Preflop";
 
@@ -48,10 +48,10 @@ describe("MainPage Container", () => {
   it("handsInRange should return true when given a range with AA", () => {
     const range = initialState.ranges.map((range) => {
       if (range.Street == "Preflop")
-        return new RangeObject("Preflop", range.BetType, [
+        return new HandRange("Preflop", range.BetType, [
           new StartingHandBuilder().build("A", "A"),
         ]);
-      else return new RangeObject(range.Street, range.BetType, []);
+      else return new HandRange(range.Street, range.BetType, []);
     });
     const street = "Preflop";
 

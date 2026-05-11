@@ -3,7 +3,7 @@ import { StyledCol, ColorCard, StyledRow } from "../Board/Styles.js";
 
 import { StartingHandBuilder } from "./StartingHandBuilder";
 import TableGridColumn from "../Board/TableGridColumn";
-import RangeObject from "./RangeObject";
+import HandRange from "./HandRange";
 
 import { initialState } from "../reducer.js";
 import { Table } from "semantic-ui-react";
@@ -39,7 +39,7 @@ export default class BoardOfHands {
           );
       })
       .map(
-        ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
+        ({ Street, BetType, hands }) => new HandRange(Street, BetType, hands)
       );
     this.bind = bind;
   }
@@ -57,8 +57,8 @@ export default class BoardOfHands {
     let handColorMap;
 
     handColorMap = selectedRanges.reduce((acc, rangeObject) => {
-      if (rangeObject.displayInfo() === {}) return acc;
-      else return { ...acc, ...rangeObject.displayInfo() };
+      if (rangeObject.toHandColorMap() === {}) return acc;
+      else return { ...acc, ...rangeObject.toHandColorMap() };
     }, {});
 
     this.preflopRanges = preflopRanges;
@@ -67,7 +67,7 @@ export default class BoardOfHands {
 
   view() {
     let allPreflopHands = this.preflopRanges.map((rangeObject) =>
-      rangeObject.allHandsOneArray()
+      rangeObject.allStartingHands()
     );
 
     let gridRows = this.handGrid.map((row, idx) => {

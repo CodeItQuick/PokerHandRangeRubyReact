@@ -12,7 +12,7 @@ import {
   makeSelectOtherRange,
   makeSelectHandEquities,
 } from "./../../containers/MainPage/selectors.js";
-import RangeObject from "./../../containers/MainPage/EngineClasses/RangeObject";
+import HandRange from "./../../containers/MainPage/EngineClasses/HandRange";
 import { expect } from "chai";
 
 describe("MainPage Login Selectors", () => {
@@ -52,7 +52,7 @@ describe("MainPage Login Selectors", () => {
 
     const initialRangeRepoIP = initialState.rangeRepoIP.map(
       (rangeObjects) =>
-        new RangeObject(rangeObjects.Street, rangeObjects.BetType, [])
+        new HandRange(rangeObjects.Street, rangeObjects.BetType, [])
     );
 
     const results = [...initialRangeRepoIP];
@@ -71,7 +71,7 @@ describe("MainPage Login Selectors", () => {
 
     const initialRangeRepoOOP = initialState.rangeRepoOOP.map(
       (rangeObjects) =>
-        new RangeObject(rangeObjects.Street, rangeObjects.BetType, [])
+        new HandRange(rangeObjects.Street, rangeObjects.BetType, [])
     );
 
     const results = [...initialRangeRepoOOP];
@@ -93,7 +93,7 @@ describe("MainPage Login Selectors", () => {
       .filter(({ Street }) => Street == "Preflop")
       .map(
         (rangeObjects) =>
-          new RangeObject(rangeObjects.Street, rangeObjects.BetType, [])
+          new HandRange(rangeObjects.Street, rangeObjects.BetType, [])
       );
 
     const results = [...initialRangePreflop];
@@ -112,7 +112,7 @@ describe("MainPage Login Selectors", () => {
 
     const initialSelectRange = initialState.ranges.map(
       (rangeObjects) =>
-        new RangeObject(rangeObjects.Street, rangeObjects.BetType, [])
+        new HandRange(rangeObjects.Street, rangeObjects.BetType, [])
     );
 
     const results = [...initialSelectRange];
@@ -170,7 +170,7 @@ describe("MainPage Login Selectors", () => {
     const getMakeSelectOtherRange = (state) => makeSelectOtherRange(state);
 
     const initialRangePreflopOnly = initialState.ranges.map(
-      ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
+      ({ Street, BetType, hands }) => new HandRange(Street, BetType, hands)
     );
 
     expect(getMakeSelectOtherRange()(mockParameters)).to.deep.equal(

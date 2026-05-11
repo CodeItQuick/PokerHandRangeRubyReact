@@ -5,7 +5,7 @@
 import { createSelector } from "reselect";
 
 import { initialState } from "../reducer";
-import RangeObject from "../EngineClasses/RangeObject";
+import HandRange from "../EngineClasses/HandRange";
 import { StartingHandBuilder } from "../EngineClasses/StartingHandBuilder";
 import { RangeObjectCollection } from "../EngineClasses/RangeObjectCollection";
 
@@ -36,7 +36,7 @@ export class SelectedStreet {
   displayStreetObject() {
     return this.ranges.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(Street, BetType, copyHands(hands))
+        new HandRange(Street, BetType, copyHands(hands))
     );
   }
 }
