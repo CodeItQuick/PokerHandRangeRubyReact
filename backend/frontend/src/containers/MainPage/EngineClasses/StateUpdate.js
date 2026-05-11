@@ -8,7 +8,7 @@ import HandRange from "./HandRange";
 import { initialState } from "../reducer.js";
 import { Table } from "semantic-ui-react";
 
-export default class BoardOfHands {
+export default class StartingHandGrid {
   constructor(bind) {
     this.rankOrder = [
       "A",
@@ -25,7 +25,7 @@ export default class BoardOfHands {
       "3",
       "2",
     ];
-    this.handGrid = this.generateCardGrid();
+    this.handGrid = this.generateHandGrid();
     this.preflopRanges = initialState.ranges
       .filter(({ Street, BetType }) => {
         if (Street === "Flop") return Street === "Preflop";
@@ -44,21 +44,21 @@ export default class BoardOfHands {
     this.bind = bind;
   }
 
-  generateCardGrid() {
-    let cardGrid = this.rankOrder.map((cardOne) =>
-      this.rankOrder.map((cardTwo) =>
-        new StartingHandBuilder().build(cardOne, cardTwo)
+  generateHandGrid() {
+    let handGrid = this.rankOrder.map((firstRank) =>
+      this.rankOrder.map((secondRank) =>
+        new StartingHandBuilder().build(firstRank, secondRank)
       )
     );
-    return cardGrid;
+    return handGrid;
   }
 
   updateCardGrid(preflopRanges, selectedRanges) {
     let handColorMap;
 
-    handColorMap = selectedRanges.reduce((acc, rangeObject) => {
-      if (rangeObject.toHandColorMap() === {}) return acc;
-      else return { ...acc, ...rangeObject.toHandColorMap() };
+    handColorMap = selectedRanges.reduce((acc, handRange) => {
+      if (handRange.toHandColorMap() === {}) return acc;
+      else return { ...acc, ...handRange.toHandColorMap() };
     }, {});
 
     this.preflopRanges = preflopRanges;
@@ -66,11 +66,11 @@ export default class BoardOfHands {
   }
 
   view() {
-    let allPreflopHands = this.preflopRanges.map((rangeObject) =>
-      rangeObject.allStartingHands()
+    let allPreflopHands = this.preflopRanges.map((handRange) =>
+      handRange.allStartingHands()
     );
 
-    let gridRows = this.handGrid.map((row, idx) => {
+    let gridRows = this.handGrid.map((row, index) => {
       let rowCells = row.map((startingHand) => {
         return (
           <TableGridColumn
@@ -103,10 +103,10 @@ export const rankOrder = [
   "2",
 ];
 
-export const generateCardGrid = (preflopRanges, position) => {
+export const buildHandColorMap = (preflopRanges, position) => {
   let handColorMap = {};
 
-  preflopRanges.forEach(({ hands }, idx) => {
+  preflopRanges.forEach(({ hands }, index) => {
     hands.forEach((hand) => {
       handColorMap = {
         ...handColorMap,
@@ -118,7 +118,7 @@ export const generateCardGrid = (preflopRanges, position) => {
             "#dc73ff",
             "#003d3e",
             "#8A4000",
-          ][idx],
+          ][index],
           equity: "n/a",
         },
       };

@@ -1,6 +1,6 @@
 import { initialState } from "./../../../containers/MainPage/reducer";
-import BoardOfHands, {
-  generateCardGrid,
+import StartingHandGrid, {
+  buildHandColorMap,
 } from "./../../../containers/MainPage/EngineClasses/StateUpdate";
 import { StartingHandBuilder } from "../../../containers/MainPage/EngineClasses/StartingHandBuilder";
 import { HandRangeCollection } from "../../../containers/MainPage/EngineClasses/HandRangeCollection";
@@ -207,7 +207,7 @@ describe("State Update Functions", () => {
   it(" generate CardGrid generates an empty object when given an empty range", () => {
     const preflopRanges = JSON.parse(JSON.stringify(initialState.ranges));
     const position = initialState.mode.isIP;
-    const cardGrid = generateCardGrid(preflopRanges, position);
+    const cardGrid = buildHandColorMap(preflopRanges, position);
 
     expect(cardGrid).to.deep.equal({});
   });
@@ -219,7 +219,7 @@ describe("State Update Functions", () => {
     let aaHand = new StartingHandBuilder().build("A", "A");
     preflopRanges[0].hands = [aaHand];
     const position = initialState.mode.isIP;
-    const cardGrid = generateCardGrid(preflopRanges, position);
+    const cardGrid = buildHandColorMap(preflopRanges, position);
 
     expect(cardGrid).to.deep.equal({
       AA: {
@@ -243,7 +243,7 @@ describe("State Update Functions", () => {
     let aaHand = new StartingHandBuilder().build("A", "A");
     preflopRanges[1].hands = [aaHand];
     const position = initialState.mode.isIP;
-    const cardGrid = generateCardGrid(preflopRanges, position);
+    const cardGrid = buildHandColorMap(preflopRanges, position);
 
     expect(cardGrid).to.deep.equal({
       AA: {
@@ -260,7 +260,7 @@ describe("State Update Functions", () => {
     let aaHand = new StartingHandBuilder().build("A", "A");
     preflopRanges[2].hands = [aaHand];
     const position = initialState.mode.isIP;
-    const cardGrid = generateCardGrid(preflopRanges, position);
+    const cardGrid = buildHandColorMap(preflopRanges, position);
 
     expect(cardGrid).to.deep.equal({
       AA: {
@@ -284,7 +284,7 @@ describe("State Update Functions", () => {
     let aaHand = new StartingHandBuilder().build("A", "A");
     preflopRanges[3].hands = [aaHand];
     const position = initialState.mode.isIP;
-    const cardGrid = generateCardGrid(preflopRanges, position);
+    const cardGrid = buildHandColorMap(preflopRanges, position);
 
     expect(cardGrid).to.deep.equal({
       AA: {
@@ -301,14 +301,14 @@ describe("State Update Functions", () => {
     });
   });
 
-  it(" generates a BoardOfHands when instantiated and called", () => {
-    const boardOfHands = new BoardOfHands();
-    const cardGrid = boardOfHands.generateCardGrid();
+  it(" generates a StartingHandGrid when instantiated and called", () => {
+    const boardOfHands = new StartingHandGrid();
+    const cardGrid = startingHandGrid.generateHandGrid();
 
     expect(cardGrid).to.deep.equal(CardTable);
   });
   it(" can be updated to generate a new board", () => {
-    let boardOfHands = new BoardOfHands();
+    let boardOfHands = new StartingHandGrid();
     const preflopRanges = new HandRangeCollection(initialState.ranges);
     const selectedRanges = preflopRanges.getRangesForStreet({
       Street: "Flop",
@@ -319,7 +319,7 @@ describe("State Update Functions", () => {
     });
 
     boardOfHands.updateCardGrid(preflopRanges, selectedRanges);
-    const cardGrid = boardOfHands.generateCardGrid();
+    const cardGrid = startingHandGrid.generateHandGrid();
 
     expect(cardGrid).to.deep.equal(CardTable);
   });

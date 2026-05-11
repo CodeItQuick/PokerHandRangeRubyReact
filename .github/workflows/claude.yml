@@ -1,0 +1,104 @@
+name: Claude AI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  claude:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build prompt
+        id: prompt
+        run: |
+          # Collect the git diff for context
+          DIFF=$(git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000)
+
+          # Write the prompt to a temp file to avoid shell quoting issues
+          cat > /tmp/prompt.txt << PROMPT_EOF
+          You are a PR review bot specialising in identifier quality. Follow the instructions below exactly and return ONLY valid JSON — no prose, no markdown fences, no explanation.
+
+          $(cat .github/workflows/review_instructions.md)
+          PROMPT_EOF
+
+          # Append the diff
+          echo "" >> /tmp/prompt.txt
+          echo "Git diff:" >> /tmp/prompt.txt
+          echo "$DIFF" >> /tmp/prompt.txt
+
+      - name: Call Anthropic API
+        id: claude
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          PROMPT=$(cat /tmp/prompt.txt)
+
+          # Build the JSON payload using jq to safely handle escaping
+          PAYLOAD=$(jq -n \
+            --arg model "claude-sonnet-4-6" \
+            --arg content "$PROMPT" \
+            '{
+              model: $model,
+              max_tokens: 16384,
+              messages: [{ role: "user", content: $content }]
+            }')
+
+          RESPONSE=$(curl -s https://api.anthropic.com/v1/messages \
+            -H "x-api-key: $ANTHROPIC_API_KEY" \
+            -H "anthropic-version: 2023-06-01" \
+            -H "content-type: application/json" \
+            -d "$PAYLOAD")
+
+          # Extract the text content from the response and write to file
+          echo "$RESPONSE" | jq -r '.content[0].text // "Error: \(.error.message // .)"' > /tmp/claude_output.txt
+
+      - name: Print Claude response
+        run: cat /tmp/claude_output.txt
+
+      - name: Clean Claude response
+        run: sed '/^```/d' /tmp/claude_output.txt > /tmp/claude_clean.txt
+
+      - name: Post summary table comment
+        # if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if ! jq -e 'has("summary_table")' /tmp/claude_clean.txt > /dev/null 2>&1; then
+            echo "No summary_table in response, skipping"
+            exit 0
+          fi
+
+          SUMMARY=$(jq -r '.summary_table' /tmp/claude_clean.txt)
+          printf '## Identifier Quality Report\n\n%s' "$SUMMARY" > /tmp/summary_comment.txt
+          gh pr comment ${{ github.event.pull_request.number }} \
+            --repo ${{ github.repository }} \
+            --body "$(cat /tmp/summary_comment.txt)"
+
+      - name: Post inline CRITICAL comments
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if ! jq -e 'has("inline_comments")' /tmp/claude_clean.txt > /dev/null 2>&1; then
+            echo "No inline_comments in response, skipping"
+            exit 0
+          fi
+
+          COMMENTS=$(jq '.inline_comments' /tmp/claude_clean.txt)
+
+          if [ "$(echo "$COMMENTS" | jq 'length')" -eq 0 ]; then
+            echo "No CRITICAL inline comments to post"
+            exit 0
+          fi
+
+          PAYLOAD=$(jq -n \
+            --argjson comments "$COMMENTS" \
+            '{"event": "COMMENT", "comments": $comments}')
+
+          gh api \
+            --method POST \
+            /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
+            --input - <<< "$PAYLOAD"

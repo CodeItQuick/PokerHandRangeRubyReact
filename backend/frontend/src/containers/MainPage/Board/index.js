@@ -17,7 +17,7 @@ import {
   makeSelectRangesPreviousStreet,
 } from "../selectors";
 
-import BoardOfHands from "../EngineClasses/StateUpdate";
+import StartingHandGrid from "../EngineClasses/StateUpdate";
 
 const isOnMouseDownEventPushed = ({ props }) =>
   (props.memo !== props.args[props.args.length - 1] && props.down) ||
@@ -25,7 +25,7 @@ const isOnMouseDownEventPushed = ({ props }) =>
 
 const Board = ({ onMouseOverHandler, SelectedRanges, preflopRanges }) => {
   const [manyHands, setManyHands] = useState();
-  const [instanceOfBoardHands, updateInstanceOfBoardHands] = useState(false);
+  const [startingHandGrid, updateStartingHandGrid] = useState(false);
 
   // Set the drag hook and define component movement based on gesture data
   const bind = useGesture({
@@ -50,20 +50,19 @@ const Board = ({ onMouseOverHandler, SelectedRanges, preflopRanges }) => {
   });
 
   useEffect(() => {
-    if (!instanceOfBoardHands)
-      updateInstanceOfBoardHands(new BoardOfHands(bind));
+    if (!startingHandGrid) updateStartingHandGrid(new BoardOfHands(bind));
 
     //If there are new equities to be entered, dispatch the action
   }, [false, bind]);
 
   useEffect(() => {
-    if (instanceOfBoardHands) {
-      instanceOfBoardHands.updateCardGrid(preflopRanges, SelectedRanges);
+    if (startingHandGrid) {
+      startingHandGrid.updateCardGrid(preflopRanges, SelectedRanges);
 
-      setManyHands(instanceOfBoardHands.view());
+      setManyHands(startingHandGrid.view());
     }
     //If there are new equities to be entered, dispatch the action
-  }, [instanceOfBoardHands, SelectedRanges, preflopRanges, bind]);
+  }, [startingHandGrid, SelectedRanges, preflopRanges, bind]);
 
   return (
     <Table celled striped unstackable>
