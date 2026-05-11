@@ -1,5 +1,5 @@
 import { initialState } from "./../../../containers/MainPage/reducer";
-import { RangeObjectCollection } from "./../../../containers/MainPage/EngineClasses/RangeObjectCollection";
+import { HandRangeCollection } from "./../../../containers/MainPage/EngineClasses/HandRangeCollection";
 import { expect } from "chai";
 
 const data = [
@@ -23,7 +23,7 @@ const data = [
 
 describe("A RangeObject Collection ", () => {
   it("given no constructor can display 16 RangeObjects", () => {
-    const rangeObjectCollection = new RangeObjectCollection();
+    const rangeObjectCollection = new HandRangeCollection();
     const result = initialState.ranges.map(({ Street, BetType, hands }) => ({
       street: Street,
       streetAction: BetType,
@@ -32,9 +32,7 @@ describe("A RangeObject Collection ", () => {
     expect(rangeObjectCollection.getAllRanges()).to.deep.equal(result);
   });
   it("given a constructor can displayed for 16 RangeObjects", () => {
-    const rangeObjectCollection = new RangeObjectCollection(
-      initialState.ranges
-    );
+    const rangeObjectCollection = new HandRangeCollection(initialState.ranges);
     const result = initialState.ranges.map(({ Street, BetType, hands }) => ({
       street: Street,
       streetAction: BetType,
@@ -43,7 +41,7 @@ describe("A RangeObject Collection ", () => {
     expect(rangeObjectCollection.getAllRanges()).to.deep.equal(result);
   });
   it("given a constructor can displayed for 16 RangeObjects with hands", () => {
-    const rangeObjectCollection = new RangeObjectCollection(
+    const rangeObjectCollection = new HandRangeCollection(
       initialState.ranges.map((rangeObj) => ({ ...rangeObj, hands: ["AKs"] }))
     );
     const result = initialState.ranges.map(({ Street, BetType, hands }) => ({
@@ -54,7 +52,7 @@ describe("A RangeObject Collection ", () => {
     expect(rangeObjectCollection.getAllRanges()).to.deep.equal(result);
   });
   it("given a RangeObject can provide filtered range for the Flop", (Street = "Flop") => {
-    const rangeObjectCollection = new RangeObjectCollection(data);
+    const rangeObjectCollection = new HandRangeCollection(data);
     expect(
       rangeObjectCollection.getPreviousStreetRanges({ Street, isIP: true })
         .length
@@ -65,7 +63,7 @@ describe("A RangeObject Collection ", () => {
     ).to.equal(4);
   });
   it("given a RangeObject can provide filtered range for the Turn", (Street = "Turn") => {
-    const rangeObjectCollection = new RangeObjectCollection(data);
+    const rangeObjectCollection = new HandRangeCollection(data);
     expect(
       rangeObjectCollection.getPreviousStreetRanges({
         Street: "Turn",
@@ -78,7 +76,7 @@ describe("A RangeObject Collection ", () => {
     ).to.equal(1);
   });
   it("given a RangeObject can provide filtered range for the River", (Street = "River") => {
-    const rangeObjectCollection = new RangeObjectCollection(data);
+    const rangeObjectCollection = new HandRangeCollection(data);
     expect(
       rangeObjectCollection.getPreviousStreetRanges({ Street, isIP: true })
         .length

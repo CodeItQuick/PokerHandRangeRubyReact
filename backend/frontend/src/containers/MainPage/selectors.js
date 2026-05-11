@@ -9,7 +9,7 @@ import Scenario from "./EngineClasses/Scenario";
 import { Scenarios } from "./EngineClasses/Scenarios";
 import HandRange from "./EngineClasses/HandRange";
 import { StartingHandBuilder } from "./EngineClasses/StartingHandBuilder";
-import { RangeObjectCollection } from "./EngineClasses/RangeObjectCollection";
+import { HandRangeCollection } from "./EngineClasses/HandRangeCollection";
 
 const selectGlobal = (state) => state.global || initialState; //??
 const selectRouter = (state) => state.router;
@@ -21,16 +21,16 @@ const makeSelectMode = () =>
 
 const makeSelectRangeRepoIP = () =>
   createSelector(selectGlobal, (globalState) =>
-    new RangeObjectCollection(globalState.rangeRepoIP).getAllRanges()
+    new HandRangeCollection(globalState.rangeRepoIP).getAllRanges()
   );
 
 const makeSelectRangeRepoOOP = () =>
   createSelector(selectGlobal, (globalState) =>
-    new RangeObjectCollection(globalState.rangeRepoOOP).getAllRanges()
+    new HandRangeCollection(globalState.rangeRepoOOP).getAllRanges()
   );
 const makeSelectSelectedStreetBetType = () => {
   return createSelector(selectGlobal, (global) =>
-    new RangeObjectCollection(global.ranges).getRangesForStreet({
+    new HandRangeCollection(global.ranges).getRangesForStreet({
       street: global?.mode?.street,
     })
   );
@@ -38,7 +38,7 @@ const makeSelectSelectedStreetBetType = () => {
 
 const makeSelectSelectedStreet = () =>
   createSelector(selectGlobal, (global) =>
-    new RangeObjectCollection(global?.ranges).getRangesForStreet({
+    new HandRangeCollection(global?.ranges).getRangesForStreet({
       Street: global?.mode?.street,
       useTwoFlopSizes: global?.mode?.useTwoFlopSizes,
     })
@@ -46,7 +46,7 @@ const makeSelectSelectedStreet = () =>
 
 const makeSelectRangesPreviousStreet = () =>
   createSelector(selectGlobal, (global) =>
-    new RangeObjectCollection(global.ranges).getPreviousStreetRanges({
+    new HandRangeCollection(global.ranges).getPreviousStreetRanges({
       Street: global?.mode?.street,
       isIP: global?.mode?.isIP,
     })
@@ -55,14 +55,14 @@ const makeSelectRangesPreviousStreet = () =>
 //FIXME: Needs a rename because its all ranges
 const makeSelectRangesPreflop = () =>
   createSelector(selectGlobal, (global) =>
-    new RangeObjectCollection(global.ranges).getRangesForStreet({
+    new HandRangeCollection(global.ranges).getRangesForStreet({
       Street: "Preflop",
     })
   );
 
 const makeSelectRange = () =>
   createSelector(selectGlobal, (globalState) =>
-    new RangeObjectCollection(globalState.ranges).getAllRanges()
+    new HandRangeCollection(globalState.ranges).getAllRanges()
   );
 
 const makeSelectUser = () =>
@@ -78,11 +78,11 @@ const makeSelectOtherRange = () => {
   return createSelector(selectGlobal, (globalState) => {
     let rangeRepoPreflop;
     if (globalState.mode.isIP)
-      rangeRepoPreflop = new RangeObjectCollection(
+      rangeRepoPreflop = new HandRangeCollection(
         globalState.rangeRepoIP
       ).getAllRanges();
     else
-      rangeRepoPreflop = new RangeObjectCollection(
+      rangeRepoPreflop = new HandRangeCollection(
         globalState.rangeRepoOOP
       ).getAllRanges();
     return rangeRepoPreflop;

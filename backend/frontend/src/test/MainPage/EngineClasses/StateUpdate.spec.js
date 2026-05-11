@@ -2,8 +2,8 @@ import { initialState } from "./../../../containers/MainPage/reducer";
 import BoardOfHands, {
   generateCardGrid,
 } from "./../../../containers/MainPage/EngineClasses/StateUpdate";
-import { StartingHandBuilder } from "./../../../containers/MainPage/EngineClasses/StartingHandBuilder";
-import { RangeObjectCollection } from "./../../../containers/MainPage/EngineClasses/RangeObjectCollection.js";
+import { StartingHandBuilder } from "../../../containers/MainPage/EngineClasses/StartingHandBuilder";
+import { HandRangeCollection } from "../../../containers/MainPage/EngineClasses/HandRangeCollection";
 import { expect } from "chai";
 
 const CardTable = [
@@ -309,7 +309,7 @@ describe("State Update Functions", () => {
   });
   it(" can be updated to generate a new board", () => {
     let boardOfHands = new BoardOfHands();
-    const preflopRanges = new RangeObjectCollection(initialState.ranges);
+    const preflopRanges = new HandRangeCollection(initialState.ranges);
     const selectedRanges = preflopRanges.getRangesForStreet({
       Street: "Flop",
       useTwoFlopSizes: false,
