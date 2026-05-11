@@ -1,6 +1,6 @@
 import StartingHand from "./StartingHand";
 
-const orderedCard = [
+const cardRankOrder = [
   "A",
   "K",
   "Q",
@@ -17,89 +17,111 @@ const orderedCard = [
 ];
 
 export class StartingHandBuilder {
-  build(cardOneInput, cardTwoInput, suitInput = "") {
+  build(firstCardInput, secondCardInput, suitInput = "") {
     let suit, startingHand;
-    suit = this.determineSuit(suitInput, cardOneInput, cardTwoInput);
+    suit = this.determineSuit(suitInput, firstCardInput, secondCardInput);
 
     // cardOne = Ac cardTwo = Td
-    if (cardOneInput.length === 2) {
-      startingHand = this.buildFromRankSuitPairs(cardOneInput, cardTwoInput);
+    if (firstCardInput.length === 2) {
+      startingHand = this.buildFromRankSuitPairs(
+        firstCardInput,
+        secondCardInput
+      );
     }
     // cardOne = K, cardTwo = 9, suit= cd
-    if (suitInput.length === 2 && cardOneInput.length === 1) {
+    if (suitInput.length === 2 && firstCardInput.length === 1) {
       startingHand = this.buildWithSpecificSuits(
-        cardOneInput,
-        cardTwoInput,
+        firstCardInput,
+        secondCardInput,
         suitInput
       );
     }
     // cardOne = T, cradTwo = J
-    if (suitInput.length === 0 && cardOneInput.length === 1) {
-      startingHand = this.buildWithInferredSuit(cardOneInput, cardTwoInput);
+    if (suitInput.length === 0 && firstCardInput.length === 1) {
+      startingHand = this.buildWithInferredSuit(
+        firstCardInput,
+        secondCardInput
+      );
     }
 
     // cardOne = T, cardTwo = J, suit = s
-    if ((suitInput.length === 1) & (cardOneInput.length === 1)) {
-      const cardOrder = this._normalizeRankOrder(cardOneInput, cardTwoInput);
-      startingHand = new StartingHand(cardOrder[0], cardOrder[1], suitInput);
+    if ((suitInput.length === 1) & (firstCardInput.length === 1)) {
+      const normalizedRanks = this._normalizeRankOrder(
+        firstCardInput,
+        secondCardInput
+      );
+      startingHand = new StartingHand(
+        normalizedRanks[0],
+        normalizedRanks[1],
+        suitInput
+      );
     }
 
     return startingHand;
   }
 
-  determineSuit(suitInput, cardOneInput, cardTwoInput) {
+  determineSuit(suitInput, firstCardInput, secondCardInput) {
     let suit;
     if (suitInput.length === 1) suit = suitInput;
     if (suitInput.length < 1)
-      suit = this._inferSuitedness(cardOneInput, cardTwoInput);
+      suit = this._inferSuitedness(firstCardInput, secondCardInput);
     if (suitInput === 0) suit = "";
     return suit;
   }
 
-  buildWithInferredSuit(cardOneInput, cardTwoInput) {
-    const cardOne = this._normalizeRankOrder(cardOneInput, cardTwoInput)[0];
-    const cardTwo = this._normalizeRankOrder(cardOneInput, cardTwoInput)[1];
-    const suit = this._inferSuitedness(cardOneInput, cardTwoInput);
-    return new StartingHand(cardOne, cardTwo, suit);
+  buildWithInferredSuit(firstCardInput, secondCardInput) {
+    const firstRank = this._normalizeRankOrder(
+      firstCardInput,
+      secondCardInput
+    )[0];
+    const secondRank = this._normalizeRankOrder(
+      firstCardInput,
+      secondCardInput
+    )[1];
+    const suit = this._inferSuitedness(firstCardInput, secondCardInput);
+    return new StartingHand(firstRank, secondRank, suit);
   }
 
-  buildWithSpecificSuits(cardOneInput, cardTwoInput, suitInput) {
+  buildWithSpecificSuits(firstCardInput, secondCardInput, suitInput) {
     const firstCardSuit = suitInput.length > 1 ? suitInput.substring(0, 1) : "";
     const secondCardSuit =
       suitInput.length > 1 ? suitInput.substring(1, 2) : "";
     const suit = firstCardSuit + secondCardSuit;
-    const cardOne = cardOneInput;
-    const cardTwo = cardTwoInput;
-    return new StartingHand(cardOne, cardTwo, suit);
+    const firstRank = firstCardInput;
+    const secondRank = secondCardInput;
+    return new StartingHand(firstRank, secondRank, suit);
   }
-  buildFromRankSuitPairs(cardOne, cardTwo) {
-    const combinedSuits = cardOne.substr(1, 1) + cardTwo.substr(1, 1);
-    const cardOneRank = cardOne.substr(0, 1);
-    const cardTwoRank = cardTwo.substr(0, 1);
-    return new StartingHand(cardOneRank, cardTwoRank, combinedSuits);
+  buildFromRankSuitPairs(firstRankSuitPair, secondRankSuitPair) {
+    const combinedSuits =
+      firstRankSuitPair.substr(1, 1) + secondRankSuitPair.substr(1, 1);
+    const firstRank = firstRankSuitPair.substr(0, 1);
+    const secondRank = secondRankSuitPair.substr(0, 1);
+    return new StartingHand(firstRank, secondRank, combinedSuits);
   }
   //TODO: Make public method of StartingHand
-  _normalizeRankOrder(cardOne, cardTwo) {
+  _normalizeRankOrder(firstRank, secondRank) {
     let higherRank = "",
       lowerRank = "";
-    if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
-      higherRank = cardOne;
-      lowerRank = cardTwo;
-    } else if (cardOne === cardTwo) {
-      higherRank = cardOne;
-      lowerRank = cardTwo;
+    if (cardRankOrder.indexOf(firstRank) < cardRankOrder.indexOf(secondRank)) {
+      higherRank = firstRank;
+      lowerRank = secondRank;
+    } else if (firstRank === secondRank) {
+      higherRank = firstRank;
+      lowerRank = secondRank;
     } else {
-      higherRank = cardTwo;
-      lowerRank = cardOne;
+      higherRank = secondRank;
+      lowerRank = firstRank;
     }
     return [higherRank, lowerRank];
   }
   //TODO: Make public method of StartingHand
-  _inferSuitedness(cardOne, cardTwo) {
+  _inferSuitedness(firstRank, secondRank) {
     let suitedness = "";
-    if (orderedCard.indexOf(cardOne) < orderedCard.indexOf(cardTwo)) {
+    if (cardRankOrder.indexOf(firstRank) < cardRankOrder.indexOf(secondRank)) {
       suitedness = "s";
-    } else if (orderedCard.indexOf(cardOne) === orderedCard.indexOf(cardTwo)) {
+    } else if (
+      cardRankOrder.indexOf(firstRank) === cardRankOrder.indexOf(secondRank)
+    ) {
       suitedness = "";
     } else {
       suitedness = "o";
