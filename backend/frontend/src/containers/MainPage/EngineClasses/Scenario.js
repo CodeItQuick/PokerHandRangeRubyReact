@@ -6,16 +6,16 @@ class Scenario {
     this.DefenderPosition = DefenderPosition;
   }
 
-  displayDeadcards() {
+  getDeadcards() {
     return this.deadcards;
   }
-  displayOpenerPosition() {
+  getOpenerPosition() {
     return this.OpenerPosition;
   }
-  displayDefenderPosition() {
+  getDefenderPosition() {
     return this.DefenderPosition;
   }
-  displayScenarioName() {
+  getScenarioName() {
     return this.ScenarioName;
   }
 }

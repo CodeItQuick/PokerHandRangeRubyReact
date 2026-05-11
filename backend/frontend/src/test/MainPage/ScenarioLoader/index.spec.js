@@ -26,7 +26,7 @@ describe("ScenarioLoader", () => {
       rangeRepoOOP,
     });
 
-    expect(scenario.displayDeadcards()).to.deep.equal("AcTd5s3s2s");
+    expect(scenario.getDeadcards()).to.deep.equal("AcTd5s3s2s");
   });
 
   it("the scenario object returns valid defender positions", () => {
@@ -42,7 +42,7 @@ describe("ScenarioLoader", () => {
       DefenderPosition: "SB",
     });
 
-    expect(scenario.displayDefenderPosition()).to.deep.equal("SB");
+    expect(scenario.getDefenderPosition()).to.deep.equal("SB");
   });
 
   it("the scenario object returns valid opener positions", () => {
@@ -57,7 +57,7 @@ describe("ScenarioLoader", () => {
       OpenerPosition: "MP",
       DefenderPosition: "SB",
     });
-    expect(scenario.displayOpenerPosition()).to.deep.equal("MP");
+    expect(scenario.getOpenerPosition()).to.deep.equal("MP");
   });
   it("the scenario object returns valid scenario name", () => {
     const rangeRepoOOP = initialState.rangeRepoOOP;
@@ -71,7 +71,7 @@ describe("ScenarioLoader", () => {
       OpenerPosition: "MP",
       DefenderPosition: "SB",
     });
-    expect(scenario.displayScenarioName()).to.deep.equal("First Scenario");
+    expect(scenario.getScenarioName()).to.deep.equal("First Scenario");
   });
   it("the scenarios object can be instantiated", () => {
     const rangeRepoOOP = initialState.rangeRepoOOP;

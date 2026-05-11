@@ -75,7 +75,7 @@ export function* getScenario({ data: { scenario, token } }) {
       Authorization: `Bearer ${token}`,
     };
     const body = {
-      boardcards: scenario.displayDeadcards(),
+      boardcards: scenario.getDeadcards(),
     };
 
     const requestParams = {
