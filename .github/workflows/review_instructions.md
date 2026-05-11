@@ -1,47 +1,82 @@
-# PR Review: Identifier Quality Analysis
+# Rename Identifiers
 
-Review the git diff for poorly named identifiers. Do not suggest renames or fixes — only identify and rate.
+Analyze the code below. Classify every identifier using the naming failure taxonomy and output only the report. Do not rewrite the code.
 
-## Step 1 — Identify the Domain
+## Phase 1 — Read and Inventory
 
-Establish the domain vocabulary from the diff context:
+The scope is the code in `{{code}}`. Work only from that code.
 
-1. Read test `describe`/`it` strings, file path segments, and method implementations to extract real domain terms.
-2. For a poker app, domain terms include: *startingHand*, *holeCards*, *range*, *rangeGroup*, *suit*, *rank*, etc.
-3. Every identifier must be evaluated against this vocabulary — not against other identifiers in the code.
+Read through the entire code and note every identifier: `const`/`let`/`var` declarations, function parameters, callback arguments, destructured names, class fields, class names, method names, and exported names. Note what each one actually holds — not just its declared type, but its domain meaning in context.
 
-**Existing identifiers are suspects, not authorities.** A class named `CardHandSuit` does not prove that is a valid domain concept.
+## Phase 1b — Identify the Domain
 
-## Step 2 — Score Every Identifier
+Before classifying, establish the domain vocabulary:
 
-Rate every identifier visible in the diff using this table:
+1. Read `describe`/`it` strings, comments, and method implementations — what do they compute or produce?
+2. Extract recurring nouns and verbs — these are the domain terms (e.g. a poker app uses *startingHand*, *holeCards*, *suit*, *rank*).
+3. Every proposed name must be drawn from these terms.
 
-| Rating   | Examples                                                                                              | Why bad                               |
-|----------|-------------------------------------------------------------------------------------------------------|---------------------------------------|
-| CRITICAL | `data`, `result`, `res`, `obj`, `temp`, `val`, `x`, `a`, `b`, `cb`, `fn`, `thing`, `stuff`, `info`  | Zero meaning — tells reader nothing   |
-| CRITICAL | Single-letter params outside short loops: `e`, `v`, `s`, `n`                                         | Opaque at every call site             |
-| HIGH     | Name implies wrong type or domain — `userList` holds a count, `isValid` holds a string               | Actively misleading                   |
-| HIGH     | Over-abbreviated: `usr`, `mgr`, `svc`, `prc`, `cfg`, `ctx` when domain is clear                      | Forces reader to decode               |
-| HIGH     | Concatenated noun-phrases with no real domain concept — `CardHandSuit`, `UserDataManager`             | Jams terms together; models nothing recognisable |
-| MEDIUM   | `expected`, `actual`, `output`, `input` with no domain qualifier                                      | Structural words without meaning      |
-| MEDIUM   | Numbered suffixes: `result1`, `result2`, `action1`                                                    | Signals you didn't know what to call it |
-| LOW      | Slightly generic but not actively confusing in context                                                | Minor clarity improvement only        |
+**Existing identifiers are suspects, not authorities.** A class named `CardHandSuit` does not establish that "CardHandSuit" is a real domain concept — read the implementation to determine what it actually models.
 
-**Skip entirely:** loop counters (`i`, `j`, `k`), universally understood abbreviations (`id`, `url`, `html`, `json`, `err`), and names that are clearly fine in context.
+## Phase 2 — Classify Every Identifier
 
-## Output Format
+Assign each identifier the **first** matching category in priority order: **LIE → INVERSE → CHIMERA → MIMIC → CIPHER → SERIES → FRAGMENT → MIRAGE → ECHO → VOID**.
 
-Return ONLY valid JSON with no other text. The JSON must have exactly two fields:
+| Category | Severity | Detection |
+|----------|----------|-----------|
+| **LIE** | CRITICAL | Boolean prefix (`is`, `has`, `should`, `can`) on a non-boolean; collection suffix (`List`, `Array`, `Set`, `Map`) on a scalar; domain term applied to a different concept |
+| **VOID** | CRITICAL | Name ∈ `data`, `result`, `res`, `obj`, `temp`, `val`, `x`, `a`, `b`, `cb`, `fn`, `thing`, `stuff`, `info`, `item`, `value`, `response`; single letter outside a loop counter; expansion still means nothing |
+| **INVERSE** | HIGH | Boolean name uses negating prefix/adjective (`isNot`, `hasNo`, `disabled`, `hidden`) where the positive form is the natural default; dominant usage is `if (!name)` |
+| **CHIMERA** | HIGH | Name has 3+ PascalCase segments, OR two domain terms concatenated without a recognized relationship (`CardHandSuit`, `UserDataManager`, `PaymentProcessingHelper`) |
+| **MIMIC** | HIGH | Name references a concrete type, format, or mechanism instead of the domain concept (`sqlRow`, `jsonObject`, `arrayOfStrings`, `mapOfIds`) |
+| **CIPHER** | HIGH | Direct abbreviation where expansion yields the complete correct name: `usr`→`user`, `mgr`→`manager`, `svc`→`service`, `cfg`→`config`, `ctx`→`context`, `btn`→`button`, `idx`→`index` |
+| **FRAGMENT** | MEDIUM | Structural role word with no domain noun: `expected`, `actual`, `output`, `input`, `handler`, `processor`, `manager`, `helper`, `wrapper`, `request`, `payload` |
+| **SERIES** | MEDIUM | `<base><digit>+` pattern (`result1`, `result2`) with at least one sibling sharing the same base |
+| **MIRAGE** | MEDIUM | Name's implied generality mismatches its scope — broad name in a narrow scope, or specific name in a shared scope |
+| **ECHO** | MEDIUM | Valid domain noun that maps to 2+ distinct concepts with no qualifier to disambiguate (`account`, `record`, `period`) |
 
-- `"summary_table"`: a markdown table string listing every rated identifier with columns: Identifier, File, Line, Rating, Reason. Include ALL rated identifiers (LOW through CRITICAL).
-- `"inline_comments"`: an array of inline comment objects for CRITICAL identifiers only. Each object must have: `"path"` (file path), `"line"` (line number in the new file, must exist in the diff), `"side"` (always `"RIGHT"`), `"body"` (explanation of why the name is CRITICAL and what domain concept it should represent).
+**Expansion test:** if a CIPHER candidate's expansion is itself void (`cb` → `callback`), classify as VOID instead.
 
-Example:
-```json
-{
-  "summary_table": "| Identifier | File | Line | Rating | Reason |\n|---|---|---|---|---|\n| `x` | src/foo.js | 12 | CRITICAL | Single-letter parameter, opaque at call site |",
-  "inline_comments": [
-    {"path": "src/foo.js", "line": 12, "side": "RIGHT", "body": "**CRITICAL identifier:** `x` has no meaning. Based on the domain context, this likely represents a card rank or player action — name it accordingly."}
-  ]
-}
+**Skip entirely:** loop counters (`i`, `j`, `k`), universally understood abbreviations (`id`, `url`, `html`, `json`, `err`), and names that are genuinely unambiguous in context.
+
+## Output
+
+Group by category, severity order (CRITICAL first, then HIGH, then MEDIUM). One block per category. No prose, no rewritten code.
+
 ```
+LIE [CRITICAL]
+  userList → userCount
+    Why: List suffix claims a collection; holds a scalar count
+
+VOID [CRITICAL]
+  data → invoiceLineItems
+    Why: name carries no semantic content; holds an array of invoice line items
+  cb → onPaymentComplete
+    Why: expansion "callback" is itself void; holds the callback invoked after payment settles
+
+CHIMERA [HIGH]
+  CardHandSuit → StartingHand
+    Why: three-segment name has no coherent single referent; implementation models a two-card starting hand
+
+CIPHER [HIGH]
+  usr → user
+    Why: direct abbreviation with a recoverable expansion
+
+FRAGMENT [MEDIUM]
+  expected → expectedChargeTotal
+    Why: structural word with no domain noun; belongs to the charge total assertion
+
+SERIES [MEDIUM]
+  result1 → chargeAttemptResult
+  result2 → refundConfirmation
+    Why: ordinal suffixes encode position, not concept; each holds a distinct domain value
+
+SKIPPED
+  err   — exempt (universally understood in catch context)
+```
+
+Omit any category that has no entries. For SERIES, list all siblings under one block with a shared Why. The Why must state the category's root cause applied to this specific identifier — one sentence, concrete.
+
+---
+
+{{code}}
