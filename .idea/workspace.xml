@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e98778c5-877c-41bb-a7b6-0266d506c070" name="Changes" comment="update review_instructions with better naming instructions" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="3DXE8SQLkaL4myP7jbMSNNd4hob" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "ai-refactoring-2",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.preferred.runtime.type.id": "node",
+    "last_opened_file_path": "C:/Users/evano/WebstormProjects/PokerHandRangeRubyReact",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.31033.133" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e98778c5-877c-41bb-a7b6-0266d506c070" name="Changes" comment="" />
+      <created>1778419854980</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778419854980</updated>
+      <workItem from="1778419856021" duration="12466000" />
+    </task>
+    <task id="LOCAL-00001" summary="add claude yaml file">
+      <option name="closed" value="true" />
+      <created>1778420176014</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1778420176014</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add claude yaml file">
+      <option name="closed" value="true" />
+      <created>1778420534016</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1778420534016</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add claude yaml file">
+      <option name="closed" value="true" />
+      <created>1778420713429</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778420713429</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add claude yaml file">
+      <option name="closed" value="true" />
+      <created>1778421296600</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778421296600</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add claude yaml file">
+      <option name="closed" value="true" />
+      <created>1778421579679</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778421579679</updated>
+    </task>
+    <task id="LOCAL-00006" summary="exclude yarn lock">
+      <option name="closed" value="true" />
+      <created>1778421695514</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778421695514</updated>
+    </task>
+    <task id="LOCAL-00007" summary="use env variable">
+      <option name="closed" value="true" />
+      <created>1778421829339</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1778421829339</updated>
+    </task>
+    <task id="LOCAL-00008" summary="allow for more tokens">
+      <option name="closed" value="true" />
+      <created>1778421859829</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778421859829</updated>
+    </task>
+    <task id="LOCAL-00009" summary="only include js files">
+      <option name="closed" value="true" />
+      <created>1778421901306</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778421901306</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix pipeline">
+      <option name="closed" value="true" />
+      <created>1778422139487</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1778422139487</updated>
+    </task>
+    <task id="LOCAL-00011" summary="leave a series of comments instead of just one comment">
+      <option name="closed" value="true" />
+      <created>1778422420573</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1778422420573</updated>
+    </task>
+    <task id="LOCAL-00012" summary="leave a series of comments instead of just one comment">
+      <option name="closed" value="true" />
+      <created>1778423276462</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778423276462</updated>
+    </task>
+    <task id="LOCAL-00013" summary="leave a series of comments instead of just one comment">
+      <option name="closed" value="true" />
+      <created>1778423392212</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1778423392212</updated>
+    </task>
+    <task id="LOCAL-00014" summary="clean output">
+      <option name="closed" value="true" />
+      <created>1778423816410</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1778423816410</updated>
+    </task>
+    <task id="LOCAL-00015" summary="improve prompt">
+      <option name="closed" value="true" />
+      <created>1778459639115</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778459639115</updated>
+    </task>
+    <task id="LOCAL-00016" summary="whoops">
+      <option name="closed" value="true" />
+      <created>1778459665372</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1778459665372</updated>
+    </task>
+    <task id="LOCAL-00017" summary="update review_instructions with better naming instructions">
+      <option name="closed" value="true" />
+      <created>1778461470771</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1778461470771</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add claude yaml file" />
+    <MESSAGE value="exclude yarn lock" />
+    <MESSAGE value="use env variable" />
+    <MESSAGE value="allow for more tokens" />
+    <MESSAGE value="only include js files" />
+    <MESSAGE value="fix pipeline" />
+    <MESSAGE value="leave a series of comments instead of just one comment" />
+    <MESSAGE value="clean output" />
+    <MESSAGE value="improve prompt" />
+    <MESSAGE value="whoops" />
+    <MESSAGE value="update review_instructions with better naming instructions" />
+    <option name="LAST_COMMIT_MESSAGE" value="update review_instructions with better naming instructions" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

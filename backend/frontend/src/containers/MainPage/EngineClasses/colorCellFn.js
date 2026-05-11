@@ -11,10 +11,10 @@ export const colorCell = (cards, startingHand) => {
   const matchingHandKeys = findMatchingHandKeys(cards, startingHand);
 
   if (matchingHandKeys[0]?.length <= 3)
-    return colorStandardHands({ matchingHandKeys, cards });
+    return colorAggregateHands({ matchingHandKeys, cards });
 
-  const suitedCombinations = ["ss", "dd", "hh", "cc"];
-  const offsuitCombinations = [
+  const suitedSuitCodes = ["ss", "dd", "hh", "cc"];
+  const offsuitSuitCodes = [
     "sd",
     "sh",
     "sc",
@@ -28,10 +28,10 @@ export const colorCell = (cards, startingHand) => {
     "dh",
     "dc",
   ];
-  const pairCombinations = ["sd", "sh", "sc", "cs", "cd", "dh"];
+  const pairSuitCodes = ["sd", "sh", "sc", "cs", "cd", "dh"];
 
-  const filterMatchingHands = (handKeys, equalHandFn) =>
-    handKeys.filter((handKey) => equalHandFn(handKey, startingHand));
+  const filterMatchingHands = (handKeys, handMatchPredicate) =>
+    handKeys.filter((handKey) => handMatchPredicate(handKey, startingHand));
   const suitedHandKeys = filterMatchingHands(
     matchingHandKeys,
     isSuitedHandMatch
@@ -46,21 +46,21 @@ export const colorCell = (cards, startingHand) => {
   );
 
   return (
-    colorMatchingHands(suitedCombinations, suitedHandKeys, cards) ||
-    colorMatchingHands(offsuitCombinations, offsuitHandKeys, cards) ||
-    colorMatchingHands(pairCombinations, pairedHandKeys, cards) || ["#DDD"]
+    colorMatchingHands(suitedSuitCodes, suitedHandKeys, cards) ||
+    colorMatchingHands(offsuitSuitCodes, offsuitHandKeys, cards) ||
+    colorMatchingHands(pairSuitCodes, pairedHandKeys, cards) || ["#DDD"]
   );
 };
 
-const colorStandardHands = ({ matchingHandKeys, cards }) => {
+const colorAggregateHands = ({ matchingHandKeys, cards }) => {
   return (
     matchingHandKeys.map((handKey) => cards[handKey].colorCards) || ["#DDD"]
   );
 };
 
-const colorMatchingHands = (suitCombinations, matchingHandKeys, cards) => {
+const colorMatchingHands = (suitCodes, matchingHandKeys, cards) => {
   if (matchingHandKeys.length) {
-    const filledHandKeys = fillHandKeySlots(suitCombinations, matchingHandKeys); //?
+    const filledHandKeys = fillHandKeySlots(suitCodes, matchingHandKeys); //?
     return buildColorArray(filledHandKeys, cards);
   }
   return false;
@@ -69,5 +69,5 @@ const colorMatchingHands = (suitCombinations, matchingHandKeys, cards) => {
 const buildColorArray = (handKeySlots, cards) =>
   handKeySlots.map((handKey) => cards[handKey]?.colorCards || "#DDD");
 
-const fillHandKeySlots = (suitCombinations, matchingKeys) =>
-  suitCombinations.map((_, idx) => matchingKeys[idx] || "");
+const fillHandKeySlots = (suitCodes, matchingKeys) =>
+  suitCodes.map((_, index) => matchingKeys[index] || "");
