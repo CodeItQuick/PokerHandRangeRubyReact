@@ -1,5 +1,5 @@
-export const findMatchingHandKeys = (cards, startingHand) =>
-  Object.keys(cards).filter(
+export const findMatchingHandKeys = (handColorMap, startingHand) =>
+  Object.keys(handColorMap).filter(
     (handKey) =>
       isPairMatch(handKey, startingHand) ||
       startingHand.getHand().substr(0, 3) === handKey.substr(0, 3) ||

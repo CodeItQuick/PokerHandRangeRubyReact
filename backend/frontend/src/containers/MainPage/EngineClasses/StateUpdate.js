@@ -77,7 +77,7 @@ export default class BoardOfHands {
             cardHand={startingHand}
             bind={this.bind}
             allPreflopHands={allPreflopHands}
-            cards={this.handColorMap}
+            handColorMap={this.handColorMap}
           />
         );
       });
