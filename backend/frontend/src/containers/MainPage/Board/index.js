@@ -50,7 +50,7 @@ const Board = ({ onMouseOverHandler, SelectedRanges, preflopRanges }) => {
   });
 
   useEffect(() => {
-    if (!startingHandGrid) updateStartingHandGrid(new BoardOfHands(bind));
+    if (!startingHandGrid) updateStartingHandGrid(new StartingHandGrid(bind));
 
     //If there are new equities to be entered, dispatch the action
   }, [false, bind]);
