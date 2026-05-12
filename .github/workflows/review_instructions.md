@@ -14,83 +14,129 @@ Establish the domain vocabulary from the diff context:
 
 ## Step 2 — Score Every Identifier
 
-Rate every identifier visible in the diff. Score variables, parameters, callback arguments, class names, method names, and module names — existing class and function names are not exempt.
+Rate every identifier visible in the diff. Score every `const`/`let`/`var` declaration, function parameter, callback argument, destructured name, class field, class name, method name, and exported name — existing class and function names are not exempt.
 
-### CRITICAL
+Assign the **first** category whose detection rule matches, evaluated in priority order: LIE → INVERSE → CHIMERA → MIMIC → CIPHER → SERIES → FRAGMENT → MIRAGE → ECHO → VOID.
 
-Zero meaning or opaque at every call site:
+**Scoring inside a class or function:** score each identifier by what it actually does or holds, independent of the enclosing scope's name. A mis-named class does not legitimize mis-named fields.
 
-- Single-letter callback params: `x`, `e`, `v`, `n`, `s`, `a`, `b`
-- Generic containers: `data`, `result`, `res`, `obj`, `info`, `val`, `temp`, `thing`, `stuff`
-- Generic function params: `cb`, `fn`, `handler`, `func`, `arg`, `args`
-- `item` / `el` / `elem` in map/filter/forEach when domain term exists
-- `payload` holding a specific domain object
-- `response` / `resp` holding a typed API result
-- `_` used as a discard variable but then referenced
-- `me` / `self` / `that` for `this` bindings
-- `tmp` holding a permanent computed value
-- Same variable name reused for different values in the same scope
-- `config` / `opts` when the shape is domain-specific and well-known
+---
 
-### HIGH
+### LIE — *False semantic content* `[CRITICAL]`
 
-Actively misleading or forces the reader to decode:
+**Root cause:** The name makes a specific, verifiable claim about type, shape, or domain role that is factually wrong.
 
-- Over-abbreviated: `mgr`, `svc`, `prc`, `usr`, `cfg`, `attrib`, `amt`, `cnt`, `idx`, `addr`
-- Wrong type implication: `isValid` holds a string, `userList` holds a count, `userId` holds a full object, `count` holds a boolean, `flag` used as a meaningful boolean
-- Concatenated noun-phrases that model no real concept: `ItemDataProcessor`, `UserActionHandler`, `DataManagerService`, `ConfigHelperUtil`, `CardHandSuit`
-- Named for implementation not concept: `arrayOfStrings`, `promiseResult`, `objectWithKeys`
-- Generic verb+noun: `handleData`, `processItem`, `doAction`, `runTask`
-- Plural/singular mismatch: `users` holds a single user, `item` holds a collection
-- Redundant type suffix: `userObject`, `itemArray`, `nameString`
-- `Manager` / `Service` / `Helper` / `Util` suffix that adds no domain meaning
-- Negated boolean: `isNotValid`, `notEnabled`, `noResults`
-- Past tense for current state: `updatedUser` for the value currently in use
+**Detection:** any mismatch between name and value:
+- Boolean prefix (`is`, `has`, `should`, `can`) on a non-boolean value
+- Collection suffix (`List`, `Array`, `Set`, `Map`) on a scalar or non-collection
+- Domain-specific term applied to a different domain concept (e.g., `userList` holds a count, `invoiceId` holds a full object)
 
-**Scoring inside a class or function:** do not inherit the parent name as ground truth. Score each identifier by what it actually does or holds, independent of the enclosing scope's name.
+---
 
-### MEDIUM
+### INVERSE — *Polarity mismatch* `[HIGH]`
 
-Structural words that carry no domain meaning:
+**Root cause:** The name expresses the wrong boolean polarity, forcing double-negation at every call site.
 
-- `source`, `target`, `origin`, `destination`, `output`, `input` with no domain qualifier
-- Numbered suffixes: `result1`, `result2`, `user1`, `item2`
-- Boolean missing `is`/`has`/`should`: `valid`, `active`, `loaded`, `open`
-- Generic collection when a domain term exists: `items`, `entries`, `records`, `elements`
-- Verb form used as a data variable: `fetching`, `loading`, `saving`
-- `current` / `prev` / `next` without a domain qualifier
-- `new` prefix that is always implied: `newOrder`, `newUser`
-- Redundant context: `userUserName`, `cartCartItems`
-- Tense mismatch: `processing` for an already-completed result
+**Detection:** boolean name uses a negating prefix or adjective — `isNot`, `hasNo`, `cannot`, `notX`, `disabled`, `hidden`, `excluded` — where the positive form is the natural default. Confirm: if the dominant usage pattern is `if (!name)` rather than `if (name)`, the polarity is inverted.
 
-### LOW
+---
 
-Slightly imprecise but not actively confusing:
+### CHIMERA — *Incoherent term combination* `[HIGH]`
 
-- Missing qualifier: `date` instead of `dueDate`, `price` instead of `unitPrice`
-- Unnecessary `get` prefix on a variable (not a function): `getUser` assigned as a value
-- Slightly abbreviated but decipherable in context: `addr`, `desc`, `qty`
-- Domain term used imprecisely: `cost` when `subtotal` or `lineTotal` is the real concept
-- Missing specificity: `message` when `errorMessage` or `confirmationMessage` is the concept
-- Inconsistent casing with surrounding code: `camelCase` next to `snake_case` in the same scope
+**Root cause:** Assembled from multiple valid domain terms whose concatenation maps to no single coherent concept.
+
+**Detection:** name has 3+ PascalCase segments, OR two domain terms concatenated without a recognized relationship (e.g., `CardHandSuit`, `UserDataManager`, `PaymentProcessingHelper`). Confirm: read the implementation — if the code models one concept with a simpler name, it is a CHIMERA.
+
+---
+
+### MIMIC — *Implementation leaking through the name* `[HIGH]`
+
+**Root cause:** The name describes mechanism or data structure rather than the domain concept.
+
+**Detection:** name references a concrete type, storage format, or mechanism — `sqlRow`, `jsonObject`, `arrayOfStrings`, `rawBytes`, `mapOfIds`. Confirm: if removing the implementation word leaves a valid domain name, it is a MIMIC.
+
+---
+
+### CIPHER — *Correct content, encoded* `[HIGH]`
+
+**Root cause:** The name abbreviates a term where spelling it out produces the complete, correct name.
+
+**Detection:** name matches a known abbreviation where expansion yields a complete, meaningful name: `usr`→`user`, `mgr`→`manager`, `svc`→`service`, `cfg`→`config`, `prc`→`process`, `ctx`→`context`, `btn`→`button`, `idx`→`index`. If expansion still yields a void or fragment, classify as VOID or FRAGMENT instead.
+
+---
+
+### SERIES — *Ordinal encoding instead of semantic content* `[MEDIUM]`
+
+**Root cause:** The name encodes position rather than the identifier's distinct conceptual role.
+
+**Detection:** name matches `<base><digit>+` (e.g., `result1`, `result2`, `action1`) AND at least one sibling exists sharing the same base.
+
+---
+
+### FRAGMENT — *Structural role without domain qualification* `[MEDIUM]`
+
+**Root cause:** Correctly names a structural role but omits the domain concept it belongs to.
+
+**Detection:** name ∈ structural role set — `expected`, `actual`, `output`, `input`, `handler`, `processor`, `manager`, `helper`, `wrapper`, `request`, `payload` — with no domain noun attached.
+
+---
+
+### MIRAGE — *Scope-generality mismatch* `[MEDIUM]`
+
+**Root cause:** The name's implied generality does not match the identifier's actual scope.
+
+**Detection:** module- or class-level identifier with a name implying specificity (`currentUser`, `activeRequest`) where no outer context pins it; OR function-local identifier with a name implying application-wide relevance (`appConfig`, `globalSettings`) where it is only used in one place.
+
+---
+
+### ECHO — *Unresolved domain ambiguity* `[MEDIUM]`
+
+**Root cause:** A valid domain noun that maps to two or more distinct concepts with nothing to resolve the ambiguity.
+
+**Detection:** name maps to 2+ distinct domain concepts with no qualifier — `account` (user vs. financial), `record` (database row vs. audit entry), `period` (billing vs. time). Confirm: if a new reader could reasonably interpret it two different ways, it is an ECHO.
+
+---
+
+### VOID — *No semantic content* `[CRITICAL]`
+
+**Root cause:** The name carries zero information.
+
+**Detection:** name ∈ canonical void set: `data`, `result`, `res`, `obj`, `temp`, `val`, `x`, `a`, `b`, `cb`, `fn`, `thing`, `stuff`, `info`, `item`, `value`, `response` (unqualified); OR name is a single letter outside a loop counter; OR expansion of the name in any domain still means nothing. Note: if a CIPHER candidate's expansion is itself void (`cb`→`callback`, `fn`→`function`), classify as VOID, not CIPHER.
+
+---
+
+## Severity Summary
+
+| Category | Severity | Root cause |
+|----------|----------|------------|
+| LIE      | CRITICAL | False information |
+| VOID     | CRITICAL | No information |
+| INVERSE  | HIGH     | Inverted polarity |
+| CHIMERA  | HIGH     | Incoherent combination |
+| MIMIC    | HIGH     | Implementation exposed instead of concept |
+| CIPHER   | HIGH     | Encoded information |
+| FRAGMENT | MEDIUM   | Incomplete information |
+| SERIES   | MEDIUM   | Positional, not conceptual |
+| MIRAGE   | MEDIUM   | Wrong scope generality |
+| ECHO     | MEDIUM   | Ambiguous domain term |
 
 ### Skip entirely
 
-Loop counters (`i`, `j`, `k`), universally understood abbreviations (`id`, `url`, `html`, `json`, `err`), and names that are clearly fine in context.
+Loop counters (`i`, `j`, `k`), universally understood abbreviations (`id`, `url`, `html`, `json`, `err`), and names that are genuinely unambiguous in context. `err` in `.catch(err => ...)` is fine. `e` in `.catch(e => ...)` is VOID.
 
 ## Output Format
 
 Return ONLY valid JSON with no other text. The JSON must have exactly two fields:
 
-- `"summary_table"`: a markdown table string listing every rated identifier with columns: Identifier, File, Line, Rating, Reason. Include ALL rated identifiers (LOW through CRITICAL).
-- `"inline_comments"`: an array of inline comment objects for CRITICAL identifiers only. Each object must have: `"path"` (file path), `"line"` (line number in the new file, must exist in the diff), `"side"` (always `"RIGHT"`), `"body"` (explanation of why the name is CRITICAL and what domain concept it should represent).
+- `"summary_table"`: a markdown table string listing every rated identifier with columns: Identifier, File, Line, Category, Severity, Reason. Include ALL rated identifiers (MEDIUM through CRITICAL).
+- `"inline_comments"`: an array of inline comment objects for CRITICAL identifiers only (LIE and VOID). Each object must have: `"path"` (file path), `"line"` (line number in the new file, must exist in the diff), `"side"` (always `"RIGHT"`), `"body"` (the category name, why it qualifies, and what domain concept it should represent).
 
 Example:
 ```json
 {
-  "summary_table": "| Identifier | File | Line | Rating | Reason |\n|---|---|---|---|---|\n| `x` | src/foo.js | 12 | CRITICAL | Single-letter parameter, opaque at call site |",
+  "summary_table": "| Identifier | File | Line | Category | Severity | Reason |\n|---|---|---|---|---|---|\n| `x` | src/foo.js | 12 | VOID | CRITICAL | Single-letter parameter carries no semantic content |",
   "inline_comments": [
-    {"path": "src/foo.js", "line": 12, "side": "RIGHT", "body": "**CRITICAL identifier:** `x` has no meaning. Based on the domain context, this likely represents a card rank or player action — name it accordingly."}
+    {"path": "src/foo.js", "line": 12, "side": "RIGHT", "body": "**VOID (CRITICAL):** `x` carries no semantic content. Based on the domain context, this likely represents a card rank or player action — name it accordingly."}
   ]
 }
 ```
