@@ -20,7 +20,7 @@ jobs:
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          prompt: |
+          direct_prompt: |
             Read `.github/workflows/rename-identifiers/skill.md` for your full instructions and execute with flags: --min-severity=HIGH --format=annotations
 
             Diff to analyse: run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000`
