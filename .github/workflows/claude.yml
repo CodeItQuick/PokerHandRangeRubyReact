@@ -15,7 +15,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run Claude PR Review
+      - name: Run Claude Analysis
         uses: anthropics/claude-code-action@beta
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -25,7 +25,35 @@ jobs:
 
             Diff to analyse: run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000`
 
-            After producing the annotations, post each finding as an inline PR review comment via:
-            gh api --method POST /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews
+            Write ONLY the JSON object (matching the schema in phase-5-annotations.md) — no preamble, no prose — to `/tmp/annotations.json`.
 
-            Use `"event": "COMMENT"` and one entry per finding in `"comments"`, with `"path"`, `"line"`, `"side": "RIGHT"`, and `"body"` set to the full annotation line.
+      - name: Post inline comments
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ ! -s /tmp/annotations.json ]; then
+            echo "No annotations produced"
+            exit 0
+          fi
+
+          FINDINGS=$(jq '.findings' /tmp/annotations.json)
+          if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
+            echo "No findings to post"
+            exit 0
+          fi
+
+          # Post a PR-level summary comment
+          SUMMARY=$(jq -r '.summary' /tmp/annotations.json)
+          gh pr comment ${{ github.event.pull_request.number }} --body "$SUMMARY"
+
+          # Build inline review comments from findings
+          COMMENTS=$(echo "$FINDINGS" | jq '[.[] | {
+            path: .file,
+            line: .line,
+            side: "RIGHT",
+            body: "**\(.category)** `\(.oldName)` → `\(.proposedName)` — \(.reason)"
+          }]')
+
+          gh api --method POST \
+            /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
+            --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
