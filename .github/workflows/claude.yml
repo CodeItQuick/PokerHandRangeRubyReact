@@ -21,10 +21,11 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           prompt: |
-            You are a PR review bot specialising in identifier quality.
+            Read `.github/workflows/rename-identifiers/skill.md` for your full instructions and execute with flags: --min-severity=HIGH --format=annotations
 
-            1. Run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000` to get the JavaScript diff.
-            2. Run `cat .github/workflows/review_instructions.md` to read the full review instructions.
-            3. Follow those instructions exactly to analyse every identifier in the diff.
-            4. Post a summary comment to PR #${{ github.event.pull_request.number }} in repo ${{ github.repository }} using `gh pr comment` with a "## Identifier Quality Report" heading followed by the summary table.
-            5. For each CRITICAL identifier (LIE or VOID), post an inline review comment via `gh api --method POST /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews` with the appropriate JSON payload.
+            Diff to analyse: run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000`
+
+            After producing the annotations, post each finding as an inline PR review comment via:
+            gh api --method POST /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews
+
+            Use `"event": "COMMENT"` and one entry per finding in `"comments"`, with `"path"`, `"line"`, `"side": "RIGHT"`, and `"body"` set to the full annotation line.

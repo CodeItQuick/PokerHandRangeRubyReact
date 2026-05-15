@@ -30,7 +30,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "ignore.virus.scanning.warn.message": "true",
     "javascript.preferred.runtime.type.id": "node",
-    "last_opened_file_path": "C:/Users/evano/WebstormProjects/PokerHandRangeRubyReact",
+    "last_opened_file_path": "C:/Users/evano/WebstormProjects/PokerHandRangeRubyReact/.github/workflows",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -53,7 +53,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1778419854980</updated>
-      <workItem from="1778419856021" duration="26248000" />
+      <workItem from="1778419856021" duration="27414000" />
     </task>
     <task id="LOCAL-00001" summary="add claude yaml file">
       <option name="closed" value="true" />
