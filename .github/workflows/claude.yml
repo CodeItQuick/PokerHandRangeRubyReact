@@ -64,7 +64,7 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           direct_prompt: |
-            Read `.github/workflows/possible-null-access/skill.md` for your full instructions and execute with flags: --format=annotations --min-severity=HIGH
+            Read `.github/workflows/possible-null-access/skill.md` for your full instructions and execute with flags: --format=annotations --min-severity=MEDIUM
 
             Diff to analyse: run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000`
 
