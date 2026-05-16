@@ -57,3 +57,42 @@ jobs:
           gh api --method POST \
             /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
             --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
+
+      - name: Run Null Access Analysis
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          direct_prompt: |
+            Read `.github/workflows/possible-null-access/skill.md` for your full instructions and execute with flags: --format=annotations --min-severity=HIGH
+
+            Diff to analyse: run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000`
+
+            Write ONLY the JSON array — no preamble, no prose — to `/tmp/null-access.json`.
+
+      - name: Post null access inline comments
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ ! -s /tmp/null-access.json ]; then
+            echo "No null access annotations produced"
+            exit 0
+          fi
+
+          FINDINGS=$(jq '.' /tmp/null-access.json)
+          if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
+            echo "No null access findings to post"
+            exit 0
+          fi
+
+          # Build inline review comments: "Severity: claim. suggested_fix"
+          COMMENTS=$(echo "$FINDINGS" | jq '[.[] | {
+            path: .file,
+            line: .line,
+            side: "RIGHT",
+            body: "**\(.severity | if . == "HIGH" then "High" elif . == "MEDIUM" then "Medium" else "Low" end):** \(.claim). \(.suggested_fix)"
+          }]')
+
+          gh api --method POST \
+            /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
+            --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"

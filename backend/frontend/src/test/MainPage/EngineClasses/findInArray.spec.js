@@ -3,8 +3,8 @@ import {
   isSuitedHandMatch,
   isOffsuitHandMatch,
   isPairComboMatch,
-} from "./../../../containers/MainPage/EngineClasses/findMatchingHandKeys";
-import { StartingHandBuilder } from "./../../../containers/MainPage/EngineClasses/StartingHandBuilder";
+} from "../../../containers/MainPage/EngineClasses/findMatchingHandKeys";
+import { StartingHandBuilder } from "../../../containers/MainPage/EngineClasses/StartingHandBuilder";
 import { expect } from "chai";
 
 describe("findInArray", () => {
