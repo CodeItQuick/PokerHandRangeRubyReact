@@ -64,7 +64,30 @@ jobs:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           direct_prompt: |
-            Read `.github/workflows/pr-analysis/skill.md` for your full instructions and execute with flags: --format=annotations
+            Read `.github/workflows/pr-analysis/skill.md` for your top-level instructions.
+
+            Before running any analysis, read every file the skill references:
+            - `.github/workflows/pr-analysis/shared/suppression-rules.md`
+            - `.github/workflows/pr-analysis/shared/comment-format.md`
+            - `.github/workflows/pr-analysis/correctness/null-access.md`
+            - `.github/workflows/pr-analysis/correctness/swallowed-exceptions.md`
+            - `.github/workflows/pr-analysis/correctness/suspicious-conditional.md`
+            - `.github/workflows/pr-analysis/correctness/mutation-of-input.md`
+            - `.github/workflows/pr-analysis/correctness/implicit-boolean-coercion.md`
+            - `.github/workflows/pr-analysis/correctness/implicit-test-ordering.md`
+            - `.github/workflows/pr-analysis/correctness/suppression-rules.md`
+            - `.github/workflows/pr-analysis/overengineering/boolean-flag-splitter.md`
+            - `.github/workflows/pr-analysis/overengineering/passthrough-wrapper.md`
+            - `.github/workflows/pr-analysis/overengineering/suppression-rules.md`
+            - `.github/workflows/pr-analysis/maintainability/primitive-obsession.md`
+            - `.github/workflows/pr-analysis/maintainability/feature-envy.md`
+            - `.github/workflows/pr-analysis/maintainability/mixed-abstraction-levels.md`
+            - `.github/workflows/pr-analysis/maintainability/suppression-rules.md`
+            - `.github/workflows/pr-analysis/comprehension/overly-clever-one-liner.md`
+            - `.github/workflows/pr-analysis/comprehension/inconsistent-abstraction-in-name.md`
+            - `.github/workflows/pr-analysis/comprehension/suppression-rules.md`
+
+            Then execute all thirteen passes with flags: --format=annotations
 
             Diff to analyse: run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000`
 
