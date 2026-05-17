@@ -53,6 +53,7 @@ jobs:
             --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
 
   pr-analysis:
+    needs: rename-identifiers
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -101,6 +102,7 @@ jobs:
             --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
 
   maintainability:
+    needs: pr-analysis
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -146,6 +148,7 @@ jobs:
             --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
 
   overengineering:
+    needs: maintainability
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -191,6 +194,7 @@ jobs:
             --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
 
   comprehension:
+    needs: overengineering
     runs-on: ubuntu-latest
     permissions:
       contents: read
