@@ -190,40 +190,43 @@ For CI pipelines and PR review comment automation. Emit a single JSON array of f
 Example:
 
 ```json
-[
-  {
-    "skill": "pr_analysis",
-    "category": "correctness",
-    "pass": "null-access",
-    "file": "src/users.ts",
-    "line": 42,
-    "expression": "user.name",
-    "claim": "user.name may throw because users.find(...) can return undefined",
-    "evidence": [
-      "users.find(...) returns User | undefined",
-      "no guard between assignment at line 41 and dereference at line 42"
-    ],
-    "confidence": "high",
-    "severity": "blocking",
-    "suggested_fix": "Guard `user` before reading `name`, throw a domain error, or use `?? defaultUser`."
-  },
-  {
-    "skill": "pr_analysis",
-    "category": "correctness",
-    "pass": "swallowed-exceptions",
-    "file": "src/storage.ts",
-    "line": 58,
-    "expression": "catch (e) {}",
-    "claim": "Exception from writeFile() is silently discarded; callers cannot detect the failure",
-    "evidence": [
-      "catch block body is empty — exception binding `e` is never used",
-      "writeFile failure is not communicated via return value or callback"
-    ],
-    "confidence": "high",
-    "severity": "blocking",
-    "suggested_fix": "Re-throw the error, return a Result/Either type, or at minimum log at error level and document why proceeding is safe."
-  }
-]
+{
+  "summary": "2 pr analysis findings: 2 HIGH",
+  "findings": [
+    {
+      "skill": "pr_analysis",
+      "category": "correctness",
+      "pass": "null-access",
+      "file": "src/users.ts",
+      "line": 42,
+      "expression": "user.name",
+      "claim": "user.name may throw because users.find(...) can return undefined",
+      "evidence": [
+        "users.find(...) returns User | undefined",
+        "no guard between assignment at line 41 and dereference at line 42"
+      ],
+      "confidence": "high",
+      "severity": "blocking",
+      "suggested_fix": "Guard `user` before reading `name`, throw a domain error, or use `?? defaultUser`."
+    },
+    {
+      "skill": "pr_analysis",
+      "category": "correctness",
+      "pass": "swallowed-exceptions",
+      "file": "src/storage.ts",
+      "line": 58,
+      "expression": "catch (e) {}",
+      "claim": "Exception from writeFile() is silently discarded; callers cannot detect the failure",
+      "evidence": [
+        "catch block body is empty — exception binding `e` is never used",
+        "writeFile failure is not communicated via return value or callback"
+      ],
+      "confidence": "high",
+      "severity": "blocking",
+      "suggested_fix": "Re-throw the error, return a Result/Either type, or at minimum log at error level and document why proceeding is safe."
+    }
+  ]
+}
 ```
 
 Suppress `low` confidence findings entirely. 
