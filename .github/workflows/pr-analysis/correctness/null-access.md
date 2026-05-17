@@ -1,6 +1,6 @@
-# Detection Patterns
+# Detection Patterns — Null Access
 
-Patterns that frequently introduce null/undefined dereferences. Each pattern is a *candidate*, not a finding — apply the evidence rules in `SKILL.md` and the suppression rules in `suppression-rules.md` before reporting.
+Patterns that frequently introduce null/undefined dereferences. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the null-access suppression rules in `references/suppression-rules.md` before reporting.
 
 ## 1. `.find(...)` result dereferenced
 
@@ -9,7 +9,7 @@ const user = users.find(u => u.id === id);
 return user.name;        // user is User | undefined
 ```
 
-Why it matters: `Array.prototype.find` returns `undefined` when no match exists. A common bug, especially in code paths that "should never" miss.
+`Array.prototype.find` returns `undefined` when no match exists. A common bug, especially in code paths that "should never" miss.
 
 ## 2. `Map.get(key)` / `Set` lookup result dereferenced
 
@@ -68,7 +68,7 @@ if (!user) {
 }
 ```
 
-This is a strong signal. The author intended to guard but ordered it wrong.
+Strong signal: the author intended to guard but ordered it wrong.
 
 ## 8. Chain of optional accesses where only one link is guarded
 
@@ -104,8 +104,6 @@ If no item matches the predicate, `result` is never assigned.
 ---
 
 ## Patterns to **not** flag
-
-These look similar but are safe:
 
 - Optional chaining: `user?.profile?.name`
 - Nullish coalescing default: `(user ?? defaultUser).name`
