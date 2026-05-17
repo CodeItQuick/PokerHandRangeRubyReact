@@ -92,7 +92,7 @@ jobs:
 
           Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
 
-          Write ONLY the JSON array — no preamble, no prose — to /tmp/correctness.json."
+          Write ONLY the JSON object — no preamble, no prose — to /tmp/correctness.json."
 
       - name: Post correctness inline comments
         env:
@@ -103,13 +103,17 @@ jobs:
             exit 0
           fi
 
-          FINDINGS=$(jq '.' /tmp/correctness.json)
+          FINDINGS=$(jq '.findings' /tmp/correctness.json)
           if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
             echo "No correctness findings to post"
             exit 0
           fi
 
-          # Build inline review comments: "Pass (Severity): claim. suggested_fix"
+          # Post a PR-level summary comment
+          SUMMARY=$(jq -r '.summary' /tmp/correctness.json)
+          gh pr comment ${{ github.event.pull_request.number }} --body "$SUMMARY"
+
+          # Build inline review comments from findings
           COMMENTS=$(echo "$FINDINGS" | jq '[.[] | {
             path: .file,
             line: .line,
