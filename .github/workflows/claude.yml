@@ -15,17 +15,23 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run Claude Analysis
-        uses: anthropics/claude-code-action@beta
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          direct_prompt: |
-            Read `.github/workflows/rename-identifiers/skill.md` for your full instructions and execute with flags: --min-severity=HIGH --format=annotations
+      - name: Install Claude Code CLI and skills
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          mkdir -p ~/.claude/skills/rename-identifiers
+          cp -r .github/workflows/rename-identifiers/* ~/.claude/skills/rename-identifiers/
+          mkdir -p ~/.claude/skills/pr-analysis
+          cp -r .github/workflows/pr-analysis/* ~/.claude/skills/pr-analysis/
 
-            Diff to analyse: run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000`
+      - name: Run Rename Identifiers Analysis
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "/rename-identifiers --min-severity=HIGH --format=annotations
 
-            Write ONLY the JSON object (matching the schema in phase-5-annotations.md) — no preamble, no prose — to `/tmp/annotations.json`.
+          Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
+
+          Write ONLY the JSON object (matching the schema in phase-5-annotations.md) — no preamble, no prose — to /tmp/annotations.json."
 
       - name: Post inline comments
         env:
@@ -59,29 +65,14 @@ jobs:
             --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
 
       - name: Run PR Analysis (Correctness)
-        uses: anthropics/claude-code-action@beta
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          direct_prompt: |
-            Read `.github/workflows/pr-analysis/skill.md` for your top-level instructions.
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          claude -p "/pr-analysis --category=correctness --format=annotations
 
-            Before running any analysis, read every file the skill references for the correctness category:
-            - `.github/workflows/pr-analysis/shared/suppression-rules.md`
-            - `.github/workflows/pr-analysis/shared/comment-format.md`
-            - `.github/workflows/pr-analysis/correctness/null-access.md`
-            - `.github/workflows/pr-analysis/correctness/swallowed-exceptions.md`
-            - `.github/workflows/pr-analysis/correctness/suspicious-conditional.md`
-            - `.github/workflows/pr-analysis/correctness/mutation-of-input.md`
-            - `.github/workflows/pr-analysis/correctness/implicit-boolean-coercion.md`
-            - `.github/workflows/pr-analysis/correctness/implicit-test-ordering.md`
-            - `.github/workflows/pr-analysis/correctness/suppression-rules.md`
+          Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
 
-            Then execute with flags: --category=correctness --format=annotations
-
-            Diff to analyse: run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000`
-
-            Write ONLY the JSON array — no preamble, no prose — to `/tmp/correctness.json`.
+          Write ONLY the JSON array — no preamble, no prose — to /tmp/correctness.json."
 
       - name: Post correctness inline comments
         env:
