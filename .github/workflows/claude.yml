@@ -18,10 +18,9 @@ jobs:
       - name: Install Claude Code CLI and skills
         run: |
           npm install -g @anthropic-ai/claude-code
-          mkdir -p ~/.claude/skills/rename-identifiers
-          cp -r .github/workflows/rename-identifiers/* ~/.claude/skills/rename-identifiers/
-          mkdir -p ~/.claude/skills/pr-analysis
-          cp -r .github/workflows/pr-analysis/* ~/.claude/skills/pr-analysis/
+          mkdir -p ~/.claude/commands
+          cp .github/workflows/rename-identifiers/skill.md ~/.claude/commands/rename-identifiers.md
+          cp .github/workflows/pr-analysis/skill.md ~/.claude/commands/pr-analysis.md
 
       - name: Run Rename Identifiers Analysis
         env:
