@@ -1,6 +1,6 @@
 # Detection Patterns — Implicit Boolean Coercion
 
-Patterns where JS truthiness is relied upon in a context where the actual value type has surprising falsy members, silently excluding valid inputs or producing wrong branches. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where JS truthiness is relied upon in a context where the actual value type has surprising falsy members, silently excluding valid inputs or producing wrong branches. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Numeric value guarded with a bare truthiness check
 

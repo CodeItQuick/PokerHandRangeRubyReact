@@ -1,6 +1,6 @@
 # Detection Patterns — Feature Envy
 
-Patterns where a function or method is more interested in the data of another module or class than its own, suggesting it belongs elsewhere. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where a function or method is more interested in the data of another module or class than its own, suggesting it belongs elsewhere. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Function accesses many fields of a single foreign object
 

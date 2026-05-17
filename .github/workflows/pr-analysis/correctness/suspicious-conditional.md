@@ -1,6 +1,6 @@
 # Detection Patterns — Suspicious Conditional
 
-Patterns that frequently produce broken or meaningless conditionals. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the suspicious-conditional suppression rules in `references/suppression-rules.md` before reporting.
+Patterns that frequently produce broken or meaningless conditionals. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the suspicious-conditional suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Off-by-one boundary operator (`>` vs `>=`, `<` vs `<=`)
 

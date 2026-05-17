@@ -1,6 +1,6 @@
 # Detection Patterns — Boolean Flag Splitter
 
-Patterns where a boolean parameter so fundamentally divides a function's behavior that the function is really two functions sharing a body. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where a boolean parameter so fundamentally divides a function's behavior that the function is really two functions sharing a body. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Boolean branch covers the entire function body
 

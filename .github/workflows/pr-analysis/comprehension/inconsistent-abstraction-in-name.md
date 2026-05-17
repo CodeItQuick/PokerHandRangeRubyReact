@@ -1,6 +1,6 @@
 # Detection Patterns — Inconsistent Abstraction in Name
 
-Patterns where a name (function, variable, class, parameter) implies one level of abstraction but the surrounding context operates at a different level, or where sibling names in the same scope mix vocabulary from incompatible levels. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where a name (function, variable, class, parameter) implies one level of abstraction but the surrounding context operates at a different level, or where sibling names in the same scope mix vocabulary from incompatible levels. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Sibling functions in the same module use incompatible vocabulary levels
 

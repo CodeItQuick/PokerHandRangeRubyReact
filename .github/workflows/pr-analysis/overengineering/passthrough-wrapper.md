@@ -1,6 +1,6 @@
 # Detection Patterns — Passthrough Wrapper
 
-Patterns where a function, method, or class exists solely to call something else with the same arguments and return the result unchanged. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where a function, method, or class exists solely to call something else with the same arguments and return the result unchanged. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Function body is a single delegating call
 

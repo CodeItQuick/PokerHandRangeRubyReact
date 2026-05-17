@@ -1,6 +1,6 @@
 # Detection Patterns — Implicit Test Ordering
 
-Patterns where a test silently depends on state created or mutated by another test, making the suite order-sensitive without expressing that dependency. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where a test silently depends on state created or mutated by another test, making the suite order-sensitive without expressing that dependency. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Test reads a variable only written by a sibling test
 

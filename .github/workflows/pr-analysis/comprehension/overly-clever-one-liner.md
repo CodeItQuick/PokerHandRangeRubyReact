@@ -1,6 +1,6 @@
 # Detection Patterns — Overly Clever One-Liner
 
-Patterns where code is compressed into a single expression that requires significant mental effort to parse, and where two or three named lines would be immediately clear. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where code is compressed into a single expression that requires significant mental effort to parse, and where two or three named lines would be immediately clear. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Nested ternaries replacing a simple if/else chain
 

@@ -11,7 +11,7 @@ Review comments are the user-facing output. They must be specific, actionable, a
 ## Severity labels
 
 - **`Blocking:`** — high confidence, the bug is demonstrable; the change should not merge until addressed.
-- **`Suggested:`** — medium-to-high confidence; author should consider but may have context that makes it OK.
+- **`Suggested:`** — high confidence but not demonstrably broken; author should consider but may have context that makes it OK.
 - **`Optional:`** — low-stakes improvement. Use sparingly; usually suppress instead.
 
 Do not use bare statements without a label. The severity label tells the author whether they must act.

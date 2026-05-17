@@ -25,26 +25,28 @@ Run thirteen targeted passes over changed code across correctness, overengineeri
 | comprehension | `overly-clever-one-liner` | Expressions compressed to the point where two or three named lines would be immediately clearer | [`comprehension/overly-clever-one-liner.md`](comprehension/overly-clever-one-liner.md) |
 | comprehension | `inconsistent-abstraction-in-name` | Names that mix vocabulary from incompatible abstraction levels — business terms alongside infrastructure terms, or implementation detail encoded in a name where intent belongs | [`comprehension/inconsistent-abstraction-in-name.md`](comprehension/inconsistent-abstraction-in-name.md) |
 
-To run a single pass, specify it: `/pr-analysis null-access`
-
 ## Flags
 
 `--format=<format>` — control output format. Valid values: `report` (default, grouped human-readable output for CLI use), `annotations` (a JSON array of finding objects, one element per finding, machine-parseable for CI pipelines or PR review comment automation).
 
 `--category=<category>` — run all passes in one category instead of all thirteen. Valid values: `correctness`, `overengineering`, `maintainability`, `comprehension`. Example: `/pr-analysis --category=correctness` runs the six correctness passes only.
 
+`--pass=<pass>` — run exactly one pass. Valid values: any pass name from the table above. Example: `/pr-analysis --pass=null-access`. Takes precedence over `--category` if both are supplied.
+
 ---
 
 ## When to use
 
-- Reviewing a PR or diff and the user asks for a general correctness check
-- The user mentions a runtime error, silent failure, or logic bug without specifying type
-- Running as one phase of a broader code review
+- Reviewing a PR or diff for any quality concern — bugs, design issues, readability, or maintainability
+- The user mentions a runtime error, silent failure, logic bug, overengineering, hard-to-read code, or naming problems
+- Running all passes: `/pr-analysis`
+- Focusing on one category: `/pr-analysis --category=correctness`, `--category=overengineering`, `--category=maintainability`, `--category=comprehension`
+- Running a single pass: `/pr-analysis --pass=null-access`
 
 ## Workflow
 
 1. **Get the diff.** Run `git diff <base>...HEAD` and focus only on changed lines.
-2. **Run each pass in order.** For each pass, walk the changed code looking for the patterns in the corresponding detection-patterns file.
+2. **Determine which passes to run.** If `--pass` is specified, run only that pass. If `--category` is specified, run only the passes in that category. Otherwise run all thirteen in order. For each pass, walk the changed code looking for the patterns in the corresponding file in the category folder.
 3. **For each candidate**, collect evidence (see Evidence Required per pass below). If you cannot collect at least two pieces of evidence, suppress.
 4. **Apply suppression rules.** Start with [`shared/suppression-rules.md`](shared/suppression-rules.md), then the category file for the active pass: [`correctness/suppression-rules.md`](correctness/suppression-rules.md), [`overengineering/suppression-rules.md`](overengineering/suppression-rules.md), [`maintainability/suppression-rules.md`](maintainability/suppression-rules.md), or [`comprehension/suppression-rules.md`](comprehension/suppression-rules.md). When in doubt, suppress.
 5. **Emit a structured finding** (JSON, see schema below). This is the source of truth — comments are derived from it.
@@ -54,79 +56,87 @@ To run a single pass, specify it: `/pr-analysis null-access`
 
 Gather **at least two** of the evidence types for the active pass before reporting:
 
-### `null-access`
+### Correctness
+
+#### `null-access`
 1. **Type evidence** — the type allows `null` or `undefined` (optional property, return type with `| undefined`, no narrowing in scope).
 2. **Source evidence** — the value comes from `.find(...)`, `Map.get(...)`, index lookup, cache/database/API.
 3. **Guard placement** — no guard exists, or the guard appears *after* the dereference.
 4. **Convention evidence** — nearby code already treats this value as nullable.
 
-### `swallowed-exceptions`
+#### `swallowed-exceptions`
 1. **Catch evidence** — a `catch` block or `.catch(...)` that does not re-throw, propagate, or take a meaningful recovery action.
 2. **Scope evidence** — the caught exception is discarded: binding unused, named `_`, or only passed to `console.log`/`logger.debug` with no re-throw.
 3. **Caller evidence** — the calling code has no other way to learn the operation failed.
 4. **Context evidence** — silent failure would cause user-visible data loss, incorrect state, or a downstream crash harder to diagnose than the original error.
 
-### `suspicious-conditional`
+#### `suspicious-conditional`
 1. **Logic evidence** — the condition is provably tautological, contradictory, or identical to another branch given the types and values in scope.
 2. **Type evidence** — the type makes the comparison degenerate (non-nullable compared to `null`, `boolean` compared to `"true"`, wrong boundary for the stated invariant).
 3. **Behavioral evidence** — the branch body is empty, unreachable, or identical to the else branch, confirming the condition has no effect.
 4. **Convention evidence** — nearby code uses the correct operator or boundary, making the candidate an inconsistency.
 
-### `mutation-of-input`
+#### `mutation-of-input`
 1. **Mutation evidence** — a mutating operation (`=` on a property, `sort`/`reverse`/`splice`/`push` on an array, `delete` on a property) is applied directly to a parameter or a shallow copy of one.
 2. **Caller evidence** — the caller has no indication mutation will occur: the function name implies a pure transformation, the parameter type is not a builder/accumulator, and the return value is the same reference passed in.
 3. **Alias evidence** — the caller retains a reference to the passed value and uses it after the call, meaning the mutation is observable.
 4. **Convention evidence** — sibling functions handling the same type return new values, making this function an inconsistency.
 
-### `boolean-flag-splitter`
-1. **Branch evidence** — the boolean parameter controls an `if`/`else` whose two branches differ in return type, side effects, or core logic — not just a minor variation in output.
-2. **Caller evidence** — every call site passes a literal `true` or `false` (never a variable), meaning callers have made a static decision and the flag is standing in for two distinct function names.
-3. **Divergence evidence** — the two branches share little code: different I/O, different return shapes, or side effects present in one branch but absent in the other.
-4. **Threading evidence** — the boolean is passed through one or more intermediate functions that do not use it directly, indicating the split is not local to a single decision point.
-
-### `passthrough-wrapper`
-1. **Delegation evidence** — the function, method, or class body contains only a call to another function/method and returns its result without modification.
-2. **Signature evidence** — the wrapper's parameters map 1:1 to the callee's parameters with no reordering, merging, splitting, defaulting, or validation.
-3. **Behavior evidence** — no logging, metrics, error translation, access control, or other cross-cutting concern is added; the wrapper is invisible at runtime.
-4. **Substitutability evidence** — callers could import and call the wrapped target directly without any change to their logic, types, or error handling.
-
-### `implicit-test-ordering`
-1. **Shared state evidence** — a variable, object, database record, cache entry, or singleton is written by one test and read by another with no intervening reset or recreation.
-2. **Missing arrange evidence** — a test has no setup for data or state it clearly requires, meaning that state must have been produced by a prior test.
-3. **Mutation evidence** — a `beforeAll` or module-level object is mutated by one or more tests rather than recreated fresh per test, making each test's starting conditions depend on execution order.
-4. **Ordering signal evidence** — test names use sequential numbering, step language, or lifecycle terms ("step 1", "then", "after") implying a required order that the test runner does not enforce.
-
-### `primitive-obsession`
-1. **Interchangeability evidence** — two or more distinct domain concepts share the same primitive type, making it possible to pass one where the other is expected with no compile-time error (e.g., `userId: string` and `orderId: string` are interchangeable to the type system).
-2. **Validation scatter evidence** — the same format check, range guard, or parsing logic for the primitive value is duplicated at multiple call sites rather than encapsulated once in a type.
-3. **Semantic loss evidence** — the primitive's valid range or invariants are invisible to callers: a `number` that must be positive, a `string` that must be a valid email, an `id` that must match a specific format.
-4. **Convention evidence** — nearby domain types in the same codebase use wrapper types or branded types for similar values, making the raw primitive an inconsistency.
-
-### `feature-envy`
-1. **Access count evidence** — the function reads three or more distinct fields or methods from a single foreign object, while referencing its own class's data (`this`) zero or one times.
-2. **Derivation evidence** — the function's return value or side effect is computed entirely from one foreign object's data, with no contribution from the function's own module or state.
-3. **Displacement evidence** — moving the function to the foreign object would require passing fewer arguments and would remove the need to expose internal fields through a public interface.
-4. **Deep navigation evidence** — the function traverses two or more levels into a foreign object's structure (`order.customer.contactInfo.email`), coupling it to implementation details the foreign object should encapsulate.
-
-### `mixed-abstraction-levels`
-1. **Vocabulary shift evidence** — within a single function body, identifiers shift from business terms (`validateOrder`, `chargeCustomer`) to implementation terms (`Buffer`, `statusCode`, `23505`, `Content-Type`), requiring the reader to switch mental models mid-function.
-2. **Extractability evidence** — a contiguous block of lines inside the function could be extracted into a well-named helper with no change to callers, and that helper's name would be more specific than the parent function's name.
-3. **Granularity mismatch evidence** — some steps in the function are single named calls (`await notifyCustomer(order)`) while others are multi-line inline implementations of a comparable step, making the function uneven to read.
-4. **Layer violation evidence** — a function in the business/service layer directly references persistence details (SQL, ORM internals, raw error codes) or protocol details (HTTP headers, status codes, serialization formats) that belong in a lower layer.
-
-### `overly-clever-one-liner`
-1. **Parsing effort evidence** — the expression requires more than one pass to understand: the reader must trace operator precedence, short-circuit evaluation, or destructuring mechanics before they can determine what the expression produces.
-2. **Decomposability evidence** — the expression can be split into two or three named intermediate variables with no change to behavior, and those names would make each step's purpose self-evident.
-3. **Idiom absence evidence** — the construct is not a widely-recognised JS/TS idiom (e.g., nested ternaries, comma operator, `~indexOf`, bit shifts for non-bit purposes) — a reader unfamiliar with the specific trick would be blocked.
-4. **Debuggability evidence** — the expression cannot be inspected mid-computation in a debugger without rewriting it, because all intermediate values are anonymous and ephemeral.
-
-### `implicit-boolean-coercion`
+#### `implicit-boolean-coercion`
 1. **Type evidence** — the value being coerced to boolean has a type that includes a falsy-but-valid member: `number` (zero is falsy), `string` (empty string is falsy), an array or object (always truthy — check is meaningless), or a union that includes `false` where `undefined` was the intended exclusion.
 2. **Semantic evidence** — the falsy member the guard would exclude (`0`, `""`, `false`) is a plausible and valid value in the domain: zero quantity, empty search query, explicit false toggle, zero-based index.
 3. **Operator evidence** — `||` is used for a default where `??` would be correct, or `.filter(Boolean)` is used on an array whose element type includes `0`, `""`, or `false`, or JSX uses `{count && ...}` where `count` is typed as `number`.
 4. **Convention evidence** — nearby code uses explicit null checks (`!= null`, `!== undefined`, `=== null`) for similar values, making the bare truthiness check an inconsistency.
 
-### `inconsistent-abstraction-in-name`
+#### `implicit-test-ordering`
+1. **Shared state evidence** — a variable, object, database record, cache entry, or singleton is written by one test and read by another with no intervening reset or recreation.
+2. **Missing arrange evidence** — a test has no setup for data or state it clearly requires, meaning that state must have been produced by a prior test.
+3. **Mutation evidence** — a `beforeAll` or module-level object is mutated by one or more tests rather than recreated fresh per test, making each test's starting conditions depend on execution order.
+4. **Ordering signal evidence** — test names use sequential numbering, step language, or lifecycle terms ("step 1", "then", "after") implying a required order that the test runner does not enforce.
+
+### Overengineering
+
+#### `boolean-flag-splitter`
+1. **Branch evidence** — the boolean parameter controls an `if`/`else` whose two branches differ in return type, side effects, or core logic — not just a minor variation in output.
+2. **Caller evidence** — every call site passes a literal `true` or `false` (never a variable), meaning callers have made a static decision and the flag is standing in for two distinct function names.
+3. **Divergence evidence** — the two branches share little code: different I/O, different return shapes, or side effects present in one branch but absent in the other.
+4. **Threading evidence** — the boolean is passed through one or more intermediate functions that do not use it directly, indicating the split is not local to a single decision point.
+
+#### `passthrough-wrapper`
+1. **Delegation evidence** — the function, method, or class body contains only a call to another function/method and returns its result without modification.
+2. **Signature evidence** — the wrapper's parameters map 1:1 to the callee's parameters with no reordering, merging, splitting, defaulting, or validation.
+3. **Behavior evidence** — no logging, metrics, error translation, access control, or other cross-cutting concern is added; the wrapper is invisible at runtime.
+4. **Substitutability evidence** — callers could import and call the wrapped target directly without any change to their logic, types, or error handling.
+
+### Maintainability
+
+#### `primitive-obsession`
+1. **Interchangeability evidence** — two or more distinct domain concepts share the same primitive type, making it possible to pass one where the other is expected with no compile-time error (e.g., `userId: string` and `orderId: string` are interchangeable to the type system).
+2. **Validation scatter evidence** — the same format check, range guard, or parsing logic for the primitive value is duplicated at multiple call sites rather than encapsulated once in a type.
+3. **Semantic loss evidence** — the primitive's valid range or invariants are invisible to callers: a `number` that must be positive, a `string` that must be a valid email, an `id` that must match a specific format.
+4. **Convention evidence** — nearby domain types in the same codebase use wrapper types or branded types for similar values, making the raw primitive an inconsistency.
+
+#### `feature-envy`
+1. **Access count evidence** — the function reads three or more distinct fields or methods from a single foreign object, while referencing its own class's data (`this`) zero or one times.
+2. **Derivation evidence** — the function's return value or side effect is computed entirely from one foreign object's data, with no contribution from the function's own module or state.
+3. **Displacement evidence** — moving the function to the foreign object would require passing fewer arguments and would remove the need to expose internal fields through a public interface.
+4. **Deep navigation evidence** — the function traverses two or more levels into a foreign object's structure (`order.customer.contactInfo.email`), coupling it to implementation details the foreign object should encapsulate.
+
+#### `mixed-abstraction-levels`
+1. **Vocabulary shift evidence** — within a single function body, identifiers shift from business terms (`validateOrder`, `chargeCustomer`) to implementation terms (`Buffer`, `statusCode`, `23505`, `Content-Type`), requiring the reader to switch mental models mid-function.
+2. **Extractability evidence** — a contiguous block of lines inside the function could be extracted into a well-named helper with no change to callers, and that helper's name would be more specific than the parent function's name.
+3. **Granularity mismatch evidence** — some steps in the function are single named calls (`await notifyCustomer(order)`) while others are multi-line inline implementations of a comparable step, making the function uneven to read.
+4. **Layer violation evidence** — a function in the business/service layer directly references persistence details (SQL, ORM internals, raw error codes) or protocol details (HTTP headers, status codes, serialization formats) that belong in a lower layer.
+
+### Comprehension
+
+#### `overly-clever-one-liner`
+1. **Parsing effort evidence** — the expression requires more than one pass to understand: the reader must trace operator precedence, short-circuit evaluation, or destructuring mechanics before they can determine what the expression produces.
+2. **Decomposability evidence** — the expression can be split into two or three named intermediate variables with no change to behavior, and those names would make each step's purpose self-evident.
+3. **Idiom absence evidence** — the construct is not a widely-recognised JS/TS idiom (e.g., nested ternaries, comma operator, `~indexOf`, bit shifts for non-bit purposes) — a reader unfamiliar with the specific trick would be blocked.
+4. **Debuggability evidence** — the expression cannot be inspected mid-computation in a debugger without rewriting it, because all intermediate values are anonymous and ephemeral.
+
+#### `inconsistent-abstraction-in-name`
 1. **Vocabulary mismatch evidence** — the name uses terms from a different layer than the surrounding context: infrastructure terms (`httpResponse`, `sqlRow`, `dbRecord`) in business logic, or business terms (`createOrder`) next to persistence terms (`deleteFromOrdersTable`) in the same module.
 2. **Sibling contrast evidence** — two or more names in the same scope (module, class, or function signature) use incompatible vocabulary levels, making one name an outlier: one function is `createOrder`, the next is `executeInsertQuery`.
 3. **Implementation encoding evidence** — the name encodes a mechanism or transport that callers should not need to know: `fetchUserFromDatabaseByPrimaryKey`, `sendHttpPostRequest`, `serializeToJsonAndPersist`.
@@ -137,6 +147,7 @@ Gather **at least two** of the evidence types for the active pass before reporti
 ```json
 {
   "skill": "pr_analysis",
+  "category": "correctness",
   "pass": "null-access",
   "file": "src/users.ts",
   "line": 42,
@@ -158,7 +169,7 @@ Gather **at least two** of the evidence types for the active pass before reporti
 | Confidence | Criteria | Action |
 |---|---|---|
 | `high` | Two or more evidence types present, failure path is concrete and demonstrable. | Comment as `Blocking:` or `Suggested:`. |
-| `medium` | Two evidence types present, plausible failure path, but alternative interpretations exist. | Comment as `Suggested:` phrased as a question. |
+| `medium` | Two evidence types present, plausible failure path, but alternative interpretations exist. | **Suppress.** Do not comment. |
 | `low` | One evidence type, speculative, or the pattern is clearly defensive/intentional. | **Suppress.** Do not comment. |
 
 ## Output format
@@ -167,10 +178,10 @@ Gather **at least two** of the evidence types for the active pass before reporti
 
 For CLI use. Human-readable output — no JSON. Group findings by pass, then output:
 
-1. **Review comments** — derived from `high` and strong `medium` findings, using the format in [`shared/comment-format.md`](shared/comment-format.md).
-2. **Summary line** — `Found N correctness issues across M passes (P reportable after suppression).`
+1. **Review comments** — derived from `high` confidence findings only, using the format in [`shared/comment-format.md`](shared/comment-format.md).
+2. **Summary line** — `Found N issues across M passes (P reportable after suppression).`
 
-If no findings across all passes, output exactly: `No correctness issues detected in the changed code.`
+If no findings across all passes, output exactly: `No issues detected in the changed code.`
 
 ### `--format=annotations`
 
@@ -182,6 +193,7 @@ Example:
 [
   {
     "skill": "pr_analysis",
+    "category": "correctness",
     "pass": "null-access",
     "file": "src/users.ts",
     "line": 42,
@@ -197,6 +209,7 @@ Example:
   },
   {
     "skill": "pr_analysis",
+    "category": "correctness",
     "pass": "swallowed-exceptions",
     "file": "src/storage.ts",
     "line": 58,

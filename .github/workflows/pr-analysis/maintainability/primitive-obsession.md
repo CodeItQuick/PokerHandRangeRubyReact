@@ -1,6 +1,6 @@
 # Detection Patterns — Primitive Obsession
 
-Patterns where raw primitives are used in place of small domain types, erasing invariants, enabling accidental misuse, and scattering validation logic across the codebase. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where raw primitives are used in place of small domain types, erasing invariants, enabling accidental misuse, and scattering validation logic across the codebase. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Two distinct domain identifiers share the same primitive type
 

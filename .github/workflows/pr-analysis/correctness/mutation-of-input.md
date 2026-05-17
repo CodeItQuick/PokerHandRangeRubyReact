@@ -1,6 +1,6 @@
 # Detection Patterns — Mutation of Input
 
-Patterns where a function mutates its arguments instead of returning new values, violating caller expectations and producing action-at-a-distance bugs. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where a function mutates its arguments instead of returning new values, violating caller expectations and producing action-at-a-distance bugs. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Direct property assignment on a parameter
 

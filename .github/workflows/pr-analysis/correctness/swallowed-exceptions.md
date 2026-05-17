@@ -1,6 +1,6 @@
 # Detection Patterns — Swallowed Exceptions
 
-Patterns that frequently introduce swallowed exceptions. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the swallowed-exception suppression rules in `references/suppression-rules.md` before reporting.
+Patterns that frequently introduce swallowed exceptions. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the swallowed-exception suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Empty catch block
 

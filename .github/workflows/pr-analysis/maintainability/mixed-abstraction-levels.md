@@ -1,6 +1,6 @@
 # Detection Patterns — Mixed Abstraction Levels
 
-Patterns where a single function body mixes high-level business intent with low-level implementation mechanics, forcing the reader to context-switch between two different levels of detail simultaneously. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `references/suppression-rules.md` before reporting.
+Patterns where a single function body mixes high-level business intent with low-level implementation mechanics, forcing the reader to context-switch between two different levels of detail simultaneously. Each pattern is a *candidate*, not a finding — apply the evidence rules in `skill.md` and the shared suppression rules in `../shared/suppression-rules.md` before reporting.
 
 ## 1. Business logic interleaved with I/O or protocol details
 
