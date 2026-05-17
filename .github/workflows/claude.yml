@@ -26,7 +26,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          claude -p "/rename-identifiers --min-severity=HIGH --format=annotations
+          claude --allowedPaths /tmp -p "/rename-identifiers --min-severity=HIGH --format=annotations
 
           Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
 
@@ -88,7 +88,7 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: |
-          claude -p "/pr-analysis --category=correctness --format=annotations
+          claude --allowedPaths /tmp -p "/pr-analysis --category=correctness --format=annotations
 
           Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
 
