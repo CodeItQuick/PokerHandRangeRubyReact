@@ -71,18 +71,18 @@ jobs:
 
           Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
 
-          Write ONLY the JSON array — no preamble, no prose — to ./correctness.json."
+          Write ONLY the JSON array — no preamble, no prose — to /tmp/correctness.json."
 
       - name: Post correctness inline comments
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ ! -s ./correctness.json ]; then
+          if [ ! -s /tmp/correctness.json ]; then
             echo "No correctness annotations produced"
             exit 0
           fi
 
-          FINDINGS=$(jq '.' ./correctness.json)
+          FINDINGS=$(jq '.' /tmp/correctness.json)
           if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
             echo "No correctness findings to post"
             exit 0
