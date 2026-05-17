@@ -58,7 +58,7 @@ jobs:
             /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
             --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
 
-      - name: Run PR Analysis
+      - name: Run PR Analysis (Correctness)
         uses: anthropics/claude-code-action@beta
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
@@ -66,7 +66,7 @@ jobs:
           direct_prompt: |
             Read `.github/workflows/pr-analysis/skill.md` for your top-level instructions.
 
-            Before running any analysis, read every file the skill references:
+            Before running any analysis, read every file the skill references for the correctness category:
             - `.github/workflows/pr-analysis/shared/suppression-rules.md`
             - `.github/workflows/pr-analysis/shared/comment-format.md`
             - `.github/workflows/pr-analysis/correctness/null-access.md`
@@ -76,35 +76,25 @@ jobs:
             - `.github/workflows/pr-analysis/correctness/implicit-boolean-coercion.md`
             - `.github/workflows/pr-analysis/correctness/implicit-test-ordering.md`
             - `.github/workflows/pr-analysis/correctness/suppression-rules.md`
-            - `.github/workflows/pr-analysis/overengineering/boolean-flag-splitter.md`
-            - `.github/workflows/pr-analysis/overengineering/passthrough-wrapper.md`
-            - `.github/workflows/pr-analysis/overengineering/suppression-rules.md`
-            - `.github/workflows/pr-analysis/maintainability/primitive-obsession.md`
-            - `.github/workflows/pr-analysis/maintainability/feature-envy.md`
-            - `.github/workflows/pr-analysis/maintainability/mixed-abstraction-levels.md`
-            - `.github/workflows/pr-analysis/maintainability/suppression-rules.md`
-            - `.github/workflows/pr-analysis/comprehension/overly-clever-one-liner.md`
-            - `.github/workflows/pr-analysis/comprehension/inconsistent-abstraction-in-name.md`
-            - `.github/workflows/pr-analysis/comprehension/suppression-rules.md`
 
-            Then execute all thirteen passes with flags: --format=annotations
+            Then execute with flags: --category=correctness --format=annotations
 
             Diff to analyse: run `git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000`
 
-            Write ONLY the JSON array — no preamble, no prose — to `/tmp/pr-analysis.json`.
+            Write ONLY the JSON array — no preamble, no prose — to `/tmp/correctness.json`.
 
-      - name: Post PR analysis inline comments
+      - name: Post correctness inline comments
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ ! -s /tmp/pr-analysis.json ]; then
-            echo "No PR analysis annotations produced"
+          if [ ! -s /tmp/correctness.json ]; then
+            echo "No correctness annotations produced"
             exit 0
           fi
 
-          FINDINGS=$(jq '.' /tmp/pr-analysis.json)
+          FINDINGS=$(jq '.' /tmp/correctness.json)
           if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
-            echo "No PR analysis findings to post"
+            echo "No correctness findings to post"
             exit 0
           fi
 
