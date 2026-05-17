@@ -15,43 +15,32 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Claude Code CLI and skills
+      - name: Install Claude Code CLI and skill
         run: |
           npm install -g @anthropic-ai/claude-code
           mkdir -p ~/.claude/commands
           cp .github/workflows/rename-identifiers/skill.md ~/.claude/commands/rename-identifiers.md
           cp -r .github/workflows/rename-identifiers/references ~/.claude/commands/references
 
-      - name: Run Rename Identifiers Analysis
+      - name: Analyse and post rename findings
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          claude --allowedPaths /tmp -p "/rename-identifiers --min-severity=HIGH --format=annotations
+          FINDINGS=$(claude -p "/rename-identifiers --min-severity=HIGH --format=annotations
 
           Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
 
-          Output ONLY the raw JSON object — no preamble, no prose, no markdown fences." > /tmp/annotations.json
+          Output ONLY the raw JSON object — no preamble, no prose, no markdown fences." | jq '.findings')
 
-      - name: Post inline comments
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ ! -s /tmp/annotations.json ]; then
-            echo "No annotations produced"
-            exit 0
-          fi
-
-          FINDINGS=$(jq '.findings' /tmp/annotations.json)
           if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
             echo "No findings to post"
             exit 0
           fi
 
-          # Post a PR-level summary comment
-          SUMMARY=$(jq -r '.summary' /tmp/annotations.json)
+          SUMMARY=$(echo "$FINDINGS" | jq -r '"Rename findings: \(length) identifiers flagged"')
           gh pr comment ${{ github.event.pull_request.number }} --body "$SUMMARY"
 
-          # Build inline review comments from findings
           COMMENTS=$(echo "$FINDINGS" | jq '[.[] | {
             path: .file,
             line: .line,
@@ -73,7 +62,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install Claude Code CLI and skills
+      - name: Install Claude Code CLI and skill
         run: |
           npm install -g @anthropic-ai/claude-code
           mkdir -p ~/.claude/commands
@@ -84,36 +73,22 @@ jobs:
           cp -r .github/workflows/pr-analysis/comprehension ~/.claude/commands/comprehension
           cp -r .github/workflows/pr-analysis/shared ~/.claude/commands/shared
 
-      - name: Run PR Analysis (Correctness)
+      - name: Analyse and post correctness findings
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          claude --allowedPaths /tmp -p "/pr-analysis --category=correctness --format=annotations
+          FINDINGS=$(claude -p "/pr-analysis --category=correctness --format=annotations
 
           Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
 
-          Output ONLY the raw JSON array — no preamble, no prose, no markdown fences." > /tmp/correctness.json
+          Output ONLY the raw JSON array — no preamble, no prose, no markdown fences.")
 
-      - name: Post correctness inline comments
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [ ! -s /tmp/correctness.json ]; then
-            echo "No correctness annotations produced"
-            exit 0
-          fi
-
-          FINDINGS=$(jq '.findings' /tmp/correctness.json)
           if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
             echo "No correctness findings to post"
             exit 0
           fi
 
-          # Post a PR-level summary comment
-          SUMMARY=$(jq -r '.summary' /tmp/correctness.json)
-          gh pr comment ${{ github.event.pull_request.number }} --body "$SUMMARY"
-
-          # Build inline review comments from findings
           COMMENTS=$(echo "$FINDINGS" | jq '[.[] | {
             path: .file,
             line: .line,
