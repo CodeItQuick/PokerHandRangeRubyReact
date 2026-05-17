@@ -5,7 +5,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  claude:
+  rename-identifiers:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -20,7 +20,7 @@ jobs:
           npm install -g @anthropic-ai/claude-code
           mkdir -p ~/.claude/commands
           cp .github/workflows/rename-identifiers/skill.md ~/.claude/commands/rename-identifiers.md
-          cp .github/workflows/pr-analysis/skill.md ~/.claude/commands/pr-analysis.md
+          cp -r .github/workflows/rename-identifiers/references ~/.claude/commands/references
 
       - name: Run Rename Identifiers Analysis
         env:
@@ -62,6 +62,27 @@ jobs:
           gh api --method POST \
             /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
             --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
+
+  pr-analysis:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install Claude Code CLI and skills
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          mkdir -p ~/.claude/commands
+          cp .github/workflows/pr-analysis/skill.md ~/.claude/commands/pr-analysis.md
+          cp -r .github/workflows/pr-analysis/correctness ~/.claude/commands/correctness
+          cp -r .github/workflows/pr-analysis/overengineering ~/.claude/commands/overengineering
+          cp -r .github/workflows/pr-analysis/maintainability ~/.claude/commands/maintainability
+          cp -r .github/workflows/pr-analysis/comprehension ~/.claude/commands/comprehension
+          cp -r .github/workflows/pr-analysis/shared ~/.claude/commands/shared
 
       - name: Run PR Analysis (Correctness)
         env:
