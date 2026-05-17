@@ -30,7 +30,7 @@ jobs:
 
           Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
 
-          Write ONLY the JSON object (matching the schema in phase-5-annotations.md) — no preamble, no prose — to /tmp/annotations.json."
+          Output ONLY the raw JSON object — no preamble, no prose, no markdown fences." > /tmp/annotations.json
 
       - name: Post inline comments
         env:
@@ -92,7 +92,7 @@ jobs:
 
           Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
 
-          Write ONLY the JSON object — no preamble, no prose — to /tmp/correctness.json."
+          Output ONLY the raw JSON array — no preamble, no prose, no markdown fences." > /tmp/correctness.json
 
       - name: Post correctness inline comments
         env:
