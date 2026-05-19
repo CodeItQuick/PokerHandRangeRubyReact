@@ -54,187 +54,40 @@ jobs:
 
   pr-analysis:
     needs: rename-identifiers
+  claude:
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write
+      pull-requests: read
+      issues: read
+      id-token: write
+      actions: read # Required for Claude to read CI results on PRs
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: Install Claude Code CLI and skill
-        run: |
-          npm install -g @anthropic-ai/claude-code
-          mkdir -p ~/.claude/commands
-          cp .github/workflows/pr-analysis/skill.md ~/.claude/commands/pr-analysis.md
-          cp -r .github/workflows/pr-analysis/correctness ~/.claude/commands/correctness
-          cp -r .github/workflows/pr-analysis/overengineering ~/.claude/commands/overengineering
-          cp -r .github/workflows/pr-analysis/maintainability ~/.claude/commands/maintainability
-          cp -r .github/workflows/pr-analysis/comprehension ~/.claude/commands/comprehension
-          cp -r .github/workflows/pr-analysis/shared ~/.claude/commands/shared
-
-      - name: Analyse and post correctness findings
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          FINDINGS=$(claude -p "/pr-analysis --category=correctness --format=annotations
-
-          Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
-
-          Output ONLY the raw JSON array — no preamble, no prose, no markdown fences.")
-
-          if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
-            echo "No correctness findings to post"
-            exit 0
-          fi
-
-          COMMENTS=$(echo "$FINDINGS" | jq '[.[] | {
-            path: .file,
-            line: .line,
-            side: "RIGHT",
-            body: "**\(.pass)** (`\(.confidence)` confidence): \(.claim)\n\n> \(.suggested_fix)"
-          }]')
-
-          gh api --method POST \
-            /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
-            --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
-
-  maintainability:
-    needs: pr-analysis
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - uses: actions/checkout@v4
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-action@v1
         with:
-          fetch-depth: 0
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
 
-      - name: Install Claude Code CLI and skill
-        run: |
-          npm install -g @anthropic-ai/claude-code
-          mkdir -p ~/.claude/commands
-          cp .github/workflows/pr-analysis/skill.md ~/.claude/commands/pr-analysis.md
-          cp -r .github/workflows/pr-analysis/maintainability ~/.claude/commands/maintainability
-          cp -r .github/workflows/pr-analysis/shared ~/.claude/commands/shared
+          # This is an optional setting that allows Claude to read CI results on PRs
+          additional_permissions: |
+            actions: read
 
-      - name: Analyse and post maintainability findings
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          FINDINGS=$(claude -p "/pr-analysis --category=maintainability --format=annotations
+          # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
+          # prompt: 'Update the pull request description to include a summary of changes.'
 
-          Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
+          # Optional: Add claude_args to customize behavior and configuration
+          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
+          # or https://code.claude.com/docs/en/cli-reference for available options
+          # claude_args: '--allowed-tools Bash(gh pr *)'
 
-          Output ONLY the raw JSON array — no preamble, no prose, no markdown fences.")
-
-          if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
-            echo "No maintainability findings to post"
-            exit 0
-          fi
-
-          COMMENTS=$(echo "$FINDINGS" | jq '[.[] | {
-            path: .file,
-            line: .line,
-            side: "RIGHT",
-            body: "**\(.pass)** (`\(.confidence)` confidence): \(.claim)\n\n> \(.suggested_fix)"
-          }]')
-
-          gh api --method POST \
-            /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
-            --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
-
-  overengineering:
-    needs: maintainability
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install Claude Code CLI and skill
-        run: |
-          npm install -g @anthropic-ai/claude-code
-          mkdir -p ~/.claude/commands
-          cp .github/workflows/pr-analysis/skill.md ~/.claude/commands/pr-analysis.md
-          cp -r .github/workflows/pr-analysis/overengineering ~/.claude/commands/overengineering
-          cp -r .github/workflows/pr-analysis/shared ~/.claude/commands/shared
-
-      - name: Analyse and post overengineering findings
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          FINDINGS=$(claude -p "/pr-analysis --category=overengineering --format=annotations
-
-          Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
-
-          Output ONLY the raw JSON array — no preamble, no prose, no markdown fences.")
-
-          if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
-            echo "No overengineering findings to post"
-            exit 0
-          fi
-
-          COMMENTS=$(echo "$FINDINGS" | jq '[.[] | {
-            path: .file,
-            line: .line,
-            side: "RIGHT",
-            body: "**\(.pass)** (`\(.confidence)` confidence): \(.claim)\n\n> \(.suggested_fix)"
-          }]')
-
-          gh api --method POST \
-            /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
-            --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
-
-  comprehension:
-    needs: overengineering
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pull-requests: write
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Install Claude Code CLI and skill
-        run: |
-          npm install -g @anthropic-ai/claude-code
-          mkdir -p ~/.claude/commands
-          cp .github/workflows/pr-analysis/skill.md ~/.claude/commands/pr-analysis.md
-          cp -r .github/workflows/pr-analysis/comprehension ~/.claude/commands/comprehension
-          cp -r .github/workflows/pr-analysis/shared ~/.claude/commands/shared
-
-      - name: Analyse and post comprehension findings
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          FINDINGS=$(claude -p "/pr-analysis --category=comprehension --format=annotations
-
-          Diff to analyse: run \`git diff origin/${{ github.base_ref }}...HEAD -- '*.js' | head -c 20000\`
-
-          Output ONLY the raw JSON array — no preamble, no prose, no markdown fences.")
-
-          if [ "$(echo "$FINDINGS" | jq 'length')" -eq 0 ]; then
-            echo "No comprehension findings to post"
-            exit 0
-          fi
-
-          COMMENTS=$(echo "$FINDINGS" | jq '[.[] | {
-            path: .file,
-            line: .line,
-            side: "RIGHT",
-            body: "**\(.pass)** (`\(.confidence)` confidence): \(.claim)\n\n> \(.suggested_fix)"
-          }]')
-
-          gh api --method POST \
-            /repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/reviews \
-            --input - <<< "$(jq -n --argjson c "$COMMENTS" '{"event": "COMMENT", "comments": $c}')"
