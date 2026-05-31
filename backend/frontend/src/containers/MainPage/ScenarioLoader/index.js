@@ -72,7 +72,7 @@ const StyledTab = styled(Tab)`
 const ScenarioLoader = ({ active, token, onCloseModal, scenarios }) => {
   const [activePage, updateActivePage] = useState(1);
   const [totalPages, updateTotalPages] = useState(
-    1 + Math.floor(scenarios.filteredScenariosPosition() / 10)
+    1 + Math.floor(scenarios.scenarioCountForPosition() / 10)
   );
   const [injectedScenarios, setInjectedScenarios] = useState(scenarios);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -99,13 +99,15 @@ const ScenarioLoader = ({ active, token, onCloseModal, scenarios }) => {
           panes={panes(
             scenarios.injectToken(token),
             activePage,
-            scenarios.injectToken(token).filteredScenariosArray(),
+            scenarios.injectToken(token).scenarioCountsByPosition(),
             windowWidth
           )}
           onTabChange={(e, { activeIndex, panes }) =>
             updateTotalPages(
               1 +
-                Math.floor(scenarios.filteredScenariosArray()[activeIndex] / 10)
+                Math.floor(
+                  scenarios.scenarioCountsByPosition()[activeIndex] / 10
+                )
             )
           }
         />

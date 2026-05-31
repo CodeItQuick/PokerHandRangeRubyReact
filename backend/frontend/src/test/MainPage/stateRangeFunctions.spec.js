@@ -1,12 +1,12 @@
 import { mapNewHandRange } from "./../../containers/MainPage/stateRangeFunctions";
 import { initialState } from "./../../containers/MainPage/reducer";
-import RangeObject from "./../../containers/MainPage/EngineClasses/RangeObject";
+import HandRange from "../../containers/MainPage/EngineClasses/HandRange";
 import { expect } from "chai";
 
 describe("MainPage reducer", () => {
   it("should return the initial state", function () {
     const oldHandRange = initialState.ranges.map(
-      ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
+      ({ Street, BetType, hands }) => new HandRange(Street, BetType, hands)
     );
     const draftModeStreet = "Flop";
     const draftModeStreetAction = "Bluff";
@@ -16,7 +16,7 @@ describe("MainPage reducer", () => {
       ({ Street, BetType }, idx) => {
         if (idx === 5)
           return { Street: draftModeStreet, BetType, hands: ["AA"] };
-        else return new RangeObject(Street, BetType, []).toRangeData();
+        else return new HandRange(Street, BetType, []).toRangeData();
       }
     );
 

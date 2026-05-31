@@ -5,9 +5,9 @@
 import { createSelector } from "reselect";
 
 import { initialState } from "../reducer";
-import RangeObject from "../EngineClasses/RangeObject";
+import HandRange from "../EngineClasses/HandRange";
 import { StartingHandBuilder } from "../EngineClasses/StartingHandBuilder";
-import { RangeObjectCollection } from "../EngineClasses/RangeObjectCollection";
+import { HandRangeCollection } from "../EngineClasses/HandRangeCollection";
 
 const copyHands = (hands) =>
   hands.map((hand) =>
@@ -36,7 +36,7 @@ export class SelectedStreet {
   displayStreetObject() {
     return this.ranges.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(Street, BetType, copyHands(hands))
+        new HandRange(Street, BetType, copyHands(hands))
     );
   }
 }
@@ -48,7 +48,7 @@ const makeSelectMode = () =>
 
 const makeSelectSelectedStreet = () =>
   createSelector(selectGlobal, (global) =>
-    new RangeObjectCollection(global?.ranges).getRangesForStreet({
+    new HandRangeCollection(global?.ranges).getRangesForStreet({
       Street: global?.mode?.street,
       useTwoFlopSizes: global?.mode?.useTwoFlopSizes,
     })

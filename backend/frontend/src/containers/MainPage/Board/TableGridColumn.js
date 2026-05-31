@@ -3,11 +3,11 @@ import { StyledCol, ColorCard } from "./Styles.js";
 import { findMatchingHandKeys } from "../EngineClasses/findMatchingHandKeys";
 import { colorCell } from "../EngineClasses/colorCellFn";
 
-const TableGridColumn = ({ cardHand, bind, allPreflopHands, cards }) => {
+const TableGridColumn = ({ cardHand, bind, allPreflopHands, handColorMap }) => {
   const [suitString, updateSuitString] = useState();
   useEffect(() => {
-    const newColors = colorCell(cards, cardHand);
-    if (findMatchingHandKeys(cards, cardHand).length > 0) {
+    const newColors = colorCell(handColorMap, cardHand);
+    if (findMatchingHandKeys(handColorMap, cardHand).length > 0) {
       let newCSSGradient = newColors.reduce(
         (acc, color) => acc + color + " , ",
         ""
@@ -17,7 +17,7 @@ const TableGridColumn = ({ cardHand, bind, allPreflopHands, cards }) => {
     } else {
       updateSuitString("#DDD");
     }
-  }, [cardHand, cards]);
+  }, [cardHand, handColorMap]);
   return (
     <StyledCol
       key={cardHand}

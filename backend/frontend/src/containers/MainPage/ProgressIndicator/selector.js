@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 import { initialState } from "../reducer";
-import RangeObject from "../EngineClasses/RangeObject";
+import HandRange from "../EngineClasses/HandRange";
 import { StartingHandBuilder } from "../EngineClasses/StartingHandBuilder";
 
 const copyHands = (hands) =>
@@ -23,7 +23,7 @@ const makeSelectRangeRepoIP = () =>
   createSelector(selectGlobal, (globalState) =>
     globalState.rangeRepoIP.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(Street, BetType, copyHands(hands))
+        new HandRange(Street, BetType, copyHands(hands))
     )
   );
 
@@ -31,14 +31,14 @@ const makeSelectRangeRepoOOP = () =>
   createSelector(selectGlobal, (globalState) =>
     globalState.rangeRepoOOP.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(Street, BetType, copyHands(hands))
+        new HandRange(Street, BetType, copyHands(hands))
     )
   );
 const makeSelectRange = () =>
   createSelector(selectGlobal, (globalState) =>
     globalState.ranges.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(Street, BetType, copyHands(hands))
+        new HandRange(Street, BetType, copyHands(hands))
     )
   );
 export {

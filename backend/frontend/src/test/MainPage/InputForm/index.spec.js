@@ -1,6 +1,6 @@
 import { initialState } from "./../../../containers/MainPage/reducer";
 import { assignPositions } from "./../../../containers/MainPage/InputForm";
-import RangeObject from "./../../../containers/MainPage/EngineClasses/RangeObject";
+import HandRange from "../../../containers/MainPage/EngineClasses/HandRange";
 import { expect } from "chai";
 
 describe("InputStreet Container", () => {
@@ -8,7 +8,7 @@ describe("InputStreet Container", () => {
     const rangeRepoIP = JSON.parse(JSON.stringify(initialState.rangeRepoIP))
       .filter(({ Street }) => Street == "Flop")
       .map(
-        ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
+        ({ Street, BetType, hands }) => new HandRange(Street, BetType, hands)
       );
     const rangeRepoIPDataObject = rangeRepoIP.map((rangeObject) =>
       rangeObject.toRangeData()
@@ -17,13 +17,13 @@ describe("InputStreet Container", () => {
     const rangeRepoOOP = JSON.parse(JSON.stringify(initialState.rangeRepoOOP))
       .filter(({ Street }) => Street == "Flop")
       .map(
-        ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
+        ({ Street, BetType, hands }) => new HandRange(Street, BetType, hands)
       );
 
     let selectedRanges = JSON.parse(JSON.stringify(initialState.ranges))
       .filter(({ Street }) => Street == "Flop")
       .map(
-        ({ Street, BetType, hands }) => new RangeObject(Street, BetType, hands)
+        ({ Street, BetType, hands }) => new HandRange(Street, BetType, hands)
       );
     const selectedRangesDataObject = selectedRanges.map((rangeObject) =>
       rangeObject.toRangeData()

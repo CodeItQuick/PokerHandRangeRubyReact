@@ -1,6 +1,6 @@
 import { StartingHandBuilder } from "./../../../containers/MainPage/EngineClasses/StartingHandBuilder";
-import { countHandCombo } from "./../../../containers/MainPage/EngineClasses/countHandCombo";
-import RangeObject from "./../../../containers/MainPage/EngineClasses/RangeObject";
+import { countRangeCombos } from "./../../../containers/MainPage/EngineClasses/countHandCombo";
+import HandRange from "./../../../containers/MainPage/EngineClasses/HandRange";
 import { expect } from "chai";
 
 describe("Board Legend", () => {
@@ -8,9 +8,9 @@ describe("Board Legend", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["Ac", "Ts", "4s"];
     const testHand = new StartingHandBuilder().build("A", "K", "s");
-    const rangeObjects = [new RangeObject("Flop", "CheckCall", [testHand])];
+    const rangeObjects = [new HandRange("Flop", "CheckCall", [testHand])];
     // When: I call some function (refactor a function)
-    const result = countHandCombo(rangeObjects, "Flop", board);
+    const result = countRangeCombos(rangeObjects, "Flop", board);
     // Then: I expect the results of that to be... number of combos for a hand
     expect(result).to.deep.equal([3]);
   });
@@ -19,9 +19,9 @@ describe("Board Legend", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["Ac", "Ts", "9s", "3s"];
     const testHand = new StartingHandBuilder().build("T", "9", "s");
-    const rangeObjects = [new RangeObject("Turn", "Bluff", [testHand])];
+    const rangeObjects = [new HandRange("Turn", "Bluff", [testHand])];
     // When: I call some function (refactor a function)
-    const result = countHandCombo(rangeObjects, "Turn", board);
+    const result = countRangeCombos(rangeObjects, "Turn", board);
     // Then: I expect the results of that to be... number of combos for a hand
     expect(result).to.deep.equal([3]);
   });
@@ -31,9 +31,9 @@ describe("Board Legend", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["Ac", "Ts", "4s", "9d", "Ks"];
     const testHand = new StartingHandBuilder().build("K", "A");
-    const rangeObjects = [new RangeObject("River", "Valuebet", [testHand])];
+    const rangeObjects = [new HandRange("River", "Valuebet", [testHand])];
     // When: I call some function (refactor a function)
-    const result = countHandCombo(rangeObjects, "River", board);
+    const result = countRangeCombos(rangeObjects, "River", board);
     // Then: I expect the results of that to be... number of combos for a hand
     expect(result).to.deep.equal([7]);
   });
@@ -41,9 +41,9 @@ describe("Board Legend", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["Ac", "Ts", "4s", "9d", "Ks"];
     const testHand = new StartingHandBuilder().build("A", "A");
-    const rangeObjects = [new RangeObject("River", "Valuebet", [testHand])];
+    const rangeObjects = [new HandRange("River", "Valuebet", [testHand])];
     // When: I call some function (refactor a function)
-    const result = countHandCombo(rangeObjects, "River", board);
+    const result = countRangeCombos(rangeObjects, "River", board);
     // Then: I expect the results of that to be... number of combos for a hand
     expect(result).to.deep.equal([3]);
   });
@@ -51,9 +51,9 @@ describe("Board Legend", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["As", "Ts", "4s", "9d", "Ks"];
     const testHand = new StartingHandBuilder().build("As", "9s", "");
-    const rangeObjects = [new RangeObject("River", "Valuebet", [testHand])];
+    const rangeObjects = [new HandRange("River", "Valuebet", [testHand])];
     // When: I call some function (refactor a function)
-    const result = countHandCombo(rangeObjects, "River", board);
+    const result = countRangeCombos(rangeObjects, "River", board);
     // Then: I expect the results of that to be... number of combos for a hand
     expect(result).to.deep.equal([0]);
   });
@@ -61,9 +61,9 @@ describe("Board Legend", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["As", "Ts", "4s", "9d", "Ks"];
     const testHand = new StartingHandBuilder().build("Ac", "9s", "");
-    const rangeObjects = [new RangeObject("River", "Valuebet", [testHand])];
+    const rangeObjects = [new HandRange("River", "Valuebet", [testHand])];
     // When: I call some function (refactor a function)
-    const result = countHandCombo(rangeObjects, "River", board);
+    const result = countRangeCombos(rangeObjects, "River", board);
     // Then: I expect the results of that to be... number of combos for a hand
     expect(result).to.deep.equal([1]);
   });
@@ -72,9 +72,9 @@ describe("Board Legend", () => {
     // Given: what's the input state? Board (3 cards) and a hand of two cards
     const board = ["As", "Ts", "4s", "9d", "Ks"];
     const testHand = new StartingHandBuilder().build("4s", "9d", "");
-    const rangeObjects = [new RangeObject("River", "Valuebet", [testHand])];
+    const rangeObjects = [new HandRange("River", "Valuebet", [testHand])];
     // When: I call some function (refactor a function)
-    const result = countHandCombo(rangeObjects, "River", board);
+    const result = countRangeCombos(rangeObjects, "River", board);
     // Then: I expect the results of that to be... number of combos for a hand
     expect(result).to.deep.equal([0]);
   });

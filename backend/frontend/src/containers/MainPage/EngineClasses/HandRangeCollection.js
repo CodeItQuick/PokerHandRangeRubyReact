@@ -1,16 +1,16 @@
 import { initialState } from "../reducer";
 import { StartingHandBuilder } from "./StartingHandBuilder";
-import RangeObject from "./RangeObject";
+import HandRange from "./HandRange";
 
-export class RangeObjectCollection {
+export class HandRangeCollection {
   constructor(rangeData) {
-    const rangeData_ = rangeData || initialState.ranges;
-    this.rangeObjects = this._toRangeObjects(rangeData_);
+    const resolvedRangeData = rangeData || initialState.ranges;
+    this.handRanges = this._toHandRanges(resolvedRangeData);
   }
-  _toRangeObjects(rangeData) {
+  _toHandRanges(rangeData) {
     return rangeData.map(
       ({ Street, BetType, hands }) =>
-        new RangeObject(Street, BetType, this._toStartingHands(hands))
+        new HandRange(Street, BetType, this._toStartingHands(hands))
     );
   }
   _toStartingHands(hands) {
@@ -24,13 +24,13 @@ export class RangeObjectCollection {
   }
 
   getPreviousStreetRanges({ Street = "Flop", isIP = true }) {
-    return this.rangeObjects.filter(({ street, streetAction }) =>
+    return this.handRanges.filter(({ street, streetAction }) =>
       this.isFromPreviousStreet({ isIP, street, streetAction, Street })
     );
   }
   isFromPreviousStreet({ isIP, street, streetAction, Street }) {
-    const possiblePreviousStreet = ["Preflop", "Flop", "Turn", "River"];
-    const previousStreetIdx = possiblePreviousStreet.reduce(
+    const streetProgression = ["Preflop", "Flop", "Turn", "River"];
+    const previousStreetIndex = streetProgression.reduce(
       (acc, currStreet, idx) => (currStreet === Street ? acc + idx - 1 : acc),
       0
     );
@@ -44,7 +44,7 @@ export class RangeObjectCollection {
       "RaiseFold"
     );
     return (
-      street === possiblePreviousStreet[previousStreetIdx] &&
+      street === streetProgression[previousStreetIndex] &&
       allowedActions.includes(streetAction)
     );
   }
@@ -52,13 +52,13 @@ export class RangeObjectCollection {
     const excludedActions = useTwoFlopSizes
       ? []
       : ["SmallValuebet", "SmallBluff"];
-    return this.rangeObjects.filter(
+    return this.handRanges.filter(
       ({ street, streetAction }) =>
         Street == street && !excludedActions.includes(streetAction)
     );
   }
   getAllRanges() {
-    return this.rangeObjects;
+    return this.handRanges;
   }
 
   countHandCombo() {

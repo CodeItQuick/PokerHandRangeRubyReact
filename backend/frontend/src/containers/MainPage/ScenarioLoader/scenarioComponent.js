@@ -19,17 +19,13 @@ const ScenarioComponent = ({ scenario, token }) => {
   const onClickHandler = () => dispatch(initGetScenario({ scenario, token }));
 
   return (
-    <Table.Row id={scenario?.displayScenarioName()}>
-      <Table.Cell>{scenario ? scenario?.displayScenarioName() : ""}</Table.Cell>
+    <Table.Row id={scenario?.getScenarioName()}>
+      <Table.Cell>{scenario ? scenario?.getScenarioName() : ""}</Table.Cell>
+      <Table.Cell>{scenario ? scenario?.getOpenerPosition() : ""}</Table.Cell>
+      <Table.Cell>{scenario ? scenario?.getDefenderPosition() : ""}</Table.Cell>
+      <Table.Cell>{scenario ? scenario?.getDeadcards() : ""}</Table.Cell>
       <Table.Cell>
-        {scenario ? scenario?.displayOpenerPosition() : ""}
-      </Table.Cell>
-      <Table.Cell>
-        {scenario ? scenario?.displayDefenderPosition() : ""}
-      </Table.Cell>
-      <Table.Cell>{scenario ? scenario?.displayDeadcards() : ""}</Table.Cell>
-      <Table.Cell>
-        {scenario.displayScenarioName().length ? (
+        {scenario.getScenarioName().length ? (
           <Button
             color="green"
             onClick={onClickHandler}
